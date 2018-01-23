@@ -1,2 +1,2 @@
 # Software-Process.github.io
-Attempting to post using GitHub Pages
+Attempting to host using GitHub Pages
