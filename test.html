@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="style.css">
+		<title>SOEN341</title>
+		<script type="text/javascript" src="DataManager.js"></script>
+	</head>
+	<body onload="init()">
+	
+	
+	
+	<div id="upperMenu">
+		<div id="mmenu"><table style="width:100%" >
+			<tr>
+				<th>Home page</th>
+				<th>Hot questions</th>
+				<th>Ask a question</th>
+				<th>Login</th>
+			</tr>
+		</table></div>
+	<div>
+	<a href="index.html"><img src="logo.jpg" id="logo" alt="our logo"></a>
+	</div>
+	
+	
+	<div id="sideMenu">
+		<p>
+			<h3>
+				<a href="youtube.com">Feature 1</a><br/><br/><a href="youtube.com">Feature 2</a><br/><br/><a href="youtube.com">Feature 3</a><br/><br/><a href="youtube.com">Feature 4</a>
+			</h3>
+		</p>
+	</div>
+	
+	
+	<div id="content">
+		<h1>SOEN 341 JSON File Reader</h1>
+		<p>Type in the field and press "Add post!" to add to the list</p>
+		<input type="text" id="TextBox" value="">
+		<button id="addBtn" onclick="addToJSON()">Add post!</button>
+
+		<ul id="List"></ul>
+		</div>
+	</body>
+</html>
