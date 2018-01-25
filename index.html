@@ -3,9 +3,36 @@
 	<head>
 		<title>SOEN341</title>
 		<script type="text/javascript" src="DataManager.js"></script>
+		 <link rel="stylesheet" href="style.css">
 	</head>
 	<body onload="init()">
 		<h1>SOEN 341 JSON File Reader</h1>
+
+<div>
+	<table id="IUserRegisterTable">
+	  <tr>
+	    <td >
+	  		<marquee id="ISchollingUIText" behavior="scroll" scrolldelay="100" direction="up">
+	  			<h1 class="CUserInterface">
+	  				Join the community<br><br>
+	  				Code<br><br>
+	  				Learn<br><br>
+	  				Connect<br><br>
+	  				Interact
+	  			</h1>
+	  		</marquee>
+	  	</td>
+	    <td>
+	    	<h1 class="CUserInterface">
+	    		Register Today!
+	    	</h1>
+	    	<button>Register</button>
+	    	<button>Log in</button>
+	    </td>
+	  </tr>
+	</table>
+</div>
+
 		<p>Type in the field and press "Add post!" to add to the list</p>
 		<input type="text" id="TextBox" value="">
 		<button id="addBtn" onclick="addToJSON()">Add post!</button>
