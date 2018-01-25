@@ -20,3 +20,7 @@ The data is stored locally in a JSON file. Every time a post is added,  it is ad
 ]
 ```
 As a test. each post only contains a title as the Key and its value as the Value. However, as posts become more complex more key-value pairs can be added.
+
+## (Temporary)
+Michael making first pull request.
+
