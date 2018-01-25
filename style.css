@@ -42,3 +42,7 @@ div.inner-content {
 	background-color: green;
 	width: 100%;
 }
+
+div.userInfo {
+    float: right;
+}
