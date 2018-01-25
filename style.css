@@ -1,15 +1,44 @@
+html{
+    min-height:100%;
+    position:relative;
+}
+
+body {
+	height:100%;
+}
+
 #ISchollingUIText{
 	text-align: center;
 }
 #IUserRegisterTable{
 	background-image: url("wood-photo.jpeg") ;
     background-size: cover;
-    width:100%;
+    width: 100%;
     height: 50%;
     text-align: center;
 	border-collapse:collapse;
     border-spacing:0;
 }
-h1.CUserInterface" {
+h1.CUserInterface {
     font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+div.inner-content {
+	background-color: blue;
+	box-sizing: content-box;
+    margin: 0 15%;
+    padding: 15px;
+    position:absolute;
+}
+
+#mainbar {
+	background-color: red;
+	float: left;
+    width: 70%;  
+    padding: 0 10px 0 10px;
+}
+
+#main-content {
+	background-color: green;
+	width: 100%;
 }
