@@ -38,6 +38,13 @@ div.inner-content {
     padding: 0 10px 0 10px;
 }
 
+#sidebar {
+    background-color: white;
+    float: right;
+    width: 25%;
+    padding: 10px 10px 0 10px;
+}
+
 #main-content {
 	background-color: green;
 	width: 100%;
