@@ -49,3 +49,9 @@ div.inner-content {
     width: 25%;
     padding: 10px 10px 0 10px;
 }
+.question{
+	background-color: #6699ff;
+}
+.question li {
+	display: inline;
+}
