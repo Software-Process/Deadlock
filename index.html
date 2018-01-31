@@ -3,10 +3,16 @@
 	<head>
 		<title>SOEN341</title>
 		<script type="text/javascript" src="DataManager.js"></script>
+		<script src="https://www.w3schools.com/lib/w3.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="style.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	</head>
 
 	<body onload="init()">
+		<div w3-include-html="header.html"></div>
 		<h1>SOEN 341 JSON File Reader</h1>
 		<div>
 			<table id="IUserRegisterTable">
@@ -87,8 +93,30 @@
 			</div>
 
 		</div>
-		<div class="footer">
-			<p>About | Contact us</p>
-		</div>
+		<!-- Since the Above main-content was not created using bootstrap, it conflicts with stuff put under it. The <br>s are to bring out stuff from under -->
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<div w3-include-html="footer.html"></div>
+		<script>
+			w3.includeHTML();
+		</script>
 	</body>
 </html>
