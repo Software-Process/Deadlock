@@ -13,7 +13,7 @@ The objective of this project is to create a Q&A website similar to StackOverflo
 * Kevin 
 * Panoera
 * Pierre
-* Micheal
+* Michael
 
 ## Technologies
 * Node.js
