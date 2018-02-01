@@ -6,7 +6,7 @@ MongoClient.connect(url, function(err, db) {
   	console.log("Error creating database");
   	throw err;
   } else {
-  	console.log("Database has success fully been created!");
+  	console.log("Database has successfully been created!");
   }  
   db.close();
 });
