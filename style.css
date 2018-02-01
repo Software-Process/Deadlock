@@ -31,6 +31,46 @@ div.inner-content {
     position:absolute;
 }
 
+.question-list {
+    width: 728px;
+    margin-bottom: 20px;
+}
+
+.question-summary {
+    padding: 12px 0 10px 0;
+    border-bottom: 1px solid #e4e6e8;
+}
+
+.question-points {
+    width: 40px;
+    padding-right: 12px;
+    text-align: right;
+    display:inline-block;
+}
+
+.question-title {
+    display:inline-block;
+}
+
+a.question-title {
+    color: #07C;
+    margin:5px 0;
+    text-decoration: none;
+}
+
+a.question-title:hover {
+    color:#3af;
+}
+
+.jumbotron {
+    background-color: #116CF6;
+    color: #FFFFFF;
+}
+
+.jumbotron-title {
+    display: inline-block;
+}
+
 #mainbar {
 	background-color: red;
 	float: left;
