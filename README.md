@@ -28,3 +28,4 @@ The objective of this project is to create a Q&A website similar to StackOverflo
 * CSS
 * JavaScript
 * JSON
+* Travis CI
