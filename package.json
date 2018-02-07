@@ -1,0 +1,22 @@
+{
+  "name": "package",
+  "version": "1.0.0",
+  "description": "The objective of this project is to create a Q&A website similar to StackOverflow.",
+  "main": "DataManager.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Software-Process/Software-Process.github.io.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Software-Process/Software-Process.github.io/issues"
+  },
+  "homepage": "https://github.com/Software-Process/Software-Process.github.io#readme",
+  "dependencies": {
+    "express": "^4.16.2"
+  }
+}
