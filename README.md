@@ -16,7 +16,7 @@ The objective of this project is to create a Q&A website similar to StackOverflo
 * Georgik
 * Suzanne
 * Kevin 
-* Panoera
+* Panorea
 * Pierre
 * Michael
 
