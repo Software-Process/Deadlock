@@ -1,2 +1,68 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>{{PageTitle}}</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<!-- <link rel="stylesheet" type="text/css" href="/public/stylesheet/bootstrap.min.css">	-->
+
+		<!-- jQuery library -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
+		<!-- <script src="../public/javascript/jquery.min.js"></script>-->
+
+		<!-- Latest compiled JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<!-- <script src="/public/javascript/bootstrap.min.js"></script>-->
+	</head>
+
+	<body>
+
+		<div class="jumbotron" style="background-color: lavender">
+			<h1><center>Software Process <small>Using Express</small></center></h1>			
+		</div>
+		<div class="container">	
+			<div class="page-header">
+				<h2>List of posts</h2> 
+				<a href="/users">click here</a>
+			</div>
+
+			<center>
+			<ul class="nav nav-tabs">
+				<li class="active"><a href="#">Interesting</a></li>
+				<li><a href="#">Featured</a></li>
+				<li><a href="#">Hot</a></li>
+				<li><a href="#">Week</a></li>
+				<li><a href="#">Month</a></li>
+			</ul>
+			</center>
+
+			<div class="row">
+				<div class="col-sm-1" style="font-weight:bold;">Votes</div>
+				<div class="col-sm-1" style="font-weight:bold;">Answers</div>
+				<div class="col-sm-6" style="font-weight:bold;">Questions</div>
+				<div class="col-sm-2" style="font-weight:bold;">Authors</div>
+			</div>
+
+			{{#each questions}}
+				<div class="row">
+					<div class="col-sm-1" style="background-color: lavender;">{{score}}</div>
+					<div class="col-sm-1">ANSWERS</div>
+					<div class="col-sm-6">{{title}}</div>
+					<div class="col-sm-2">AUTHOR</div>
+				</div>
+			{{/each}}
+
+			<center>
+			<ul class="pagination">
+				<li><a href="#">1</a></li>
+				<li><a href="#">2</a></li>
+				<li><a href="#">3</a></li>
+				<li><a href="#">4</a></li>
+				<li><a href="#">5</a></li>
+			</ul>
+			</center>
+		</div>
+	</body>
+</html>

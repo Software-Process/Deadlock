@@ -14,8 +14,6 @@ const app = express();
 
 const questionRoutes = require('./routes/questions');
 
-
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
@@ -42,6 +40,7 @@ app.use(function(req, res, next) {
 
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Specify the URL path to the correct routes file 
 app.use('/', index);
 app.use('/users', users);
 
