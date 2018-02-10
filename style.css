@@ -41,21 +41,27 @@ div.inner-content {
     border-bottom: 1px solid #e4e6e8;
 }
 
-.question-points {
+.question-score {
     width: 40px;
     padding-right: 12px;
     text-align: right;
     display:inline-block;
 }
 
-.question-title {
+.question-title{
     display:inline-block;
-}
-
-a.question-title {
     color: #07C;
     margin:5px 0;
     text-decoration: none;
+}
+
+.question-date {
+    display:inline-block;
+    color: #9199A1;
+    margin-top: 5px;
+    font-size: 0.85em;
+    float:right;
+
 }
 
 a.question-title:hover {
