@@ -5,6 +5,11 @@ const mongoose = require("mongoose");
 
 const Question = require("../models/question");
 
+/*To render the question-prompt.hbs page*/
+router.get('/', function(req, res, next) {
+    res.render('question-prompt', { title: 'Ask a question page' });
+  });
+
 /*POST linked with question-prompt page*/
 router.post('/', function(req, res, next) {
     console.log(req);
