@@ -9,7 +9,7 @@ const mongoose = require("mongoose");
 		"nbOfVotes" : Number of votes based on user input [Set to 0]
 		"nbOfAnswers" : Number of replies to the question [Set to 0]
 		"author" : Owner of the post [Required]
-		"date" : Date of submission [Automatically assigned]
+		"date" : Date of submission (Automatically assigned) [Required]
 	}
 */
 
