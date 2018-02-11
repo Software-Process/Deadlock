@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon ./bin/www"
+    "start": "nodemon ./bin/www",
+    "test": "echo \"This will run the tests\" && exit 0"
   },
   "dependencies": {
     "body-parser": "~1.18.2",
