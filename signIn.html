@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>SOEN341 Q&amp;A</title>
+        <script type="text/javascript" src="DataManager.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://www.w3schools.com/lib/w3.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
+        <style>
+            html, body, h1, h2, h3, h4, h5 {
+                font-family: "Open Sans", sans-serif;
+            }
+			.button{
+				background-color: #0649ac;
+				border-radius:25px;
+				border:	none;
+				font-weight: 600;
+			}
+			fieldset{
+				margin-left:50px;
+				width: 300px;
+				border: none;
+			}
+			.button:hover{
+				background-image:none !important;
+				background-color:#5395f9 !important;
+			}
+			#verticalLine{
+				width:50%;
+				min-width:400px;
+				height:500px;
+				border:none;
+				border-right:solid 1px black;
+				float:left;
+				
+			}
+			#right-box{
+			float:right;
+				width:40%;
+				min-width:400px;
+			}
+			.textBox{
+				color:black;
+			}
+        </style>
+    </head>
+<body class="w3-theme-15">
+<div w3-include-html="header.html"></div>
+
+<div class="jumbotron">
+	<div class="container w3-content">
+	<h1>Join our community!</h1><br><br>
+		<div id="verticalLine">
+			
+				<form action="/Register.php" method="post"><!--We must link the php to verify the information entered here-->
+					<fieldset>
+						<legend>Log in</legend>
+						Username:<br>
+						<input type="text" name="username" class="textBox"><br>
+						Password:<br>
+						<input type="password" name="password" class="textBox"><br><br>
+						
+						<input type="submit" value="Log in" class="w3-button button">
+					</fieldset>
+				</form>
+			
+		</div>
+		
+		<div id="right-box">
+			<form action="/Register.php" method="post"><!--We must link the php for the register action here-->
+				<fieldset>
+					<legend>Register</legend>
+					Username:<br>
+					<input type="text" name="username" class="textBox"><br>
+					Email:<br>
+					<input type="text" name="email" class="textBox"><br>
+					Password:<br>
+					<input type="password" name="password" class="textBox"><br>
+					Verify password:<br>
+					<input type="password" name="vpassword" class="textBox"><br><br>
+					
+					<input type="submit" value="Register" class="w3-button button">
+				</fieldset>
+			</form>
+		</div>
+	</div>
+	<br><br><br><br><br><br>
+</div>
+    
+    <div w3-include-html="footer.html"></div>
+   <script>
+       w3.includeHTML();
+   </script>
+</body>
+</html>
