@@ -13,10 +13,14 @@ router.get('/', function(req, res, next) {
                 count: docs.length,
                 questions: docs.map(function(doc){
                     return {
+                        _id: doc._id,
                         title : doc.title,
                         text: doc.text,
-                        score: doc.score,
-                        _id: doc._id,
+                        nbOfVotes: doc.nbOfVotes,
+                        nbOfAnswers: doc.nbOfAnswers,
+                        author: doc.author,
+                        date: doc.date,
+
                         request:{
                             type: "GET",
                             url: "http://localhost:3000/questions/" + doc._id
@@ -39,12 +43,17 @@ router.get('/', function(req, res, next) {
 
 router.post('/', function(req, res, next) {
     console.log(req);
-    const question = new Question({
-        _id: new mongoose.Types.ObjectId(),
 
+    const question = new Question({
+
+        _id: new mongoose.Types.ObjectId(),
         title: req.body.title,
         text: req.body.text,
-        score: req.body.score
+        nbOfVotes: req.body.nbOfVotes,
+        nbOfAnswers: req.body.nbOfAnswers,
+        author: req.body.author,
+        date: new Date()
+
     });
     question
         .save()
@@ -53,10 +62,15 @@ router.post('/', function(req, res, next) {
         res.status(201).json({
             message: "Created question",
             createdQuestion:{
+
+                _id: result._id,
                 title: result.title,
                 text: result.text,
-                score: result.score,
-                _id: result._id,
+                nbOfVotes: result.nbOfVotes,
+                nbOfAnswers: result.nbOfAnswers,
+                author: result.author,
+                date: result.date,
+                
                 request:{
                     type: "GET",
                     url: "http://localhost:3000/questions/" + result._id
