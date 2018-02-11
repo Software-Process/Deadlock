@@ -19,10 +19,6 @@ div.inner-content {
     position:absolute;
 }
 
-.votes-column{
-    background-color: #CCEAF9;
-}
-
 .btn {
     margin: 15px 0;
 }
@@ -31,15 +27,13 @@ h3{
     margin: 15px 0;
 }
 
-.question-row.votes-column {
+.votes-col {
     background-color: #CCEAF9;
-    text-align: center;
-    padding: 10px 0;
 }
 
-#question-list {
-    width: 728px;
-    margin-bottom: 20px;
+.votes-col, .answers-col {
+    text-align: center;
+
 }
 
 .question-summary {
@@ -54,11 +48,8 @@ h3{
     display:inline-block;
 }
 
-.question-title{
-    display:inline-block;
+.question-list-headers {
     color: #07C;
-    margin:5px 0;
-    text-decoration: none;
 }
 
 .question-date {
@@ -72,10 +63,6 @@ h3{
 
 .question-list-headers * {
     font-weight: bold;
-}
-
-a.question-title:hover {
-    color:#3af;
 }
 
 .jumbotron {
