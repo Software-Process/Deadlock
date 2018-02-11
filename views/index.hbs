@@ -1,67 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<title>{{PageTitle}}</title>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<!-- Latest compiled and minified CSS -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
-		<!-- jQuery library -->
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
-
-		<!-- Latest compiled JavaScript -->
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	</head>
-
-	<body>
-
-		<div class="jumbotron" style="background-color: lavender">
-			<h1><center>Software Process <small>Using Express</small></center></h1>			
-		</div>
-		<div class="container">	
-			<div class="page-header">
-				<h2>List of posts</h2> 
-				<a href="/users">click here</a>
-			</div>
-
-			<center>
-			<ul class="nav nav-tabs">
-				<li class="active"><a href="#">Interesting</a></li>
-				<li><a href="#">Featured</a></li>
-				<li><a href="#">Hot</a></li>
-				<li><a href="#">Week</a></li>
-				<li><a href="#">Month</a></li>
-			</ul>
-			</center>
-
-			<div class="row">
-				<div class="col-sm-1" style="font-weight:bold;">Votes</div>
-				<div class="col-sm-1" style="font-weight:bold;">Answers</div>
-				<div class="col-sm-6" style="font-weight:bold;">Questions</div>
-				<div class="col-sm-2" style="font-weight:bold;">Authors</div>
-			</div>
-
-			{{#each questions}}
-				<a href="/question/{{id}}">	
-					<div class="row">
-						<div class="col-sm-1" style="background-color: lavender;">{{score}}</div>
-						<div class="col-sm-1">ANSWERS</div>
-						<div class="col-sm-6">{{title}}</div>
-						<div class="col-sm-2">AUTHOR</div>
-					</div>
-				</a>
-			{{/each}}
-
-			<center>
-			<ul class="pagination">
-				<li><a href="#">1</a></li>
-				<li><a href="#">2</a></li>
-				<li><a href="#">3</a></li>
-				<li><a href="#">4</a></li>
-				<li><a href="#">5</a></li>
-			</ul>
-			</center>
-		</div>
-	</body>
+    <head>
+        <meta charset="utf-8">
+        <title>SOEN341 Q&amp;A</title>
+        <script src="https://www.w3schools.com/lib/w3.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="https://momentjs.com/downloads/moment.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
+        <link rel="stylesheet" href="stylesheets/index.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            html, body, h1, h2, h3, h4, h5 {
+                font-family: "Open Sans", sans-serif
+            }
+        </style>
+    </head>
+    <body>
+        <div w3-include-html="header.html"></div>
+        <div class="jumbotron">
+            <div class="container">
+                <h1>SOEN341 Q&amp;A</h1>
+                <p>Learn, Code, Interact.<br/>Join the community today.</p>
+            </div>
+        </div>
+        <div class="container">
+            <h3>Popular Questions</h3>
+            <div id="question-list">
+                <div class="row question-list-headers question-row">
+                    <div class="col-sm-1">Votes</div>
+                    <div class="col-sm-1">Answers</div>
+                    <div class="col-sm-6">Questions</div>
+                    <div class="col-sm-2">Author</div>
+                    <div class="col-sm-2">Date</div>
+                </div>
+            </div>
+            {{#each questions}}
+                <a href="/questionPage/{{id}}">
+                    <div class="row question-row">
+                        <div class="votes-col col-sm-1">{{nbOfVotes}}</div>
+                        <div class="answers-col col-sm-1">{{nbOfAnswers}}</div>
+                        <div class="col-sm-6">{{title}}</div>
+                        <div class="col-sm-2">{{author}}</div>
+                        <div class="col-sm-2">{{relativeDate}}</div>
+                    </div>
+                </a>
+            {{/each}}
+            <button type="button" class="btn btn-default btn-lg">Ask a Question</button>
+        </div>
+        <div w3-include-html="footer.html"></div>
+        <script>
+            w3.includeHTML();
+        </script>
+    </body>
+>>>>>>> master
 </html>
