@@ -29,7 +29,7 @@
                 <div class="col-xs-1">
                     <br>
                     <i class="glyphicon glyphicon-chevron-up not-voted" id="up" onclick="changeGreen()"></i><br>
-                    <span id="question-vote">23</span><br>
+                    <span id="question-vote">23</span><br> <!-- will have to replace this value with question.VOTECOUNT -->
                     <i class="glyphicon glyphicon-chevron-down not-voted" id="down" onclick="changeRed()"></i>
                 </div>
                 <div class="col-xs-10">
@@ -54,30 +54,40 @@
         <div class="container question-content">
             <h3>Replies: </h3>
             <hr class="dark-blue">
+            <span id="temp-accept">Check database if a question has been accepted, if it has, place it here.<br></span>
+            <span id="accept-title" class="hidden"><h5><u>Accepted Reply:</u></h5></span>
+            <div class="hidden content"id="accepted-answer">
+            </div>
             IF question.replies == empty:<br>
             There are no replies yet, be the first to answer!<br>
             ELSE <br>
-            A Javascript function that will loop through all replies and display them. Example of one: <br>
-            <div class="content">
-                    <i class="glyphicon glyphicon-chevron-up not-voted" id="up1" onclick="changeGreen1()"></i>
-                    <span class="reply-vote" id="reply-vote">6</span>
-                    <i class="glyphicon glyphicon-chevron-down not-voted" id="down1" onclick="changeRed1()"></i>
-                    question.reply.CONTENT
+            A Javascript function that will loop through all replies and display them EXCEPT the accepted reply. <br>
+            <h5> <u>Replies:</u> </h5>
+            <div id="replies-list"> <!-- Javascript function to list all replies will be onload="loadReplies"-->
+                <div class="reply">
+                    <div class="content">
+                        <i class="glyphicon glyphicon-chevron-up not-voted" id="up1" onclick="changeGreen1(this.parentElement)"></i>
+                        <span class="reply-vote" id="reply-vote">6</span>
+                        <i class="glyphicon glyphicon-chevron-down not-voted" id="down1" onclick="changeRed1(this.parentElement)"></i>
+                        question.reply.CONTENT
                     </div>
+                    <button type="button" class="btn btn-dark accept-reject" onclick="accept(this.parentElement)">Accept</button>
+                    <button type="button" class="btn btn-dark accept-reject" onclick="reject(this.parentElement)">Reject</button>
                     <p class="small pull-right">Submitted by question.reply.USER on question.reply.DATE</p>
-                    </div>
                 </div>
             </div>
+        </div>
         
         <div class="container question-content">
             <h3>Submit a Reply/Answer:</h3>
             <hr class="dark-blue">
             <div class="write">
-                <form action="#TODO" method="post" id="reply">
+                <form action="" method="post" id="reply">
                     <div class="form-group">
                         <textarea class="form-control content" rows="10" form="reply"> </textarea>
                     </div>
-                    <input type="submit">
+                    <button type="button" onclick="frontEndSubmit()">Submit</button>
+                    Probably will change this button to an actual submit button, for now its only frontend.
                     <br>
                     <br>
                 </form> 

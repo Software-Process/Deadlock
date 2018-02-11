@@ -62,3 +62,13 @@
 .down-voted {
     color: red;
 }
+
+.accept-reject {
+    background-color: #03183a;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.hidden {
+    display: none;
+}
