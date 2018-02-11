@@ -2,12 +2,12 @@ var questionList;
 
 function populateQuestionList() {
     getQuestionList();
+    sortByDescendingVotes();
     var questionRow = document.getElementById("question-template").innerHTML;
     var template = Handlebars.compile(questionRow);
     var questions = template(questionList);
     document.getElementById("question-list").innerHTML += questions;
 }
-
 
 function getQuestionList() {
     // This is where the list of questions will be retrieved from the database
@@ -62,3 +62,18 @@ function getQuestionList() {
     };
 }
 
+function sortByDescendingVotes(){
+    questionList.questions.sort(compare);
+}
+
+function compare(a, b){
+    const votesA = a.nbOfVotes;
+    const votesB = b.nbOfVotes;
+
+    var comparison = 0;
+    if (votesA > votesB)
+        comparison = -1;
+    else if (votesA < votesB)
+        comparison = 1;
+    return comparison;
+}
