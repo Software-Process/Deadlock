@@ -7,18 +7,6 @@ body {
 	height:100%;
 }
 
-#ISchollingUIText{
-	text-align: center;
-}
-#IUserRegisterTable{
-	background-image: url("wood-photo.jpeg") ;
-    background-size: cover;
-    width: 100%;
-    height: 50%;
-    text-align: center;
-	border-collapse:collapse;
-    border-spacing:0;
-}
 h1.CUserInterface {
     font-family: Verdana, Arial, Helvetica, sans-serif;
 }
@@ -31,7 +19,25 @@ div.inner-content {
     position:absolute;
 }
 
-.question-list {
+.votes-column{
+    background-color: #CCEAF9;
+}
+
+.btn {
+    margin: 15px 0;
+}
+
+h3{
+    margin: 15px 0;
+}
+
+.question-row.votes-column {
+    background-color: #CCEAF9;
+    text-align: center;
+    padding: 10px 0;
+}
+
+#question-list {
     width: 728px;
     margin-bottom: 20px;
 }
@@ -62,6 +68,10 @@ div.inner-content {
     font-size: 0.85em;
     float:right;
 
+}
+
+.question-list-headers * {
+    font-weight: bold;
 }
 
 a.question-title:hover {
