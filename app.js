@@ -6,13 +6,11 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const mongoose = require("mongoose");
 
-
 const index = require('./routes/index');
 const users = require('./routes/users');
+const questionRoutes = require('./routes/questions');
 
 const app = express();
-
-const questionRoutes = require('./routes/questions');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -40,11 +38,10 @@ app.use(function(req, res, next) {
 
 app.use(express.static(path.join(__dirname, 'public')));
 
+
 // Specify the URL path to the correct routes file 
 app.use('/', index);
 app.use('/users', users);
-
-//from here
 app.use('/questions', questionRoutes);
 
 mongoose.connect("mongodb://soen341:soen341@soen341-shard-00-00-ruxjj.mongodb.net:27017,soen341-shard-00-01-ruxjj.mongodb.net:27017,soen341-shard-00-02-ruxjj.mongodb.net:27017/test?ssl=true&replicaSet=SOEN341-shard-0&authSource=admin");

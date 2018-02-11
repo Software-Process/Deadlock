@@ -15,6 +15,9 @@
 		<!-- Latest compiled JavaScript -->
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 		<!-- <script src="/public/javascript/bootstrap.min.js"></script>-->
+
+		<link rel="stylesheet" href="./public/stylesheets/questions.css"> 
+
 	</head>
 
 	<body>
@@ -46,12 +49,14 @@
 			</div>
 
 			{{#each questions}}
-				<div class="row">
-					<div class="col-sm-1" style="background-color: lavender;">{{score}}</div>
-					<div class="col-sm-1">ANSWERS</div>
-					<div class="col-sm-6">{{title}}</div>
-					<div class="col-sm-2">AUTHOR</div>
-				</div>
+				<a href="/question/{{id}}">	
+					<div class="row">
+						<div class="col-sm-1" style="background-color: lavender;">{{score}}</div>
+						<div class="col-sm-1">ANSWERS</div>
+						<div class="col-sm-6">{{title}}</div>
+						<div class="col-sm-2">AUTHOR</div>
+					</div>
+				</a>
 			{{/each}}
 
 			<center>
