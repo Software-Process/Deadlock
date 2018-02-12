@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<title>DeadLock - Ask A Question - We're all in this together</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<script src="https://www.w3schools.com/lib/w3.js"></script> 
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+        <!-- Custom JavaScript file containing functions for input validation and clearing -->
+        <script src="javascripts/question-prompt.js"></script>
+
+		<!-- Latest compiled and minified Bootstrap CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+        <link rel="stylesheet" href="stylesheets/index.css">
+	</head>
+	<body>
+		{{>header}}
+		<div class="container">	
+			<div class="page-header">
+				<h2>Ask a question</h2> 
+			</div>
+
+			<form action="/question-prompt" method="post">
+				<div class="form-group">
+					<label for="inputsm">Title:</label>
+					<input class="form-control input-sm" id="title" type="text" name="title">
+				</div>
+			
+				<div class="form-group" >
+					<label for="inputsm">Author:</label>
+					<input class="form-control input-sm" id="author" type="text" name="author">
+				</div>
+
+
+				<div class="form-group">
+					<label for="comment">Question:</label>
+					<textarea class="form-control" id="text" rows="20" type="text" name="question"></textarea>
+				</div>
+				<div class="row">
+					<input class="btn btn-success" type="submit" value="Submit" onClick="checkFilled()" />
+					<input class="btn btn-danger" type="button" value="Cancel" onClick="clear()" />
+				</div>
+			</form>
+		</div>
+		{{>footer}}
+		<script>
+			w3.includeHTML();
+		</script> 
+	</body>
+</html>

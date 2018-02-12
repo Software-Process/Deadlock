@@ -26,7 +26,6 @@ router.get('/', function(req, res, next) {
                             url: "http://localhost:3000/questions/" + doc._id
                         }
                     }
-
                 })
             };
 
@@ -44,7 +43,6 @@ router.post('/', function(req, res, next) {
     console.log(req);
 
     const question = new Question({
-
         _id: new mongoose.Types.ObjectId(),
         title: req.body.title,
         text: req.body.text,
@@ -52,31 +50,30 @@ router.post('/', function(req, res, next) {
         nbOfAnswers: req.body.nbOfAnswers,
         author: req.body.author,
         date: new Date()
-
     });
     question
         .save()
         .then(function(result){
-        console.log(result);
-        res.status(201).json({
-            message: "Created question",
-            createdQuestion:{
+            console.log(result);
+            res.status(201).json({
+                message: "Created question",
+                createdQuestion:{
 
-                _id: result._id,
-                title: result.title,
-                text: result.text,
-                nbOfVotes: result.nbOfVotes,
-                nbOfAnswers: result.nbOfAnswers,
-                author: result.author,
-                date: result.date,
-                
-                request:{
-                    type: "GET",
-                    url: "http://localhost:3000/questions/" + result._id
+                    _id: result._id,
+                    title: result.title,
+                    text: result.text,
+                    nbOfVotes: result.nbOfVotes,
+                    nbOfAnswers: result.nbOfAnswers,
+                    author: result.author,
+                    date: result.date,
+                    
+                    request:{
+                        type: "GET",
+                        url: "http://localhost:3000/questions/" + result._id
+                    }
                 }
-            }
-        });
-    })
+            });
+        })
         .catch(function(err){
             console.log(err);
             res.status(500).json({
