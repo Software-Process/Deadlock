@@ -1,3 +1,4 @@
+
 const express = require('express');
 const path = require('path');
 const favicon = require('serve-favicon');
@@ -14,8 +15,6 @@ const questionPrompt = require('./routes/question-prompt');
 const app = express();
 
 const questionRoutes = require('./routes/questions');
-
-
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -46,8 +45,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 app.use('/users', users);
 app.use('/question-prompt', questionPrompt);
-
-//from here
 app.use('/questions', questionRoutes);
 
 mongoose.connect("mongodb://soen341:soen341@soen341-shard-00-00-ruxjj.mongodb.net:27017,soen341-shard-00-01-ruxjj.mongodb.net:27017,soen341-shard-00-02-ruxjj.mongodb.net:27017/test?ssl=true&replicaSet=SOEN341-shard-0&authSource=admin");
