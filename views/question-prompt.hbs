@@ -1,2 +1,59 @@
-<h1>{{title}}</h1>
-<p>This is the {{title}}</p>
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<title>DeadLock - Ask A Question - We're all in this together</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<script src="https://www.w3schools.com/lib/w3.js"></script> 
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+        <!-- Custom JavaScript file containing functions for input validation and clearing -->
+        <script src="javascripts/question-prompt.js"></script>
+
+		<!-- Latest compiled and minified Bootstrap CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	</head>
+	<body>
+		<div w3-include-html="header.html"></div>
+		<div class="container">	
+			<div class="page-header">
+				<h2>Ask a question</h2> 
+			</div>
+
+			<form action="/insert" method="post" id="deadlock-question-title">
+				<div class="form-group">
+					<label for="inputsm">Title:</label>
+					<input class="form-control input-sm" id="inputsm" type="text" name="title">
+				</div>
+			</form>
+
+			<form action="/insert" method="post" id="deadlock-question-author">
+				<div class="form-group" >
+					<label for="inputsm">Author:</label>
+					<input class="form-control input-sm" id="inputsm" type="text" name="author">
+				</div>
+			</form>
+
+			<form action="/insert" method="post" id="deadlock-question-text">
+				<div class="form-group">
+					<label for="comment">Question:</label>
+					<textarea class="form-control" rows="20" id="comment" name="question"> </textarea>
+				</div>
+			</form>
+			
+			<div class="row">
+				<input class="btn btn-success" type="submit" value="Submit" onClick="checkFilled()" />
+				<input class="btn btn-danger" type="button" value="Cancel" onClick="clear()" />
+			</div>
+		</div>
+		<div w3-include-html="footer.html"></div>
+		
+		<script>
+			w3.includeHTML();
+		</script> 
+	</body>
+</html>
