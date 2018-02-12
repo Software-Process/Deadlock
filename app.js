@@ -6,6 +6,7 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const mongoose = require("mongoose");
+const hbs = require( 'express-handlebars' );
 
 
 const index = require('./routes/index');
@@ -18,6 +19,14 @@ const questionRoutes = require('./routes/questions');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
+
+app.engine( 'hbs', hbs( {	
+    extname: 'hbs',	
+    defaultLayout: 'index',	
+    layoutsDir: __dirname + '/views',	
+    partialsDir: __dirname + '/views/partials'	
+} ) );
+
 app.set('view engine', 'hbs');
 
 // uncomment after placing your favicon in /public
