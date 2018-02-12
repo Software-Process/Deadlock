@@ -21,9 +21,9 @@ const questionRoutes = require('./routes/questions');
 app.set('views', path.join(__dirname, 'views'));
 app.engine( 'hbs', hbs( {	
     extname: 'hbs',	
-    defaultLayout: 'index',	
+    /*defaultLayout: 'index',	*/
     layoutsDir: __dirname + '/views',	
-    partialsDir: __dirname + '/views/partials'	
+    partialsDir: __dirname + '/views/partials'
 } ) );
 
 app.set('view engine', 'hbs');

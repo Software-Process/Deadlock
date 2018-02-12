@@ -15,9 +15,8 @@ router.post('/', function(req, res, next) {
     console.log(req);
     const question = new Question({
         _id: new mongoose.Types.ObjectId(),
-
         title: req.body.title,
-        text: req.body.text,
+        text: req.body.question,
         nbOfVotes: 0,
         nbOfAnswers: 0,
         author: req.body.author,
@@ -31,7 +30,7 @@ router.post('/', function(req, res, next) {
             message: "Created question",
             createdQuestion:{
                 title: result.title,
-                text: result.text,
+                text: result.question,
                 nbOfVotes: result.nbOfVotes,
                 nbOfAnswers: result.nbOfAnswers,
                 author: req.body.author,

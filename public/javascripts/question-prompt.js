@@ -1,7 +1,10 @@
 function checkFilled() {
-    var title = document.getElementById("deadlock-question-title").value;
-    var author = document.getElementById("deadlock-question-title").value;
-    var questionText = document.getElementById("deadlock-question-text").value;
+    var title = document.getElementById("title").value;
+    var author = document.getElementById("author").value;
+    var questionText = document.getElementById("text").value;
+
+    console.log(title + " " + author + " " + questionText);
+
     if ((title == "") || (author == "") || (questionText == "")) {
     	var questionText = document.getElementById("");
         // Show some sort of message to the user
@@ -10,7 +13,7 @@ function checkFilled() {
 }
 
 function clear() {
-	document.getElementById("deadlock-question-title").value = "";
-    document.getElementById("deadlock-question-title").value = "";
-    document.getElementById("deadlock-question-text").value = "";
+	document.getElementById("title").value = "";
+    document.getElementById("author").value = "";
+    document.getElementById("text").value = "";
 }
