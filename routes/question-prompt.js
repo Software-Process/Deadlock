@@ -12,9 +12,10 @@ router.get('/', function(req, res, next) {
 
 /*POST linked with question-prompt page*/
 router.post('/', function(req, res, next) {
+    var genId = new mongoose.Types.ObjectId();
     console.log(req);
     const question = new Question({
-        _id: new mongoose.Types.ObjectId(),
+        _id: genId,
         title: req.body.title,
         text: req.body.question,
         nbOfVotes: 0,
@@ -25,22 +26,26 @@ router.post('/', function(req, res, next) {
     question
         .save()
         .then(function(result){
-        console.log(result);
-        res.status(201).json({
-            message: "Created question",
-            createdQuestion:{
-                title: result.title,
-                text: result.question,
-                nbOfVotes: result.nbOfVotes,
-                nbOfAnswers: result.nbOfAnswers,
-                author: req.body.author,
-                _id: result._id,
-                request:{
-                    type: "GET",
-                    url: "http://localhost:3000/questions/" + result._id
+            var path = '/question/' + genId;
+            res.redirect(path);        
+            console.log(result);
+            
+            /*res.status(201).json({
+                message: "Created question",
+                createdQuestion:{
+                    title: result.title,
+                    text: result.question,
+                    nbOfVotes: result.nbOfVotes,
+                    nbOfAnswers: result.nbOfAnswers,
+                    author: req.body.author,
+                    _id: result._id,
+                    request:{
+                        type: "GET",
+                        url: "http://localhost:3000/questions/" + result._id
+                    }
                 }
-            }
-        });
+            
+        });*/
     })
         .catch(function(err){
             console.log(err);
