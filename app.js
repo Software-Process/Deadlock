@@ -12,6 +12,7 @@ const hbs = require( 'express-handlebars' );
 const index = require('./routes/index');
 const users = require('./routes/users');
 const questionPrompt = require('./routes/question-prompt');
+const questionPage = require('./routes/question');
 
 const app = express();
 
@@ -55,6 +56,7 @@ app.use('/', index);
 app.use('/users', users);
 app.use('/question-prompt', questionPrompt);
 app.use('/questions', questionRoutes);
+app.use('/question', questionPage);
 
 mongoose.connect("mongodb://soen341:soen341@soen341-shard-00-00-ruxjj.mongodb.net:27017,soen341-shard-00-01-ruxjj.mongodb.net:27017,soen341-shard-00-02-ruxjj.mongodb.net:27017/test?ssl=true&replicaSet=SOEN341-shard-0&authSource=admin");
 
