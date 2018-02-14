@@ -73,24 +73,25 @@
             ELSE <br>
             A Javascript function that will loop through all replies and display them EXCEPT the accepted reply. <br>
             <h5> <u>Replies:</u> </h5>
-            {{#each question.replies}}
-                <li>{{this}}</li>
-            {{/each}}
-
-            <div id="replies-list"> <!-- Javascript function to list all replies will be onload="loadReplies"-->
+            {{#each question}}
+                {{#each replies}}
+             <div id="replies-list"> <!-- Javascript function to list all replies will be onload="loadReplies"-->
                 <div class="reply">
                     <div class="content">
                         <i class="glyphicon glyphicon-chevron-up not-voted" id="up1" onclick="changeGreen1(this.parentElement)"></i>
                         <span class="reply-vote" id="reply-vote">6</span>
                         <i class="glyphicon glyphicon-chevron-down not-voted" id="down1" onclick="changeRed1(this.parentElement)"></i>
-                        question.reply.CONTENT
+                        {{this.textRep}}
                     </div>
                     <button type="button" class="btn btn-dark accept-reject" onclick="accept(this.parentElement)">Accept</button>
                     <button type="button" class="btn btn-dark accept-reject" onclick="reject(this.parentElement)">Reject</button>
                     <p class="small pull-right">Submitted by question.reply.USER on question.reply.DATE</p>
                 </div>
-            </div>
+             </div>
+                {{/each}}
+            {{/each}}
         </div>
+
         <div class="container question-content">
             <h3>Submit a Reply/Answer:</h3>
             <hr class="dark-blue">

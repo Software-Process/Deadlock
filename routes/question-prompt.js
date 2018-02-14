@@ -22,7 +22,7 @@ router.post('/', function(req, res, next) {
         nbOfAnswers: 0,
         author: req.body.author,
         date: new Date(),
-        replies: []
+        replies: {}
     });
     question
         .save()

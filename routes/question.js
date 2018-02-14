@@ -58,7 +58,7 @@ router.patch('/:questionId/down', function(req, res, next) {
 router.patch('/:questionId/reply', function(req, res, next) {
     const id = req.params.questionId;
     const txt = req.body.repform;
-    Question.update({_id : id},{ $push: { replies: txt }})
+    Question.update({_id : id},{ $push: { replies: {textRep: txt ,nbOfVotesRep: 0, accepted: false}}})
         .exec()
         .then(function(result){
             res.redirect('back');
