@@ -1,3 +1,4 @@
+
 const express = require('express');
 const path = require('path');
 const favicon = require('serve-favicon');
@@ -5,19 +6,27 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const mongoose = require("mongoose");
+const hbs = require( 'express-handlebars' );
 
 
 const index = require('./routes/index');
 const users = require('./routes/users');
+const questionPrompt = require('./routes/question-prompt');
+const questionPage = require('./routes/question');
 
 const app = express();
 
 const questionRoutes = require('./routes/questions');
 
-
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
+app.engine( 'hbs', hbs( {	
+    extname: 'hbs',	
+    /*defaultLayout: 'index',	*/
+    layoutsDir: __dirname + '/views',	
+    partialsDir: __dirname + '/views/partials'
+} ) );
+
 app.set('view engine', 'hbs');
 
 // uncomment after placing your favicon in /public
@@ -45,9 +54,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/users', users);
-
-//from here
+app.use('/question-prompt', questionPrompt);
 app.use('/questions', questionRoutes);
+app.use('/question', questionPage);
 
 mongoose.connect("mongodb://soen341:soen341@soen341-shard-00-00-ruxjj.mongodb.net:27017,soen341-shard-00-01-ruxjj.mongodb.net:27017,soen341-shard-00-02-ruxjj.mongodb.net:27017/test?ssl=true&replicaSet=SOEN341-shard-0&authSource=admin");
 

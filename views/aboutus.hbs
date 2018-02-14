@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    	<meta http-equiv="content-type" content="text/html" charset="utf-8" />
+        <title>DeadLock - About Us - We're 
+        all in this together</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+		<!-- Latest compiled and minified Bootstrap CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
+        <style>
+            html, body, h1, h2, h3, h4, h5 {
+                font-family: "Open Sans", sans-serif;
+            }
+			.answerbox {
+				padding-right:40px;
+				padding-bottom: 25px;
+				padding-left:10px;
+			}
+			#regPage{
+				color:#ae1ed6;
+			}
+        </style>
+    </head>
+	<body>
+		{{>header}}
+	    <div class="jumbotron">
+	        <div class="container">
+	            <h1>About This Website</h1>
+	            <p></p>
+	        </div>
+	    </div>
+	    <div class="container">
+	        <h3>What is this website?</h3>
+				<div class="answerbox">
+					<p>This is an original and friendly question-and-answer website. To be part of the community, you just need to create an account. However, there is nothing to worry about: everything on this website is completely free and always will be. To create an account, <a href="signIn.html">click here</a>, it is simple to do and very fast! Only an email address, a password and a username is required.</p>
+				</div>
+			<h3>What questions can I ask?</h3>
+				<div class="answerbox">
+	                <p>This website is specialized for programming in general. Anyone can ask about anything related to those topics!</p>
+	            </div>
+			<h3>Who answers the questions?</h3>	
+	            <div class="answerbox">
+	                <p>Anyone is welcomed to answer the questions and share their knowledge. Just remember that there is no room for pointless flame-wars. So keep it clean, will you?</p>
+	            </div>
+	        <h3>What are those numbers and arrows on the right of the questions and answers?</h3>	
+	            <div class="answerbox">
+	                <p>This is a voting system. Sometimes, people post very good and interesting questions or solutions and they should get rewarded. This is where the voting system is taken into consideration. As an user, you have the power to upvote the most helpful questions/answers while to downvote those that are biased or unnecessary. The higher the grading is, the more likely that the question would reach the "Hot topics" page.</p>
+	            </div>    
+	        <h3>Who are you guys, anyway? Do I have any way to contact you?</h3>
+				<div class="answerbox">
+	                <p>We are the creators of this website, and sure you can! Here are our contact informations:</p>
+	            </div>   
+	    </div>
+	    {{>footer}}
+	   <script>
+	       w3.includeHTML();
+	   </script>
+	</body>
+</html>
