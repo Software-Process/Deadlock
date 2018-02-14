@@ -21,7 +21,8 @@
             }
         </style>
     </head>
-    <body>
+    <body onload="checkVote()">
+        <span id="question-info" class="hidden">{{question._id}}</span>
         {{>header}}
        <!--<div w3-include-html="header.html"></div>-->
 
@@ -31,14 +32,14 @@
                     <br>
                     <form action = "/question/{{question.id}}/up" method = "post">
                         <input type="hidden" name="_method" value="PATCH"/>
-                        <button type="submit" class="not-button"><i class="glyphicon glyphicon-chevron-up not-voted" id="up" onclick="changeGreen()"></i></button>
+                        <button type="submit" class="not-button" onclick="tempUpCookie()" id="button-up"><i class="glyphicon glyphicon-chevron-up not-voted" id="up"></i></button>
                         <!-- <i class="glyphicon glyphicon-chevron-up not-voted" id="up" onclick="changeGreen()"></i><br>-->
                     </form>
 
                     <span id="question-vote">{{question.nbOfVotes}}</span><br> <!-- will have to replace this value with question.VOTECOUNT -->
                     <form action = "/question/{{question.id}}/down" method = "post">
                         <input type="hidden" name="_method" value="PATCH"/>
-                        <button type="submit" class="not-button"><i class="glyphicon glyphicon-chevron-down not-voted" id="up" onclick="changeRed()"></i></button>
+                        <button type="submit" class="not-button" onclick="tempDownCookie()" id="button-down"><i class="glyphicon glyphicon-chevron-down not-voted" id="down"></i></button>
                     <!--<i class="glyphicon glyphicon-chevron-down not-voted" id="down" onclick="changeRed()"></i> -->
                     </form>
                 </div>

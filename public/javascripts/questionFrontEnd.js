@@ -164,3 +164,64 @@ function frontEndSubmit() {
 
 
 }
+
+function tempChangeGreen() {
+    var upArrow = document.getElementById("up");
+    var downArrow = document.getElementById("down");
+    upArrow.classList.remove("not-voted");
+    upArrow.classList.add("up-voted");
+    downArrow.classList.remove("down-voted");
+    downArrow.classList.add("not-voted");
+}
+
+function tempChangeRed() {
+    var upArrow = document.getElementById("up");
+    var downArrow = document.getElementById("down");
+    downArrow.classList.remove("not-voted");
+    downArrow.classList.add("down-voted");
+    upArrow.classList.remove("up-voted");
+    upArrow.classList.add("not-voted");
+}
+
+function checkVote() {
+    var temp = document.getElementById("question-info").innerHTML;
+    var status = getCookie(temp);
+    if (status == "up") {
+        tempChangeGreen();
+        document.getElementById("button-up").disabled = true;
+        document.getElementById("button-down").disabled = false;
+    }
+    if (status == "down") {
+        tempChangeRed();
+        document.getElementById("button-down").disabled = true;
+        document.getElementById("button-up").disabled = false;
+    }
+}
+
+function tempUpCookie() {
+    var temp = document.getElementById("question-info").innerHTML;
+    document.cookie=temp+"=up";
+    alert(document.cookie);
+}
+
+function tempDownCookie() {
+    var temp = document.getElementById("question-info").innerHTML;
+    document.cookie=temp+"=down";
+    alert(document.cookie);
+}
+
+function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
