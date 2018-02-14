@@ -73,6 +73,9 @@
             ELSE <br>
             A Javascript function that will loop through all replies and display them EXCEPT the accepted reply. <br>
             <h5> <u>Replies:</u> </h5>
+            {{#each question.replies}}
+                <li>{{this}}</li>
+            {{/each}}
 
             <div id="replies-list"> <!-- Javascript function to list all replies will be onload="loadReplies"-->
                 <div class="reply">
@@ -95,7 +98,7 @@
                 <form action="/question/{{question.id}}/reply" method="post" id="reply">
                     <input type="hidden" name="_method" value="PATCH"/>
                     <div class="form-group">
-                        <textarea class="form-control content" rows="10" form="reply"> </textarea>
+                        <textarea class="form-control content" rows="10" form="reply" name="repform"> </textarea>
                     </div>
                     <button type="Submit" onclick="frontEndSubmit()">Submit</button>
                     Probably will change this button to an actual submit button, for now its only frontend.
