@@ -12,6 +12,7 @@
     "debug": "~2.6.9",
     "express": "~4.15.5",
     "express-handlebars": "^3.0.0",
+    "express-method-override": "0.0.3",
     "hbs": "^4.0.1",
     "jade": "~1.11.0",
     "mongodb": "^3.0.2",

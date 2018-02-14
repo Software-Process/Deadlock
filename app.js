@@ -36,6 +36,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(require('express-method-override')('_method'));
 
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");

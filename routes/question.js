@@ -12,7 +12,6 @@ router.get('/', function(req, res, next) {
 router.get('/:questionId', function(req, res, next) {
     const id = req.params.questionId;
     Question.findById(id)
-        .select("title text score")
         .exec()
         .then(function(doc){
             console.log("From database", doc);
@@ -30,4 +29,31 @@ router.get('/:questionId', function(req, res, next) {
         });
 });
 
+router.patch('/:questionId/up', function(req, res, next) {
+    const id = req.params.questionId;
+    Question.update({_id : id},{$inc : {'nbOfVotes' : 1}})
+        .exec()
+        .then(function(result){
+            res.redirect('back');
+        })
+        .catch(function(err){
+            console.log(err);
+            res.status(500).json({error:err});
+        });
+});
+
+router.patch('/:questionId/down', function(req, res, next) {
+    const id = req.params.questionId;
+    Question.update({_id : id},{$inc : {'nbOfVotes' : -1}})
+        .exec()
+        .then(function(result){
+            res.redirect('back');
+        })
+        .catch(function(err){
+            console.log(err);
+            res.status(500).json({error:err});
+        });
+});
 module.exports = router;
+
+

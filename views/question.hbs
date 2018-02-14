@@ -29,9 +29,18 @@
             <div class="row">
                 <div class="col-xs-1">
                     <br>
-                    <i class="glyphicon glyphicon-chevron-up not-voted" id="up" onclick="changeGreen()"></i><br>
+                    <form action = "/question/{{question.id}}/up" method = "post">
+                        <input type="hidden" name="_method" value="PATCH"/>
+                        <input type="submit" value="Submit">
+                        <!-- <i class="glyphicon glyphicon-chevron-up not-voted" id="up" onclick="changeGreen()"></i><br>-->
+                    </form>
+
                     <span id="question-vote">{{question.nbOfVotes}}</span><br> <!-- will have to replace this value with question.VOTECOUNT -->
-                    <i class="glyphicon glyphicon-chevron-down not-voted" id="down" onclick="changeRed()"></i>
+                    <form action = "/question/{{question.id}}/down" method = "post">
+                        <input type="hidden" name="_method" value="PATCH"/>
+                        <input type="submit" value="Submit">
+                    <!--<i class="glyphicon glyphicon-chevron-down not-voted" id="down" onclick="changeRed()"></i> -->
+                    </form>
                 </div>
                 <div class="col-xs-10">
                     <br>
