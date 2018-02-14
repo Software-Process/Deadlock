@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="content-type" content="text/html" charset="utf-8" />
+        <title>DeadLock - Log In / Register - We're all in this together</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<!-- Latest compiled and minified Bootstrap CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
+        <style>
+            html, body, h1, h2, h3, h4, h5 {
+                font-family: "Open Sans", sans-serif;
+            }
+			.button{
+				background-color: #0649ac;
+				border-radius:25px;
+				border:	none;
+				font-weight: 600;
+			}
+			fieldset{
+				margin-left:50px;
+				width: 300px;
+				border: none;
+			}
+			.button:hover{
+				background-image:none !important;
+				background-color:#5395f9 !important;
+			}
+			#verticalLine{
+				width:50%;
+				min-width:400px;
+				height:500px;
+				border:none;
+				border-right:solid 1px black;
+				float:left;
+				
+			}
+			#right-box{
+				float:right;
+				width:40%;
+				min-width:400px;
+			}
+			.textBox{
+				color:black;
+			}
+        </style>
+    </head>
+	<body>
+		{{>header}}
+		<div class="jumbotron">
+			<div class="container">
+			<h1>Join our community!</h1><br /><br />
+				<div id="verticalLine">
+						<form>
+							<fieldset>
+								<legend>Log in</legend>
+								Username:<br>
+								<input type="text" name="username" class="textBox"><br>
+								Password:<br>
+								<input type="password" name="password" class="textBox"><br><br>
+								
+								<input type="submit" value="Log in" class="btn btn-primary">
+							</fieldset>
+						</form>
+				</div>
+				
+				<div id="right-box">
+					<form>
+						<fieldset>
+							<legend>Register</legend>
+							Username:<br>
+							<input type="text" name="username" class="textBox"><br>
+							Email:<br>
+							<input type="text" name="email" class="textBox"><br>
+							Password:<br>
+							<input type="password" name="password" class="textBox"><br>
+							Verify password:<br>
+							<input type="password" name="vpassword" class="textBox"><br><br>
+							
+							<input type="submit" value="Register" class="btn btn-primary">
+						</fieldset>
+					</form>
+				</div>
+			</div>
+			<br /><br /><br /><br /><br /><br />
+		</div>
+	    {{>footer}}
+	</body>
+</html>
