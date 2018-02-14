@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <title>SOEN341 Q&amp;A</title>
-        <script type="text/javascript" src="DataManager.js"></script>
+        <!-- <script type="text/javascript" src="DataManager.js"></script> -->
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="https://www.w3schools.com/lib/w3.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -45,7 +45,7 @@
                 </div>
                 <div class="col-xs-10">
                     <br>
-                    <h1>### {{question.title}}</h1>
+                    <h1>{{question.title}}</h1>
                 </div>
                 <div class="col-xs-1">
 
@@ -67,8 +67,7 @@
             <hr class="dark-blue">
             <!--<span id="temp-accept">Check database if a question has been accepted, if it has, place it here.<br></span>-->
             <span id="accept-title" class="hidden"><h5><u>Accepted Reply:</u></h5></span>
-            <div class="hidden content"id="accepted-answer">
-            </div>
+
             <!--IF question.replies == empty:<br>
             There are no replies yet, be the first to answer!<br>
             ELSE <br>
@@ -76,19 +75,40 @@
             <h5> <u>Replies:</u> </h5>
             {{#each question}}
                 {{#each replies}}
-             <div id="replies-list"> <!-- Javascript function to list all replies will be onload="loadReplies"-->
-                <div class="reply">
-                    <div class="content">
-                        <i class="glyphicon glyphicon-chevron-up not-voted" id="up1" onclick="changeGreen1(this.parentElement)"></i>
-                        <span class="reply-vote" id="reply-vote">6</span>
-                        <i class="glyphicon glyphicon-chevron-down not-voted" id="down1" onclick="changeRed1(this.parentElement)"></i>
-                        {{this.textRep}}
-                    </div>
-                    <button type="button" class="btn btn-dark accept-reject" onclick="accept(this.parentElement)">Accept</button>
-                    <button type="button" class="btn btn-dark accept-reject" onclick="reject(this.parentElement)">Reject</button>
-                    <p class="small pull-right">Submitted by question.reply.USER on question.reply.DATE</p>
-                </div>
-             </div>
+                <!--
+                    {{#if accepted}}
+                        <div class="row question-row">
+                            <div class="col-sm-1">{{replyId}}</div>
+                            <div class="col-sm-1">{{textRep}}</div>
+                            <div class="col-sm-1">{{nbOfVotesRep}}</div>
+                            <div class="col-sm-1">{{accepted}}</div>
+                        </div>
+                    {{else}} -->
+                        <div id="replies-list"> <!-- Javascript function to list all replies will be onload="loadReplies"-->
+                            <div class="reply">
+                                <p>{{replyId}}</p>
+
+                                <div class="content">
+                                    <i class="glyphicon glyphicon-chevron-up not-voted" id="up1" onclick="changeGreen1(this.parentElement)"></i>
+                                    <span class="reply-vote" id="reply-vote">6</span>
+                                    <i class="glyphicon glyphicon-chevron-down not-voted" id="down1" onclick="changeRed1(this.parentElement)"></i>
+                                    {{this.textRep}}
+                                </div>
+
+                                <form action = "/question/{{replyId}}/accept" method = "post">
+                                    <input type="hidden" name="_method" value="PATCH"/>
+                                    <button type="button" class="btn btn-dark accept-reject" onclick="accept(this.parentElement)">Accept</button>
+                                </form>
+
+                                <form action = "/question/{{replyId}}/reject" method = "post">
+                                    <input type="hidden" name="_method" value="PATCH"/>
+                                    <button type="button" class="btn btn-dark accept-reject" onclick="reject(this.parentElement)">Reject</button>
+                                </form>
+
+                                <p class="small pull-right">Submitted by question.reply.USER on question.reply.DATE</p>
+                            </div>
+                        </div>
+                   <!-- {{/if}} -->
                 {{/each}}
             {{/each}}
         </div>

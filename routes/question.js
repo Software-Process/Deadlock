@@ -58,7 +58,8 @@ router.patch('/:questionId/down', function(req, res, next) {
 router.patch('/:questionId/reply', function(req, res, next) {
     const id = req.params.questionId;
     const txt = req.body.repform;
-    Question.update({_id : id},{ $push: { replies: {textRep: txt ,nbOfVotesRep: 0, accepted: false}}})
+    const genReplyId = new mongoose.Types.ObjectId();
+    Question.update({_id : id},{ $push: { replies: { replyId: genReplyId, textRep: txt, nbOfVotesRep: 0, accepted: false}}})
         .exec()
         .then(function(result){
             res.redirect('back');
@@ -67,6 +68,28 @@ router.patch('/:questionId/reply', function(req, res, next) {
             console.log(err);
             res.status(500).json({error:err});
         });
+});
+
+
+router.patch('/:replyId/accept', function(req, res, next) {
+
+    const repId = req.params.replyId;
+
+    console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+    console.log("Reply id :" + repId);
+    console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+
+    /*
+    Question.update({_id : repId},{$set : {'accepted' : true}})
+        .exec()
+        .then(function(result){
+            res.redirect('back');
+        })
+        .catch(function(err){
+            console.log(err);
+            res.status(500).json({error:err});
+        });
+    */
 });
 
 module.exports = router;
