@@ -21,7 +21,7 @@ const questionSchema = mongoose.Schema({
     nbOfAnswers: Number,
     author: {type: String, required: true},
     date : {type: String, required: true},
-    replies : {textRep: String, nbOfVotesRep: Number, accepted: Boolean}
+    replies : {textRep: String, nbOfVotesRep: Number, accepted: Number}
 });
 
 module.exports = mongoose.model("Question", questionSchema);

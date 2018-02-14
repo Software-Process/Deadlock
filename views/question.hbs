@@ -58,20 +58,20 @@
                 <br>
                 <br>
             </div>
-            <p class="small pull-right">Submitted by question.USER {{question.author}}on question.DATE{{question.date}} ID: {{question.id}}</p>
+            <p class="small pull-right">Submitted by {{question.author}}on {{question.date}}</p>
             <br>
         </div>
         <div class="container question-content">
             <h3>Replies: </h3>
             <hr class="dark-blue">
-            <span id="temp-accept">Check database if a question has been accepted, if it has, place it here.<br></span>
+            <!--<span id="temp-accept">Check database if a question has been accepted, if it has, place it here.<br></span>-->
             <span id="accept-title" class="hidden"><h5><u>Accepted Reply:</u></h5></span>
             <div class="hidden content"id="accepted-answer">
             </div>
-            IF question.replies == empty:<br>
+            <!--IF question.replies == empty:<br>
             There are no replies yet, be the first to answer!<br>
             ELSE <br>
-            A Javascript function that will loop through all replies and display them EXCEPT the accepted reply. <br>
+            A Javascript function that will loop through all replies and display them EXCEPT the accepted reply. <br> -->
             <h5> <u>Replies:</u> </h5>
             {{#each question}}
                 {{#each replies}}
