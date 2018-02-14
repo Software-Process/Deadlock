@@ -6,7 +6,6 @@ const Question = require("../models/question");
 
 router.get('/', function(req, res, next) {
     Question.find()
-        .select("title text score")
         .exec()
         .then(function(docs){
             const response={
@@ -20,7 +19,7 @@ router.get('/', function(req, res, next) {
                         nbOfAnswers: doc.nbOfAnswers,
                         author: doc.author,
                         date: doc.date,
-
+                        replies: doc.replies,
                         request:{
                             type: "GET",
                             url: "http://localhost:3000/questions/" + doc._id

@@ -31,14 +31,14 @@
                     <br>
                     <form action = "/question/{{question.id}}/up" method = "post">
                         <input type="hidden" name="_method" value="PATCH"/>
-                        <input type="submit" value="Submit">
+                        <button type="submit" class="not-button"><i class="glyphicon glyphicon-chevron-up not-voted" id="up" onclick="changeGreen()"></i></button>
                         <!-- <i class="glyphicon glyphicon-chevron-up not-voted" id="up" onclick="changeGreen()"></i><br>-->
                     </form>
 
                     <span id="question-vote">{{question.nbOfVotes}}</span><br> <!-- will have to replace this value with question.VOTECOUNT -->
                     <form action = "/question/{{question.id}}/down" method = "post">
                         <input type="hidden" name="_method" value="PATCH"/>
-                        <input type="submit" value="Submit">
+                        <button type="submit" class="not-button"><i class="glyphicon glyphicon-chevron-down not-voted" id="up" onclick="changeRed()"></i></button>
                     <!--<i class="glyphicon glyphicon-chevron-down not-voted" id="down" onclick="changeRed()"></i> -->
                     </form>
                 </div>
@@ -73,6 +73,7 @@
             ELSE <br>
             A Javascript function that will loop through all replies and display them EXCEPT the accepted reply. <br>
             <h5> <u>Replies:</u> </h5>
+
             <div id="replies-list"> <!-- Javascript function to list all replies will be onload="loadReplies"-->
                 <div class="reply">
                     <div class="content">
@@ -87,16 +88,16 @@
                 </div>
             </div>
         </div>
-        
         <div class="container question-content">
             <h3>Submit a Reply/Answer:</h3>
             <hr class="dark-blue">
             <div class="write">
-                <form action="" method="post" id="reply">
+                <form action="/question/{{question.id}}/reply" method="post" id="reply">
+                    <input type="hidden" name="_method" value="PATCH"/>
                     <div class="form-group">
                         <textarea class="form-control content" rows="10" form="reply"> </textarea>
                     </div>
-                    <button type="button" onclick="frontEndSubmit()">Submit</button>
+                    <button type="Submit" onclick="frontEndSubmit()">Submit</button>
                     Probably will change this button to an actual submit button, for now its only frontend.
                     <br>
                     <br>

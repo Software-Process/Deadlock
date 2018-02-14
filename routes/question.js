@@ -54,6 +54,20 @@ router.patch('/:questionId/down', function(req, res, next) {
             res.status(500).json({error:err});
         });
 });
+
+router.patch('/:questionId/reply', function(req, res, next) {
+    const id = req.params.questionId;
+    Question.update({_id : id},{ $push: { replies: "This is ok." }})
+        .exec()
+        .then(function(result){
+            res.redirect('back');
+        })
+        .catch(function(err){
+            console.log(err);
+            res.status(500).json({error:err});
+        });
+});
+
 module.exports = router;
 
 
