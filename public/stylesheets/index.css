@@ -94,8 +94,9 @@ h3{
 }
 
 .navbar-custom {
-    background-color: #03183a;
-    border-color: #03183a;
+    background-color: #90f49c;
+    border-color: #90f49c;
+	color: black;
 
 }
 
@@ -106,8 +107,9 @@ h3{
 .footer {
     bottom: 0;
     width: 100%;
-    background-color: #03183a;
+    background-color: #90f49c;
     border-top: 2px solid black;
+	color: black;
 }
 
 /* --- Icons for social media --- */
