@@ -12,7 +12,6 @@ router.get('/', function(req, res, next) {
 router.get('/:questionId', function(req, res, next) {
     const id = req.params.questionId;
     Question.findById(id)
-        .select("title text score")
         .exec()
         .then(function(doc){
             console.log("From database", doc);
@@ -30,4 +29,69 @@ router.get('/:questionId', function(req, res, next) {
         });
 });
 
+router.patch('/:questionId/up', function(req, res, next) {
+    const id = req.params.questionId;
+    Question.update({_id : id},{$inc : {'nbOfVotes' : 1}})
+        .exec()
+        .then(function(result){
+            res.redirect('back');
+        })
+        .catch(function(err){
+            console.log(err);
+            res.status(500).json({error:err});
+        });
+});
+
+router.patch('/:questionId/down', function(req, res, next) {
+    const id = req.params.questionId;
+    Question.update({_id : id},{$inc : {'nbOfVotes' : -1}})
+        .exec()
+        .then(function(result){
+            res.redirect('back');
+        })
+        .catch(function(err){
+            console.log(err);
+            res.status(500).json({error:err});
+        });
+});
+
+router.patch('/:questionId/reply', function(req, res, next) {
+    const id = req.params.questionId;
+    const txt = req.body.repform;
+    const genReplyId = new mongoose.Types.ObjectId();
+    Question.update({_id : id},{ $push: { replies: { replyId: genReplyId, textRep: txt, nbOfVotesRep: 0, accepted: false}}})
+        .exec()
+        .then(function(result){
+            res.redirect('back');
+        })
+        .catch(function(err){
+            console.log(err);
+            res.status(500).json({error:err});
+        });
+});
+
+
+router.patch('/:replyId/accept', function(req, res, next) {
+
+    const repId = req.params.replyId;
+
+    console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+    console.log("Reply id :" + repId);
+    console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+
+    /*
+    Question.update({_id : repId},{$set : {'accepted' : true}})
+        .exec()
+        .then(function(result){
+            res.redirect('back');
+        })
+        .catch(function(err){
+            console.log(err);
+            res.status(500).json({error:err});
+        });
+    */
+});
+
 module.exports = router;
+
+

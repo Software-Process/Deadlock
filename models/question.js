@@ -20,7 +20,14 @@ const questionSchema = mongoose.Schema({
     nbOfVotes: Number,
     nbOfAnswers: Number,
     author: {type: String, required: true},
-    date : {type: String, required: true}
+    date : {type: String, required: true},
+    replies : {
+    			replyId: mongoose.Schema.Types.ObjectId,    			
+    			textRep: String,
+    			nbOfVotesRep: Number,
+    			//replyAuthor: String,
+    			accepted: Boolean
+    	      }
 });
 
 module.exports = mongoose.model("Question", questionSchema);

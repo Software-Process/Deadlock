@@ -72,3 +72,12 @@
 .hidden {
     display: none;
 }
+
+.not-button {
+    background: none;
+    border: none;
+}
+
+#question-vote {
+    padding-left: 4px;
+}

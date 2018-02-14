@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <title>SOEN341 Q&amp;A</title>
-        <script type="text/javascript" src="DataManager.js"></script>
+        <!-- <script type="text/javascript" src="DataManager.js"></script> -->
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="https://www.w3schools.com/lib/w3.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -21,7 +21,8 @@
             }
         </style>
     </head>
-    <body>
+    <body onload="checkVote()">
+        <span id="question-info" class="hidden">{{question._id}}</span>
         {{>header}}
        <!--<div w3-include-html="header.html"></div>-->
 
@@ -29,13 +30,22 @@
             <div class="row">
                 <div class="col-xs-1">
                     <br>
-                    <i class="glyphicon glyphicon-chevron-up not-voted" id="up" onclick="changeGreen()"></i><br>
+                    <form action = "/question/{{question.id}}/up" method = "post">
+                        <input type="hidden" name="_method" value="PATCH"/>
+                        <button type="submit" class="not-button" onclick="tempUpCookie()" id="button-up"><i class="glyphicon glyphicon-chevron-up not-voted" id="up"></i></button>
+                        <!-- <i class="glyphicon glyphicon-chevron-up not-voted" id="up" onclick="changeGreen()"></i><br>-->
+                    </form>
+
                     <span id="question-vote">{{question.nbOfVotes}}</span><br> <!-- will have to replace this value with question.VOTECOUNT -->
-                    <i class="glyphicon glyphicon-chevron-down not-voted" id="down" onclick="changeRed()"></i>
+                    <form action = "/question/{{question.id}}/down" method = "post">
+                        <input type="hidden" name="_method" value="PATCH"/>
+                        <button type="submit" class="not-button" onclick="tempDownCookie()" id="button-down"><i class="glyphicon glyphicon-chevron-down not-voted" id="down"></i></button>
+                    <!--<i class="glyphicon glyphicon-chevron-down not-voted" id="down" onclick="changeRed()"></i> -->
+                    </form>
                 </div>
                 <div class="col-xs-10">
                     <br>
-                    <h1>### {{question.title}}</h1>
+                    <h1>{{question.title}}</h1>
                 </div>
                 <div class="col-xs-1">
 
@@ -49,45 +59,70 @@
                 <br>
                 <br>
             </div>
-            <p class="small pull-right">Submitted by question.USER {{question.author}}on question.DATE{{question.date}} ID: {{question.id}}</p>
+            <p class="small pull-right">Submitted by {{question.author}}on {{question.date}}</p>
             <br>
         </div>
         <div class="container question-content">
             <h3>Replies: </h3>
             <hr class="dark-blue">
-            <span id="temp-accept">Check database if a question has been accepted, if it has, place it here.<br></span>
+            <!--<span id="temp-accept">Check database if a question has been accepted, if it has, place it here.<br></span>-->
             <span id="accept-title" class="hidden"><h5><u>Accepted Reply:</u></h5></span>
-            <div class="hidden content"id="accepted-answer">
-            </div>
-            IF question.replies == empty:<br>
+
+            <!--IF question.replies == empty:<br>
             There are no replies yet, be the first to answer!<br>
             ELSE <br>
-            A Javascript function that will loop through all replies and display them EXCEPT the accepted reply. <br>
+            A Javascript function that will loop through all replies and display them EXCEPT the accepted reply. <br> -->
             <h5> <u>Replies:</u> </h5>
-            <div id="replies-list"> <!-- Javascript function to list all replies will be onload="loadReplies"-->
-                <div class="reply">
-                    <div class="content">
-                        <i class="glyphicon glyphicon-chevron-up not-voted" id="up1" onclick="changeGreen1(this.parentElement)"></i>
-                        <span class="reply-vote" id="reply-vote">6</span>
-                        <i class="glyphicon glyphicon-chevron-down not-voted" id="down1" onclick="changeRed1(this.parentElement)"></i>
-                        question.reply.CONTENT
-                    </div>
-                    <button type="button" class="btn btn-dark accept-reject" onclick="accept(this.parentElement)">Accept</button>
-                    <button type="button" class="btn btn-dark accept-reject" onclick="reject(this.parentElement)">Reject</button>
-                    <p class="small pull-right">Submitted by question.reply.USER on question.reply.DATE</p>
-                </div>
-            </div>
+            {{#each question}}
+                {{#each replies}}
+                <!--
+                    {{#if accepted}}
+                        <div class="row question-row">
+                            <div class="col-sm-1">{{replyId}}</div>
+                            <div class="col-sm-1">{{textRep}}</div>
+                            <div class="col-sm-1">{{nbOfVotesRep}}</div>
+                            <div class="col-sm-1">{{accepted}}</div>
+                        </div>
+                    {{else}} -->
+                        <div id="replies-list"> <!-- Javascript function to list all replies will be onload="loadReplies"-->
+                            <div class="reply">
+                                <p>{{replyId}}</p>
+
+                                <div class="content">
+                                    <i class="glyphicon glyphicon-chevron-up not-voted" id="up1" onclick="changeGreen1(this.parentElement)"></i>
+                                    <span class="reply-vote" id="reply-vote">6</span>
+                                    <i class="glyphicon glyphicon-chevron-down not-voted" id="down1" onclick="changeRed1(this.parentElement)"></i>
+                                    {{this.textRep}}
+                                </div>
+
+                                <form action = "/question/{{replyId}}/accept" method = "post">
+                                    <input type="hidden" name="_method" value="PATCH"/>
+                                    <button type="button" class="btn btn-dark accept-reject" onclick="accept(this.parentElement)">Accept</button>
+                                </form>
+
+                                <form action = "/question/{{replyId}}/reject" method = "post">
+                                    <input type="hidden" name="_method" value="PATCH"/>
+                                    <button type="button" class="btn btn-dark accept-reject" onclick="reject(this.parentElement)">Reject</button>
+                                </form>
+
+                                <p class="small pull-right">Submitted by question.reply.USER on question.reply.DATE</p>
+                            </div>
+                        </div>
+                   <!-- {{/if}} -->
+                {{/each}}
+            {{/each}}
         </div>
-        
+
         <div class="container question-content">
             <h3>Submit a Reply/Answer:</h3>
             <hr class="dark-blue">
             <div class="write">
-                <form action="" method="post" id="reply">
+                <form action="/question/{{question.id}}/reply" method="post" id="reply">
+                    <input type="hidden" name="_method" value="PATCH"/>
                     <div class="form-group">
-                        <textarea class="form-control content" rows="10" form="reply"> </textarea>
+                        <textarea class="form-control content" rows="10" form="reply" name="repform"> </textarea>
                     </div>
-                    <button type="button" onclick="frontEndSubmit()">Submit</button>
+                    <button type="Submit" onclick="frontEndSubmit()">Submit</button>
                     Probably will change this button to an actual submit button, for now its only frontend.
                     <br>
                     <br>
