@@ -8,5 +8,5 @@ before_script:
   - npm install
 cache:
     directories:
-   - node_modules
+    - node_modules
 script: node_modules/karma/bin/karma start karma.conf.js — single-run
