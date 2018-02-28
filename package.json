@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "nodemon ./bin/www",
-    "test": "echo \"This will run the tests\" && exit 0"
+    "test": "karma start karma.conf.js — single-run"
   },
   "dependencies": {
     "body-parser": "~1.18.2",
@@ -20,5 +20,15 @@
     "morgan": "~1.9.0",
     "nodemon": "^1.14.12",
     "serve-favicon": "~2.4.5"
+  },
+  "devDependencies": {
+    "jasmine-core": "^2.99.1",
+    "karma": "^2.0.0",
+    "karma-chrome-launcher": "^2.2.0",
+    "karma-cli": "^1.0.1",
+    "karma-firefox-launcher": "^1.1.0",
+    "karma-jasmine": "^1.1.1",
+    "karma-phantomjs-launcher": "^1.0.4",
+    "phantomjs-prebuilt": "^2.1.16"
   }
 }
