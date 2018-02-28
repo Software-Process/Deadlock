@@ -16,6 +16,7 @@ const questionPage = require('./routes/question');
 const aboutUs = require('./routes/aboutUs');
 const loginRegister = require('./routes/loginRegister');
 const userPage = require('./routes/userPage');
+const editUserPage = require('./routes/editUserPage');
 
 const app = express();
 
@@ -64,6 +65,7 @@ app.use('/question', questionPage);
 app.use('/aboutus', aboutUs);
 app.use('/login', loginRegister);
 app.use('/userpage', userPage);
+app.use('/edituserpage', editUserPage);
 
 mongoose.connect("mongodb://soen341:soen341@soen341-shard-00-00-ruxjj.mongodb.net:27017,soen341-shard-00-01-ruxjj.mongodb.net:27017,soen341-shard-00-02-ruxjj.mongodb.net:27017/test?ssl=true&replicaSet=SOEN341-shard-0&authSource=admin");
 
