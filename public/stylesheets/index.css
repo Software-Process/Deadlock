@@ -111,6 +111,13 @@ h3{
     border-top: 2px solid black;
 	color: black;
 }
+.card {
+    padding: 5px;
+    margin: 10px 0px;
+}
+li {
+    padding: 0px 0 5px;
+}
 
 /* --- Icons for social media --- */
 .fa {

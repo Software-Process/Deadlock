@@ -16,13 +16,6 @@
             html, body, h1, h2, h3, h4, h5 {
                 font-family: "Open Sans", sans-serif
             }
-            .card {
-                padding: 5px;
-                margin: 10px 0px;
-            }
-            li {
-                padding: 0px 0 5px;
-            }
         </style>
     </head>
     <body>
@@ -31,7 +24,34 @@
             <img src="pictures/default1.png" style="width:12%; height:12%" class="img-circle">
             <h2><strong>John Doe</strong></h2>
             <button type="button" class="btn btn-info" onclick="location.href='/edituserpage'">Edit profile</button>
-        </div>       
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3 offset-sm-1">
+                    <div class="sidebar-module sidebar-module-inset">
+                        <h4>Bio</h4>
+                        <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
+                    </div>
+
+                    <div class="card" style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);background: yellow">
+                        <div class="card-body">
+                            <h4 class="card-title text-center"><strong>Contact Me</strong></h4>
+                            <hr />
+
+                            <!-- Placeholder user information -->
+                            <ul style="list-style-type: none;">
+                                <li>johndoe@gmail.com</li>
+                                <li><a href="">github.com/johndoe</a></li>
+                                <li><a href="">linkedin.com/johndoe</a></li>
+                                <li>(514) 123-4567</li>
+                                <li>Montreal, Canada</li>
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+            </div> 
+        </div> 
         {{>footer}}
     </body>
 </html>
