@@ -26,18 +26,35 @@
                 <h2>User Profile Edit </h2>
             </div>
         </div>
-        <img src="pictures/default1.png" class="img-rounded" alt="Cinque Terre">
-        <form>
-            <label class="radio-inline">
-                <input type="radio" name="optradio">Option 1
-            </label>
-            <label class="radio-inline">
-                <input type="radio" name="optradio">Option 2
-            </label>
-            <label class="radio-inline">
-                <input type="radio" name="optradio">Option 3
-            </label>
-         </form>
+        <div class="container">
+            <form>
+                <h1>Pick a profile! </h1>
+                <label class="radio-inline">
+                    <input type="radio" name="profile-picture" value="pictures/default2.png" checked><img src="pictures/default2.png" class="img-rounded" alt="Cinque Terre">
+                    <div class="caption">
+                        <p>Profile picture 1</p>
+                     </div>
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="profile-picture" value="pictures/default3.png"><img src="pictures/default3.png" class="img-rounded" alt="Cinque Terre">
+                    <div class="caption">
+                        <p>Profile picture 2</p>
+                     </div>
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="profile-picture" value="pictures/default4.png"><img src="pictures/default4.png" class="img-rounded" alt="Cinque Terre">
+                    <div class="caption">
+                        <p>Profile picture 3</p>
+                     </div>
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="profile-picture" value="pictures/default1.png"><img src="pictures/default1.png" class="img-rounded" alt="Cinque Terre">
+                    <div class="caption">
+                        <p>Profile picture 4</p>
+                     </div>
+                </label>
+            </form>
+         </div>
         {{>footer}}
     </body>
 </html>
