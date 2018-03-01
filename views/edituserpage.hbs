@@ -23,11 +23,13 @@
         
         <div class="jumbotron">
             <div class="container">
-                <h2>User Profile Edit </h2>
+                <h1>User Profile Edit </h1>
             </div>
         </div>
         <div class="container">
             <form>
+
+                <!--Picking profile picture-->
                 <div class="form-group">
                     <h2>Select a profile!</h2>
                 </div>
@@ -55,11 +57,46 @@
                         <p>Profile picture 4</p>
                      </div>
                 </label>
+
                 </br></br>
+
+                <!--Picking color for Banner-->
                 <div class="form-group">
                     <h2>Pick a Banner Color</h2>
-                    <input type="color" name="favcolor" value="#ff0000" class="form-control">
+                    <input type="color" name="banner" value="#ff0000" class="form-control">
                 </div>
+
+
+                <!--  REPLACE ALL PLACEHOLDER= WITH {{VALUEEEE}} from database   -->
+                <div class="page-header">
+                    <h2>Contact me section</h2>
+                </div>
+                <div class="form-group">
+                     <label class="control-label col-sm-2" for="text">Email:</label>
+                     <div class="col-sm-10">
+                        <input type="text" class="form-control" id="focusedInput" placeholder="Enter email" name="email">
+                    </div>
+                </div>
+                <div class="form-group">
+                     <label class="control-label col-sm-2" for="text">Phone number:</label>
+                     <div class="col-sm-10">
+                        <input type="text" class="form-control" id="focusedInput" placeholder="Enter email" name="phone">
+                    </div>
+                </div>
+                <div class="form-group">
+                     <label class="control-label col-sm-2" for="text">GitHub:</label>
+                     <div class="col-sm-10">
+                        <input type="text" class="form-control" id="focusedInput" placeholder="Enter email" name="gitpage">
+                    </div>
+                </div>
+                <div class="form-group">
+                     <label class="control-label col-sm-2" for="text">Linkdin:</label>
+                     <div class="col-sm-10">
+                        <input type="text" class="form-control" id="focusedInput" placeholder="Enter email" name="linkdin">
+                    </div>
+                </div>
+
+                
             </form>
          </div>
         {{>footer}}
