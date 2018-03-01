@@ -94,9 +94,10 @@ h3{
 }
 
 .navbar-custom {
-    background-color: #03183a;
-    border-color: #03183a;
-
+    background-color: #0043af;
+    color: white;
+    padding: 0px;
+    border-radius:0;
 }
 
 .overrideJumboHeader {
