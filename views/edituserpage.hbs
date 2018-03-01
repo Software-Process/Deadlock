@@ -27,7 +27,8 @@
             </div>
         </div>
         <div class="container">
-            <form>
+            <!--- Form might need USER ID after action= to REDIRECT TO THE SPECIFIC PAGE! --->
+            <form action="/userpage" class="form-horizontal" method="post">
 
                 <!--Picking profile picture-->
                 <div class="form-group">
@@ -96,6 +97,52 @@
                     </div>
                 </div>
 
+                
+                <!--  REPLACE ALL PLACEHOLDER= WITH {{VALUEEEE}} from database   -->
+                <div class="page-header">
+                    <h2>About me section</h2>
+                </div>
+                <div class="form-group">
+                     <label class="control-label col-sm-2" for="text">Full Name:</label>
+                     <div class="col-sm-10">
+                        <input type="text" class="form-control" id="focusedInput" placeholder="Enter email" name="name">
+                    </div>
+                </div>
+                <div class="form-group">
+                     <label class="control-label col-sm-2" for="radio">Gendre:</label>
+                     <div class="col-sm-10">
+                        <label class="radio-inline"><input type="radio" name="gendre"checked>Male </label>
+                        <label class="radio-inline"><input type="radio" name="gendre">Female</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                     <label class="control-label col-sm-2" for="text">Age:</label>
+                     <div class="col-sm-10">
+                        <input type="text" class="form-control" id="focusedInput" placeholder="Enter email" name="age">
+                    </div>
+                </div>
+                <div class="form-group">
+                     <label class="control-label col-sm-2" for="text">Birthday:</label>
+                     <div class="col-sm-10">
+                        <input type="text" class="form-control" id="focusedInput" placeholder="Enter email" name="birthday">
+                    </div>
+                </div>
+                 <div class="form-group">
+                     <label class="control-label col-sm-2" for="text">Spoken Language:</label>
+                     <div class="col-sm-10">
+                        <input type="text" class="form-control" id="focusedInput" placeholder="Enter email" name="spoken-language">
+                    </div>
+                </div>
+                 <div class="form-group">
+                     <label class="control-label col-sm-2" for="text">Programing Language:</label>
+                     <div class="col-sm-10">
+                        <input type="text" class="form-control" id="focusedInput" placeholder="Enter email" name="programing-language">
+                    </div>
+                </div>
+                <div class="row">
+					<input class="btn btn-success" type="submit" value="Submit" />
+					<input class="btn btn-danger" type="reset" value="Clear" />
+				</div>
                 
             </form>
          </div>
