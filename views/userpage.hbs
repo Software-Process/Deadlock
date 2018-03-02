@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>SOEN341 Q&amp;A</title>
+        <script src="https://www.w3schools.com/lib/w3.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="https://momentjs.com/downloads/moment.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
+        <link rel="stylesheet" href="stylesheets/index.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            html, body, h1, h2, h3, h4, h5 {
+                font-family: "Open Sans", sans-serif
+            }
+        </style>
+    </head>
+    <body>
+        {{>header}}
+        <div class="jumbotron text-center" style="background-color: #116CF6;">
+            <img src="images/default1.png" style="width:12%; height:12%" class="img-circle">
+            <h2><strong>John Doe</strong></h2>
+            <button type="button" class="btn btn-info" onclick="location.href='/edituserpage'">Edit profile</button>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3 offset-sm-1">
+
+                    <!-- Bio Section -->
+                    <div class="sidebar-module sidebar-module-inset">
+                        <h4>Bio</h4>
+                        <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
+                    </div>
+
+                    <!-- Contact Me Section -->
+                    <div class="card" style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);background: yellow">
+                        <div class="card-body">
+                            <h4 class="card-title text-center"><strong>Contact Me</strong></h4>
+                            <hr />
+
+                            <!-- Placeholder user contact me information -->
+                            <ul style="list-style-type: none;">
+                                <li>johndoe@gmail.com</li>
+                                <li><a href="">github.com/johndoe</a></li>
+                                <li><a href="">linkedin.com/johndoe</a></li>
+                                <li>(514) 123-4567</li>
+                                <li>Montreal, Canada</li>
+                            </ul>
+
+                        </div>
+                    </div>
+
+                    <!-- About Me Section -->
+                    <div class="card" style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);background: lightblue">
+                        <div class="card-body">
+                            <h4 class="card-title text-center"><strong>About me</strong></h4>
+                            <hr />
+
+                            <!-- Placeholder user about me information -->
+                            <ul style="list-style-type: none;">
+                                <li>Birthday</li>
+                                <li>Gender</li>
+                                <li>Age</li>
+                                <li>Spoken languages</li>
+                                <li>Programming languages</li>                                
+                            </ul>
+
+                        </div>
+                    </div>
+
+                    <!-- Reputation Section -->
+                    <div class="card" style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);background: #e04ec8">
+                        <div class="card-body">
+                            <h4 class="card-title text-center"><strong>Reputation</strong></h4>
+                            <hr />
+                            <ul style="list-style-type: none;">
+                                <li>Badge</li>
+                                <li># of questions asked</li>
+                                <li># of answers</li>
+                                <li># of accepted answers</li>
+                                <li># of rejected answers</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                 <div class="col-sm-9">
+                    <!-- Questions asked by the user -->
+                    <h3>Asked questions</h3>
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <div class="row question-row">
+                                <div class="col-sm-9"><strong>Title</strong></div>
+                                <div class="col-sm-1"><span class="badge">Replies</span></div>
+                                <div class="col-sm-1"><strong>Date</strong></div>
+                                <div class="col-sm-1"><strong>Status</strong></div>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="/question/{{id}}">
+                                <div class="row question-row">
+                                    <div class="col-sm-9">Question 1</div>
+                                    <div class="col-sm-1"><center><span class="badge">2</span></center></div>
+                                    <div class="col-sm-1">date</div>
+                                    <div class="col-sm-1"><center><span class="glyphicon glyphicon-ok"></span></center></div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="/question/{{id}}">
+                                <div class="row question-row">
+                                    <div class="col-sm-9">Question 2</div>
+                                    <div class="col-sm-1"><center><span class="badge">4</span></center></div>
+                                    <div class="col-sm-1">date</div>
+                                    <div class="col-sm-1"><center><span class="glyphicon glyphicon-remove" style="color: red"></center></div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="/question/{{id}}">
+                                <div class="row question-row">
+                                    <div class="col-sm-9">Question 3</div>
+                                    <div class="col-sm-1"><center><span class="badge">3</span></center></div>
+                                    <div class="col-sm-1">date</div>
+                                    <div class="col-sm-1"><center><span class="glyphicon glyphicon-lock"></span><span class="glyphicon glyphicon-refresh"></span></center></div>
+                                </div>
+                            </a>
+                        </li>
+
+                    </ul>
+
+                    <!-- User's answers to other questions -->
+                    <h3>Posted answers</h3>
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <div class="row question-row" >
+                                <div class="col-sm-3"><center><strong>Author</strong></center></div>
+                                <div class="col-sm-7"><strong>Title</strong></div>
+                                <div class="col-sm-1"><strong>Date</strong></div>
+                                <div class="col-sm-1"><strong>Status</strong></div>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="/question/{{id}}">
+                                <div class="row question-row">
+                                    <div class="col-sm-1"><center><img src="images/default1.png" style="width:50%; height:50%" class="img-circle"></center></div>
+                                    <div class="col-sm-2">Bill Joe</div>
+                                    <div class="col-sm-7">How do I use Bootstrap?</div>
+                                    <div class="col-sm-1">date</div>
+                                    <div class="col-sm-1"><center><span class="glyphicon glyphicon-ok"></span></center></div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="/question/{{id}}">
+                                <div class="row question-row">
+                                    <div class="col-sm-1"><center><img src="images/default2.png" style="width:50%; height:50%" class="img-circle"></center></div>
+                                    <div class="col-sm-2">Jane Pearl</div>
+                                    <div class="col-sm-7">What is RestAPI?</div>
+                                    <div class="col-sm-1">date</div>
+                                    <div class="col-sm-1"><center><span class="glyphicon glyphicon-remove" style="color: red"></span></center></div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="/question/{{id}}">
+                                <div class="row question-row">
+                                    <div class="col-sm-1"><center><img src="images/default4.png" style="width:50%; height:50%" class="img-circle"></center></div>
+                                    <div class="col-sm-2">Robert Hook</div>
+                                    <div class="col-sm-7">How do I use MongoDB?</div>
+                                    <div class="col-sm-1">date</div>
+                                    <div class="col-sm-1"><center><span class="glyphicon glyphicon-ok"></span></center></div>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>             
+        </div> 
+        {{>footer}}
+    </body>
+</html>
