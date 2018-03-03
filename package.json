@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "nodemon ./bin/www",
-    "test": "mocha"
+    "test": "mocha  --exit"
   },
   "dependencies": {
     "body-parser": "~1.18.2",
