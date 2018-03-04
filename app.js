@@ -8,6 +8,20 @@ const bodyParser = require('body-parser');
 const mongoose = require("mongoose");
 const hbs = require( 'express-handlebars' );
 
+// Moment
+var Handlebars = require("handlebars");
+var MomentHandler = require("handlebars.moment");
+MomentHandler.registerHelpers(Handlebars);
+
+/*
+var Handlebars     = require('handlebars');
+var HandlebarsIntl = require('handlebars-intl');
+HandlebarsIntl.registerWith(Handlebars);
+
+var context = {
+    date: new Date()
+};
+*/
 
 const index = require('./routes/index');
 const users = require('./routes/users');

@@ -7,8 +7,13 @@ body {
 	height:100%;
 }
 
+/*
 h1.CUserInterface {
     font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+*/
+html, body, h1, h2, h3, h4, h5 {
+    font-family: "Open Sans", sans-serif
 }
 
 div.inner-content {
@@ -94,10 +99,15 @@ h3{
 }
 
 .navbar-custom {
-    background-color: #90f49c;
-    border-color: #90f49c;
+    background-color: #0043af;
 	color: black;
+    margin: 0px;
+    border-radius:0;
+}
 
+.nav-button {
+    font-weight: bold;
+    color: white;
 }
 
 .overrideJumboHeader {

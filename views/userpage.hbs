@@ -1,27 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
+    <head>        
+        <title>DeadLock - User Page</title>
         <meta charset="utf-8">
-        <title>SOEN341 Q&amp;A</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- JavaScripts -->
         <script src="https://www.w3schools.com/lib/w3.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script src="https://momentjs.com/downloads/moment.js"></script>
+
+        <!-- CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
-        <link rel="stylesheet" href="stylesheets/index.css">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <style>
-            html, body, h1, h2, h3, h4, h5 {
-                font-family: "Open Sans", sans-serif
-            }
-        </style>
+        
+        <link rel="stylesheet" href="stylesheets/userpagestyle.css">
+        <link rel="stylesheet" href="stylesheets/standardstyle.css">
     </head>
     <body>
         {{>header}}
-        <div class="jumbotron text-center" style="background-color: #116CF6;">
-            <img src="images/default1.png" style="width:12%; height:12%" class="img-circle">
+        <div class="jumbotron text-center" style="background-color: #116CF6; margin-top: 50px">
+            <img class="img-circle profile-picture" src="images/default1.png">
             <h2><strong>John Doe</strong></h2>
             <button type="button" class="btn btn-info" onclick="location.href='/edituserpage'">Edit profile</button>
         </div>
@@ -36,7 +37,7 @@
                     </div>
 
                     <!-- Contact Me Section -->
-                    <div class="card" style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);background: yellow">
+                    <div class="card contact-me">
                         <div class="card-body">
                             <h4 class="card-title text-center"><strong>Contact Me</strong></h4>
                             <hr />
@@ -53,8 +54,10 @@
                         </div>
                     </div>
 
+                    <br />
+
                     <!-- About Me Section -->
-                    <div class="card" style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);background: lightblue">
+                    <div class="card about-me">
                         <div class="card-body">
                             <h4 class="card-title text-center"><strong>About me</strong></h4>
                             <hr />
@@ -71,8 +74,10 @@
                         </div>
                     </div>
 
+                    <br />
+
                     <!-- Reputation Section -->
-                    <div class="card" style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);background: #e04ec8">
+                    <div class="card reputation">
                         <div class="card-body">
                             <h4 class="card-title text-center"><strong>Reputation</strong></h4>
                             <hr />
@@ -145,7 +150,7 @@
                         <li class="list-group-item">
                             <a href="/question/{{id}}">
                                 <div class="row question-row">
-                                    <div class="col-sm-1"><center><img src="images/default1.png" style="width:50%; height:50%" class="img-circle"></center></div>
+                                    <div class="col-sm-1"><center><img class="img-circle profile-icon" src="images/default1.png"></center></div>
                                     <div class="col-sm-2">Bill Joe</div>
                                     <div class="col-sm-7">How do I use Bootstrap?</div>
                                     <div class="col-sm-1">date</div>
@@ -156,7 +161,7 @@
                         <li class="list-group-item">
                             <a href="/question/{{id}}">
                                 <div class="row question-row">
-                                    <div class="col-sm-1"><center><img src="images/default2.png" style="width:50%; height:50%" class="img-circle"></center></div>
+                                    <div class="col-sm-1"><center><img class="img-circle profile-icon" src="images/default2.png"></center></div>
                                     <div class="col-sm-2">Jane Pearl</div>
                                     <div class="col-sm-7">What is RestAPI?</div>
                                     <div class="col-sm-1">date</div>
@@ -167,7 +172,7 @@
                         <li class="list-group-item">
                             <a href="/question/{{id}}">
                                 <div class="row question-row">
-                                    <div class="col-sm-1"><center><img src="images/default4.png" style="width:50%; height:50%" class="img-circle"></center></div>
+                                    <div class="col-sm-1"><center><img class="img-circle profile-icon" src="images/default4.png"></center></div>
                                     <div class="col-sm-2">Robert Hook</div>
                                     <div class="col-sm-7">How do I use MongoDB?</div>
                                     <div class="col-sm-1">date</div>

@@ -1,0 +1,28 @@
+/* User page stylesheet */
+img.profile-picture {
+	width:12%;
+	height:12%;
+}
+
+div.contact-me {
+	padding: 10px;
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+	background: yellow;
+}
+
+div.about-me {
+	padding: 10px;
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+	background: lightblue;
+}
+
+div.reputation {
+	padding: 10px;
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+	background: #e04ec8;
+}
+
+img.profile-icon {
+	width:50%;
+	height:50%;
+}
