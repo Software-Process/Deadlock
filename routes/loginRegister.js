@@ -5,7 +5,7 @@ var router = express.Router();
 
 
 router.get('/', function (req, res) {
-    res.render('index', { user : req.user });
+    res.render('signIn', { user : req.user });
 });
 
 router.get('/register', function(req, res) {
@@ -13,7 +13,7 @@ router.get('/register', function(req, res) {
 });
 
 router.post('/register', function(req, res) {
-    Account.register(new User({ username : req.body.username }), req.body.password, function(err, user ) {
+    User.register(new User({ username : req.body.username }), req.body.password, function(err, user ) {
         if (err) {
             return res.render('register', { user : user });
         }
