@@ -32,7 +32,14 @@
                     <div class="col-sm-6">
                         <a href="/userpage"><img class="img-circle profile-picture pull-left" src="images/default1.png"></a>
                         <div class="wrapper">
-                            <h3>Hello, John Doe</h3>
+                            {{#if username}}
+                            <h3>Hello, {{username}} </h3>
+                            <form action="/loginRegister/logout" method="get">
+                                <input type="submit" value="Log out" class="btn btn-default">
+                            </form>
+                            {{else}}
+                            <h3>You should log in.</h3>
+                            {{/if}}
                             <div><span class="badge badge-secondary questions-answered-badge">2</span>  questions answered</div>
                             <div><span class="badge badge-secondary questions-pending-badge">5</span>  questions pending</div>
                             <div><span class="badge badge-secondary answers-accepted-badge">4</span> answers accepted</div>
