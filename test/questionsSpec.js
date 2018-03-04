@@ -110,8 +110,6 @@ describe('Database Tests', function() {
   });
 
   after(function(done){
-    mongoose.connection.db.dropDatabase(function(){
-      mongoose.connection.close(done);
-    });
+      mongoose.connection.close(done); 
   });
 });
