@@ -4,10 +4,12 @@
   "private": true,
   "scripts": {
     "start": "nodemon ./bin/www",
-    "test": "karma start karma.conf.js — single-run"
+    "test": "mocha  --exit"
   },
   "dependencies": {
     "body-parser": "~1.18.2",
+    "chai": "^4.1.2",
+    "chai-http": "^3.0.0",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "express": "~4.15.5",
@@ -20,20 +22,12 @@
     "hbs": "^4.0.1",
     "jade": "~1.11.0",
     "moment": "^2.21.0",
+    "mocha": "^5.0.1",
     "mongodb": "^3.0.2",
     "mongoose": "^5.0.3",
     "morgan": "~1.9.0",
     "nodemon": "^1.14.12",
     "serve-favicon": "~2.4.5"
   },
-  "devDependencies": {
-    "jasmine-core": "^2.99.1",
-    "karma": "^2.0.0",
-    "karma-chrome-launcher": "^2.2.0",
-    "karma-cli": "^1.0.1",
-    "karma-firefox-launcher": "^1.1.0",
-    "karma-jasmine": "^1.1.1",
-    "karma-phantomjs-launcher": "^1.0.4",
-    "phantomjs-prebuilt": "^2.1.16"
-  }
+  "devDependencies": {}
 }
