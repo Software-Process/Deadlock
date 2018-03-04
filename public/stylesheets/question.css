@@ -1,42 +1,19 @@
+/* Question page Stylesheet */
+body {
+   background-color: #116CF6; 
+}
+.question-container {
+    margin-bottom: 50px;
+    background-color: #116CF6;
+}
+.question-heading {
+    color: white;
+    padding: 10px;
+}
 .question-content {
-    border-style: solid;
-    border-width: 2px;
-    border-color: #03183a;
-    border-radius: 10px;
     background-color: #116CF6;
     color: #FFFFFF;
     margin-bottom: 10px;
-}
-
-.content {
-    background-color: white;
-    color: black;
-    border-style: solid;
-    border-width: 2px;
-    border-color: #03183a;
-    border-radius: 5px;
-    padding-left: 10px;
-    padding-right:10px;
-}
-
-.reply-vote {
-    background-color:black;
-    border-radius: 10px;
-    color: white;
-}
-
-.write {
-    color:black;
-}
-
-.dark-blue {
-    background-color: #03183a;
-    border-color: #03183a;
-}
-
-.down {
-    transform: rotate(45deg);
-    -webkit-transform: rotate(45deg);
 }
 
 .glyphicon {
@@ -53,20 +30,81 @@
 
 .not-voted {
     color: #03183a;
+    font-size: 20pt;
 }
 
 .up-voted {
-    color: green;
+    color: #00ff37;
+    font-size: 20pt;
 }
 
 .down-voted {
     color: red;
+    font-size: 20pt;
+}
+
+.nbOfVotes {
+    color: white;
+    font-size: 15pt;
+    font-weight: bold;
+}
+
+.user-picture {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    -webkit-shape-outside:circle();
+    width: 35%;
+}
+
+.user-info-container {
+    color: black;
+}
+
+.reply-container {    
+    margin: 0px 0px 50px;
+}
+
+.reply {
+    background-color: white;
+    color: black;
+    padding: 15px;
+}
+
+.reply-content {
+    color: black;
 }
 
 .accept-reject {
     background-color: #03183a;
-    margin-top: 5px;
-    margin-bottom: 5px;
+}
+
+.heading {
+    color: white;
+}
+/*     BREAK       */
+
+
+
+.content {
+    background-color: white;
+    color: black;
+    padding-left: 50px;
+    padding-right:50px;
+}
+
+/*.reply-vote {
+    background-color:black;
+    border-radius: 10px;
+    color: white;
+}*/
+
+.write {
+    color:black;
+}
+
+
+.down {
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
 }
 
 .hidden {

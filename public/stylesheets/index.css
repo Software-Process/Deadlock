@@ -7,8 +7,13 @@ body {
 	height:100%;
 }
 
+/*
 h1.CUserInterface {
     font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+*/
+html, body, h1, h2, h3, h4, h5 {
+    font-family: "Open Sans", sans-serif
 }
 
 div.inner-content {
@@ -115,6 +120,13 @@ h3{
     background-color: #90f49c;
     border-top: 2px solid black;
 	color: black;
+}
+.card {
+    padding: 5px;
+    margin: 10px 0px;
+}
+li {
+    padding: 0px 0 5px;
 }
 
 /* --- Icons for social media --- */

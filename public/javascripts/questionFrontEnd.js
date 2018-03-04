@@ -201,13 +201,11 @@ function checkVote() {
 function tempUpCookie() {
     var temp = document.getElementById("question-info").innerHTML;
     document.cookie=temp+"=up";
-    alert(document.cookie);
 }
 
 function tempDownCookie() {
     var temp = document.getElementById("question-info").innerHTML;
     document.cookie=temp+"=down";
-    alert(document.cookie);
 }
 
 function getCookie(cname) {

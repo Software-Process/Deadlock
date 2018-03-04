@@ -1,38 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<meta http-equiv="content-type" content="text/html" charset="utf-8" />
-		<title>DeadLock - Ask A Question - We're all in this together</title>
+		<title>DeadLock - Ask A Question</title>
+		<meta http-equiv="content-type" content="text/html" charset="utf-8" />		
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-        <!-- jQuery library -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <!-- Latest compiled JavaScript -->
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-        <!-- Custom JavaScript file containing functions for input validation and clearing -->
+        <!-- JavaScripts -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script src="javascripts/question-prompt.js"></script>
 
-		<!-- Latest compiled and minified Bootstrap CSS -->
+		<!-- CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
-        <link rel="stylesheet" href="stylesheets/index.css">
+        <link rel="stylesheet" href="stylesheets/standardstyle.css">
+        
 	</head>
 	<body>
 		{{>header}}
-		<div class="container">	
+		<div class="container" style="margin-top: 50px">	
 			<div class="page-header">
-				<h2>Ask a question</h2> 
+				<h2>Ask a question <small>Fill all fields</small></h2> 
 			</div>
 
 			<form action="/question-prompt" method="post">
 				<div class="form-group">
 					<label for="inputsm">Title:</label>
-					<input class="form-control input-sm" id="title" type="text" name="title">
+					<input class="form-control" id="title" type="text" name="title">
 				</div>
 			
 				<div class="form-group" >
 					<label for="inputsm">Author:</label>
-					<input class="form-control input-sm" id="author" type="text" name="author">
+					<input class="form-control" id="author" type="text" name="author">
 				</div>
 
 
@@ -42,7 +40,7 @@
 				</div>
 				<div class="row">
 					<input class="btn btn-success" type="submit" value="Submit" onClick="checkFilled()" />
-					<input class="btn btn-danger" type="button" value="Cancel" onClick="clear()" />
+					<a href="/"><input class="btn btn-danger" type="button" value="Cancel" onClick="clear()" /></a>
 				</div>
 			</form>
 		</div>
