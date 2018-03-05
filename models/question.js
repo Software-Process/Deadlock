@@ -27,6 +27,7 @@ const questionSchema = mongoose.Schema({
     			replyId: mongoose.Schema.Types.ObjectId,    			
     			textRep: String,
     			nbOfVotesRep: Number,
+				user: String,
     			//replyAuthor: String,
     			accepted: Boolean
     	      }
