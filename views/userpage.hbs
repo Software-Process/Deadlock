@@ -103,36 +103,27 @@
                                 <div class="col-sm-1"><strong>Status</strong></div>
                             </div>
                         </li>
-                        <li class="list-group-item">
-                            <a href="/question/{{id}}">
-                                <div class="row question-row">
-                                    <div class="col-sm-9">Question 1</div>
-                                    <div class="col-sm-1"><center><span class="badge">2</span></center></div>
-                                    <div class="col-sm-1">date</div>
-                                    <div class="col-sm-1"><center><span class="glyphicon glyphicon-ok"></span></center></div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="/question/{{id}}">
-                                <div class="row question-row">
-                                    <div class="col-sm-9">Question 2</div>
-                                    <div class="col-sm-1"><center><span class="badge">4</span></center></div>
-                                    <div class="col-sm-1">date</div>
-                                    <div class="col-sm-1"><center><span class="glyphicon glyphicon-remove" style="color: red"></center></div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="/question/{{id}}">
-                                <div class="row question-row">
-                                    <div class="col-sm-9">Question 3</div>
-                                    <div class="col-sm-1"><center><span class="badge">3</span></center></div>
-                                    <div class="col-sm-1">date</div>
-                                    <div class="col-sm-1"><center><span class="glyphicon glyphicon-lock"></span><span class="glyphicon glyphicon-refresh"></span></center></div>
-                                </div>
-                            </a>
-                        </li>
+                      {{#each questions}}
+                      <li class="list-group-item">
+                        <a href="/question/{{id}}">
+                          <div class="row question-row">
+                            <div class="col-sm-9">{{title}}</div>
+                            <div class="col-sm-1">
+                              <center>
+                                <span class="badge">{{nbOfVotes}}</span>
+                              </center>
+                            </div>
+                            <div class="col-sm-1">{{moment date format="MMMM D, YYYY"}}</div>
+                            <div class="col-sm-1">
+                              <center>
+                                <span class="glyphicon glyphicon-lock"></span>
+                                <span class="glyphicon glyphicon-refresh"></span>
+                              </center>
+                            </div>
+                          </div>
+                        </a>
+                      </li>
+                      {{/each}}
 
                     </ul>
 
