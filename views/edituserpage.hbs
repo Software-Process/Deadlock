@@ -31,7 +31,7 @@
         <div class="container">
             <!-- Form might need USER ID after action= to REDIRECT TO THE SPECIFIC PAGE! -->
             <!-- THE FORM'S GET METHOD MUST BE CHANGED accordingly -->
-            <form action="/editUserPage" class="form-horizontal" method="get">
+            <form action="/editUserPage" class="form-horizontal" method="post">
                 <input type="hidden" name="_method" value="PATCH"/>
                 <!--Picking profile picture-->
                 <div class="form-group">
@@ -169,7 +169,7 @@
                     <h2>Biography</h2>
                 </div>
                 <div class="form-group">
-					<textarea class="form-control" id="text" rows="10" type="text" name="bio" placeholder="Tell us about yourself"></textarea>
+					<textarea class="form-control" id="text" rows="10" type="text" name="bio" placeholder="Tell us about yourself">{{user.bio}}</textarea>
 				</div>
 
 
