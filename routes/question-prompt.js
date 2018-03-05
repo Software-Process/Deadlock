@@ -20,6 +20,7 @@ router.post('/', function(req, res, next) {
         text: req.body.question,
         nbOfVotes: 0,
         nbOfAnswers: 0,
+		user: "testUser", // To be replaced with logged in user
         author: req.body.author,
         date: new Date(),
         replies: {}
