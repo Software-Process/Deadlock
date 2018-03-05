@@ -23,7 +23,7 @@
         
         <div class="jumbotron" style="margin-top: 50px">
             <div class="container">
-                <h1>User Profile Edit </h1>
+                <h1>User Profile Edit - {{user.username}}</h1>
             </div>
         </div>
 
@@ -31,8 +31,8 @@
         <div class="container">
             <!-- Form might need USER ID after action= to REDIRECT TO THE SPECIFIC PAGE! -->
             <!-- THE FORM'S GET METHOD MUST BE CHANGED accordingly -->
-            <form action="/userpage" class="form-horizontal" method="get">
-
+            <form action="/editUserPage" class="form-horizontal" method="get">
+                <input type="hidden" name="_method" value="PATCH"/>
                 <!--Picking profile picture-->
                 <div class="form-group">
                     <h2>Select a profile!</h2>
