@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>        
+    <head>
         <title>DeadLock - User Page</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -15,7 +15,7 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
-        
+
         <link rel="stylesheet" href="stylesheets/userpagestyle.css">
         <link rel="stylesheet" href="stylesheets/standardstyle.css">
     </head>
@@ -65,14 +65,18 @@
                             <!-- Placeholder user about me information -->
                             <ul style="list-style-type: none;">
                                 <li>Birthday: {{user.birthday}}</li>
-                                <li>Gender: {{#if gender}}
-                                    Male
-                                {{else}}
-                                    Female
-                                {{/if}}</li>
+                                <li>Gender:
+                                    {{#if user.gender}}
+                                        {{#if gender}}
+                                            Male
+                                        {{else}}
+                                            Female
+                                        {{/if}}
+                                    {{/if}}
+                                </li>
                                 <li>Age: {{user.age}}</li>
                                 <li>Spoken languages:{{user.spokenLanguage}}</li>
-                                <li>Programming languages:{{user.programmingLanguage}}</li>                                
+                                <li>Programming languages:{{user.programmingLanguage}}</li>
                             </ul>
 
                         </div>
@@ -177,8 +181,8 @@
                         </li>
                     </ul>
                 </div>
-            </div>             
-        </div> 
+            </div>
+        </div>
         {{>footer}}
     </body>
 </html>
