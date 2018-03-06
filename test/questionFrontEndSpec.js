@@ -1,4 +1,3 @@
-var sinon = require('sinon');
 const chai = require('chai');
 var assert = chai.assert;
 var expect = require('chai').expect;
