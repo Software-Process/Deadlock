@@ -21,7 +21,7 @@ router.post('/', function(req, res, next) {
         nbOfVotes: 0,
         nbOfAnswers: 0,
         author: req.body.author,
-        date: new Date(),
+        date: new Date().toUTCString(),
         replies: {}
     });
     question
