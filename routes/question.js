@@ -59,7 +59,7 @@ router.patch('/:questionId/reply', function(req, res, next) {
     const id = req.params.questionId;
     const txt = req.body.repform;
     const genReplyId = new mongoose.Types.ObjectId();
-    Question.update({_id : id},{ $push: { replies: { replyId: genReplyId, user: "testUser", textRep: txt, nbOfVotesRep: 0, accepted: false}}}) // Replace testUser with logged in user
+    Question.update({_id : id},{ $push: { replies: { replyId: genReplyId, user: req.user.username, textRep: txt, nbOfVotesRep: 0, accepted: false}}}) // Replace testUser with logged in user
         .exec()
         .then(function(result){
             res.redirect('back');
