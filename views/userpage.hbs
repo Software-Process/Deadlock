@@ -44,11 +44,11 @@
 
                             <!-- Placeholder user contact me information -->
                             <ul style="list-style-type: none;">
-                                <li>johndoe@gmail.com</li>
-                                <li><a href="">github.com/johndoe</a></li>
-                                <li><a href="">linkedin.com/johndoe</a></li>
-                                <li>(514) 123-4567</li>
-                                <li>Montreal, Canada</li>
+                                <li>{{user.email}}</li>
+                                <li><a href="">{{user.github}}</a></li>
+                                <li><a href="">{{user.linkedin}}</a></li>
+                                <li>{{user.phoneNumber}}</li>
+                                <li>{{user.city}}, {{user.country}}</li>
                             </ul>
 
                         </div>
@@ -64,11 +64,15 @@
 
                             <!-- Placeholder user about me information -->
                             <ul style="list-style-type: none;">
-                                <li>Birthday</li>
-                                <li>Gender</li>
-                                <li>Age</li>
-                                <li>Spoken languages</li>
-                                <li>Programming languages</li>                                
+                                <li>Birthday: {{user.birthday}}</li>
+                                <li>Gender: {{#if gender}}
+                                    Male
+                                {{else}}
+                                    Female
+                                {{/if}}</li>
+                                <li>Age: {{user.age}}</li>
+                                <li>Spoken languages:{{user.spokenLanguage}}</li>
+                                <li>Programming languages:{{user.programmingLanguage}}</li>                                
                             </ul>
 
                         </div>

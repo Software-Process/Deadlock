@@ -7,6 +7,7 @@ const Question = require("../models/question");
 router.get('/', function(req, res, next) {
     if (req.user){
         res.render('userpage', {user : req.user });
+        const gender = req.user.gender == 'true';
     } else {
         res.render('signIn');
     }
