@@ -8,6 +8,11 @@ const bodyParser = require('body-parser');
 const mongoose = require("mongoose");
 const hbs = require( 'express-handlebars' );
 
+
+//passport
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
+
 // Moment
 var Handlebars = require("handlebars");
 var MomentHandler = require("handlebars.moment");
@@ -49,12 +54,28 @@ app.set('view engine', 'hbs');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+
+//express session
+app.use(require('express-session')({
+    secret: 'ineedhealing',
+    resave: false,
+    saveUninitialized: false
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(require('express-method-override')('_method'));
+
+const User = require('./models/user');
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
 
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -80,6 +101,8 @@ app.use('/aboutus', aboutUs);
 app.use('/login', loginRegister);
 app.use('/userpage', userPage);
 app.use('/edituserpage', editUserPage);
+app.use('/loginRegister', loginRegister);
+
 
 mongoose.connect("mongodb://soen341:soen341@soen341-shard-00-00-ruxjj.mongodb.net:27017,soen341-shard-00-01-ruxjj.mongodb.net:27017,soen341-shard-00-02-ruxjj.mongodb.net:27017/test?ssl=true&replicaSet=SOEN341-shard-0&authSource=admin");
 

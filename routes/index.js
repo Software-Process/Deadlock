@@ -8,8 +8,13 @@ router.get('/', function(req, res, next) {
   	Question.find()
 	  	.exec()
 	  	.then(docs => {
-			console.log(docs);
-			res.render('index', { questions: docs });		
+			// console.log(docs);
+			if (req.user){
+                res.render('index', { questions: docs, username : req.user.username });
+            } else {
+                res.render('index', { questions: docs});
+                }
+
 	  	})
 	  	.catch(err => {
 	  		console.log(err);
