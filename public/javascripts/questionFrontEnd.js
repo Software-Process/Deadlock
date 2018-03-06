@@ -1,3 +1,4 @@
+/* Legacy Code: Kept for future reference just in case.
 function changeGreen() {
     //BACKEND: Go into database and increment vote value by 1 or 2 (or decrement by 1 for reset) depending on if the user has already downvoted.
     var upArrow = document.getElementById("up");
@@ -61,7 +62,7 @@ function changeRed() {
         downArrow.classList.add("down-voted");
     }
 }
-
+*/
 function changeGreen1(replyContent) {
     //BACKEND: Go into database and increment vote value by 1 or 2 (or decrement by 1 for reset) depending on if the user has already downvoted.
     var upArrow = replyContent.childNodes[1];
@@ -165,7 +166,7 @@ function frontEndSubmit() {
 
 }
 
-function tempChangeGreen() {
+function questionChangeGreen() {
     var upArrow = document.getElementById("up");
     var downArrow = document.getElementById("down");
     upArrow.classList.remove("not-voted");
@@ -174,7 +175,7 @@ function tempChangeGreen() {
     downArrow.classList.add("not-voted");
 }
 
-function tempChangeRed() {
+function questionChangeRed() {
     var upArrow = document.getElementById("up");
     var downArrow = document.getElementById("down");
     downArrow.classList.remove("not-voted");
@@ -187,23 +188,23 @@ function checkVote() {
     var temp = document.getElementById("question-info").innerHTML;
     var status = getCookie(temp);
     if (status == "up") {
-        tempChangeGreen();
+        questionChangeGreen();
         document.getElementById("button-up").disabled = true;
         document.getElementById("button-down").disabled = false;
     }
     if (status == "down") {
-        tempChangeRed();
+        questionChangeRed();
         document.getElementById("button-down").disabled = true;
         document.getElementById("button-up").disabled = false;
     }
 }
 
-function tempUpCookie() {
+function questionUpCookie() {
     var temp = document.getElementById("question-info").innerHTML;
     document.cookie=temp+"=up";
 }
 
-function tempDownCookie() {
+function questionDownCookie() {
     var temp = document.getElementById("question-info").innerHTML;
     document.cookie=temp+"=down";
 }

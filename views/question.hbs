@@ -32,12 +32,12 @@
                 <div class="col-sm-1 text-center">
                     <form action = "/question/{{question.id}}/up" method = "post">
                         <input type="hidden" name="_method" value="PATCH"/>
-                        <button type="submit" class="not-button" onclick="tempUpCookie()" id="button-up"><i class="glyphicon glyphicon-triangle-top not-voted" id="up"></i></button>
+                        <button type="submit" class="not-button" onclick="questionUpCookie()" id="button-up"><i class="glyphicon glyphicon-triangle-top not-voted" id="up"></i></button>
                     </form>
                     <span class="nbOfVotes">{{question.nbOfVotes}}</span><br />
                     <form action = "/question/{{question.id}}/down" method = "post">
                         <input type="hidden" name="_method" value="PATCH"/>
-                        <button type="submit" class="not-button" onclick="tempDownCookie()" id="button-down"><i class="glyphicon glyphicon-triangle-bottom not-voted" id="down"></i></button>
+                        <button type="submit" class="not-button" onclick="questionDownCookie()" id="button-down"><i class="glyphicon glyphicon-triangle-bottom not-voted" id="down"></i></button>
                     </form>
                 </div>
                 <div class="col-sm-9 content well">
@@ -84,11 +84,12 @@
                                 <div class="row">                                  
                                     <div class="col-sm-1 text-center">
                                         <div class="row">
-                                            <i class="glyphicon glyphicon-triangle-top not-voted" id="up1" onclick="changeGreen1(this.parentElement)"></i>
-                                            <br />
+                                            <form action = "/question/{{question.id}}/up" method = "post">
+                                                <input type="hidden" name="_method" value="PATCH"/>
+                                                <button type="submit" class="not-button" onclick="tempUpCookie()" id="button-up"><i class="glyphicon glyphicon-triangle-top not-voted" id="up"></i></button>
+                                            </form>
                                             <span class=" nbOfVotes reply-vote">0</span>
                                             <br />
-
                                             <i class="glyphicon glyphicon-triangle-bottom not-voted" id="down1" onclick="changeRed1(this.parentElement)"></i>
                                         </div>
                                     </div>
