@@ -23,7 +23,7 @@
         {{>header}}
         <div class="jumbotron text-center" style="background-color: #116CF6; margin-top: 50px">
             <img class="img-circle profile-picture" src="images/default1.png">
-            <h2><strong>John Doe</strong></h2>
+            <h2><strong>{{user.username}}</strong></h2>
             <button type="button" class="btn btn-info" onclick="location.href='/edituserpage'">Edit profile</button>
         </div>
         <div class="container">
@@ -33,7 +33,7 @@
                     <!-- Bio Section -->
                     <div class="sidebar-module sidebar-module-inset">
                         <h4>Bio</h4>
-                        <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
+                        <p>{{user.bio}}</p>
                     </div>
 
                     <!-- Contact Me Section -->
