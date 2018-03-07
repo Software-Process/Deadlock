@@ -25,7 +25,8 @@ router.patch('/', function (req, res, next) {
                 birthday: req.body.birthday,
                 spokenLanguage: req.body.spokenLanguage,
                 programmingLanguage: req.body.programmingLanguage,
-                bannerColor: req.body.banner
+                bannerColor: req.body.banner,
+                gender: req.body.gender
             }
         })
         .exec()
