@@ -15,22 +15,12 @@ const mongoose = require("mongoose");
 */
 
 const questionSchema = mongoose.Schema({
-    _id: mongoose.Schema.Types.ObjectId,
     title: {type: String, required: true},
     text: {type: String, required: true},
-    nbOfVotes: Number,
-    nbOfAnswers: Number,
-	user: {type: String, required: true},
-    author: {type: String, required: true},
+    score: {type: Number, required: true},
+    author: {type: mongoose.Schema.Types.ObjectId, required: true}, // prefix with mongoose?
     date : {type: String, required: true},
-    replies : {
-    			replyId: mongoose.Schema.Types.ObjectId,    			
-    			textRep: String,
-    			nbOfVotesRep: Number,
-				user: String,
-    			//replyAuthor: String,
-    			accepted: Boolean
-    	      }
+    answers: {type: [mongoose.Schema.Types.ObjectId]}
 });
 
 module.exports = mongoose.model("Question", questionSchema);

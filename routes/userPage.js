@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 const Question = require("../models/question");
+const Reply = require("../models/reply");
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
