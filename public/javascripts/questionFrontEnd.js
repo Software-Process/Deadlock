@@ -184,6 +184,24 @@ function questionChangeRed() {
     upArrow.classList.add("not-voted");
 }
 
+function replyChangeGreen(replyId) {
+    var upArrow = document.getElementById(replyId+"up");
+    var downArrow = document.getElementById(replyId+"down");
+    upArrow.classList.remove("not-voted");
+    upArrow.classList.add("up-voted");
+    downArrow.classList.remove("down-voted");
+    downArrow.classList.add("not-voted");
+}
+
+function replyChangeRed(replyId) {
+    var upArrow = document.getElementById(replyId+"up");
+    var downArrow = document.getElementById(replyId+"down");
+    downArrow.classList.remove("not-voted");
+    downArrow.classList.add("down-voted");
+    upArrow.classList.remove("up-voted");
+    upArrow.classList.add("not-voted");
+}
+
 function checkVote() {
     var temp = document.getElementById("question-info").innerHTML;
     var status = getCookie(temp);
@@ -197,6 +215,28 @@ function checkVote() {
         document.getElementById("button-down").disabled = true;
         document.getElementById("button-up").disabled = false;
     }
+    try {
+        var count = 0;
+        while(true) {
+            var str = "reply"+count+"up";
+            var replyId = document.getElementById(str).name;
+            var replyStatus = getCookie(replyId);
+            if (replyStatus == "up") {
+                replyChangeGreen(replyId);
+                document.getElementById("reply"+count+"up").disabled = true;
+                document.getElementById("reply"+count+"down").disabled = false;
+            }
+            if (replyStatus == "down") {
+                replyChangeRed(replyId);
+                document.getElementById("reply"+count+"down").disabled = true;
+                document.getElementById("reply"+count+"up").disabled = false;
+            }
+        count++;
+        }
+    }
+    catch(err) {
+        //alert("done");
+    }
 }
 
 function questionUpCookie() {
@@ -207,6 +247,14 @@ function questionUpCookie() {
 function questionDownCookie() {
     var temp = document.getElementById("question-info").innerHTML;
     document.cookie=temp+"=down";
+}
+
+function replyUpCookie(replyId) {
+    document.cookie=replyId.name+"=up";
+}
+
+function replyDownCookie(replyId) {
+    document.cookie=replyId.name+"=down";
 }
 
 function getCookie(cname) {
