@@ -272,3 +272,4 @@ function getCookie(cname) {
     }
     return "";
 }
+module.exports = {changeGreen1, changeRed1, accept, reject, frontEndSubmit, questionChangeGreen, questionChangeRed, checkVote, questionUpCookie, questionDownCookie, getCookie };

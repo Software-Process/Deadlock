@@ -6,16 +6,6 @@ var testing = require('../public/javascripts/questionFrontEnd');
   
 describe('The functions in question front end', function() {
 
-    it('Verify function changeGreen', function(){
-
-        expect(testing.changeGreen).to.be.a('function');
-    });
-
-    it('Verify function changeRed', function(){
-
-        expect(testing.changeRed).to.be.a('function');
-    });
-
     it('Verify function changeGreen1', function(){
 
         expect(testing.changeGreen1).to.be.a('function');
@@ -41,14 +31,14 @@ describe('The functions in question front end', function() {
         expect(testing.frontEndSubmit).to.be.a('function');
     });
 
-    it('Verify function tempChangeGreen', function(){
+    it('Verify function questionChangeGreen', function(){
 
-        expect(testing.tempChangeGreen).to.be.a('function');
+        expect(testing.questionChangeGreen).to.be.a('function');
     });
 
-    it('Verify function tempChangeRed', function(){
+    it('Verify function questionChangeRed', function(){
 
-        expect(testing.tempChangeRed).to.be.a('function');
+        expect(testing.questionChangeRed).to.be.a('function');
     });
 
     it('Verify function checkVote', function(){
@@ -56,14 +46,14 @@ describe('The functions in question front end', function() {
         expect(testing.checkVote).to.be.a('function');
     });
 
-    it('Verify function tempUpCookie', function(){
+    it('Verify function questionUpCookie', function(){
 
-        expect(testing.tempUpCookie).to.be.a('function');
+        expect(testing.questionUpCookie).to.be.a('function');
     });
 
-    it('Verify function tempDownCookie', function(){
+    it('Verify function questionDownCookie', function(){
 
-        expect(testing.tempDownCookie).to.be.a('function');
+        expect(testing.questionDownCookie).to.be.a('function');
     });
     
     it('Verify function getCookie', function(){
