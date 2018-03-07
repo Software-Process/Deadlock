@@ -20,9 +20,9 @@ const testSchema = mongoose.Schema({
 		      }
 });
 
-//Create a new collection called 'MochaTest'
-const MochaTest = mongoose.model('MochaTest', testSchema);
-describe('Database Tests', function() {
+//Create a new collection called 'questionTest'
+const questionTest = mongoose.model('questionTest', testSchema);
+describe('Database Tests for questions', function() {
   before(function (done) {
     mongoose.connect('mongodb://soen341:soen341@soen341-shard-00-00-ruxjj.mongodb.net:27017,soen341-shard-00-01-ruxjj.mongodb.net:27017,soen341-shard-00-02-ruxjj.mongodb.net:27017/test?ssl=true&replicaSet=SOEN341-shard-0&authSource=admin');
     const db = mongoose.connection;
@@ -34,11 +34,10 @@ describe('Database Tests', function() {
   });
 
   describe('Test Database', function() {
-    //Save object with 'title' value of 'Mocha"
-    it('New name saved to test database', function(done) {
-      var testName = MochaTest({
+    it('New question saved to the question test database', function(done) {
+      var testName = questionTest({
         _id: '5a9a2faaed11053a7c92964d',
-        title: 'Mocha',
+        title: 'This is a title',
         text: 'Hello',
         author: 'Peter',
         date : '2018-08-08',
@@ -47,10 +46,10 @@ describe('Database Tests', function() {
       testName.save(done);
     });
 
-    it('Dont save incorrect format to database', function(done) {
+    it('Dont save incorrect title format to database', function(done) {
       //Should not be able to save this item
-      var wrongSave = MochaTest({
-        notTitle: 'Not Mocha'
+      var wrongSave = questionTest({
+        notTitle: 'Not a title'
       });
       wrongSave.save(err => {
         if(err) { return done(); }
@@ -60,26 +59,26 @@ describe('Database Tests', function() {
 
     it('Should retrieve data from test database', function(done) {
       //Look up the 'Mocha' object we created before
-      MochaTest.find({title: 'Mocha'}, (err, name) => {
+      questionTest.find({title: 'This is a title'}, (err, name) => {
         if(err) {throw err;}
         if(name.length === 0) {throw new Error('No data!');}
         done();
       });
     });
 
-    it('Should update data from the test database', function(done) {
-      var oldTitle = {title: 'Mocha'};
-      var newTitle = {title: 'Latte'};
+    it('Able to update title from the test database', function(done) {
+      var oldTitle = {title: 'This is a title'};
+      var newTitle = {title: 'This is a new title'};
 
-      MochaTest.update(oldTitle, newTitle, (err, name) => {
+      questionTest.update(oldTitle, newTitle, (err, name) => {
         if(err) {throw err;}
         if(name.length === 0) {throw new Error('No data!');}
         done();
       });
     });
 
-    it('Should retrieve updated data from test database', function(done) {
-      MochaTest.find({title: 'Latte'}, (err, name) => {
+    it('Should retrieve updated title from test database', function(done) {
+      questionTest.find({title: 'This is a new title'}, (err, name) => {
         if(err) {throw err;}
         if(name.length === 0) {throw new Error('No data!');}
         done();
@@ -87,14 +86,14 @@ describe('Database Tests', function() {
     });
 
     it('Should delete data from the test database', function(done) {
-      var testName = MochaTest({
+      var testName = questionTest({
         _id: '5a9a2faaed11053a7c92964d',
-        title: 'Latte',
+        title: 'This is a new title',
         text: 'Hello',
         author: 'Peter',
         date : '2018-08-08',
       });
-      MochaTest.deleteOne(testName, (err, name) => {
+      questionTest.deleteOne(testName, (err, name) => {
         if(err) {throw err;}
         if(name.length === 0) {throw new Error('No data!');}
         done();
@@ -102,14 +101,14 @@ describe('Database Tests', function() {
     });
 
     it('Verify data has been deleted from test database', function(done) {
-      MochaTest.find({title: 'Latte'}, (err, name) => {
+      questionTest.find({title: 'This is a new title'}, (err, name) => {
         if(err) {console.log("Deleted successfully")}
         done();
       });
     });
   });
-
+  
   after(function(done){
-      mongoose.connection.close(done); 
+      mongoose.connection.close(done);
   });
 });
