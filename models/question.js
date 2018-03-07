@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-
+var Schema = mongoose.Schema;
 /*
 	Here is the characteristics for a question
 	{
@@ -14,13 +14,13 @@ const mongoose = require("mongoose");
 	}
 */
 
-const questionSchema = mongoose.Schema({
+const questionSchema = new Schema({
     title: {type: String, required: true},
     text: {type: String, required: true},
     score: {type: Number, required: true},
-    author: {type: mongoose.Types.ObjectId, required: true},
-    date : {type: String, required: true},
-    answers: {type: [mongoose.Types.ObjectId]}
+    author: {type: mongoose.Schema.Types.ObjectId, required: true},
+    date: {type: String, required: true},
+    replies: {type: [mongoose.Schema.Types.ObjectId]}
 });
 
 module.exports = mongoose.model("Question", questionSchema);
