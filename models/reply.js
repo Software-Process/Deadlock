@@ -17,9 +17,9 @@ const mongoose = require("mongoose");
 const replySchema = mongoose.Schema({
     text: {type: String, required: true},
     score: {type: Number, required: true},
-    author: {type: mongoose.Schema.Types.ObjectId, required: true}, // prefix with mongoose?
+    author: {type: mongoose.Types.ObjectId, required: true},
     date : {type: String, required: true},
-    question: {type: mongoose.Schema.Types.ObjectId, required: true},
+    question: {type: mongoose.Types.ObjectId, required: true},
     accepted: {type: Boolean, required: true},
     rejected: {type: Boolean, required: true}
 });

@@ -18,9 +18,9 @@ const questionSchema = mongoose.Schema({
     title: {type: String, required: true},
     text: {type: String, required: true},
     score: {type: Number, required: true},
-    author: {type: mongoose.Schema.Types.ObjectId, required: true}, // prefix with mongoose?
+    author: {type: mongoose.Types.ObjectId, required: true},
     date : {type: String, required: true},
-    answers: {type: [mongoose.Schema.Types.ObjectId]}
+    answers: {type: [mongoose.Types.ObjectId]}
 });
 
 module.exports = mongoose.model("Question", questionSchema);
