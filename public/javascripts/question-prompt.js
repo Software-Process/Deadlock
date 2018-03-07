@@ -17,3 +17,4 @@ function clear() {
     document.getElementById("author").value = "";
     document.getElementById("text").value = "";
 }
+module.exports = {checkFilled, clear};
