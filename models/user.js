@@ -19,7 +19,13 @@ var User = new Schema({
     age: Number,
     birthday: String,
     spokenLanguage: String,
-    programmingLanguage: String
+    programmingLanguage: String,
+    questions: [
+        question: question_id
+    ],
+    answers: [
+        answers: answer_id
+    ]
 });
 
 User.plugin(passportLocalMongoose);
