@@ -138,39 +138,22 @@
                                 <div class="col-sm-1"><strong>Status</strong></div>
                             </div>
                         </li>
-                        <li class="list-group-item">
-                            <a href="/question/{{id}}">
-                                <div class="row question-row">
-                                    <div class="col-sm-1"><center><img class="img-circle profile-icon" src="images/default1.png"></center></div>
-                                    <div class="col-sm-2">Bill Joe</div>
-                                    <div class="col-sm-7">How do I use Bootstrap?</div>
-                                    <div class="col-sm-1">date</div>
-                                    <div class="col-sm-1"><center><span class="glyphicon glyphicon-ok"></span></center></div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="/question/{{id}}">
-                                <div class="row question-row">
-                                    <div class="col-sm-1"><center><img class="img-circle profile-icon" src="images/default2.png"></center></div>
-                                    <div class="col-sm-2">Jane Pearl</div>
-                                    <div class="col-sm-7">What is RestAPI?</div>
-                                    <div class="col-sm-1">date</div>
-                                    <div class="col-sm-1"><center><span class="glyphicon glyphicon-remove" style="color: red"></span></center></div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="/question/{{id}}">
-                                <div class="row question-row">
-                                    <div class="col-sm-1"><center><img class="img-circle profile-icon" src="images/default4.png"></center></div>
-                                    <div class="col-sm-2">Robert Hook</div>
-                                    <div class="col-sm-7">How do I use MongoDB?</div>
-                                    <div class="col-sm-1">date</div>
-                                    <div class="col-sm-1"><center><span class="glyphicon glyphicon-ok"></span></center></div>
-                                </div>
-                            </a>
-                        </li>
+                        {{#each answers}}
+                            <li class="list-group-item">
+                                <a href="/question/{{id}}">
+                                    <div class="row question-row">
+                                        <div class="col-sm-1"><center><img class="img-circle profile-icon" src="images/default1.png"></center></div>
+                                        <div class="col-sm-2">{{author}}</div>
+                                        <div class="col-sm-7">{{title}}</div>
+                                        <div class="col-sm-1">{{moment date format="MMMM D, YYYY"}}</div>
+                                        <div class="col-sm-1"><center>
+                                            <span class="glyphicon glyphicon-lock"></span>
+                                            <span class="glyphicon glyphicon-refresh"></span>
+                                        </center></div>
+                                    </div>
+                                </a>
+                            </li>
+                        {{/each}}
                     </ul>
                 </div>
             </div>
