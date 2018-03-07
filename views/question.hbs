@@ -84,13 +84,17 @@
                                 <div class="row">                                  
                                     <div class="col-sm-1 text-center">
                                         <div class="row">
-                                            <form action = "/question/{{question.id}}/up" method = "post">
+                                            <form action = "/question/{{replyId}}/up1" method = "post">
                                                 <input type="hidden" name="_method" value="PATCH"/>
-                                                <button type="submit" class="not-button" onclick="tempUpCookie()" id="button-up"><i class="glyphicon glyphicon-triangle-top not-voted" id="up"></i></button>
+                                                <textarea class="hidden"type="text" name="questionId">{{../_id}}</textarea>
+                                                <button type="submit" class="not-button" onclick="questionUpCookie()" id="button-up"><i class="glyphicon glyphicon-triangle-top not-voted" id="up"></i></button>
                                             </form>
                                             <span class=" nbOfVotes reply-vote">0</span>
                                             <br />
-                                            <i class="glyphicon glyphicon-triangle-bottom not-voted" id="down1" onclick="changeRed1(this.parentElement)"></i>
+                                            <form action = "/question/{{replyId}}/down" method = "post">
+                                                <input type="hidden" name="_method" value="PATCH"/>
+                                                <button type="submit" class="not-button" onclick="questionDownCookie()" id="button-down"><i class="glyphicon glyphicon-triangle-bottom not-voted" id="down"></i></button>
+                                            </form>
                                         </div>
                                     </div>
 
@@ -107,13 +111,13 @@
                                             <div class="col-sm-6">
                                                 <form action = "/question/{{replyId}}/accept" method = "post">
                                                     <input type="hidden" name="_method" value="PATCH"/>
-                                                    <button type="button" class="btn btn-dark accept-reject" onclick="accept(this.parentElement)">Accept</button>
+                                                    <button type="submit" class="btn btn-dark accept-reject">Accept</button>
                                                 </form>
                                             </div>
                                             <div class="col-sm-6">
                                                 <form action = "/question/{{replyId}}/reject" method = "post">
                                                     <input type="hidden" name="_method" value="PATCH"/>
-                                                    <button type="button" class="btn btn-dark accept-reject" onclick="reject(this.parentElement)">Reject</button>
+                                                    <button type="button" class="btn btn-dark accept-reject">Reject</button>
                                                 </form>
                                             </div>
                                         </div>
