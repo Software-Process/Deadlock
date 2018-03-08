@@ -1,14 +1,13 @@
 var express = require('express');
 var router = express.Router();
 
-const Question = require("../models/question");
+const question = require("../models/question");
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  	Question.find()
+  	question.find()
 	  	.exec()
 	  	.then(docs => {
-			// console.log(docs);
 			if (req.user){
                 res.render('index', { questions: docs, username : req.user.username });
             } else {

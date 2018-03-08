@@ -2,11 +2,12 @@ var express = require('express');
 var router = express.Router();
 const User = require("../models/user");
 
-/* GET home page. */
+/* GET edit user profile page. */
 router.get('/', function (req, res, next) {
     res.render('editUserPage', {user: req.user});
 });
 
+/* Submit changes to use profile via PATCH request. */
 router.patch('/', function (req, res, next) {
     const name = req.user.username;
     User.update({username: name},

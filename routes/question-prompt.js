@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 
 const Question = require("../models/question");
 
-/*To render the question-prompt.hbs page*/
+/*To render the question-prompt.hbs page. Redirects if user is not signed in.*/
 router.get('/', function(req, res, next) {
     if (req.user) {
         res.render('question-prompt', {title: 'Ask a question page'});
@@ -14,7 +14,7 @@ router.get('/', function(req, res, next) {
     }
   });
 
-/*POST linked with question-prompt page*/
+/* Submits a question via a POST request.*/
 router.post('/', function(req, res, next) {
     var genId = new mongoose.Types.ObjectId();
     console.log(req.user);
@@ -34,24 +34,6 @@ router.post('/', function(req, res, next) {
         .then(function(result){
             var path = '/question/' + genId;
             res.redirect(path);        
-            console.log(result);
-            
-            /*res.status(201).json({
-                message: "Created question",
-                createdQuestion:{
-                    title: result.title,
-                    text: result.question,
-                    nbOfVotes: result.nbOfVotes,
-                    nbOfAnswers: result.nbOfAnswers,
-                    author: req.body.author,
-                    _id: result._id,
-                    request:{
-                        type: "GET",
-                        url: "http://localhost:3000/questions/" + result._id
-                    }
-                }
-            
-        });*/
     })
         .catch(function(err){
             console.log(err);
