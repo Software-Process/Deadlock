@@ -1,162 +1,155 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>DeadLock - Question</title>
-        <meta charset="utf-8">     
-        <meta name="viewport" content="width=device-width, initial-scale=1">    
+  <head>
+  <title>DeadLock - Question</title>
+  <meta charset="utf-8">    
+  <meta name="viewport" content="width=device-width, initial-scale=1">  
 
-        <!-- JavaScripts -->
-        <script src="https://www.w3schools.com/lib/w3.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script src="/javascripts/questionFrontEnd.js"></script>       
+    <!-- External JavaScript -->
+    <script src="https://www.w3schools.com/lib/w3.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="/javascripts/questionFrontEnd.js"></script>       
 
-        <!-- CSS -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">        
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
-        <link rel="stylesheet" type="text/css" href="/stylesheets/standardstyle.css">
-        <link rel="stylesheet" type="text/css" href="/stylesheets/question.css">
-        <!-- <link rel="stylesheet" type="text/css" href="/stylesheets/style.css"> -->
-    </head>
-    <body onload="checkVote()">
-        <span id="question-info" class="hidden">{{question._id}}</span>
-        {{>header}}
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">        
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/standardstyle.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/question.css">
+  </head>
 
-        <div class="container question-container" style="margin-top: 50px">
-            <div class="row question-heading">
-                <h1>{{question.title}}</h1>            
+  <body onload="checkVote()">
+    <span id="question-info" class="hidden">{{question._id}}</span>
+    {{>header}}
+
+    <div class="container question-container" style="margin-top: 50px">
+      <div class="row question-heading">
+        <h1>{{question.title}}</h1>            
+      </div>
+
+      <div class="row question-content">
+        <div class="col-sm-1 text-center">
+          <form action="/question/{{question.id}}/up" method="post">
+            <input type="hidden" name="_method" value="PATCH">
+            <button type="submit" class="not-button" onclick="questionUpCookie()" id="button-up"><i class="glyphicon glyphicon-triangle-top not-voted" id="up"></i></button>
+          </form>
+          <span class="nbOfVotes">{{question.score}}</span><br />
+          <form action="/question/{{question.id}}/down" method="post">
+            <input type="hidden" name="_method" value="PATCH">
+            <button type="submit" class="not-button" onclick="questionDownCookie()" id="button-down"><i class="glyphicon glyphicon-triangle-bottom not-voted" id="down"></i></button>
+          </form>
+        </div>
+        <div class="col-sm-9 content well">
+          <div class="row">
+            <p>{{question.text}}</p>
+             <hr />
+             <span class="badge">Tags:</span>
+          </div>
+        </div>
+         <div class="col-sm-2">                        
+          <div class="well text-center user-info-container" style="padding: 10px">
+            <a href="/userpage"><img class="img-circle user-picture" src="../images/default1.png"></a>
+            <h5 class="user-info">{{question.username}}</h5>
+            <h5 class="user-info">asked on <br /> {{moment question.date format="MMMM D, YYYY"}}</h5>
+          </div>
+        </div>
+      </div>            
+    </div>
+
+    <div class="container question-content">            
+      <hr>
+      <h3>Replies: </h3>
+      <!--<span id="temp-accept">Check database if a question has been accepted, if it has, place it here.<br /></span>-->
+      <span id="accept-title" class="hidden"><h5><u>Accepted Reply:</u></h5></span>
+      {{#each question}}
+        {{#each replies}}
+        <!--
+          {{#if accepted}}
+            <div class="row question-row">
+              <div class="col-sm-1">{{replyId}}</div>
+              <div class="col-sm-1">{{textRep}}</div>
+              <div class="col-sm-1">{{nbOfVotesRep}}</div>
+              <div class="col-sm-1">{{accepted}}</div>
             </div>
-
-            <div class="row question-content">
-                <div class="col-sm-1 text-center">
-                    <form action = "/question/{{question.id}}/up" method = "post">
-                        <input type="hidden" name="_method" value="PATCH"/>
-                        <button type="submit" class="not-button" onclick="questionUpCookie()" id="button-up"><i class="glyphicon glyphicon-triangle-top not-voted" id="up"></i></button>
-                    </form>
-                    <span class="nbOfVotes">{{question.score}}</span><br />
-                    <form action = "/question/{{question.id}}/down" method = "post">
-                        <input type="hidden" name="_method" value="PATCH"/>
-                        <button type="submit" class="not-button" onclick="questionDownCookie()" id="button-down"><i class="glyphicon glyphicon-triangle-bottom not-voted" id="down"></i></button>
-                    </form>
-                </div>
-                <div class="col-sm-9 content well">
+          {{else}} -->
+            <div id="replies-list"> <!-- Javascript function to list all replies will be onload="loadReplies"-->
+              <div class="reply-container">
+                <div class="row">                                  
+                  <div class="col-sm-1 text-center">
                     <div class="row">
-                        <p>{{question.text}}</p>
-                         <hr />
-                         <span class="badge">Tags:</span>
-                         <!-- TODO: Implement tags -->
+                      <form action = "/question/{{replyId}}/upReply" method = "post">
+                        <input type="hidden" name="_method" value="PATCH"/>
+                        <textarea class="hidden"type="text" name="questionId">{{../_id}}</textarea>
+                        <textarea class="hidden"type="text" name="replyId">{{replyId}}</textarea>
+                        <button type="submit" class="not-button" onclick="replyUpCookie(this)" id="reply{{@index}}up" name="{{replyId}}"><i class="glyphicon glyphicon-triangle-top not-voted" id="{{replyId}}up"></i></button>
+                      </form>
+                      <span class=" nbOfVotes reply-vote">0</span>
+                      <br>
+                      <form action = "/question/{{replyId}}/downReply" method = "post">
+                        <input type="hidden" name="_method" value="PATCH"/>
+                        <textarea class="hidden" type="text" name="questionId">{{../_id}}</textarea>
+                        <textarea class="hidden" type="text" name="replyId">{{replyId}}</textarea>
+                        <button type="submit" class="not-button" onclick="replyDownCookie(this)" id="reply{{@index}}down" name="{{replyId}}"><i class="glyphicon glyphicon-triangle-bottom not-voted" id="{{replyId}}down"></i></button>
+                      </form>
                     </div>
-                </div>
-                 <div class="col-sm-2">                        
-                    <div class="well text-center user-info-container" style="padding: 10px">
-                        <a href="/userpage"><img class="img-circle user-picture" src="../images/default1.png"></a>
-                        <h5 class="user-info">{{question.username}}</h5>
-                        <h5 class="user-info">asked on <br /> {{moment question.date format="MMMM D, YYYY"}}</h5>
-                    </div>
-                </div>
-            </div>            
-        </div>
+                  </div>
 
-        <div class="container question-content">            
-            <hr />
-            <h3>Replies: </h3>
-            <!--<span id="temp-accept">Check database if a question has been accepted, if it has, place it here.<br /></span>-->
-            <span id="accept-title" class="hidden"><h5><u>Accepted Reply:</u></h5></span>
-
-            <!--IF question.replies == empty:<br />
-            There are no replies yet, be the first to answer!<br />
-            ELSE <br />
-            A Javascript function that will loop through all replies and display them EXCEPT the accepted reply. <br /> -->
-            {{#each question}}
-                {{#each replies}}
-                <!--
-                    {{#if accepted}}
-                        <div class="row question-row">
-                            <div class="col-sm-1">{{replyId}}</div>
-                            <div class="col-sm-1">{{textRep}}</div>
-                            <div class="col-sm-1">{{nbOfVotesRep}}</div>
-                            <div class="col-sm-1">{{accepted}}</div>
-                        </div>
-                    {{else}} -->
-                        <div id="replies-list"> <!-- Javascript function to list all replies will be onload="loadReplies"-->
-                            <div class="reply-container">
-                                <div class="row">                                  
-                                    <div class="col-sm-1 text-center">
-                                        <div class="row">
-                                            <form action = "/question/{{replyId}}/upReply" method = "post">
-                                                <input type="hidden" name="_method" value="PATCH"/>
-                                                <textarea class="hidden"type="text" name="questionId">{{../_id}}</textarea>
-                                                <textarea class="hidden"type="text" name="replyId">{{replyId}}</textarea>
-                                                <button type="submit" class="not-button" onclick="replyUpCookie(this)" id="reply{{@index}}up" name="{{replyId}}"><i class="glyphicon glyphicon-triangle-top not-voted" id="{{replyId}}up"></i></button>
-                                            </form>
-                                            <span class=" nbOfVotes reply-vote">0</span>
-                                            <br />
-                                            <form action = "/question/{{replyId}}/downReply" method = "post">
-                                                <input type="hidden" name="_method" value="PATCH"/>
-                                                <textarea class="hidden"type="text" name="questionId">{{../_id}}</textarea>
-                                                <textarea class="hidden"type="text" name="replyId">{{replyId}}</textarea>
-                                                <button type="submit" class="not-button" onclick="replyDownCookie(this)" id="reply{{@index}}down" name="{{replyId}}"><i class="glyphicon glyphicon-triangle-bottom not-voted" id="{{replyId}}down"></i></button>
-                                            </form>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-sm-9 well reply-content">
-                                        {{this.textRep}}
-                                    </div>
-                                    <div class="col-sm-2">
-                                         <div class="well text-center user-info-container" style="padding: 10px">
-                                            <a href="/userpage"><img class="img-circle user-picture" src="../images/default2.png"></a>
-                                            <h5 class="user-info">{{question.author}}</h5>
-                                            <h5 class="user-info">replied on <br /> {{moment question.date format="MMMM D, YYYY"}}</h5>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-sm-6">
-                                                <form action = "/question/{{replyId}}/accept" method = "post">
-                                                    <input type="hidden" name="_method" value="PATCH"/>
-                                                    <button type="submit" class="btn btn-dark accept-reject">Accept</button>
-                                                </form>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <form action = "/question/{{replyId}}/reject" method = "post">
-                                                    <input type="hidden" name="_method" value="PATCH"/>
-                                                    <button type="button" class="btn btn-dark accept-reject">Reject</button>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>                               
-                            </div>                                                                
-                        </div>
-                   <!-- {{/if}} -->
-                {{/each}}
-            {{/each}}
-        </div>
-
-        <div class="container question-content">
-            <h3>Submit an answer:</h3>
-            <hr />
-            <div class="write">
-                <form action="/question/{{question.id}}/reply" method="post" id="reply">
-                    <input type="hidden" name="_method" value="PATCH"/>
-                    <div class="row form-group">
-                        <label for="inputsm" class="heading">Author:</label>
-                        <input class="form-control" id="author" type="text" name="author">
+                  <div class="col-sm-9 well reply-content">
+                    {{this.textRep}}
+                  </div>
+                  <div class="col-sm-2">
+                     <div class="well text-center user-info-container" style="padding: 10px">
+                      <a href="/userpage"><img class="img-circle user-picture" src="../images/default2.png"></a>
+                      <h5 class="user-info">{{question.author}}</h5>
+                      <h5 class="user-info">replied on <br /> {{moment question.date format="MMMM D, YYYY"}}</h5>
                     </div>
                     <div class="row">
-                        <label for="inputsm" class="heading">Answer:</label>
-                        <textarea class="form-control content" rows="10" form="reply" name="repform"> </textarea>
-                    </div>                
-                    <br />
-                    <br />
-                    <br />
-                    <div class="row">                   
-                        <input class="btn btn-success" type="submit" value="Submit" onClick="frontEndSubmit()" />
+                      <div class="col-sm-6">
+                        <form action="/question/{{replyId}}/accept" method="post">
+                          <input type="hidden" name="_method" value="PATCH">
+                          <button class="btn btn-dark accept-reject" type="submit">Accept</button>
+                        </form>
+                      </div>
+                      <div class="col-sm-6">
+                        <form action="/question/{{replyId}}/reject" method="post">
+                          <input type="hidden" name="_method" value="PATCH">
+                          <button class="btn btn-dark accept-reject" type="button">Reject</button>
+                        </form>
+                      </div>
                     </div>
-                </form> 
+                  </div>
+                </div>                               
+              </div>                                                                
             </div>
-        </div>
+           <!-- {{/if}} -->
+        {{/each}}
+      {{/each}}
+    </div>
 
-        {{>footer}}
-    </body>
+    <div class="container question-content">
+      <h3>Submit an answer:</h3>
+      <hr>
+      <div class="write">
+        <form action="/question/{{question.id}}/reply" method="post" id="reply">
+          <input type="hidden" name="_method" value="PATCH">
+          <div class="row form-group">
+            <label for="inputsm" class="heading">Author:</label>
+            <input class="form-control" id="author" name="author" type="text">
+          </div>
+          <div class="row">
+            <label class="heading" for="inputsm">Answer:</label>
+            <textarea class="form-control content" name="repform" rows="10" form="reply"> </textarea>
+          </div>                
+          <br>
+          <br>
+          <br>
+          <div class="row">
+            <input class="btn btn-success" type="submit" value="Submit" onClick="frontEndSubmit()">
+          </div>
+        </form> 
+      </div>
+    </div>
+    {{>footer}}
+  </body>
 </html>
