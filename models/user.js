@@ -15,7 +15,7 @@ const userSchema = new Schema({
     city: {type: String},
     country: {type: String},
     fullName: {type: String},
-    gender: {type: Boolean},
+    gender: {type: String},
     age: {type: Number},
     birthday: {type: String},
     spokenLanguage: {type: String},

@@ -4,8 +4,7 @@ const User = require("../models/user");
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-    const genderBoolean = req.user.gender == 'true';
-    res.render('editUserPage', {user: req.user, gender: genderBoolean});
+    res.render('editUserPage', {user: req.user});
 });
 
 router.patch('/', function (req, res, next) {

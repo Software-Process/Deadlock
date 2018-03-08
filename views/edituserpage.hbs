@@ -34,43 +34,43 @@
             <form action="/editUserPage" class="form-horizontal" method="post">
                 <input type="hidden" name="_method" value="PATCH"/>
                 <!--Picking profile picture-->
-                <div class="form-group">
+<!--                <div class="form-group">
                     <h2>Select a profile!</h2>
                 </div>
-                <div class="row text-center">
+              <div class="row text-center">
                     <label class="radio-inline col-sm-2">
-                        <input type="radio" name="profilePicture" value="images/default2.png" checked><img src="images/default2.png" class="img-rounded" style="width:100%; height:100%">
+                        <input type="radio" name="profilePicture" value="/images/default2.png" checked><img src="images/default2.png" class="img-rounded" style="width:100%; height:100%">
                         <div class="caption">
                             <p>Profile picture 1</p>
                         </div>
                     </label>
                     <label class="radio-inline col-sm-2">
-                        <input type="radio" name="profilePicture" value="images/default1.png"><img src="images/default1.png" class="img-rounded" style="width:100%; height:100%">
+                        <input type="radio" name="profilePicture" value="/images/default1.png"><img src="images/default1.png" class="img-rounded" style="width:100%; height:100%">
                         <div class="caption">
                             <p>Profile picture 2</p>
                         </div>
                     </label>
                     <label class="radio-inline col-sm-2">
-                        <input type="radio" name="profilePicture" value="images/default5.png"><img src="images/default5.png" class="img-rounded" style="width:100%; height:100%">
+                        <input type="radio" name="profilePicture" value="/images/default5.png"><img src="images/default5.png" class="img-rounded" style="width:100%; height:100%">
                         <div class="caption">
                             <p>Profile picture 3</p>
                         </div>
                     </label>
                     <label class="radio-inline col-sm-2">
-                        <input type="radio" name="profilePicture" value="images/default3.png"><img src="images/default3.png" class="img-rounded" style="width:100%; height:100%">
+                        <input type="radio" name="profilePicture" value="/images/default3.png"><img src="images/default3.png" class="img-rounded" style="width:100%; height:100%">
                         <div class="caption">
                             <p>Profile picture 4</p>
                         </div>
                     </label>
                     <label class="radio-inline col-sm-2">
-                        <input type="radio" name="profilePicture" value="images/default4.png"><img src="images/default4.png" class="img-rounded" style="width:100%; height:100%">
+                        <input type="radio" name="profilePicture" value="/images/default4.png"><img src="images/default4.png" class="img-rounded" style="width:100%; height:100%">
                         <div class="caption">
                             <p>Profile picture 5</p>
                         </div>
                     </label>
                 </div>
-                </br></br>
-
+              </br></br>
+-->
 
                 <!--Picking color for Banner-->
                 <div class="form-group">
@@ -91,7 +91,7 @@
                 <div class="form-group">
                      <label class="control-label col-sm-2" for="text">Phone number:</label>
                      <div class="col-sm-10">
-                       <input type="text" class="form-control" id="focusedInput" placeholder="Enter phone number" name="phone" value="{{user.phoneNumber}}"></input>
+                       <input type="text" class="form-control" id="focusedInput" placeholder="Enter phone number" name="phone" value="{{user.phoneNumber}}">
                      </div>
                 </div>
                 <div class="form-group">
@@ -103,19 +103,19 @@
                 <div class="form-group">
                      <label class="control-label col-sm-2" for="text">Linkedin:</label>
                      <div class="col-sm-10">
-                       <input type="text" class="form-control" id="focusedInput" placeholder="Enter Linkedin Link" name="linkedin" value="{{user.linkedin}}"></input>
+                       <input type="text" class="form-control" id="focusedInput" placeholder="Enter Linkedin Link" name="linkedin" value="{{user.linkedin}}">
                      </div>
                 </div>
                  <div class="form-group">
                      <label class="control-label col-sm-2" for="text">City:</label>
                      <div class="col-sm-10">
-                       <input type="text" class="form-control" id="focusedInput" placeholder="Enter city" name="city" value="{{user.city}}"></input>
+                       <input type="text" class="form-control" id="focusedInput" placeholder="Enter city" name="city" value="{{user.city}}">
                      </div>
                 </div>
                  <div class="form-group">
                      <label class="control-label col-sm-2" for="text">Country:</label>
                      <div class="col-sm-10">
-                       <input type="text" class="form-control" id="focusedInput" placeholder="Enter country" name="country" value="{{user.country}}"></input>
+                       <input type="text" class="form-control" id="focusedInput" placeholder="Enter country" name="country" value="{{user.country}}">
                      </div>
                 </div>
 
@@ -130,10 +130,9 @@
                      </div>
                 </div>
                 <div class="form-group">
-                     <label class="control-label col-sm-2" for="radio">Gender:</label>
-                     <div class="col-sm-10">
-                         <label class="radio-inline"><input type="radio" name="gender" checked value="Male">Male </label>
-                         <label class="radio-inline"><input type="radio" name="gender" value="Female">Female</label>
+                    <label class="control-label col-sm-2" for="text">Gender:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="focusedInput" placeholder="Enter gender" name="gender" value="{{user.gender}}"></input>
                     </div>
                 </div>
                 <div class="form-group">
