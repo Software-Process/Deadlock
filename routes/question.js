@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const mongoose = require("mongoose");
+const Reply = require("../models/reply");
 
 const Question = require("../models/question");
 
@@ -31,7 +32,7 @@ router.get('/:questionId', function(req, res, next) {
 
 router.patch('/:questionId/up', function(req, res, next) {
     const id = req.params.questionId;
-    Question.update({_id : id},{$inc : {'nbOfVotes' : 1}})
+    Question.update({_id : id},{$inc : {'score' : 1}})
         .exec()
         .then(function(result){
             res.redirect('back');
@@ -44,7 +45,7 @@ router.patch('/:questionId/up', function(req, res, next) {
 
 router.patch('/:questionId/down', function(req, res, next) {
     const id = req.params.questionId;
-    Question.update({_id : id},{$inc : {'nbOfVotes' : -1}})
+    Question.update({_id : id},{$inc : {'score' : -1}})
         .exec()
         .then(function(result){
             res.redirect('back');
@@ -57,9 +58,9 @@ router.patch('/:questionId/down', function(req, res, next) {
 
 router.patch('/:questionId/reply', function(req, res, next) {
     const id = req.params.questionId;
-    const txt = req.body.repform;
-    const genReplyId = new mongoose.Types.ObjectId();
-    Question.update({_id : id},{ $push: { replies: { replyId: genReplyId, user: req.user.username, textRep: txt, nbOfVotesRep: 0, accepted: false}}}) // Replace testUser with logged in user
+    const toSave = new Reply ({ author: req.user._id, username: req.user.username, text: req.body.repform, score: 0, accepted: false, rejected: false});
+    console.log(toSave);
+    Question.update({_id : id},{ $push: { replies:  toSave}}) // Replace testUser with logged in user
         .exec()
         .then(function(result){
             res.redirect('back');
