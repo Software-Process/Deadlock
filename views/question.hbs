@@ -34,7 +34,7 @@
                         <input type="hidden" name="_method" value="PATCH"/>
                         <button type="submit" class="not-button" onclick="tempUpCookie()" id="button-up"><i class="glyphicon glyphicon-triangle-top not-voted" id="up"></i></button>
                     </form>
-                    <span class="nbOfVotes">{{question.nbOfVotes}}</span><br />
+                    <span class="nbOfVotes">{{question.score}}</span><br />
                     <form action = "/question/{{question.id}}/down" method = "post">
                         <input type="hidden" name="_method" value="PATCH"/>
                         <button type="submit" class="not-button" onclick="tempDownCookie()" id="button-down"><i class="glyphicon glyphicon-triangle-bottom not-voted" id="down"></i></button>
@@ -51,7 +51,7 @@
                  <div class="col-sm-2">                        
                     <div class="well text-center user-info-container" style="padding: 10px">
                         <a href="/userpage"><img class="img-circle user-picture" src="../images/default1.png"></a>
-                        <h5 class="user-info">{{question.author}}</h5>
+                        <h5 class="user-info">{{question.username}}</h5>
                         <h5 class="user-info">asked on <br /> {{moment question.date format="MMMM D, YYYY"}}</h5>
                     </div>
                 </div>

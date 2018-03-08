@@ -19,6 +19,7 @@ const questionSchema = new Schema({
     text: {type: String, required: true},
     score: {type: Number, required: true},
     author: {type: mongoose.Schema.Types.ObjectId, required: true},
+    username: String,
     date: {type: String, required: true},
     replies: {type: [mongoose.Schema.Types.ObjectId]}
 });

@@ -25,6 +25,7 @@ router.post('/', function(req, res, next) {
         score: 0,
         nbOfAnswers: 0,
         author: req.user._id,
+        username: req.user.username,
         date: new Date().toUTCString(),
         replies: []
     });
