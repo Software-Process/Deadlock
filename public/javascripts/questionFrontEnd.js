@@ -1,3 +1,4 @@
+/* Legacy Code: Kept for future reference just in case.
 function changeGreen() {
     //BACKEND: Go into database and increment vote value by 1 or 2 (or decrement by 1 for reset) depending on if the user has already downvoted.
     var upArrow = document.getElementById("up");
@@ -61,7 +62,7 @@ function changeRed() {
         downArrow.classList.add("down-voted");
     }
 }
-
+*/
 function changeGreen1(replyContent) {
     //BACKEND: Go into database and increment vote value by 1 or 2 (or decrement by 1 for reset) depending on if the user has already downvoted.
     var upArrow = replyContent.childNodes[1];
@@ -165,7 +166,7 @@ function frontEndSubmit() {
 
 }
 
-function tempChangeGreen() {
+function questionChangeGreen() {
     var upArrow = document.getElementById("up");
     var downArrow = document.getElementById("down");
     upArrow.classList.remove("not-voted");
@@ -174,9 +175,27 @@ function tempChangeGreen() {
     downArrow.classList.add("not-voted");
 }
 
-function tempChangeRed() {
+function questionChangeRed() {
     var upArrow = document.getElementById("up");
     var downArrow = document.getElementById("down");
+    downArrow.classList.remove("not-voted");
+    downArrow.classList.add("down-voted");
+    upArrow.classList.remove("up-voted");
+    upArrow.classList.add("not-voted");
+}
+
+function replyChangeGreen(replyId) {
+    var upArrow = document.getElementById(replyId+"up");
+    var downArrow = document.getElementById(replyId+"down");
+    upArrow.classList.remove("not-voted");
+    upArrow.classList.add("up-voted");
+    downArrow.classList.remove("down-voted");
+    downArrow.classList.add("not-voted");
+}
+
+function replyChangeRed(replyId) {
+    var upArrow = document.getElementById(replyId+"up");
+    var downArrow = document.getElementById(replyId+"down");
     downArrow.classList.remove("not-voted");
     downArrow.classList.add("down-voted");
     upArrow.classList.remove("up-voted");
@@ -187,27 +206,55 @@ function checkVote() {
     var temp = document.getElementById("question-info").innerHTML;
     var status = getCookie(temp);
     if (status == "up") {
-        tempChangeGreen();
+        questionChangeGreen();
         document.getElementById("button-up").disabled = true;
         document.getElementById("button-down").disabled = false;
     }
     if (status == "down") {
-        tempChangeRed();
+        questionChangeRed();
         document.getElementById("button-down").disabled = true;
         document.getElementById("button-up").disabled = false;
     }
+    try {
+        var count = 0;
+        while(true) {
+            var str = "reply"+count+"up";
+            var replyId = document.getElementById(str).name;
+            var replyStatus = getCookie(replyId);
+            if (replyStatus == "up") {
+                replyChangeGreen(replyId);
+                document.getElementById("reply"+count+"up").disabled = true;
+                document.getElementById("reply"+count+"down").disabled = false;
+            }
+            if (replyStatus == "down") {
+                replyChangeRed(replyId);
+                document.getElementById("reply"+count+"down").disabled = true;
+                document.getElementById("reply"+count+"up").disabled = false;
+            }
+        count++;
+        }
+    }
+    catch(err) {
+        //alert("done");
+    }
 }
 
-function tempUpCookie() {
+function questionUpCookie() {
     var temp = document.getElementById("question-info").innerHTML;
     document.cookie=temp+"=up";
-    alert(document.cookie);
 }
 
-function tempDownCookie() {
+function questionDownCookie() {
     var temp = document.getElementById("question-info").innerHTML;
     document.cookie=temp+"=down";
-    alert(document.cookie);
+}
+
+function replyUpCookie(replyId) {
+    document.cookie=replyId.name+"=up";
+}
+
+function replyDownCookie(replyId) {
+    document.cookie=replyId.name+"=down";
 }
 
 function getCookie(cname) {
@@ -225,4 +272,4 @@ function getCookie(cname) {
     }
     return "";
 }
-module.exports = {changeGreen, changeRed, changeGreen1, changeRed1, accept, reject, frontEndSubmit, tempChangeGreen, tempChangeRed, checkVote, tempUpCookie, tempDownCookie, getCookie };
+module.exports = {changeGreen1, changeRed1, accept, reject, frontEndSubmit, questionChangeGreen, questionChangeRed, checkVote, questionUpCookie, questionDownCookie, getCookie };

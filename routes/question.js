@@ -92,6 +92,48 @@ router.patch('/:replyId/accept', function(req, res, next) {
     */
 });
 
+router.patch('/:replyId/upReply', function(req, res, next) {
+    const repId = req.params.replyId;
+    const id = req.body.questionId;
+    console.log("qeu "+id);
+    console.log("Reply id :" + repId);
+
+    Question.update({_id : id}, {$inc : {'replies.0.nbOfVotesRep' : 1}})
+        .exec()
+        .then(function(result){
+            res.redirect('back');
+        })
+        .catch(function(err){
+            console.log(err);
+            res.status(500).json({error:err});
+        });
+
+        console.log("DONE");
+
+    
+});
+
+router.patch('/:replyId/downReply', function(req, res, next) {
+    const repId = req.params.replyId;
+    const id = req.body.questionId;
+    console.log("qeu "+id);
+    console.log("Reply id :" + repId);
+    
+    Question.update({_id : id}, {$inc : {'replies.0.nbOfVotesRep' : -1}})
+        .exec()
+        .then(function(result){
+            res.redirect('back');
+        })
+        .catch(function(err){
+            console.log(err);
+            res.status(500).json({error:err});
+        });
+
+        console.log("DONE");
+
+    
+});
+
 module.exports = router;
 
 
