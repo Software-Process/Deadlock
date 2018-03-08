@@ -1,68 +1,3 @@
-/* Legacy Code: Kept for future reference just in case.
-function changeGreen() {
-    //BACKEND: Go into database and increment vote value by 1 or 2 (or decrement by 1 for reset) depending on if the user has already downvoted.
-    var upArrow = document.getElementById("up");
-    var downArrow = document.getElementById("down");
-    var vote = parseInt(document.getElementById("question-vote").innerHTML);
-    if(downArrow.classList.contains("down-voted"))
-    {
-        vote+=2;
-        document.getElementById("question-vote").innerHTML = vote;
-        upArrow.classList.remove("not-voted");
-        upArrow.classList.add("up-voted");
-        downArrow.classList.remove("down-voted");
-        downArrow.classList.add("not-voted");
-    }
-    else if (upArrow.classList.contains("up-voted"))
-    {
-        vote--;
-        document.getElementById("question-vote").innerHTML = vote;
-        upArrow.classList.add("not-voted")
-        upArrow.classList.remove("up-voted");
-    }
-    else
-    {
-        vote++;
-        document.getElementById("question-vote").innerHTML = vote;
-        upArrow.classList.remove("not-voted");
-        upArrow.classList.add("up-voted");
-        downArrow.classList.remove("down-voted");
-        downArrow.classList.add("not-voted");
-    }
-}
-
-function changeRed() {
-    //BACKEND: Go into database and decrement vote value by 1 or 2 (or increment by 1 for reset) depending on if the user has already upvoted.
-    var upArrow = document.getElementById("up");
-    var downArrow = document.getElementById("down");
-    var vote = parseInt(document.getElementById("question-vote").innerHTML);
-    if (downArrow.classList.contains("down-voted"))
-    {
-        vote++;
-        document.getElementById("question-vote").innerHTML = vote;
-        downArrow.classList.add("not-voted");
-        downArrow.classList.remove("down-voted");
-    }
-    else if(upArrow.classList.contains("up-voted"))
-    {
-        vote-=2;
-        document.getElementById("question-vote").innerHTML = vote;
-        upArrow.classList.remove("up-voted");
-        upArrow.classList.add("not-voted");
-        downArrow.classList.remove("not-voted");
-        downArrow.classList.add("down-voted");
-    }
-    else
-    {
-        vote--;
-        document.getElementById("question-vote").innerHTML = vote;
-        upArrow.classList.remove("up-voted");
-        upArrow.classList.add("not-voted");
-        downArrow.classList.remove("not-voted");
-        downArrow.classList.add("down-voted");
-    }
-}
-*/
 function changeGreen1(replyContent) {
     //BACKEND: Go into database and increment vote value by 1 or 2 (or decrement by 1 for reset) depending on if the user has already downvoted.
     var upArrow = replyContent.childNodes[1];
@@ -71,7 +6,7 @@ function changeGreen1(replyContent) {
     var vote = parseInt(voteObject.innerHTML);
     if(downArrow.classList.contains("down-voted"))
     {
-        vote+=2;
+        vote += 2;
         voteObject.innerHTML = vote;
         upArrow.classList.remove("not-voted");
         upArrow.classList.add("up-voted");
@@ -82,7 +17,7 @@ function changeGreen1(replyContent) {
     {
         vote--;
         voteObject.innerHTML = vote;
-        upArrow.classList.add("not-voted")
+        upArrow.classList.add("not-voted");
         upArrow.classList.remove("up-voted");
     }
     else
@@ -111,7 +46,7 @@ function changeRed1(replyContent) {
     }
     else if(upArrow.classList.contains("up-voted"))
     {
-        vote-=2;
+        vote -= 2;
         voteObject.innerHTML = vote;
         upArrow.classList.remove("up-voted");
         upArrow.classList.add("not-voted");
@@ -160,10 +95,21 @@ function frontEndSubmit() {
     */
     var replyList = document.getElementById("replies-list");
     //The structure of a question in string format.
-    replyList.innerHTML += "<div class=\"reply\">\r\n                  <div class=\"content\">\r\n                        <i class=\"glyphicon glyphicon-chevron-up not-voted\" id=\"up1\" onclick=\"changeGreen1(this.parentElement)\"></i>\r\n                        <span class=\"reply-vote\" id=\"reply-vote\">0</span>\r\n                        <i class=\"glyphicon glyphicon-chevron-down not-voted\" id=\"down1\" onclick=\"changeRed1(this.parentElement)\"></i>\r\n                        question.reply.CONTENT\r\n                    </div>\r\n                    <button type=\"button\" class=\"btn btn-dark accept-reject\" onclick=\"accept(this.parentElement)\">Accept</button>\r\n                    <button type=\"button\" class=\"btn btn-dark accept-reject\" onclick=\"reject(this.parentElement)\">Reject</button>\r\n                    <p class=\"small pull-right\">Submitted by question.reply.USER on question.reply.DATE</p>\r\n                </div>"
-    
-
-
+    replyList.innerHTML += "<div class=\"reply\">\r\n<div class=\"content\">" +
+                           "\r\n<i class=\"glyphicon glyphicon-chevron-up no" +
+                           "t-voted\" id=\"up1\" onclick=\"changeGreen1(this" +
+                           ",parentElement)\"></i>\r\n <span class=\"reply-v" +
+                           "ote\" id=\"reply-vote\">0</span>\r\ni class=\"gl" + 
+                           "yphicon glyphicon-chevron-down not-voted\" id=\"" +
+                           "down1\" onclick=\"changeRed1(this.parentElement)" +
+                           "\"></i>\r\nquestion.reply.CONTENT\r\n</div>\r\n<" +
+                           "button type=\"button\" class=\"btn btn-dark acce" +
+                           "pt-reject\" onclick=\"accept(this.parentElement)" +
+                           "\">Accept</button>\r\n<button type=\"button\" cl" +
+                           "ass=\"btn btn-dark accept-reject\" onclick=\"rej" +
+                           "ect(this.parentElement)\">Reject</button>\r\n<p " +
+                           "class=\"small pull-right\">Submitted by question" +
+                           ".reply.USER on question.reply.DATE</p>\r\n</div>";
 }
 
 function questionChangeGreen() {
@@ -185,8 +131,8 @@ function questionChangeRed() {
 }
 
 function replyChangeGreen(replyId) {
-    var upArrow = document.getElementById(replyId+"up");
-    var downArrow = document.getElementById(replyId+"down");
+    var upArrow = document.getElementById(replyId + "up");
+    var downArrow = document.getElementById(replyId + "down");
     upArrow.classList.remove("not-voted");
     upArrow.classList.add("up-voted");
     downArrow.classList.remove("down-voted");
@@ -194,8 +140,8 @@ function replyChangeGreen(replyId) {
 }
 
 function replyChangeRed(replyId) {
-    var upArrow = document.getElementById(replyId+"up");
-    var downArrow = document.getElementById(replyId+"down");
+    var upArrow = document.getElementById(replyId + "up");
+    var downArrow = document.getElementById(replyId + "down");
     downArrow.classList.remove("not-voted");
     downArrow.classList.add("down-voted");
     upArrow.classList.remove("up-voted");
@@ -218,50 +164,49 @@ function checkVote() {
     try {
         var count = 0;
         while(true) {
-            var str = "reply"+count+"up";
+            var str = "reply" + count + "up";
             var replyId = document.getElementById(str).name;
             var replyStatus = getCookie(replyId);
             if (replyStatus == "up") {
                 replyChangeGreen(replyId);
-                document.getElementById("reply"+count+"up").disabled = true;
-                document.getElementById("reply"+count+"down").disabled = false;
+                document.getElementById("reply" + count + "up").disabled = true;
+                document.getElementById("reply" + count + "down").disabled = false;
             }
             if (replyStatus == "down") {
                 replyChangeRed(replyId);
-                document.getElementById("reply"+count+"down").disabled = true;
-                document.getElementById("reply"+count+"up").disabled = false;
+                document.getElementById("reply" + count + "down").disabled = true;
+                document.getElementById("reply" + count + "up").disabled = false;
             }
         count++;
         }
     }
     catch(err) {
-        //alert("done");
     }
 }
 
 function questionUpCookie() {
     var temp = document.getElementById("question-info").innerHTML;
-    document.cookie=temp+"=up";
+    document.cookie = temp + "=up";
 }
 
 function questionDownCookie() {
     var temp = document.getElementById("question-info").innerHTML;
-    document.cookie=temp+"=down";
+    document.cookie = temp + "=down";
 }
 
 function replyUpCookie(replyId) {
-    document.cookie=replyId.name+"=up";
+    document.cookie = replyId.name + "=up";
 }
 
 function replyDownCookie(replyId) {
-    document.cookie=replyId.name+"=down";
+    document.cookie = replyId.name + "=down";
 }
 
 function getCookie(cname) {
     var name = cname + "=";
     var decodedCookie = decodeURIComponent(document.cookie);
     var ca = decodedCookie.split(';');
-    for(var i = 0; i <ca.length; i++) {
+    for(var i = 0; i < ca.length; i++) {
         var c = ca[i];
         while (c.charAt(0) == ' ') {
             c = c.substring(1);

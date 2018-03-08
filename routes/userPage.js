@@ -4,7 +4,7 @@ var router = express.Router();
 const Question = require("../models/question");
 const Reply = require("../models/reply");
 
-/* GET home page. */
+/* GET user page, passing user information. */
 router.get('/', function(req, res, next) {
     if (req.user){
         var answerDocs;

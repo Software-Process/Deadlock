@@ -3,7 +3,7 @@ const router = express.Router();
 const mongoose = require("mongoose");
 
 const Question = require("../models/question");
-
+/* Gets list of questions via GET request. */
 router.get('/', function(req, res, next) {
     Question.find()
         .exec()
@@ -38,9 +38,8 @@ router.get('/', function(req, res, next) {
         });
 });
 
+/* Creates a question with the supplied data via a POST request. */
 router.post('/', function(req, res, next) {
-    console.log(req);
-
     const question = new Question({
         _id: new mongoose.Types.ObjectId(),
         title: req.body.title,
@@ -48,7 +47,7 @@ router.post('/', function(req, res, next) {
         nbOfVotes: req.body.nbOfVotes,
         nbOfAnswers: req.body.nbOfAnswers,
         author: req.body.author,
-        date: new Date()
+        date: new Date().toUTCString()
     });
     question
         .save()
@@ -82,6 +81,7 @@ router.post('/', function(req, res, next) {
 
 });
 
+/* Retrieves the question with the specified ID via a GET request.*/
 router.get('/:questionId', function(req, res, next) {
     const id = req.params.questionId;
     Question.findById(id)
@@ -109,9 +109,10 @@ router.get('/:questionId', function(req, res, next) {
         });
 });
 
+/* Edits the specified question via a PATCH request. */
 router.patch('/:questionId', function(req, res, next) {
     const id = req.params.questionId;
-    const updateOps={};
+    const updateOps = {};
     for (const ops of req.body){
         updateOps[ops.propName] = ops.value;
     }
@@ -132,6 +133,7 @@ router.patch('/:questionId', function(req, res, next) {
         });
 });
 
+/* Removes the question with the specified ID via a DELETE request. */
 router.delete('/:questionId', function(req, res, next) {
     const id = req.params.questionId;
     Question.remove({_id : id})

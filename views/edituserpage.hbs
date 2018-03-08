@@ -1,184 +1,183 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>        
-        <title>DeadLock - Edit User Page</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+  <head>        
+    <title>DeadLock - Edit User Page</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <!-- JavaScripts -->
-        <script src="https://www.w3schools.com/lib/w3.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <script src="https://momentjs.com/downloads/moment.js"></script>
+    <!-- JavaScripts -->
+    <script src="https://www.w3schools.com/lib/w3.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://momentjs.com/downloads/moment.js"></script>
 
-        <!-- CSS -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>     
-        <link rel="stylesheet" href="stylesheets/standardstyle.css">
-                
-    </head>
-    <body>
-        {{>header}}
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
+    <link rel="stylesheet" href="stylesheets/standardstyle.css">
         
-        <div class="jumbotron" style="margin-top: 50px">
-            <div class="container">
-                <h1>User Profile Edit - {{user.username}}</h1>
+  </head>
+  <body>
+    {{>header}}
+    
+    <div class="jumbotron" style="margin-top: 50px">
+      <div class="container">
+        <h1>Editing profile: {{user.username}}</h1>
+      </div>
+    </div>
+
+    <div class="container">
+      <!-- Form might need USER ID after action= to REDIRECT TO THE SPECIFIC PAGE! -->
+      <!-- THE FORM'S GET METHOD MUST BE CHANGED accordingly -->
+      <form class="form-horizontal" action="/editUserPage" method="post">
+        <input type="hidden" name="_method" value="PATCH"/>
+        <!--Picking profile picture-->
+<!--      <div class="form-group">
+          <h2>Select a profile!</h2>
+        </div>
+        <div class="row text-center">
+          <label class="radio-inline col-sm-2">
+            <input type="radio" name="profilePicture" value="/images/default2.png" checked><img src="images/default2.png" class="img-rounded" style="width:100%; height:100%">
+            <div class="caption">
+              <p>Profile picture 1</p>
             </div>
+          </label>
+          <label class="radio-inline col-sm-2">
+            <input type="radio" name="profilePicture" value="/images/default1.png"><img src="images/default1.png" class="img-rounded" style="width:100%; height:100%">
+            <div class="caption">
+              <p>Profile picture 2</p>
+            </div>
+          </label>
+          <label class="radio-inline col-sm-2">
+            <input type="radio" name="profilePicture" value="/images/default5.png"><img src="images/default5.png" class="img-rounded" style="width:100%; height:100%">
+            <div class="caption">
+              <p>Profile picture 3</p>
+            </div>
+          </label>
+          <label class="radio-inline col-sm-2">
+            <input type="radio" name="profilePicture" value="/images/default3.png"><img src="images/default3.png" class="img-rounded" style="width:100%; height:100%">
+            <div class="caption">
+              <p>Profile picture 4</p>
+            </div>
+          </label>
+          <label class="radio-inline col-sm-2">
+            <input type="radio" name="profilePicture" value="/images/default4.png"><img src="images/default4.png" class="img-rounded" style="width:100%; height:100%">
+            <div class="caption">
+              <p>Profile picture 5</p>
+            </div>
+          </label>
+        </div>
+        </br></br>
+-->
+
+        <!--Picking color for Banner-->
+        <div class="form-group">
+          <h2>Pick a Banner Color</h2>
+          <input class="form-control" name="banner" value="{{user.bannerColor}}" type="color">
         </div>
 
 
-        <div class="container">
-            <!-- Form might need USER ID after action= to REDIRECT TO THE SPECIFIC PAGE! -->
-            <!-- THE FORM'S GET METHOD MUST BE CHANGED accordingly -->
-            <form action="/editUserPage" class="form-horizontal" method="post">
-                <input type="hidden" name="_method" value="PATCH"/>
-                <!--Picking profile picture-->
-<!--                <div class="form-group">
-                    <h2>Select a profile!</h2>
-                </div>
-              <div class="row text-center">
-                    <label class="radio-inline col-sm-2">
-                        <input type="radio" name="profilePicture" value="/images/default2.png" checked><img src="images/default2.png" class="img-rounded" style="width:100%; height:100%">
-                        <div class="caption">
-                            <p>Profile picture 1</p>
-                        </div>
-                    </label>
-                    <label class="radio-inline col-sm-2">
-                        <input type="radio" name="profilePicture" value="/images/default1.png"><img src="images/default1.png" class="img-rounded" style="width:100%; height:100%">
-                        <div class="caption">
-                            <p>Profile picture 2</p>
-                        </div>
-                    </label>
-                    <label class="radio-inline col-sm-2">
-                        <input type="radio" name="profilePicture" value="/images/default5.png"><img src="images/default5.png" class="img-rounded" style="width:100%; height:100%">
-                        <div class="caption">
-                            <p>Profile picture 3</p>
-                        </div>
-                    </label>
-                    <label class="radio-inline col-sm-2">
-                        <input type="radio" name="profilePicture" value="/images/default3.png"><img src="images/default3.png" class="img-rounded" style="width:100%; height:100%">
-                        <div class="caption">
-                            <p>Profile picture 4</p>
-                        </div>
-                    </label>
-                    <label class="radio-inline col-sm-2">
-                        <input type="radio" name="profilePicture" value="/images/default4.png"><img src="images/default4.png" class="img-rounded" style="width:100%; height:100%">
-                        <div class="caption">
-                            <p>Profile picture 5</p>
-                        </div>
-                    </label>
-                </div>
-              </br></br>
--->
+        <div class="page-header">
+          <h2>Contact me section</h2>
+        </div>
+        <div class="form-group">
+           <label class="control-label col-sm-2" for="text">Email:</label>
+           <div class="col-sm-10">
+            <input class="form-control" name="email" id="focusedInput" type="text" placeholder="Enter email" value="{{user.email}}">
+          </div>
+        </div>
+        <div class="form-group">
+           <label class="control-label col-sm-2" for="text">Phone number:</label>
+           <div class="col-sm-10">
+             <input class="form-control" name="phone" id="focusedInput" type="text" placeholder="Enter phone number" value="{{user.phoneNumber}}">
+           </div>
+        </div>
+        <div class="form-group">
+           <label class="control-label col-sm-2" for="text">GitHub:</label>
+           <div class="col-sm-10">
+            <input class="form-control" name="gitpage" id="focusedInput" type="text" placeholder="Enter Github link" value="{{user.github}}">
+            </div>
+        </div>
+        <div class="form-group">
+           <label class="control-label col-sm-2" for="text">Linkedin:</label>
+           <div class="col-sm-10">
+             <input type="text" class="form-control" id="focusedInput" name="linkedin" placeholder="Enter Linkedin Link" value="{{user.linkedin}}">
+           </div>
+        </div>
+         <div class="form-group">
+           <label class="control-label col-sm-2" for="text">City:</label>
+           <div class="col-sm-10">
+             <input type="text" class="form-control" id="focusedInput" placeholder="Enter city" name="city" value="{{user.city}}">
+           </div>
+        </div>
+         <div class="form-group">
+           <label class="control-label col-sm-2" for="text">Country:</label>
+           <div class="col-sm-10">
+             <input type="text" class="form-control" id="focusedInput" placeholder="Enter country" name="country" value="{{user.country}}">
+           </div>
+        </div>
 
-                <!--Picking color for Banner-->
-                <div class="form-group">
-                    <h2>Pick a Banner Color</h2>
-                    <input type="color" name="banner" value="{{user.bannerColor}}" class="form-control">
-                </div>
-
-
-                <div class="page-header">
-                    <h2>Contact me section</h2>
-                </div>
-                <div class="form-group">
-                     <label class="control-label col-sm-2" for="text">Email:</label>
-                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="focusedInput" placeholder="Enter email" name="email" value="{{user.email}}">
-                    </div>
-                </div>
-                <div class="form-group">
-                     <label class="control-label col-sm-2" for="text">Phone number:</label>
-                     <div class="col-sm-10">
-                       <input type="text" class="form-control" id="focusedInput" placeholder="Enter phone number" name="phone" value="{{user.phoneNumber}}">
-                     </div>
-                </div>
-                <div class="form-group">
-                     <label class="control-label col-sm-2" for="text">GitHub:</label>
-                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="focusedInput" placeholder="Enter Github link" name="gitpage" value="{{user.github}}">
-                      </div>
-                </div>
-                <div class="form-group">
-                     <label class="control-label col-sm-2" for="text">Linkedin:</label>
-                     <div class="col-sm-10">
-                       <input type="text" class="form-control" id="focusedInput" placeholder="Enter Linkedin Link" name="linkedin" value="{{user.linkedin}}">
-                     </div>
-                </div>
-                 <div class="form-group">
-                     <label class="control-label col-sm-2" for="text">City:</label>
-                     <div class="col-sm-10">
-                       <input type="text" class="form-control" id="focusedInput" placeholder="Enter city" name="city" value="{{user.city}}">
-                     </div>
-                </div>
-                 <div class="form-group">
-                     <label class="control-label col-sm-2" for="text">Country:</label>
-                     <div class="col-sm-10">
-                       <input type="text" class="form-control" id="focusedInput" placeholder="Enter country" name="country" value="{{user.country}}">
-                     </div>
-                </div>
-
-                
-                <div class="page-header">
-                    <h2>About me section</h2>
-                </div>
-                <div class="form-group">
-                     <label class="control-label col-sm-2" for="text">Full Name:</label>
-                     <div class="col-sm-10">
-                       <input type="text" class="form-control" id="focusedInput" placeholder="Enter name" name="name" value="{{user.fullName}}"></input>
-                     </div>
-                </div>
-                <div class="form-group">
-                    <label class="control-label col-sm-2" for="text">Gender:</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" id="focusedInput" placeholder="Enter gender" name="gender" value="{{user.gender}}"></input>
-                    </div>
-                </div>
-                <div class="form-group">
-                     <label class="control-label col-sm-2" for="text">Age:</label>
-                     <div class="col-sm-10">
-                       <input type="text" class="form-control" id="focusedInput" placeholder="Enter age" name="age" value="{{user.age}}"></input>
-                     </div>
-                </div>
-                <div class="form-group">
-                     <label class="control-label col-sm-2" for="text">Birthday:</label>
-                     <div class="col-sm-10">
-                       <input type="text" class="form-control" id="focusedInput" placeholder="Enter birthday" name="birthday" value="{{user.birthday}}"></input>
-                     </div>
-                </div>
-                 <div class="form-group">
-                     <label class="control-label col-sm-2" for="text">Spoken Language:</label>
-                     <div class="col-sm-10">
-                       <input type="text" class="form-control" id="focusedInput" placeholder="Enter spoken language" name="spokenLanguage" value="{{user.spokenLanguage}}"></input>
-                     </div>
-                </div>
-                 <div class="form-group">
-                     <label class="control-label col-sm-2" for="text">Programming Language:</label>
-                     <div class="col-sm-10">
-                       <input type="text" class="form-control" id="focusedInput" placeholder="Enter programming language" name="programmingLanguage" value="{{user.programmingLanguage}}"></input>
-                     </div>
-                </div>
+        <div class="page-header">
+          <h2>About me section</h2>
+        </div>
+        <div class="form-group">
+           <label class="control-label col-sm-2" for="text">Full Name:</label>
+           <div class="col-sm-10">
+             <input class="form-control" id="focusedInput" name="name" type="text" placeholder="Enter name" value="{{user.fullName}}">
+           </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="text">Gender:</label>
+          <div class="col-sm-10">
+            <input class="form-control" id="focusedInput" name="gender" type="text" placeholder="Enter gender" value="{{user.gender}}">
+          </div>
+        </div>
+        <div class="form-group">
+           <label class="control-label col-sm-2" for="text">Age:</label>
+           <div class="col-sm-10">
+             <input class="form-control" id="focusedInput" name="age" type="text" placeholder="Enter age" value="{{user.age}}">
+           </div>
+        </div>
+        <div class="form-group">
+           <label class="control-label col-sm-2" for="text">Birthday:</label>
+           <div class="col-sm-10">
+             <input class="form-control" id="focusedInput" name="birthday" type="text" placeholder="Enter birthday" value="{{user.birthday}}">
+           </div>
+        </div>
+         <div class="form-group">
+           <label class="control-label col-sm-2" for="text">Spoken Language:</label>
+           <div class="col-sm-10">
+             <input class="form-control" id="focusedInput" name="spokenLanguage" type="text" placeholder="Enter spoken language" value="{{user.spokenLanguage}}">
+           </div>
+        </div>
+         <div class="form-group">
+           <label class="control-label col-sm-2" for="text">Programming Language:</label>
+           <div class="col-sm-10">
+             <input type="text" class="form-control" id="focusedInput" name="programmingLanguage"
+             placeholder="Enter programming language"  value="{{user.programmingLanguage}}">
+           </div>
+        </div>
 
 
-                <!---Biogrophy section-->
-                <div class="page-header">
-                    <h2>Biography</h2>
-                </div>
-                <div class="form-group">
-					<textarea class="form-control" id="text" rows="10" type="text" name="bio" placeholder="Tell us about yourself">{{user.bio}}</textarea>
-				</div>
+        <!---Biogrophy section-->
+        <div class="page-header">
+          <h2>Biography</h2>
+        </div>
+        <div class="form-group">
+          <textarea class="form-control" id="text" name="bio" rows="10" type="text" placeholder="Tell us about yourself">{{user.bio}}</textarea>
+        </div>
 
 
-                <!-- Fundemental buttons to either update the changes or not-->
-                <div class="row">
-					<input class="btn btn-success" type="submit" value="Submit" />
-					<input class="btn btn-danger" type="reset" value="Clear" />
-				</div>
-                
-            </form>
-         </div>
+        <!-- Fundemental buttons to either update the changes or not-->
+        <div class="row">
+          <input class="btn btn-success" type="submit" value="Submit" />
+          <input class="btn btn-danger" type="reset" value="Clear" />
+        </div>
+        
+      </form>
+     </div>
 
-        {{>footer}}
-    </body>
+    {{>footer}}
+  </body>
 </html>

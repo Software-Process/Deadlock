@@ -1,85 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>        
-        <title>DeadLock</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+  <head>        
+    <title>DeadLock</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <!-- JavaScripts -->
-        <script src="https://www.w3schools.com/lib/w3.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <script src="https://momentjs.com/downloads/moment.js"></script>
-        <script src="handlebars/dist/handlebars.min.js"></script>
-        <script src="handlebars-intl/dist/handlebars-intl.min.js"></script>
+    <!-- JavaScripts -->
+    <script src="https://www.w3schools.com/lib/w3.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://momentjs.com/downloads/moment.js"></script>
+    <script src="handlebars/dist/handlebars.min.js"></script>
+    <script src="handlebars-intl/dist/handlebars-intl.min.js"></script>
 
-        <!-- CSS -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
-        <link rel="stylesheet" href="stylesheets/standardstyle.css">
-        <link rel="stylesheet" href="stylesheets/indexstyle.css">
-    </head>
-    <body>
-        {{>header}}
-        <div class="jumbotron" style="margin-top: 50px">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <h2><strong>Welcome to Deadlock Q&amp;A!</strong></h2>
-                        <p>Learn, Code, Interact.<br/>Join the community today.</p>
-                    </div>
-                    <div class="col-sm-6">
-                        <a href="/userpage"><img class="img-circle profile-picture pull-left" src="images/default1.png"></a>
-                        <div class="wrapper">
-                            {{#if username}}
-                            <h3>Hello, {{username}} </h3>
-                            <form action="/loginRegister/logout" method="get">
-                                <input type="submit" value="Log out" class="btn btn-default">
-                            </form>
-                            {{else}}
-                            <h3>Log in to ask and answer questions!</h3>
-                            {{/if}}
-                            <div><span class="badge badge-secondary questions-answered-badge">2</span>  questions answered</div>
-                            <div><span class="badge badge-secondary questions-pending-badge">5</span>  questions pending</div>
-                            <div><span class="badge badge-secondary answers-accepted-badge">4</span> answers accepted</div>
-                        </div>
-                    </div>
-                </div>
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
+    <link rel="stylesheet" href="stylesheets/standardstyle.css">
+    <link rel="stylesheet" href="stylesheets/indexstyle.css">
+  </head>
+  <body>
+    {{>header}}
+    <div class="jumbotron" style="margin-top: 50px">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-6">
+            <h2><strong>Welcome to Deadlock Q&amp;A!</strong></h2>
+            <p>Learn, Code, Interact.<br/>Join the community today.</p>
+          </div>
+          <div class="col-sm-6">
+            <a href="/userpage"><img class="img-circle profile-picture pull-left" src="images/default1.png"></a>
+            <div class="wrapper">
+              {{#if username}}
+                <h3>Hello, {{username}} </h3>
+                <form action="/loginRegister/logout" method="get">
+                  <input class="btn btn-default" type="submit" value="Log out">
+                </form>
+              {{else}}
+                <h3>Log in to ask and answer questions!</h3>
+              {{/if}}
+              <div><span class="badge badge-secondary questions-answered-badge">2</span> questions answered</div>
+              <div><span class="badge badge-secondary questions-pending-badge">5</span> questions pending</div>
+              <div><span class="badge badge-secondary answers-accepted-badge">4</span> answers accepted</div>
             </div>
+          </div>
         </div>
+      </div>
+    </div>
 
-        <div class="container">
-            <h3>
-                Popular Questions
-                <a href="/question-prompt" class="float-right btn btn-default btn-lg">Ask a Question</a>
-            </h3>
+    <div class="container">
+      <h3>
+        Popular Questions
+        <a href="/question-prompt" class="float-right btn btn-default btn-lg">Ask a Question</a>
+      </h3>
 
-            <hr />
+      <hr>
 
-            <div id="question-list">
-                <div class="row question-list-headers question-row">
-                    <div class="col-sm-1 text-center">Votes</div>
-                    <div class="col-sm-1 text-center">Answers</div>
-                    <div class="col-sm-6">Questions</div>
-                    <div class="col-sm-2">Author</div>
-                    <div class="col-sm-2">Date</div>
-                </div>
-            </div>
+      <div id="question-list">
+        <div class="row question-list-headers question-row">
+          <div class="col-sm-1 text-center">Votes</div>
+          <div class="col-sm-1 text-center">Answers</div>
+          <div class="col-sm-6">Questions</div>
+          <div class="col-sm-2">Author</div>
+          <div class="col-sm-2">Date</div>
+        </div>
+      </div>
 
-            <hr />
-            {{#each questions}}
-                <a href="/question/{{id}}">
-                    <div class="row question-row">
-                        <div class="votes-col col-sm-1 text-center">{{nbOfVotes}}</div>
-                        <div class="answers-col col-sm-1 text-center">{{nbOfAnswers}}</div>
-                        <div class="col-sm-6">{{title}}</div>
-                        <div class="col-sm-2">{{username}}</div>
-                        <div class="col-sm-2">{{moment date format="MMMM D, YYYY"}}</div>
-                    </div>
-                </a>
-            {{/each}}  
-        </div>    
-        {{>footer}}
-    </body>
+      <hr>
+      {{#each questions}}
+        <a href="/question/{{id}}">
+          <div class="row question-row">
+            <div class="votes-col col-sm-1 text-center">{{nbOfVotes}}</div>
+            <div class="answers-col col-sm-1 text-center">{{nbOfAnswers}}</div>
+            <div class="col-sm-6">{{title}}</div>
+            <div class="col-sm-2">{{username}}</div>
+            <div class="col-sm-2">{{moment date format="MMMM D, YYYY"}}</div>
+          </div>
+        </a>
+      {{/each}}  
+    </div>    
+    {{>footer}}
+  </body>
 </html>
