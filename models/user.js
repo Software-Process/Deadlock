@@ -2,13 +2,28 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var passportLocalMongoose = require('passport-local-mongoose');
 
-var User = new Schema({
-    username: String,
-    password: String, //should not be made required, as it's encrypted server side.
-    email: String,
-    bio: String
+const userSchema = new Schema({
+    username: {type: String, required: true},
+    password: {type: String}, // Should not be made required, as it's encrypted server side.
+    email: {type: String, required: true},
+    bio: {type: String},
+    picture: {type: Number, required: true},
+    bannerColor: {type: String},
+    phoneNumber: {type: String},
+    github: {type: String},
+    linkedin: {type: String},
+    city: {type: String},
+    country: {type: String},
+    fullName: {type: String},
+    gender: {type: String},
+    age: {type: Number},
+    birthday: {type: String},
+    spokenLanguage: {type: String},
+    programmingLanguage: {type: String},
+    questions: {type: [mongoose.Schema.Types.ObjectId]},
+    answers: {type: [mongoose.Schema.Types.ObjectId]}
 });
 
-User.plugin(passportLocalMongoose);
+userSchema.plugin(passportLocalMongoose);
 
-module.exports = mongoose.model('User', User);
+module.exports = mongoose.model('User', userSchema);

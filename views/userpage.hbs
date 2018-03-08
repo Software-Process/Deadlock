@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>        
+    <head>
         <title>DeadLock - User Page</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -15,7 +15,7 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
-        
+
         <link rel="stylesheet" href="stylesheets/userpagestyle.css">
         <link rel="stylesheet" href="stylesheets/standardstyle.css">
     </head>
@@ -44,11 +44,11 @@
 
                             <!-- Placeholder user contact me information -->
                             <ul style="list-style-type: none;">
-                                <li>johndoe@gmail.com</li>
-                                <li><a href="">github.com/johndoe</a></li>
-                                <li><a href="">linkedin.com/johndoe</a></li>
-                                <li>(514) 123-4567</li>
-                                <li>Montreal, Canada</li>
+                                <li>{{user.email}}</li>
+                                <li><a href="">{{user.github}}</a></li>
+                                <li><a href="">{{user.linkedin}}</a></li>
+                                <li>{{user.phoneNumber}}</li>
+                                <li>{{user.city}}, {{user.country}}</li>
                             </ul>
 
                         </div>
@@ -62,14 +62,14 @@
                             <h4 class="card-title text-center"><strong>About me</strong></h4>
                             <hr />
 
-                            <!-- Placeholder user about me information -->
-                            <ul style="list-style-type: none;">
-                                <li>Birthday</li>
-                                <li>Gender</li>
-                                <li>Age</li>
-                                <li>Spoken languages</li>
-                                <li>Programming languages</li>                                
-                            </ul>
+                    <!-- Placeholder user about me information -->
+                    <ul style="list-style-type: none;">
+                        <li>Birthday: {{user.birthday}}</li>
+                        <li>Gender: {{user.gender}}</li>
+                        <li>Age: {{user.age}}</li>
+                        <li>Spoken languages: {{user.spokenLanguage}}</li>
+                        <li>Programming languages: {{user.programmingLanguage}}</li>
+                    </ul>
 
                         </div>
                     </div>
@@ -103,36 +103,27 @@
                                 <div class="col-sm-1"><strong>Status</strong></div>
                             </div>
                         </li>
-                        <li class="list-group-item">
-                            <a href="/question/{{id}}">
-                                <div class="row question-row">
-                                    <div class="col-sm-9">Question 1</div>
-                                    <div class="col-sm-1"><center><span class="badge">2</span></center></div>
-                                    <div class="col-sm-1">date</div>
-                                    <div class="col-sm-1"><center><span class="glyphicon glyphicon-ok"></span></center></div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="/question/{{id}}">
-                                <div class="row question-row">
-                                    <div class="col-sm-9">Question 2</div>
-                                    <div class="col-sm-1"><center><span class="badge">4</span></center></div>
-                                    <div class="col-sm-1">date</div>
-                                    <div class="col-sm-1"><center><span class="glyphicon glyphicon-remove" style="color: red"></center></div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="/question/{{id}}">
-                                <div class="row question-row">
-                                    <div class="col-sm-9">Question 3</div>
-                                    <div class="col-sm-1"><center><span class="badge">3</span></center></div>
-                                    <div class="col-sm-1">date</div>
-                                    <div class="col-sm-1"><center><span class="glyphicon glyphicon-lock"></span><span class="glyphicon glyphicon-refresh"></span></center></div>
-                                </div>
-                            </a>
-                        </li>
+                      {{#each questions}}
+                      <li class="list-group-item">
+                        <a href="/question/{{id}}">
+                          <div class="row question-row">
+                            <div class="col-sm-9">{{title}}</div>
+                            <div class="col-sm-1">
+                              <center>
+                                <span class="badge">{{nbOfVotes}}</span>
+                              </center>
+                            </div>
+                            <div class="col-sm-1">{{moment date format="MMMM D, YYYY"}}</div>
+                            <div class="col-sm-1">
+                              <center>
+                                <span class="glyphicon glyphicon-lock"></span>
+                                <span class="glyphicon glyphicon-refresh"></span>
+                              </center>
+                            </div>
+                          </div>
+                        </a>
+                      </li>
+                      {{/each}}
 
                     </ul>
 
@@ -147,43 +138,26 @@
                                 <div class="col-sm-1"><strong>Status</strong></div>
                             </div>
                         </li>
-                        <li class="list-group-item">
-                            <a href="/question/{{id}}">
-                                <div class="row question-row">
-                                    <div class="col-sm-1"><center><img class="img-circle profile-icon" src="images/default1.png"></center></div>
-                                    <div class="col-sm-2">Bill Joe</div>
-                                    <div class="col-sm-7">How do I use Bootstrap?</div>
-                                    <div class="col-sm-1">date</div>
-                                    <div class="col-sm-1"><center><span class="glyphicon glyphicon-ok"></span></center></div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="/question/{{id}}">
-                                <div class="row question-row">
-                                    <div class="col-sm-1"><center><img class="img-circle profile-icon" src="images/default2.png"></center></div>
-                                    <div class="col-sm-2">Jane Pearl</div>
-                                    <div class="col-sm-7">What is RestAPI?</div>
-                                    <div class="col-sm-1">date</div>
-                                    <div class="col-sm-1"><center><span class="glyphicon glyphicon-remove" style="color: red"></span></center></div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="/question/{{id}}">
-                                <div class="row question-row">
-                                    <div class="col-sm-1"><center><img class="img-circle profile-icon" src="images/default4.png"></center></div>
-                                    <div class="col-sm-2">Robert Hook</div>
-                                    <div class="col-sm-7">How do I use MongoDB?</div>
-                                    <div class="col-sm-1">date</div>
-                                    <div class="col-sm-1"><center><span class="glyphicon glyphicon-ok"></span></center></div>
-                                </div>
-                            </a>
-                        </li>
+                        {{#each answers}}
+                            <li class="list-group-item">
+                                <a href="/question/{{id}}">
+                                    <div class="row question-row">
+                                        <div class="col-sm-1"><center><img class="img-circle profile-icon" src="images/default1.png"></center></div>
+                                        <div class="col-sm-2">{{author}}</div>
+                                        <div class="col-sm-7">{{title}}</div>
+                                        <div class="col-sm-1">{{moment date format="MMMM D, YYYY"}}</div>
+                                        <div class="col-sm-1"><center>
+                                            <span class="glyphicon glyphicon-lock"></span>
+                                            <span class="glyphicon glyphicon-refresh"></span>
+                                        </center></div>
+                                    </div>
+                                </a>
+                            </li>
+                        {{/each}}
                     </ul>
                 </div>
-            </div>             
-        </div> 
+            </div>
+        </div>
         {{>footer}}
     </body>
 </html>

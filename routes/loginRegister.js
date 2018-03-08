@@ -13,9 +13,20 @@ router.get('/register', function(req, res) {
 });
 
 router.post('/register', function(req, res) {
-    User.register(new User({ username : req.body.username }), req.body.password, function(err, user ) {
+    console.log(req.body.username);
+    console.log(req.body.password);
+
+    const user = new User({
+        username: req.body.username,
+        email: req.body.email,
+        picture: 1,
+        bannerColor: '#116CF6'
+    });
+
+    User.register(user, req.body.password, function(err, user ) {
         if (err) {
-            return res.render('register', { user : user });
+            console.log(err);
+            return res.render('signIn', { user : user, reg: err });
         }
 
         passport.authenticate('local')(req, res, function () {
