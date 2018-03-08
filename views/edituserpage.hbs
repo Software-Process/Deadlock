@@ -39,31 +39,31 @@
                 </div>
                 <div class="row text-center">
                     <label class="radio-inline col-sm-2">
-                        <input type="radio" name="profile-picture" value="images/default2.png" checked><img src="images/default2.png" class="img-rounded" style="width:100%; height:100%">
+                        <input type="radio" name="profilePicture" value="images/default2.png" checked><img src="images/default2.png" class="img-rounded" style="width:100%; height:100%">
                         <div class="caption">
                             <p>Profile picture 1</p>
                         </div>
                     </label>
                     <label class="radio-inline col-sm-2">
-                        <input type="radio" name="profile-picture" value="images/default1.png"><img src="images/default1.png" class="img-rounded" style="width:100%; height:100%">
+                        <input type="radio" name="profilePicture" value="images/default1.png"><img src="images/default1.png" class="img-rounded" style="width:100%; height:100%">
                         <div class="caption">
                             <p>Profile picture 2</p>
                         </div>
                     </label>
                     <label class="radio-inline col-sm-2">
-                        <input type="radio" name="profile-picture" value="images/default5.png"><img src="images/default5.png" class="img-rounded" style="width:100%; height:100%">
+                        <input type="radio" name="profilePicture" value="images/default5.png"><img src="images/default5.png" class="img-rounded" style="width:100%; height:100%">
                         <div class="caption">
                             <p>Profile picture 3</p>
                         </div>
                     </label>
                     <label class="radio-inline col-sm-2">
-                        <input type="radio" name="profile-picture" value="images/default3.png"><img src="images/default3.png" class="img-rounded" style="width:100%; height:100%">
+                        <input type="radio" name="profilePicture" value="images/default3.png"><img src="images/default3.png" class="img-rounded" style="width:100%; height:100%">
                         <div class="caption">
                             <p>Profile picture 4</p>
                         </div>
                     </label>
                     <label class="radio-inline col-sm-2">
-                        <input type="radio" name="profile-picture" value="images/default4.png"><img src="images/default4.png" class="img-rounded" style="width:100%; height:100%">
+                        <input type="radio" name="profilePicture" value="images/default4.png"><img src="images/default4.png" class="img-rounded" style="width:100%; height:100%">
                         <div class="caption">
                             <p>Profile picture 5</p>
                         </div>
@@ -75,92 +75,90 @@
                 <!--Picking color for Banner-->
                 <div class="form-group">
                     <h2>Pick a Banner Color</h2>
-                    <input type="color" name="banner" value="#ff0000" class="form-control">
+                    <input type="color" name="banner" value="{{user.bannerColor}}" class="form-control">
                 </div>
 
 
-                <!--  REPLACE ALL PLACEHOLDER= WITH {{VALUEEEE}} from database   -->
                 <div class="page-header">
                     <h2>Contact me section</h2>
                 </div>
                 <div class="form-group">
                      <label class="control-label col-sm-2" for="text">Email:</label>
                      <div class="col-sm-10">
-                        <input type="text" class="form-control" id="focusedInput" placeholder="Enter email" name="email">
+                        <input type="text" class="form-control" id="focusedInput" placeholder="Enter email" name="email" value="{{user.email}}">
                     </div>
                 </div>
                 <div class="form-group">
                      <label class="control-label col-sm-2" for="text">Phone number:</label>
                      <div class="col-sm-10">
-                        <input type="text" class="form-control" id="focusedInput" placeholder="Enter phone number" name="phone">
-                    </div>
+                       <input type="text" class="form-control" id="focusedInput" placeholder="Enter phone number" name="phone" value="{{user.phoneNumber}}"></input>
+                     </div>
                 </div>
                 <div class="form-group">
                      <label class="control-label col-sm-2" for="text">GitHub:</label>
                      <div class="col-sm-10">
-                        <input type="text" class="form-control" id="focusedInput" placeholder="Enter Github link" name="gitpage">
-                    </div>
+                        <input type="text" class="form-control" id="focusedInput" placeholder="Enter Github link" name="gitpage" value="{{user.github}}">
+                      </div>
                 </div>
                 <div class="form-group">
                      <label class="control-label col-sm-2" for="text">Linkedin:</label>
                      <div class="col-sm-10">
-                        <input type="text" class="form-control" id="focusedInput" placeholder="Enter Linkedin Link" name="linkedin">
-                    </div>
+                       <input type="text" class="form-control" id="focusedInput" placeholder="Enter Linkedin Link" name="linkedin" value="{{user.linkedin}}"></input>
+                     </div>
                 </div>
                  <div class="form-group">
                      <label class="control-label col-sm-2" for="text">City:</label>
                      <div class="col-sm-10">
-                        <input type="text" class="form-control" id="focusedInput" placeholder="Enter city" name="city">
-                    </div>
+                       <input type="text" class="form-control" id="focusedInput" placeholder="Enter city" name="city" value="{{user.city}}"></input>
+                     </div>
                 </div>
                  <div class="form-group">
                      <label class="control-label col-sm-2" for="text">Country:</label>
                      <div class="col-sm-10">
-                        <input type="text" class="form-control" id="focusedInput" placeholder="Enter country" name="country">
-                    </div>
+                       <input type="text" class="form-control" id="focusedInput" placeholder="Enter country" name="country" value="{{user.country}}"></input>
+                     </div>
                 </div>
 
                 
-                <!--  REPLACE ALL PLACEHOLDER= WITH {{VALUEEEE}} from database   -->
                 <div class="page-header">
                     <h2>About me section</h2>
                 </div>
                 <div class="form-group">
                      <label class="control-label col-sm-2" for="text">Full Name:</label>
                      <div class="col-sm-10">
-                        <input type="text" class="form-control" id="focusedInput" placeholder="Enter name" name="name">
-                    </div>
+                       <input type="text" class="form-control" id="focusedInput" placeholder="Enter name" name="name" value="{{user.fullName}}"></input>
+                     </div>
                 </div>
                 <div class="form-group">
                      <label class="control-label col-sm-2" for="radio">Gender:</label>
                      <div class="col-sm-10">
-                        <label class="radio-inline"><input type="radio" name="gender"checked value="male">Male </label>
-                        <label class="radio-inline"><input type="radio" name="gender" value="female">Female</label>
+                         <label class="radio-inline"><input type="radio" name="gender" checked value="Male">Male </label>
+                         <label class="radio-inline"><input type="radio" name="gender" value="Female">Female</label>
                     </div>
                 </div>
                 <div class="form-group">
                      <label class="control-label col-sm-2" for="text">Age:</label>
                      <div class="col-sm-10">
-                        <input type="text" class="form-control" id="focusedInput" placeholder="Enter age" name="age">
-                    </div>
+                       <input type="text" class="form-control" id="focusedInput" placeholder="Enter age" name="age" value="{{user.age}}"></input>
+                     </div>
                 </div>
                 <div class="form-group">
                      <label class="control-label col-sm-2" for="text">Birthday:</label>
                      <div class="col-sm-10">
-                        <input type="text" class="form-control" id="focusedInput" placeholder="Enter birthday" name="birthday">
-                    </div>
+                       <input type="text" class="form-control" id="focusedInput" placeholder="Enter birthday" name="birthday" value="{{user.birthday}}"></input>
+                     </div>
                 </div>
                  <div class="form-group">
                      <label class="control-label col-sm-2" for="text">Spoken Language:</label>
                      <div class="col-sm-10">
-                        <input type="text" class="form-control" id="focusedInput" placeholder="Enter spoken language" name="spoken-language">
-                    </div>
+                       <input type="text" class="form-control" id="focusedInput" placeholder="Enter spoken language" name="spokenLanguage" value="{{user.spokenLanguage}}"></input>
+                     </div>
                 </div>
                  <div class="form-group">
                      <label class="control-label col-sm-2" for="text">Programming Language:</label>
                      <div class="col-sm-10">
-                        <input type="text" class="form-control" id="focusedInput" placeholder="Enter programming language" name="programming-language">
-                    </div>
+                       <input type="text" class="form-control" id="focusedInput" placeholder="Enter programming language" name="programmingLanguage" value="{{user.programmingLanguage}}"></input>
+                     </div>
                 </div>
 
 
