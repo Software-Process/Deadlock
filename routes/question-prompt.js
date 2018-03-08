@@ -7,23 +7,26 @@ const Question = require("../models/question");
 
 /*To render the question-prompt.hbs page*/
 router.get('/', function(req, res, next) {
-    res.render('question-prompt', { title: 'Ask a question page' });
+    if (req.user) {
+        res.render('question-prompt', {title: 'Ask a question page'});
+    } else {
+        res.render('signIn');
+    }
   });
 
 /*POST linked with question-prompt page*/
 router.post('/', function(req, res, next) {
     var genId = new mongoose.Types.ObjectId();
-    console.log(req);
+    console.log(req.user);
     const question = new Question({
         _id: genId,
         title: req.body.title,
         text: req.body.question,
-        nbOfVotes: 0,
+        score: 0,
         nbOfAnswers: 0,
-		user: req.user.username,
-        author: req.body.author,
+        author: req.user._id,
         date: new Date().toUTCString(),
-        replies: {}
+        replies: []
     });
     question
         .save()
