@@ -13,8 +13,8 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <!-- <link rel="stylesheet" type="text/css" href="stylesheets/index.css"> --> 
         <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
-        <link rel="stylesheet" href="stylesheets/signin.css">
-        <link rel="stylesheet" href="stylesheets/standardstyle.css">
+        <link rel="stylesheet" href="/stylesheets/signin.css">
+        <link rel="stylesheet" href="/stylesheets/standardstyle.css">
     </head>
 	<body>
 		{{>header}}
@@ -41,6 +41,9 @@
 				</div>
 				<div class="col-sm-6 register-section">
 					<h2 class="form-heading">Register</h2>
+                    {{#if reg}}
+                        <h4 style="color:red;"> {{reg}} </h4>
+                    {{/if}}
                     <form action="/loginRegister/register" method="post">
 						<div class="form-group">
 							<label for="inputsm"><span class="form-heading">Username:</span></label>
