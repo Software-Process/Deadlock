@@ -96,12 +96,12 @@
                   </div>
 
                   <div class="col-sm-9 well reply-content">
-                    {{this.textRep}}
+                    {{this.text}}
                   </div>
                   <div class="col-sm-2">
                      <div class="well text-center user-info-container" style="padding: 10px">
                       <a href="/userpage"><img class="img-circle user-picture" src="../images/default2.png"></a>
-                      <h5 class="user-info">{{question.author}}</h5>
+                      <h5 class="user-info">{{this.username}}</h5>
                       <h5 class="user-info">replied on <br /> {{moment question.date format="MMMM D, YYYY"}}</h5>
                     </div>
                     <div class="row">

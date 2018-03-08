@@ -1,5 +1,8 @@
 const mongoose = require("mongoose");
 var Schema = mongoose.Schema;
+
+
+
 /*
 	Here is the characteristics for a question
 	{
@@ -21,7 +24,7 @@ const questionSchema = new Schema({
     author: {type: mongoose.Schema.Types.ObjectId, required: true},
     username: String,
     date: {type: String, required: true},
-    replies: {type: [mongoose.Schema.Types.ObjectId]}
+    replies: [{ type: Schema.Types.Mixed, ref: 'Reply'}]
 });
 
 module.exports = mongoose.model("Question", questionSchema);

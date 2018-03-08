@@ -18,8 +18,9 @@ const replySchema = new Schema({
     text: {type: String, required: true},
     score: {type: Number, required: true},
     author: {type: mongoose.Schema.Types.ObjectId, required: true},
-    date : {type: String, required: true},
-    question: {type: mongoose.Schema.Types.ObjectId, required: true},
+    username: String,
+    date :  String,
+    question: mongoose.Schema.Types.ObjectId,
     accepted: {type: Boolean, required: true},
     rejected: {type: Boolean, required: true}
 });
