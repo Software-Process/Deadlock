@@ -9,6 +9,7 @@ const questionSchema = new Schema({
     author: {type: mongoose.Schema.Types.ObjectId, required: true},
     username: String,
     date: {type: String, required: true},
+    hasAccepted: {type: Boolean, required: true},
     replies: [Reply.schema]
 });
 

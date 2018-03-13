@@ -63,7 +63,7 @@ router.post('/login', function(req, res, next) {
         if (!user) { return res.render('signIn', {sig: "Please enter a user name."}) }
         req.logIn(user, function(err) {
             if (err) { return next(err); }
-            return res.render('index',{ user: user});
+            res.render('index',{ user: user});
         });
     })(req, res, next);
 });
