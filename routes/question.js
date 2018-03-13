@@ -64,7 +64,7 @@ router.patch('/:questionId/reply', function(req, res, next) {
     const id = req.params.questionId;
     const toSave = new Reply ({ author: req.user._id, username: req.user.username, text: req.body.repform, score: 0, accepted: false, rejected: false});
     console.log(toSave);
-    Question.update({_id : id},{ $push: { replies:  toSave}}) // Replace testUser with logged in user
+    Question.update({_id : id},{ $push: { replies:  toSave}})// Replace testUser with logged in user
         .exec()
         .then(function(result){
             res.redirect('back');
@@ -86,8 +86,7 @@ router.patch('/:replyId/upReply', function(req, res, next) {
     const id = req.body.questionId;
     console.log("qeu "+id);
     console.log("Reply id :" + repId);
-
-    Question.update({_id : id}, {$inc : {'replies.0.nbOfVotesRep' : 1}})
+    Question.updateOne({"replies._id" : repId}, {$inc : {"replies.$.score" : 1}})
         .exec()
         .then(function(result){
             res.redirect('back');

@@ -78,13 +78,13 @@
                 <div class="row">                                  
                   <div class="col-sm-1 text-center">
                     <div class="row">
-                      <form action = "/question/{{replyId}}/upReply" method = "post">
+                      <form action = "/question/{{_id}}/upReply" method = "post">
                         <input type="hidden" name="_method" value="PATCH"/>
                         <textarea class="hidden"type="text" name="questionId">{{../_id}}</textarea>
                         <textarea class="hidden"type="text" name="replyId">{{replyId}}</textarea>
                         <button type="submit" class="not-button" onclick="replyUpCookie(this)" id="reply{{@index}}up" name="{{replyId}}"><i class="glyphicon glyphicon-triangle-top not-voted" id="{{replyId}}up"></i></button>
                       </form>
-                      <span class=" nbOfVotes reply-vote">0</span>
+                      <span class=" nbOfVotes reply-vote">{{this.score}}</span>
                       <br>
                       <form action = "/question/{{replyId}}/downReply" method = "post">
                         <input type="hidden" name="_method" value="PATCH"/>

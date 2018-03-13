@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 var Schema = mongoose.Schema;
+const Reply = require("../models/reply");
 
 const questionSchema = new Schema({
     title: {type: String, required: true},
@@ -8,7 +9,7 @@ const questionSchema = new Schema({
     author: {type: mongoose.Schema.Types.ObjectId, required: true},
     username: String,
     date: {type: String, required: true},
-    replies: [{ type: Schema.Types.Mixed, ref: 'Reply'}]
+    replies: [Reply.schema]
 });
 
 module.exports = mongoose.model("Question", questionSchema);
