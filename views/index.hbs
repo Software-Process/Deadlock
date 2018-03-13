@@ -17,8 +17,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
-    <link rel="stylesheet" href="stylesheets/standardstyle.css">
-    <link rel="stylesheet" href="stylesheets/indexstyle.css">
+    <link rel="stylesheet" href="/stylesheets/standardstyle.css">
+    <link rel="stylesheet" href="/stylesheets/indexstyle.css">
   </head>
   <body>
     {{>header}}
@@ -30,13 +30,10 @@
             <p>Learn, Code, Interact.<br/>Join the community today.</p>
           </div>
           <div class="col-sm-6">
-            <a href="/userpage"><img class="img-circle profile-picture pull-left" src="images/default1.png"></a>
+            <a href="/userpage"><img class="img-circle profile-picture pull-left" src="/images/default1.png"></a>
             <div class="wrapper">
-              {{#if username}}
-                <h3>Hello, {{username}} </h3>
-                <form action="/loginRegister/logout" method="get">
-                  <input class="btn btn-default" type="submit" value="Log out">
-                </form>
+              {{#if user}}
+                <h3>Hello, {{user.username}} </h3>
               {{else}}
                 <h3>Log in to ask and answer questions!</h3>
               {{/if}}
@@ -71,8 +68,8 @@
       {{#each questions}}
         <a href="/question/{{id}}">
           <div class="row question-row">
-            <div class="votes-col col-sm-1 text-center">{{nbOfVotes}}</div>
-            <div class="answers-col col-sm-1 text-center">{{nbOfAnswers}}</div>
+            <div class="votes-col col-sm-1 text-center">{{score}}</div>
+            <div class="answers-col col-sm-1 text-center">{{replies.length}}</div>
             <div class="col-sm-6">{{title}}</div>
             <div class="col-sm-2">{{username}}</div>
             <div class="col-sm-2">{{moment date format="MMMM D, YYYY"}}</div>

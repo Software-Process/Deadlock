@@ -36,6 +36,7 @@ const aboutUs = require('./routes/aboutUs');
 const loginRegister = require('./routes/loginRegister');
 const userPage = require('./routes/userPage');
 const editUserPage = require('./routes/editUserPage');
+const validator = require('express-validator');
 
 const app = express();
 
@@ -70,6 +71,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(require('express-method-override')('_method'));
+app.use(validator())
 
 const User = require('./models/user');
 passport.use(new LocalStrategy(User.authenticate()));

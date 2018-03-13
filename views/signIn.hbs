@@ -32,6 +32,9 @@
       <div class="row vdivide">
         <div class="col-sm-6 login-section">
           <h2 class="form-heading">Login</h2>
+            {{#if sig}}
+                <h4 style="color:red;"> {{sig}} </h4>
+            {{/if}}
 
           <form action="/loginRegister/login" method="post">
             <div class="form-group">

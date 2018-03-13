@@ -3,6 +3,9 @@ var passport = require('passport');
 var User = require('../models/user');
 var router = express.Router();
 
+const { check, validationResult } = require('express-validator/check');
+const { matchedData, sanitize } = require('express-validator/filter');
+
 /* GET Login/Registration page. */
 router.get('/', function (req, res) {
     res.render('signIn', { user : req.user });
@@ -13,7 +16,17 @@ router.get('/register', function(req, res) {
 });
 
 /* Registers a user with the information received from a POST request.*/
-router.post('/register', function(req, res) {
+router.post('/register', [
+    check('email').isEmail().withMessage('must be an email')
+],function(req, res) {
+
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        const errs = errors.array()[0];
+        output = errs.param + " " + errs.msg;
+        return res.render('signIn', { reg:output });
+    }
+
     const user = new User({
         username: req.body.username,
         email: req.body.email,
@@ -39,9 +52,20 @@ router.get('/login', function(req, res) {
 });
 
 /* Logs a user in and redirects them to home page.*/
-router.post('/login', passport.authenticate('local'), function(req, res) {
-    console.log(req);
-    res.redirect('/');
+// router.post('/login', passport.authenticate('local'), function(req, res) {
+//     console.log(res);
+//     res.redirect('/');
+// });
+
+router.post('/login', function(req, res, next) {
+    passport.authenticate('local', function(err, user, info) {
+        if (err) { return next(err); }
+        if (!user) { return res.render('signIn', {sig: "Please enter a user name."}) }
+        req.logIn(user, function(err) {
+            if (err) { return next(err); }
+            return res.render('index',{ user: user});
+        });
+    })(req, res, next);
 });
 
 /* Logs a user out and redirects them to home page. */
