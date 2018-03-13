@@ -32,11 +32,8 @@
           <div class="col-sm-6">
             <a href="/userpage"><img class="img-circle profile-picture pull-left" src="images/default1.png"></a>
             <div class="wrapper">
-              {{#if username}}
-                <h3>Hello, {{username}} </h3>
-                <form action="/loginRegister/logout" method="get">
-                  <input class="btn btn-default" type="submit" value="Log out">
-                </form>
+              {{#if user}}
+                <h3>Hello, {{user.username}} </h3>
               {{else}}
                 <h3>Log in to ask and answer questions!</h3>
               {{/if}}

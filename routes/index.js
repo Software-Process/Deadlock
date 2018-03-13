@@ -9,7 +9,7 @@ router.get('/', function(req, res, next) {
         .exec()
         .then(docs => {
             if (req.user){
-                res.render('index', { questions: docs, username : req.user.username });
+                res.render('index', { questions: docs, user : req.user });
             } else {
                 res.render('index', { questions: docs});
                 }
