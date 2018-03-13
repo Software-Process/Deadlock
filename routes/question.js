@@ -18,7 +18,7 @@ router.get('/:questionId', function(req, res, next) {
         .then(function(doc){
             console.log("From database", doc);
             if (doc){
-                res.render('question', { question: doc });
+                res.render('question', { question: doc, user: req.user });
             } else {
                 res.status(404).json({message: "No valid entry found for provided id"});
             }
@@ -101,8 +101,8 @@ router.patch('/:replyId/upReply', function(req, res, next) {
 router.patch('/:replyId/downReply', function(req, res, next) {
     const repId = req.params.replyId;
     const id = req.body.questionId;
-    
-    Question.update({_id : id}, {$inc : {'replies.0.nbOfVotesRep' : -1}})
+
+    Question.updateOne({"replies._id" : repId}, {$inc : {"replies.$.score" : -1}})
         .exec()
         .then(function(result){
             res.redirect('back');

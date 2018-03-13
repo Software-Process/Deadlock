@@ -3,6 +3,9 @@ var passport = require('passport');
 var User = require('../models/user');
 var router = express.Router();
 
+const { check, validationResult } = require('express-validator/check');
+const { matchedData, sanitize } = require('express-validator/filter');
+
 /* GET Login/Registration page. */
 router.get('/', function (req, res) {
     res.render('signIn', { user : req.user });
@@ -13,7 +16,17 @@ router.get('/register', function(req, res) {
 });
 
 /* Registers a user with the information received from a POST request.*/
-router.post('/register', function(req, res) {
+router.post('/register', [
+    check('email').isEmail().withMessage('must be an email')
+],function(req, res) {
+
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        const errs = errors.array()[0];
+        output = errs.param + " " + errs.msg;
+        return res.render('signIn', { reg:output });
+    }
+
     const user = new User({
         username: req.body.username,
         email: req.body.email,

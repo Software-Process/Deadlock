@@ -86,7 +86,7 @@
                       </form>
                       <span class=" nbOfVotes reply-vote">{{this.score}}</span>
                       <br>
-                      <form action = "/question/{{replyId}}/downReply" method = "post">
+                      <form action = "/question/{{_id}}/downReply" method = "post">
                         <input type="hidden" name="_method" value="PATCH"/>
                         <textarea class="hidden" type="text" name="questionId">{{../_id}}</textarea>
                         <textarea class="hidden" type="text" name="replyId">{{replyId}}</textarea>
