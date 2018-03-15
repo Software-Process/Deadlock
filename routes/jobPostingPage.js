@@ -2,16 +2,16 @@ var express = require('express');
 var router = express.Router();
 
 const question = require("../models/question");
-
+//const Job = require("../models/jobs");
 /* GET home page. */
 router.get('/', function(req, res, next) {
     question.find()
         .exec()
         .then(docs => {
             if (req.user){
-                res.render('index', { questions: docs, user : req.user });
+                res.render('jobposting', { questions: docs, user : req.user });
             } else {
-                res.render('index', { questions: docs});
+                res.render('jobposting', { questions: docs});
                 }
 
         })

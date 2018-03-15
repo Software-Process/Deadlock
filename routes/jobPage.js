@@ -3,6 +3,7 @@ var router = express.Router();
 
 const question = require("../models/question");
 
+//const Job = require("../models/jobs");
 /* GET home page. */
 router.get('/', function(req, res, next) {
     question.find()
