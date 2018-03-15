@@ -103,6 +103,19 @@ router.patch('/:replyId/accept', function(req, res, next) {
         });
 });
 
+/* Rejects a reply via a PATCH request */
+router.patch('/:replyId/reject', function(req, res, next) {
+    const repId = req.params.replyId;
+    Question.updateOne({"replies._id" : repId}, {$set : {"replies.$.rejected" : true}})
+        .exec()
+        .then(function(result){
+            res.redirect('back');
+        })
+        .catch(function(err){
+            console.log(err);
+            res.status(500).json({error:err});
+        });
+});
 
 /* Upvotes a reply via a PATCH request */
 router.patch('/:replyId/upReply', function(req, res, next) {
