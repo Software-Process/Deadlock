@@ -30,6 +30,7 @@ router.post('/register', [
     const user = new User({
         username: req.body.username,
         email: req.body.email,
+        admin: "",
         picture: 1,
         bannerColor: '#116CF6'
     });

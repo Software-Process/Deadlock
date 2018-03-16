@@ -6,6 +6,7 @@ const userSchema = new Schema({
     username: {type: String, required: true},
     password: {type: String}, // Should not be made required, as it's encrypted server side.
     email: {type: String, required: true},
+    admin: {type: String},
     bio: {type: String},
     picture: {type: Number, required: true},
     bannerColor: {type: String},
