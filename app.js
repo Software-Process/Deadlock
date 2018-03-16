@@ -36,6 +36,9 @@ const aboutUs = require('./routes/aboutUs');
 const loginRegister = require('./routes/loginRegister');
 const userPage = require('./routes/userPage');
 const editUserPage = require('./routes/editUserPage');
+const companyAccount = require('./routes/companyAccount');
+const jobPage = require('./routes/jobPage');
+const jobPostingPage = require('./routes/jobPostingPage');
 const validator = require('express-validator');
 
 const app = express();
@@ -103,6 +106,9 @@ app.use('/aboutus', aboutUs);
 app.use('/login', loginRegister);
 app.use('/userpage', userPage);
 app.use('/edituserpage', editUserPage);
+app.use('/companyAccount', companyAccount);
+app.use('/jobPage', jobPage);
+app.use('/jobPostingPage', jobPostingPage);
 app.use('/loginRegister', loginRegister);
 
 
