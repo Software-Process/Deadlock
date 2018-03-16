@@ -6,7 +6,8 @@ const jobs = new Schema({
     title : {type: String, required: true},
     company: {type: String, required: true},
     date :  String,
-    link : {type: String, required: true}
+    link : {type: String, required: true},
+    author : {type: String, required: true}
 });
 //date :  String,
 module.exports = mongoose.model("Jobs", jobs);

@@ -18,29 +18,27 @@
 
     <div class="container">
       <hr>
-
       <!--<div id="question-list">-->
         <div class="row question-list-headers question-row">
-          <div class="col-sm-1 text-center">Id</div>
-          <div class="col-sm-3 text-center">Company</div>
-          <div class="col-sm-6">Title</div>
-          <div class="col-sm-2">Recruiter</div>
+          <div class="col-sm-2 text-center">Id</div>
+          <div class="col-sm-2 text-center">Company</div>
+          <div class="col-sm-2 text-center">Location</div>
+          <div class="col-sm-4">Title</div>
+          <div class="col-sm-2">Date</div>
         </div>
       <!--</div>-->
-
-      <hr>
-      <!--
-      {{#each questions}}
-        <a href={{title}}>
+      <hr>     
+      {{#each jobs}}
+        <a href={{link}}>
           <div class="row question-row">
-            <div class="votes-col col-sm-1 text-center">{{score}}</div>
-            <div class="answers-col col-sm-1 text-center">{{replies.length}}</div>
-            <div class="col-sm-6">{{title}}</div>
-            <div class="col-sm-2">{{username}}</div>
+            <div class="col-sm-2 text-center">{{_id}}</div>
+            <div class="col-sm-2 text-center">{{company}}</div>
+            <div class="col-sm-2 text-center">{{author}}</div>
+            <div class="col-sm-4">{{title}}</div>
             <div class="col-sm-2">{{moment date format="MMMM D, YYYY"}}</div>
           </div>
         </a>
-      {{/each}}   --> 
+      {{/each}}  
     </div>  
     {{>footer}}
   </body>
