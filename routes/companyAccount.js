@@ -5,7 +5,6 @@ var User = require('../models/user');
 const question = require("../models/question");
 
 /* GET home page. */
-//date: new Date().toUTCString()
 router.get('/', function(req, res, next) {
     question.find()
         .exec()
@@ -13,8 +12,8 @@ router.get('/', function(req, res, next) {
             if (req.user){
                 res.render('companypage', { user : req.user });
             } else {
-                res.render('companypage',{ user : req.user });
-                }
+                res.render('companypage', { user : req.user });
+            }
         })
         .catch(err => {
             console.log(err);
@@ -26,14 +25,6 @@ router.get('/', function(req, res, next) {
 
 /* Registers a user with the information received from a POST request.*/
 router.post('/', function(req, res) {
-
-   // const errors = validationResult(req);
-   /* if (!errors.isEmpty()) {
-        const errs = errors.array()[0];
-        output = errs.param + " " + errs.msg;
-        return res.render('signIn', { reg:output });
-    }*/
-
     const user = new User({
         username: req.body.username,
         email: req.body.email,
@@ -45,14 +36,9 @@ router.post('/', function(req, res) {
 
     User.register(user, req.body.password, function(err, user ) {
         if (err) {
-            console.log(err);
             return res.render('signIn', { user : user, reg: err });
         }
-
-        //passport.authenticate('local')(req, res, function () {
-
-            res.redirect('/');
-        //});
+        res.redirect('/');
     });
 });
 module.exports = router;

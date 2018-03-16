@@ -5,7 +5,6 @@ const mongoose = require("mongoose");
 const question = require("../models/question");
 const Jobs = require("../models/jobs");
 /* GET home page. */
-//date: new Date().toUTCString()
 router.get('/', function(req, res, next) {
     question.find()
         .exec()
@@ -18,7 +17,6 @@ router.get('/', function(req, res, next) {
 
         })
         .catch(err => {
-            console.log(err);
             res.status(200).json({
                 error: err
         });
@@ -38,14 +36,13 @@ router.post('/', function(req, res, next) {
     jobs
         .save()
         .then(function(result){
-            res.redirect('/');      
-    })
+            res.redirect('/');
+        })
         .catch(function(err){
             console.log(err);
             res.status(500).json({
                 error:err
             });
         });
-
 });
 module.exports = router;
