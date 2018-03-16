@@ -3,6 +3,7 @@ var router = express.Router();
 const mongoose = require("mongoose");
 var User = require('../models/user');
 const question = require("../models/question");
+
 /* GET home page. */
 //date: new Date().toUTCString()
 router.get('/', function(req, res, next) {
@@ -22,31 +23,6 @@ router.get('/', function(req, res, next) {
         });
     }); 
 });
-/** 
-router.post('/', function(req, res, next) {
-    var genId = new mongoose.Types.ObjectId();
-    console.log(req.user);
-    const jobs = new Jobs({
-        _id: genId,
-        title: req.body.title,
-        company: req.body.company,
-        link: req.body.link,
-        author: req.body.author,
-        date: new Date().toUTCString()
-    });
-    jobs
-        .save()
-        .then(function(result){
-            res.redirect('/');      
-    })
-        .catch(function(err){
-            console.log(err);
-            res.status(500).json({
-                error:err
-            });
-        });
-
-});*/
 
 /* Registers a user with the information received from a POST request.*/
 router.post('/', function(req, res) {
