@@ -31,6 +31,7 @@ router.post('/register', [
         username: req.body.username,
         email: req.body.email,
         admin: "",
+        company: "",
         picture: 1,
         bannerColor: '#116CF6'
     });

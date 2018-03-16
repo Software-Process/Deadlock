@@ -25,7 +25,10 @@
                     <li class="nav-item"><a style="color:white" href="/jobPage">View Job List</a></li>  
                     {{#if user.admin}}  
                     <li class="nav-item"><a style="color:white" href="/jobPostingPage">Post A Job</a></li>
-                    {{/if}}  
+                    {{/if}}
+                    {{#if user.admin}}  
+                    <li class="nav-item"><a style="color:white" href="/companyAccount">Create Company Account</a></li>
+                    {{/if}}    
                 </ul>              
             </div>
         </div>

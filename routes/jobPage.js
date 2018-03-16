@@ -10,9 +10,9 @@ router.get('/', function(req, res, next) {
         .exec()
         .then(docs => {
             if (req.user){
-                res.render('jobpage', { jobs: docs});
+                res.render('jobpage', { jobs: docs, user : req.user });
             } else {
-                res.render('jobpage', { jobs: docs});
+                res.render('jobpage', { jobs: docs, user : req.user });
                 }
 
         })
