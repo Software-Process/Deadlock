@@ -17,6 +17,7 @@ const LocalStrategy = require('passport-local').Strategy;
 var Handlebars = require("handlebars");
 var MomentHandler = require("handlebars.moment");
 MomentHandler.registerHelpers(Handlebars);
+var helpers = require('handlebars-helpers')();
 
 /*
 var Handlebars     = require('handlebars');
@@ -71,7 +72,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(require('express-method-override')('_method'));
-app.use(validator())
+app.use(validator());
 
 const User = require('./models/user');
 passport.use(new LocalStrategy(User.authenticate()));

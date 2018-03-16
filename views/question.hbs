@@ -31,18 +31,41 @@
       <div class="row question-content">
         <div class="col-sm-1 text-center">
             {{#if user}}
-          <form action="/question/{{question.id}}/up" method="post">
-            <input type="hidden" name="_method" value="PATCH">
-            <button type="submit" class="not-button" onclick="questionUpCookie()" id="button-up"><i class="glyphicon glyphicon-triangle-top not-voted" id="up"></i></button>
-          </form>
+                {{#each @root.question.voteHistory}}
+                    {{#eq user @root.user.username}}
+                        {{#eq current 1}}
+                                <button class="not-button"  id="button-up"><i class="glyphicon glyphicon-triangle-top voted" id="up"></i></button>
+                                <span class="nbOfVotes">{{@root.question.score}}</span><br />
+                            <form action="/question/{{@root.question.id}}/downupped" method="post">
+                                <input type="hidden" name="_method" value="PATCH">
+                                <button type="submit" class="not-button" id="button-down"><i class="glyphicon glyphicon-triangle-bottom not-voted" id="down"></i></button>
+                            </form>
+                        {{/eq}}
+
+
+                        {{#eq current -1}}
+                            <button type="submit" class="not-button"  id="button-up"><i class="glyphicon glyphicon-triangle-top voted" id="up"></i></button>
+                        <span class="nbOfVotes">{{question.score}}</span><br />
+                        <form action="/question/{{question.id}}/down" method="post">
+                            <input type="hidden" name="_method" value="PATCH">
+                            <button type="submit" class="not-button" id="button-down"><i class="glyphicon glyphicon-triangle-bottom not-voted" id="down"></i></button>
+                        </form>
+                    {{/eq}}
+                {{/eq}}
+                {{/each}}
+
+                <form action="/question/{{question.id}}/up" method="post">
+                    <input type="hidden" name="_method" value="PATCH">
+                    <button type="submit" class="not-button"  id="button-up"><i class="glyphicon glyphicon-triangle-top not-voted" id="up"></i></button>
+                </form>
+
+                <span class="nbOfVotes">{{question.score}}</span><br />
+                <form action="/question/{{question.id}}/down" method="post">
+                    <input type="hidden" name="_method" value="PATCH">
+                    <button type="submit" class="not-button" id="button-down"><i class="glyphicon glyphicon-triangle-bottom not-voted" id="down"></i></button>
+                </form>
             {{/if}}
-          <span class="nbOfVotes">{{question.score}}</span><br />
-            {{#if user}}
-          <form action="/question/{{question.id}}/down" method="post">
-            <input type="hidden" name="_method" value="PATCH">
-            <button type="submit" class="not-button" onclick="questionDownCookie()" id="button-down"><i class="glyphicon glyphicon-triangle-bottom not-voted" id="down"></i></button>
-          </form>
-            {{/if}}
+
         </div>
         <div class="col-sm-9 content well">
           <div class="row">
@@ -95,7 +118,7 @@
                         <input type="hidden" name="_method" value="PATCH"/>
                         <textarea class="hidden"type="text" name="questionId">{{../_id}}</textarea>
                         <textarea class="hidden"type="text" name="replyId">{{replyId}}</textarea>
-                        <button type="submit" class="not-button" onclick="replyUpCookie(this)" id="reply{{@index}}up" name="{{replyId}}"><i class="glyphicon glyphicon-triangle-top not-voted" id="{{replyId}}up"></i></button>
+                        <button type="submit" class="not-button" ><i class="glyphicon glyphicon-triangle-top not-voted"></i></button>
                       </form>
                         {{/if}}
                       <span class=" nbOfVotes reply-vote">{{this.score}}</span>
@@ -105,7 +128,7 @@
                         <input type="hidden" name="_method" value="PATCH"/>
                         <textarea class="hidden" type="text" name="questionId">{{../_id}}</textarea>
                         <textarea class="hidden" type="text" name="replyId">{{replyId}}</textarea>
-                        <button type="submit" class="not-button" onclick="replyDownCookie(this)" id="reply{{@index}}down" name="{{replyId}}"><i class="glyphicon glyphicon-triangle-bottom not-voted" id="{{replyId}}down"></i></button>
+                        <button type="submit" class="not-button" ><i class="glyphicon glyphicon-triangle-bottom not-voted"></i></button>
                       </form>
               {{/if}}
                     </div>
@@ -161,16 +184,13 @@
 
     </div>
 
+    {{#unless question.hasAccepted}}
     <div class="container question-content">
       <h3>Submit an answer:</h3>
       <hr>
       <div class="write">
         <form action="/question/{{question.id}}/reply" method="post" id="reply">
           <input type="hidden" name="_method" value="PATCH">
-          <div class="row form-group">
-            <label for="inputsm" class="heading">Author:</label>
-            <input class="form-control" id="author" name="author" type="text">
-          </div>
           <div class="row">
             <label class="heading" for="inputsm">Answer:</label>
             <textarea class="form-control content" name="repform" rows="10" form="reply"> </textarea>
@@ -184,6 +204,7 @@
         </form> 
       </div>
     </div>
+    {{/unless}}
     {{>footer}}
   </body>
 </html>
