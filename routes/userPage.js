@@ -7,35 +7,33 @@ const Reply = require("../models/reply");
 /* GET user page, passing user information. */
 
 router.get('/', function(req, res, next){
- if (req.user){
+    if (req.user) { 
         var answerDocs;
         var questionDocs;
-       // req.user.username
+        // req.user.username
         Question.find({username:req.user.username})
             .exec()
             .then(docs1 => {
-                console.log(docs1);
                 questionDocs = docs1;
-            Question.find({ 'replies.username' : req.user.username})
-                .exec()
-                .then(docs2 => {
-                            console.log(docs2);
+                Question.find({ 'replies.username' : req.user.username})
+                    .exec()
+                    .then(docs2 => {
                         answerDocs = docs2;
                         res.render('userpage', {user : req.user , answers : answerDocs, questions: questionDocs});
-                            })
-                .catch(err => {
+                    })
+                    .catch(err => {
                         console.log(err);
-                    res.status(200).json({
+                        res.status(200).json({
                         error: err
                     });
                 });
-    })
-    .catch(err => {
-            console.log(err);
-        res.status(200).json({
-            error: err
-        });
-    });
+            })
+            .catch(err => {
+                console.log(err);
+                res.status(200).json({
+                    error: err
+                });
+            });
 
     } else {
         res.render('signIn');
