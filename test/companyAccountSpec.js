@@ -2,12 +2,12 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const testCompanySchema = mongoose.Schema({
-    username: {type: String, required: true},
-    email: {type: String, required: true},
-    admin: {type: String},
-    company: {type: String},
-    picture: {type: Number, required: true},
-    bannerColor: {type: String},
+  username: {type: String, required: true},
+  email: {type: String, required: true},
+  admin: {type: String},
+  company: {type: String},
+  picture: {type: Number, required: true},
+  bannerColor: {type: String},
 });
 
 const testCompanyAccount = mongoose.model('testCompany', testCompanySchema);
@@ -17,7 +17,6 @@ describe('Connecting to database for company account', function() {
     const db = mongoose.connection;
     db.on('error', console.error.bind(console, 'connection error'));
     db.once('open', function() {
-      console.log('We are connected to test database for company account!');
       done();
     });
   });
@@ -32,20 +31,20 @@ describe('Connecting to database for company account', function() {
         picture: 1,
         bannerColor: '#116CF6'
       });
- 
+
       testCompanyExample.save(done);
     });
 
     it('Should retrieve a company from test database', function(done) {
         testCompanyAccount.find({username: 'Company username'}, (err, name) => {
-        if(err) {throw err;}
-        if(name.length === 0) {throw new Error('No data!');}
-        done();
+          if(err) {throw err;}
+          if(name.length === 0) {throw new Error('No data!');}
+          done();
       });
     });
   });
   
   after(function(done){
-      mongoose.connection.close(done);
+    mongoose.connection.close(done);
   });
 });
