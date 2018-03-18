@@ -17,7 +17,15 @@ router.get('/register', function(req, res) {
 
 /* Registers a user with the information received from a POST request.*/
 router.post('/register', [
-    check('email').isEmail().withMessage('must be an email')
+    check('username').not().isEmpty().withMessage("cannot be empty"),
+    check('password').not().isEmpty().withMessage("cannot be empty"),
+    check('email').not().isEmpty().withMessage("cannot be empty"),
+    check('confirmpassword').not().isEmpty().withMessage("cannot be empty"),
+    check('email').isEmail().withMessage('must be a valid email address'),
+    check('password', 'passwords must be at least 5 characters long and contain one number')
+        .isLength({ min: 5 })
+        .matches(/\d/),
+    check('confirmpassword').custom((value, { req }) => value === req.body.password).withMessage("must match the password field")
 ],function(req, res) {
 
     const errors = validationResult(req);
@@ -62,7 +70,7 @@ router.get('/login', function(req, res) {
 router.post('/login', function(req, res, next) {
     passport.authenticate('local', function(err, user, info) {
         if (err) { return next(err); }
-        if (!user) { return res.render('signIn', {sig: "Please enter a user name."}) }
+        if (!user) { return res.render('signIn', {sig: "Incorrect username or password."}) }
         req.logIn(user, function(err) {
             if (err) { return next(err); }
             return res.render('index',{ user: user});

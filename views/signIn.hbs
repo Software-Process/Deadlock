@@ -33,7 +33,7 @@
         <div class="col-sm-6 login-section">
           <h2 class="form-heading">Login</h2>
             {{#if sig}}
-                <h4 style="color:red;"> {{sig}} </h4>
+                <div class="alert alert-danger"> {{sig}} </div>
             {{/if}}
 
           <form action="/loginRegister/login" method="post">
@@ -46,10 +46,10 @@
 
             <div class="form-group" >
               <label for="inputsm">
-                <span class="form-heading">Password:</span>
+                  <span class="form-heading">Password:</span>
               </label>
               <input class="form-control" id="password" name="password" type="password">
-            </div>
+          </div>
             <input class="btn btn-default" type="submit" value="Log in">
           </form>
         </div>
@@ -57,7 +57,7 @@
         <div class="col-sm-6 register-section">
           <h2 class="form-heading">Register</h2>
           {{#if reg}}
-            <h4 style="color:red;"> {{reg}} </h4>
+            <div class="alert alert-danger"> {{reg}} </div>
           {{/if}}
 
           <form action="/loginRegister/register" method="post">
@@ -81,6 +81,13 @@
               </label>
               <input class="form-control" id="password" name="password" type="password">
             </div>
+              <div class="form-group" >
+                  <label for="inputsm">
+                      <span class="form-heading">Confirm password:</span>
+                  </label>
+                  <input class="form-control" id="confirmpassword" name="confirmpassword" type="password">
+              </div>
+
             <input class="btn btn-default" type="submit" value="Register">
           </form>
         </div>
