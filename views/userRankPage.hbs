@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>DeadLock - Ask A Question</title>
+    <meta charset="utf-8">    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- External JavaScript -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="javascripts/question-prompt.js"></script>
+
+    <!-- External CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="stylesheets/standardstyle.css">
+    <link rel="stylesheet" href="stylesheets/userrankpagestlye.css">
+   
+  </head>
+  <body>
+    {{>header}}
+      <!-- Jumbotron containing all tags -->
+      <div class="jumbotron container-fluid text-center" style="margin-top: 25px">
+        <h2>Select a tag</h2>
+        <p>View all users based on tag score</p>
+        <div class="btn-group-wrap">
+          <div class="btn-group">
+              <button class="btn btn-success" type="button">Java</button>
+              <button class="btn btn-success" type="button">Php</button>
+              <button class="btn btn-success" type="button">Python</button>
+              <button class="btn btn-success" type="button">C++</button>
+              <button class="btn btn-success" type="button">C#</button>
+              <button class="btn btn-success" type="button">Ruby</button>
+              <button class="btn btn-success" type="button">Lisp</button>
+              <button class="btn btn-success" type="button">Prolog</button>
+              <button class="btn btn-success" type="button">HTML</button>
+              <button class="btn btn-success" type="button">CSS</button>
+              <button class="btn btn-success" type="button">JavaScript</button>
+              <button class="btn btn-success" type="button">Jade</button>
+              <button class="btn btn-success" type="button">C</button>
+              <button class="btn btn-success" type="button">Fortran</button>
+              <button class="btn btn-success" type="button">Visual Basic</button>
+              <button class="btn btn-success" type="button">Assembly</button>
+              <button class="btn btn-success" type="button">Perl</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="container">
+        <!-- Tag selection is shown here -->
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="card text-center"><h1 class="tag-selected">Java</h1></div>
+          </div>
+        </div>
+
+        <!-- list of all users with the selected tag -->
+        <table class="table table-striped text-center">
+          <thead>
+            <tr>
+              <th>Username</th>
+              <th>Email</th>
+              <th>Score</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>John Doe</td>
+              <td>JohnDoe@aol.com</td>
+              <td>54</td>
+            </tr>
+            <tr>
+              <td>Mary Moe</td>
+              <td>JohnDoe@aol.com</td>
+              <td>34</td>
+            </tr>
+            <tr>
+              <td>July Dooley</td>
+              <td>Dooley@aol.com</td>
+              <td>12</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    {{>footer}}
+  </body>
+</html>
