@@ -33,7 +33,7 @@
         <div class="col-sm-6 login-section">
           <h2 class="form-heading">Login</h2>
             {{#if sig}}
-                <h4 style="color:red;"> {{sig}} </h4>
+                <div class="alert alert-danger"> {{sig}} </div>
             {{/if}}
 
           <form action="/loginRegister/login" method="post">
@@ -57,7 +57,7 @@
         <div class="col-sm-6 register-section">
           <h2 class="form-heading">Register</h2>
           {{#if reg}}
-            <h4 style="color:red;"> {{reg}} </h4>
+            <div class="alert alert-danger"> {{reg}} </div>
           {{/if}}
 
           <form action="/loginRegister/register" method="post">
