@@ -53,7 +53,7 @@ router.get('/:name', function(req, res, next){
                 Question.find({ 'replies.username' : req.user.username})
                     .exec()
                     .then(docs2 => {
-                        answerDocs = docs2.reverse();console.log("\n************123123888888888888"+req.user);
+                        answerDocs = docs2.reverse();
                         res.render('userpage', {user : req.user , answers : answerDocs, questions: questionDocs});
                     })
                     .catch(err => {
@@ -80,21 +80,17 @@ router.get('/:name', function(req, res, next){
         User.find({username:uname})
             .exec()
             .then(accounts => {
-                //userDocs=docs.reverse();
-                console.log("\n************TAKE 1"+accounts);
-                Question.find({username:uname})
-                //.exec()
+               Question.find({username:uname})
+                .exec()
                 .then(docs1 => {
                     questionDocs = docs1.reverse();
-                    console.log("\n************TAKE 2"+accounts);
                     Question.find({ 'replies.username' : uname})
-                       // .exec()
+                        .exec()
                         .then(docs2 => {
                             
-                             console.log("\n************TAKE 3"+accounts);
                             answerDocs = docs2.reverse();
-                            console.log("********BEFORE PRINTT"+req.user+"-------------------- "+accounts["username"]+" 888888 "+accounts.email+"\n 555555");
-                            res.render('userpage', { accounts , answers : answerDocs, questions: questionDocs, user: req.user});
+                            console.log(accounts);
+                            res.render('userpage', { user: accounts , answers : answerDocs, questions: questionDocs});
                         })
                         .catch(err => {
                             console.log(err);
