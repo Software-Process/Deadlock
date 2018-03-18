@@ -19,7 +19,7 @@ router.get('/', function(req, res, next){
                     .exec()
                     .then(docs2 => {
                         answerDocs = docs2.reverse();
-                        res.render('userpage', {user : req.user , answers : answerDocs, questions: questionDocs});
+                        res.render('userpage', {user : req.user , answers : answerDocs, questions: questionDocs, logedUser: req.user, allowEdit: "True"});
                     })
                     .catch(err => {
                         console.log(err);
@@ -40,12 +40,11 @@ router.get('/', function(req, res, next){
     }
 });
 router.get('/:name', function(req, res, next){
-   const uname = req.params.name;
+const uname = req.params.name;
 
     if (req.user && (uname == req.user.username)) { 
         var answerDocs;
         var questionDocs;
-        // req.user.username
         Question.find({username:req.user.username})
             .exec()
             .then(docs1 => {
@@ -54,7 +53,7 @@ router.get('/:name', function(req, res, next){
                     .exec()
                     .then(docs2 => {
                         answerDocs = docs2.reverse();
-                        res.render('userpage', {user : req.user , answers : answerDocs, questions: questionDocs});
+                        res.render('userpage', {user : req.user , answers : answerDocs, questions: questionDocs, logedUser: req.user, allowEdit: "True"});
                     })
                     .catch(err => {
                         console.log(err);
@@ -71,11 +70,9 @@ router.get('/:name', function(req, res, next){
             });
 
     } else {
-        //res.render('signIn');
         var answerDocs;
         var questionDocs;
         var userDocs;
-        // req.user.username
         User.find({username:uname})
             .exec()
             .then(accounts => {
@@ -85,10 +82,9 @@ router.get('/:name', function(req, res, next){
                     questionDocs = docs1.reverse();
                     Question.find({ 'replies.username' : uname})
                         .exec()
-                        .then(docs2 => {
-                            
+                        .then(docs2 => {                   
                             answerDocs = docs2.reverse();
-                            res.render('userpageexternal', { user: accounts[0] , answers : answerDocs, questions: questionDocs, oguser: req.user });
+                            res.render('userpage', { user: accounts[0] , answers : answerDocs, questions: questionDocs, logedUser: req.user });
                         })
                         .catch(err => {
                             console.log(err);
