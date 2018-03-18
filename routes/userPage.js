@@ -14,11 +14,11 @@ router.get('/', function(req, res, next){
         Question.find({username:req.user.username})
             .exec()
             .then(docs1 => {
-                questionDocs = docs1;
+                questionDocs = docs1.reverse();
                 Question.find({ 'replies.username' : req.user.username})
                     .exec()
                     .then(docs2 => {
-                        answerDocs = docs2;
+                        answerDocs = docs2.reverse();
                         res.render('userpage', {user : req.user , answers : answerDocs, questions: questionDocs});
                     })
                     .catch(err => {

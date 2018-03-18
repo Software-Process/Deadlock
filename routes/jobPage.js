@@ -10,11 +10,10 @@ router.get('/', function(req, res, next) {
         .exec()
         .then(docs => {
             if (req.user){
-                res.render('jobpage', { jobs: docs, user : req.user });
+                res.render('jobpage', { jobs: docs.reverse(), user : req.user });
             } else {
-                res.render('jobpage', { jobs: docs, user : req.user });
-                }
-
+                res.render('jobpage', { jobs: docs.reverse(), user : req.user });
+            }
         })
         .catch(err => {
             console.log(err);
