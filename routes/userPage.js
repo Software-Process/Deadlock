@@ -72,7 +72,6 @@ router.get('/:name', function(req, res, next){
 
     } else {
         //res.render('signIn');
-        console.log("****************ELSEEEEEEEE******");
         var answerDocs;
         var questionDocs;
         var userDocs;
@@ -89,7 +88,6 @@ router.get('/:name', function(req, res, next){
                         .then(docs2 => {
                             
                             answerDocs = docs2.reverse();
-                            console.log(accounts);
                             res.render('userpageexternal', { user: accounts[0] , answers : answerDocs, questions: questionDocs, oguser: req.user });
                         })
                         .catch(err => {
