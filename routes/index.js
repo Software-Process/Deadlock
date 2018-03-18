@@ -9,10 +9,10 @@ router.get('/', function(req, res, next) {
         .exec()
         .then(docs => {
             if (req.user){
-                res.render('index', { questions: docs, user : req.user });
+                res.render('index', { questions: docs.reverse(), user : req.user });
             } else {
-                res.render('index', { questions: docs});
-                }
+                res.render('index', { questions: docs.reverse()});
+            }
 
         })
         .catch(err => {
