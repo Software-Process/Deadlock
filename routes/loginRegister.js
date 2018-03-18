@@ -34,15 +34,27 @@ router.post('/register', [
         output = errs.param + " " + errs.msg;
         return res.render('signIn', { reg:output });
     }
+    console.log(req.body.apply);
+    if (req.body.apply){
+        user = new User({
+            username: req.body.username,
+            email: req.body.email,
+            admin: "",
+            company: "requested",
+            picture: 1,
+            bannerColor: '#116CF6'
+        });
+    } else {
+        user = new User({
+            username: req.body.username,
+            email: req.body.email,
+            admin: "",
+            company: "",
+            picture: 1,
+            bannerColor: '#116CF6'
+        });
+    }
 
-    const user = new User({
-        username: req.body.username,
-        email: req.body.email,
-        admin: "",
-        company: "",
-        picture: 1,
-        bannerColor: '#116CF6'
-    });
 
     User.register(user, req.body.password, function(err, user ) {
         if (err) {
