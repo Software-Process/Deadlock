@@ -20,10 +20,12 @@ router.post('/register', [
     check('username').not().isEmpty().withMessage("cannot be empty"),
     check('password').not().isEmpty().withMessage("cannot be empty"),
     check('email').not().isEmpty().withMessage("cannot be empty"),
+    check('confirmpassword').not().isEmpty().withMessage("cannot be empty"),
     check('email').isEmail().withMessage('must be a valid email address'),
     check('password', 'passwords must be at least 5 characters long and contain one number')
         .isLength({ min: 5 })
-        .matches(/\d/)
+        .matches(/\d/),
+    check('confirmpassword').custom((value, { req }) => value === req.body.password).withMessage("must match the password field")
 
 ],function(req, res) {
 
