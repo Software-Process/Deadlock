@@ -1,12 +1,9 @@
-const express = require('express');
-const router = express.Router();
+var express = require('express');
+var router = express.Router();
 
 const mongoose = require("mongoose");
 
 const Question = require("../models/question");
-
-const { check, validationResult } = require('express-validator/check');
-const { matchedData, sanitize } = require('express-validator/filter');
 
 /*To render the question-prompt.hbs page. Redirects if user is not signed in.*/
 router.get('/', function(req, res, next) {
@@ -18,20 +15,9 @@ router.get('/', function(req, res, next) {
   });
 
 /* Submits a question via a POST request.*/
-router.post('/', [
-    check('title').not().isEmpty().withMessage("cannot be empty"),
-    check('question').not().isEmpty().withMessage("cannot be empty"),
-
-], function(req, res, next) {
-
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-        const errs = errors.array()[0];
-        output = errs.param + " " + errs.msg;
-        return res.render('question-prompt', { err:output });
-    }
-    const genId = new mongoose.Types.ObjectId();
-
+router.post('/', function(req, res, next) {
+    var genId = new mongoose.Types.ObjectId();
+    console.log(req.user);
     const question = new Question({
         _id: genId,
         title: req.body.title,

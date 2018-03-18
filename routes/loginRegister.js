@@ -26,7 +26,6 @@ router.post('/register', [
         .isLength({ min: 5 })
         .matches(/\d/),
     check('confirmpassword').custom((value, { req }) => value === req.body.password).withMessage("must match the password field")
-
 ],function(req, res) {
 
     const errors = validationResult(req);
@@ -71,10 +70,10 @@ router.get('/login', function(req, res) {
 router.post('/login', function(req, res, next) {
     passport.authenticate('local', function(err, user, info) {
         if (err) { return next(err); }
-        if (!user) { return res.render('signIn', {sig: "Username or password error."}) }
+        if (!user) { return res.render('signIn', {sig: "Please enter a user name."}) }
         req.logIn(user, function(err) {
             if (err) { return next(err); }
-            return res.redirect('/');
+            return res.render('index',{ user: user});
         });
     })(req, res, next);
 });
