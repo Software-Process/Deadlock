@@ -20,11 +20,48 @@
     <link rel="stylesheet" href="/stylesheets/standardstyle.css">
   </head>
   <body>
-    {{>header}}
+    <nav class="navbar navbar-inverse navbar-fixed-top navbar-custom navbar-custom" role="navigation">
+    <div class="container">
+      <!-- Deadlock logo -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>                        
+        </button>
+        <a class="navbar-brand" href="/"><img src="/images/" width="100%" height="100%" class="d-inline-block align-top" alt="Deadlock"></a>
+        <!-- <a href="/"><img src="images/lock.png" style="margin:5px; width: 20%;height: 20%;" ></a>   --> 
+      </div>
+
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav">
+          <li class="nav-item"><a style="color:white" href="/">Home</a></li>
+          {{#if oguser}}
+            <li class="nav-item"><a style="color:orange" href="/loginRegister/logout">Logout</a></li>
+          {{else}}
+            <li class="nav-item"><a style="color:white" href="/loginRegister">Log in / Register</a></li>
+          {{/if}}
+          <li class="nav-item"><a style="color:white" href="/aboutus">About Us</a></li>
+          <li class="nav-item"><a style="color:white" href="/userpage">User Page</a></li> 
+          <li class="nav-item"><a style="color:white" href="/jobPage">View Job List</a></li>  
+          {{#if user.admin}}  
+            <li class="nav-item"><a style="color:white" href="/jobPostingPage">Post A Job</a></li>
+          {{/if}}
+          {{#if user.company}}  
+            <li class="nav-item"><a style="color:white" href="/jobPostingPage">Post A Job</a></li>
+            <li class="nav-item"><a style="color:white" href="/userRankPage">User Rankings</a></li>
+          {{/if}}
+          {{#if user.admin}}  
+            <li class="nav-item"><a style="color:white" href="/companyAccount">Create Company Account</a></li>
+          {{/if}}    
+        </ul>              
+      </div>
+    </div>
+  </nav>
+
     <div class="jumbotron text-center" style="background-color: #116CF6; margin-top: 50px">
       <img class="img-circle profile-picture" src="/images/default1.png">
       <h2><strong>{{user.username}}</strong></h2>
-     <button class="btn btn-info" type="button" onclick="location.href='/edituserpage'">Edit profile</button>
      </div>
     <div class="container">
       <div class="row">
@@ -142,7 +179,7 @@
               <li class="list-group-item">
                 <a href="/question/{{id}}">
                   <div class="row question-row">
-                    <div class="col-sm-1"><center><img class="img-circle profile-icon" src="images/default1.png"></center></div>
+                    <div class="col-sm-1"><center><img class="img-circle profile-icon" src="/images/default1.png"></center></div>
                     <div class="col-sm-2">{{username}}</div>
                     <div class="col-sm-7">{{title}}</div>
                     <div class="col-sm-1">{{moment date format="MMMM D, YYYY"}}</div>

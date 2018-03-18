@@ -90,7 +90,7 @@ router.get('/:name', function(req, res, next){
                             
                             answerDocs = docs2.reverse();
                             console.log(accounts);
-                            res.render('userpage', { user: accounts , answers : answerDocs, questions: questionDocs});
+                            res.render('userpageexternal', { user: accounts[0] , answers : answerDocs, questions: questionDocs, oguser: req.user });
                         })
                         .catch(err => {
                             console.log(err);
