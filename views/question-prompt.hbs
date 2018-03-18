@@ -8,11 +8,10 @@
     <!-- External JavaScript -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="javascripts/question-prompt.js"></script>
 
     <!-- External CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="stylesheets/standardstyle.css">
+    <link rel="stylesheet" href="/stylesheets/standardstyle.css">
   </head>
   <body>
     {{>header}}
@@ -21,7 +20,12 @@
         <h2>Ask a question <small>Fill all fields</small></h2> 
       </div>
 
-      <form action="/question-prompt" method="post">
+        {{#if err}}
+            <h4 style="color:red;"> {{err}} </h4>
+        {{/if}}
+
+
+        <form action="/question-prompt" method="post">
         <div class="form-group">
           <label for="inputsm">Title:</label>
           <input class="form-control" id="title" name="title" type="text">
