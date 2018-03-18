@@ -70,7 +70,7 @@ router.get('/login', function(req, res) {
 router.post('/login', function(req, res, next) {
     passport.authenticate('local', function(err, user, info) {
         if (err) { return next(err); }
-        if (!user) { return res.render('signIn', {sig: "Please enter a user name."}) }
+        if (!user) { return res.render('signIn', {sig: "Incorrect username or password."}) }
         req.logIn(user, function(err) {
             if (err) { return next(err); }
             return res.render('index',{ user: user});
