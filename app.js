@@ -7,7 +7,7 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const mongoose = require("mongoose");
 const hbs = require( 'express-handlebars' );
-
+const validator = require('express-validator');
 
 //passport
 const passport = require('passport');
@@ -39,7 +39,8 @@ const editUserPage = require('./routes/editUserPage');
 const companyAccount = require('./routes/companyAccount');
 const jobPage = require('./routes/jobPage');
 const jobPostingPage = require('./routes/jobPostingPage');
-const validator = require('express-validator');
+const userRankPage = require('./routes/userRankPage');
+
 
 const app = express();
 
@@ -110,6 +111,7 @@ app.use('/companyAccount', companyAccount);
 app.use('/jobPage', jobPage);
 app.use('/jobPostingPage', jobPostingPage);
 app.use('/loginRegister', loginRegister);
+app.use('/userRankPage', userRankPage);
 
 
 mongoose.connect("mongodb://soen341:soen341@soen341-shard-00-00-ruxjj.mongodb.net:27017,soen341-shard-00-01-ruxjj.mongodb.net:27017,soen341-shard-00-02-ruxjj.mongodb.net:27017/test?ssl=true&replicaSet=SOEN341-shard-0&authSource=admin");
