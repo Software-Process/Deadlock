@@ -26,3 +26,9 @@ img.profile-icon {
 	width:50%;
 	height:50%;
 }
+
+.tag {
+	padding: 8px;
+	margin: 0px 2px;
+	font-size: 12px;
+}
