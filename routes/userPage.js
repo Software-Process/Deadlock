@@ -1,22 +1,19 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
 const Question = require("../models/question");
-const Reply = require("../models/reply");
 const User =  require("../models/user");
-/* GET user page, passing user information. */
 
+
+/* GET user page, will reflect the logged-in user. */
 router.get('/', function(req, res, next){
     if (req.user) { 
-        var answerDocs;
-        var questionDocs;
-        // req.user.username
+        let answerDocs;
+        let questionDocs;
         Question.find({username:req.user.username})
-            .exec()
             .then(docs1 => {
                 questionDocs = docs1.reverse();
                 Question.find({ 'replies.username' : req.user.username})
-                    .exec()
                     .then(docs2 => {
                         answerDocs = docs2.reverse();
                         res.render('userpage', {user : req.user , answers : answerDocs, questions: questionDocs, allowEdit: "True"});
@@ -39,6 +36,9 @@ router.get('/', function(req, res, next){
         res.render('signIn');
     }
 });
+
+/* GET user page of a different user than the logged-in one, or
+ * allows a non-logged in user to view a user page */
 router.get('/:name', function(req, res, next){
 const uname = req.params.name;
 
@@ -46,18 +46,14 @@ const uname = req.params.name;
         res.redirect('/userPage');
 
     } else {
-        var answerDocs;
-        var questionDocs;
-        var userDocs;
+        let answerDocs;
+        let questionDocs;
         User.find({username:uname})
-            .exec()
             .then(accounts => {
                Question.find({username:uname})
-                .exec()
                 .then(docs1 => {
                     questionDocs = docs1.reverse();
                     Question.find({ 'replies.username' : uname})
-                        .exec()
                         .then(docs2 => {                   
                             answerDocs = docs2.reverse();
                             if (!req.user) {
