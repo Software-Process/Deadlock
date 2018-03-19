@@ -15,8 +15,7 @@ router.get('/:questionId', function(req, res, next) {
     const id = req.params.questionId;
     Question.findById(id)
         .exec()
-        .then(function(doc){
-            console.log(doc.tags);          
+        .then(function(doc){                 
             if (doc){
                 res.render('question', { question: doc, user: req.user, tags: doc.tags });
             } else {
