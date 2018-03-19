@@ -73,7 +73,7 @@ router.post('/login', function(req, res, next) {
         if (!user) { return res.render('signIn', {sig: "Incorrect username or password."}) }
         req.logIn(user, function(err) {
             if (err) { return next(err); }
-            return res.render('index',{ user: user});
+            return res.redirect('/');
         });
     })(req, res, next);
 });

@@ -15,15 +15,18 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
 
-    <link rel="stylesheet" href="stylesheets/userpagestyle.css">
-    <link rel="stylesheet" href="stylesheets/standardstyle.css">
+    <link rel="stylesheet" href="/stylesheets/userpagestyle.css">
+    <link rel="stylesheet" href="/stylesheets/standardstyle.css">
   </head>
   <body>
     {{>header}}
+
     <div class="jumbotron text-center" style="background-color: #116CF6; margin-top: 50px">
-      <img class="img-circle profile-picture" src="images/default1.png">
-      <h2><strong>{{user.username}}</strong></h2>
-      <button class="btn btn-info" type="button" onclick="location.href='/edituserpage'">Edit profile</button>
+      <img class="img-circle profile-picture" src="/images/default1.png">
+      <h2><strong>{{user.username}}</strong></h2> 
+       {{#if allowEdit}}  
+           <button class="btn btn-info" type="button" onclick="location.href='/edituserpage'">Edit profile</button>
+       {{/if}}
     </div>
 
     <!-- User tag scores -->
@@ -237,7 +240,7 @@
               <li class="list-group-item">
                 <a href="/question/{{id}}">
                   <div class="row question-row">
-                    <div class="col-sm-1"><center><img class="img-circle profile-icon" src="images/default1.png"></center></div>
+                    <div class="col-sm-1"><center><img class="img-circle profile-icon" src="/images/default1.png"></center></div>
                     <div class="col-sm-2">{{username}}</div>
                     <div class="col-sm-6">{{title}}</div>
                     <div class="col-sm-2">{{moment date format="MMMM D, YYYY"}}</div>
