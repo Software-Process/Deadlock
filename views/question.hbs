@@ -43,7 +43,16 @@
           <div class="row">
             <p>{{question.text}}</p>
              <hr />
-             <span class="badge">Tags:</span>
+             <div class="row">
+                <div class="col-sm-1">
+                  <span class="label label-pill label-default">Tags:</span>
+                </div>
+                <div class="col-sm-11">
+                  {{#each tags}}
+                    <span class="label label-pill label-success">{{this}}</span>
+                  {{/each}}
+                </div>
+             </div>             
           </div>
         </div>
          <div class="col-sm-2">                        

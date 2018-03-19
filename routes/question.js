@@ -16,9 +16,9 @@ router.get('/:questionId', function(req, res, next) {
     Question.findById(id)
         .exec()
         .then(function(doc){
-            console.log("From database", doc);
+            console.log(doc.tags);          
             if (doc){
-                res.render('question', { question: doc, user: req.user });
+                res.render('question', { question: doc, user: req.user, tags: doc.tags });
             } else {
                 res.status(404).json({message: "No valid entry found for provided id"});
             }

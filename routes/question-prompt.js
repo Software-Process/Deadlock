@@ -12,12 +12,11 @@ router.get('/', function(req, res, next) {
     } else {
         res.render('signIn');
     }
-  });
+});
 
 /* Submits a question via a POST request.*/
 router.post('/', function(req, res, next) {
     var genId = new mongoose.Types.ObjectId();
-    console.log(req.user);
     const question = new Question({
         _id: genId,
         title: req.body.title,
@@ -27,7 +26,8 @@ router.post('/', function(req, res, next) {
         author: req.user._id,
         username: req.user.username,
         date: new Date().toUTCString(),
-        replies: []
+        replies: [],
+        tags: req.body.tag
     });
     question
         .save()
@@ -41,6 +41,5 @@ router.post('/', function(req, res, next) {
                 error:err
             });
         });
-
 });
 module.exports = router;

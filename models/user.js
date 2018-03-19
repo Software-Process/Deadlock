@@ -23,7 +23,24 @@ const userSchema = new Schema({
     spokenLanguage: {type: String},
     programmingLanguage: {type: String},
     questions: {type: [mongoose.Schema.Types.ObjectId]},
-    answers: {type: [mongoose.Schema.Types.ObjectId]}
+    answers: {type: [mongoose.Schema.Types.ObjectId]},
+    tagJava : {type: Number},
+    tagPHP : {type: Number},
+    tagPython : {type: Number},
+    tagCplusPlus : {type: Number},
+    tagCsharp : {type: Number},
+    tagRuby : {type: Number},
+    tagLisp : {type: Number},
+    tagProlog : {type: Number},
+    tagHtml : {type: Number},
+    tagCss : {type: Number},
+    tagJavaScript : {type: Number},
+    tagJade : {type: Number},
+    tagC : {type: Number},
+    tagFortran : {type: Number},
+    tagVisualBasic : {type: Number},
+    tagAssembly : {type: Number},
+    tagPerl : {type: Number}
 });
 
 userSchema.plugin(passportLocalMongoose);

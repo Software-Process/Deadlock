@@ -192,9 +192,9 @@
           <ul class="list-group">
             <li class="list-group-item">
               <div class="row question-row">
-                <div class="col-sm-9"><strong>Title</strong></div>
+                <div class="col-sm-8"><strong>Title</strong></div>
                 <div class="col-sm-1"><span class="badge">Replies</span></div>
-                <div class="col-sm-1"><strong>Date</strong></div>
+                <div class="col-sm-2"><strong>Date</strong></div>
                 <div class="col-sm-1"><strong>Status</strong></div>
               </div>
             </li>
@@ -202,13 +202,13 @@
             <li class="list-group-item">
             <a href="/question/{{id}}">
               <div class="row question-row">
-              <div class="col-sm-9">{{title}}</div>
+              <div class="col-sm-8">{{title}}</div>
               <div class="col-sm-1">
                 <center>
                 <span class="badge">{{nbOfVotes}}</span>
                 </center>
               </div>
-              <div class="col-sm-1">{{moment date format="MMMM D, YYYY"}}</div>
+              <div class="col-sm-2">{{moment date format="MMMM D, YYYY"}}</div>
               <div class="col-sm-1">
                 <center>
                 <span class="glyphicon glyphicon-lock"></span>
@@ -228,8 +228,8 @@
             <li class="list-group-item">
               <div class="row question-row" >
                 <div class="col-sm-3"><center><strong>Author</strong></center></div>
-                <div class="col-sm-7"><strong>Title</strong></div>
-                <div class="col-sm-1"><strong>Date</strong></div>
+                <div class="col-sm-6"><strong>Title</strong></div>
+                <div class="col-sm-2"><strong>Date</strong></div>
                 <div class="col-sm-1"><strong>Status</strong></div>
               </div>
             </li>
@@ -239,8 +239,8 @@
                   <div class="row question-row">
                     <div class="col-sm-1"><center><img class="img-circle profile-icon" src="images/default1.png"></center></div>
                     <div class="col-sm-2">{{username}}</div>
-                    <div class="col-sm-7">{{title}}</div>
-                    <div class="col-sm-1">{{moment date format="MMMM D, YYYY"}}</div>
+                    <div class="col-sm-6">{{title}}</div>
+                    <div class="col-sm-2">{{moment date format="MMMM D, YYYY"}}</div>
                     <div class="col-sm-1"><center>
                       <span class="glyphicon glyphicon-lock"></span>
                       <span class="glyphicon glyphicon-refresh"></span>
