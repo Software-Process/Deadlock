@@ -119,3 +119,17 @@ body {
 #question-vote {
     padding-left: 4px;
 }
+
+.accepted {
+    background-color: green;
+    border-color: #054700;
+}
+
+.rejected {
+    background-color: red;
+    border-color: darkred;
+}
+
+.voted1 {
+    color: white;
+}
