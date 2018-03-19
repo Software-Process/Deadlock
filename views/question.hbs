@@ -134,6 +134,7 @@
                         </div>
                         {{#unless @root.question.hasAccepted}}
                           {{#eq @root.user.username @root.question.username}}
+                              {{#unlessEq username @root.question.username}}
                             <div class="row">
                               <div class="col-sm-6">
                                 <form action="/question/{{_id}}/accept" method="post">
@@ -148,6 +149,7 @@
                                 </form>
                               </div>
                             </div>
+                              {{/unlessEq}}
                           {{/eq}}
                         {{/unless}}
                       </div>
