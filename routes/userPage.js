@@ -84,7 +84,7 @@ const uname = req.params.name;
                         .exec()
                         .then(docs2 => {                   
                             answerDocs = docs2.reverse();
-                            res.render('userpage', { user: accounts[0] , answers : answerDocs, questions: questionDocs, logedUser: req.user });S
+                            res.render('userpage', { user: accounts[0] , answers : answerDocs, questions: questionDocs, logedUser: req.user });
                         })
                         .catch(err => {
                             console.log(err);
