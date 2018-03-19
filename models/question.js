@@ -9,7 +9,8 @@ const questionSchema = new Schema({
     author: {type: mongoose.Schema.Types.ObjectId, required: true},
     username: String,
     date: {type: String, required: true},
-    replies: [Reply.schema]
+    replies: [Reply.schema],
+    tags: [{type: String}]
 });
 
 module.exports = mongoose.model("Question", questionSchema);
