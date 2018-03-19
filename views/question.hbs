@@ -43,12 +43,21 @@
           <div class="row">
             <p>{{question.text}}</p>
              <hr />
-             <span class="badge">Tags:</span>
+             <div class="row">
+                <div class="col-sm-1">
+                  <span class="label label-pill label-default">Tags:</span>
+                </div>
+                <div class="col-sm-11">
+                  {{#each tags}}
+                    <span class="label label-pill label-success">{{this}}</span>
+                  {{/each}}
+                </div>
+             </div>             
           </div>
         </div>
          <div class="col-sm-2">                        
           <div class="well text-center user-info-container" style="padding: 10px">
-            <a href="/userpage"><img class="img-circle user-picture" src="../images/default1.png"></a>
+            <a href="/userpage/{{question.username}}"><img class="img-circle user-picture" src="../images/default1.png"></a>
             <h5 class="user-info">{{question.username}}</h5>
             <h5 class="user-info">asked on <br /> {{moment question.date format="MMMM D, YYYY"}}</h5>
           </div>
@@ -99,7 +108,7 @@
                   </div>
                   <div class="col-sm-2">
                      <div class="well text-center user-info-container" style="padding: 10px">
-                      <a href="/userpage"><img class="img-circle user-picture" src="../images/default2.png"></a>
+                      <a href="/userpage/{{this.username}}"><img class="img-circle user-picture" src="../images/default2.png"></a>
                       <h5 class="user-info">{{this.username}}</h5>
                       <h5 class="user-info">replied on <br /> {{moment question.date format="MMMM D, YYYY"}}</h5>
                     </div>

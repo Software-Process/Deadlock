@@ -15,16 +15,115 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
 
-    <link rel="stylesheet" href="stylesheets/userpagestyle.css">
-    <link rel="stylesheet" href="stylesheets/standardstyle.css">
+    <link rel="stylesheet" href="/stylesheets/userpagestyle.css">
+    <link rel="stylesheet" href="/stylesheets/standardstyle.css">
   </head>
   <body>
     {{>header}}
+
     <div class="jumbotron text-center" style="background-color: #116CF6; margin-top: 50px">
-      <img class="img-circle profile-picture" src="images/default1.png">
-      <h2><strong>{{user.username}}</strong></h2>
-      <button class="btn btn-info" type="button" onclick="location.href='/edituserpage'">Edit profile</button>
+      <img class="img-circle profile-picture" src="/images/default1.png">
+      <h2><strong>{{user.username}}</strong></h2> 
+       {{#if allowEdit}}  
+           <button class="btn btn-info" type="button" onclick="location.href='/edituserpage'">Edit profile</button>
+       {{/if}}
     </div>
+
+    <!-- User tag scores -->
+    <div class="container-fluid">
+      <div class="form-group">
+        <div class="badge-group-wrap text-center">
+          <div class="badge-group" data-toggle="buttons">
+
+            <span class="label tag label-pill label-success">
+              <span>2</span>
+              <span>Java</span>
+            </span>
+
+            <span class="label tag label-pill label-primary">
+              <span>2</span>
+              <span>PHP</span>              
+            </span>      
+          
+            <span class="label tag label-pill label-info">
+              <span>2</span>
+              <span>Python</span>              
+            </span>      
+          
+            <span class="label tag label-pill label-default">
+              <span>2</span>
+              <span>C++</span>              
+            </span>      
+
+            <span class="label tag label-pill label-warning">
+              <span>2</span>
+              <span>C#</span>              
+            </span>      
+          
+            <span class="label tag label-pill label-danger">
+              <span>2</span>
+              <span>Ruby</span>              
+            </span>  
+
+            <span class="label tag label-pill label-success">
+              <span>2</span>
+              <span>Lisp</span>              
+            </span>
+
+            <span class="label tag label-pill label-primary">
+              <span>2</span>
+              <span>Prolog</span>              
+            </span>      
+          
+            <span class="label tag label-pill label-info">
+              <span>2</span>
+              <span>HTML</span>              
+            </span>
+          
+            <label class="label tag label-pill label-default">
+              <span>2</span>
+              <span>CSS</span>              
+            </label>      
+
+            <label class="label tag label-pill label-warning">
+              <span>2</span>
+              <span>JavaScript</span>              
+            </label>      
+          
+            <label class="label tag label-pill label-danger">
+              <span>2</span>
+              <span>Jade</span>              
+            </label>
+
+            <label class="label tag label-pill label-success">
+              <span>2</span>
+              <span>C</span>              
+            </label>
+
+            <label class="label tag label-pill label-primary">
+              <span>2</span>
+              <span>Fortran</span> 
+            </label>      
+          
+            <label class="label tag label-pill label-info">
+              <span>2</span>
+              <span>Visual Basic</span>              
+            </label>      
+          
+            <label class="label tag label-pill label-default">
+              <span>2</span>
+              <span>Assembly</span>              
+            </label>      
+
+            <label class="label tag label-pill label-warning">
+              <span>2</span>
+              <span>Perl</span>              
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="container">
       <div class="row">
         <div class="col-sm-3 offset-sm-1">
@@ -96,9 +195,9 @@
           <ul class="list-group">
             <li class="list-group-item">
               <div class="row question-row">
-                <div class="col-sm-9"><strong>Title</strong></div>
+                <div class="col-sm-8"><strong>Title</strong></div>
                 <div class="col-sm-1"><span class="badge">Replies</span></div>
-                <div class="col-sm-1"><strong>Date</strong></div>
+                <div class="col-sm-2"><strong>Date</strong></div>
                 <div class="col-sm-1"><strong>Status</strong></div>
               </div>
             </li>
@@ -106,13 +205,13 @@
             <li class="list-group-item">
             <a href="/question/{{id}}">
               <div class="row question-row">
-              <div class="col-sm-9">{{title}}</div>
+              <div class="col-sm-8">{{title}}</div>
               <div class="col-sm-1">
                 <center>
                 <span class="badge">{{nbOfVotes}}</span>
                 </center>
               </div>
-              <div class="col-sm-1">{{moment date format="MMMM D, YYYY"}}</div>
+              <div class="col-sm-2">{{moment date format="MMMM D, YYYY"}}</div>
               <div class="col-sm-1">
                 <center>
                 <span class="glyphicon glyphicon-lock"></span>
@@ -132,8 +231,8 @@
             <li class="list-group-item">
               <div class="row question-row" >
                 <div class="col-sm-3"><center><strong>Author</strong></center></div>
-                <div class="col-sm-7"><strong>Title</strong></div>
-                <div class="col-sm-1"><strong>Date</strong></div>
+                <div class="col-sm-6"><strong>Title</strong></div>
+                <div class="col-sm-2"><strong>Date</strong></div>
                 <div class="col-sm-1"><strong>Status</strong></div>
               </div>
             </li>
@@ -141,10 +240,10 @@
               <li class="list-group-item">
                 <a href="/question/{{id}}">
                   <div class="row question-row">
-                    <div class="col-sm-1"><center><img class="img-circle profile-icon" src="images/default1.png"></center></div>
+                    <div class="col-sm-1"><center><img class="img-circle profile-icon" src="/images/default1.png"></center></div>
                     <div class="col-sm-2">{{username}}</div>
-                    <div class="col-sm-7">{{title}}</div>
-                    <div class="col-sm-1">{{moment date format="MMMM D, YYYY"}}</div>
+                    <div class="col-sm-6">{{title}}</div>
+                    <div class="col-sm-2">{{moment date format="MMMM D, YYYY"}}</div>
                     <div class="col-sm-1"><center>
                       <span class="glyphicon glyphicon-lock"></span>
                       <span class="glyphicon glyphicon-refresh"></span>
