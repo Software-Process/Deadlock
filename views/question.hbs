@@ -18,8 +18,7 @@
     <link rel="stylesheet" type="text/css" href="/stylesheets/question.css">
   </head>
 
-  <body onload="checkVote()">
-    <span id="question-info" class="hidden">{{question._id}}</span>
+  <body>
     {{>header}}
 
     <div class="container question-container" style="margin-top: 50px">
@@ -52,7 +51,7 @@
                     <span class="label label-pill label-success">{{this}}</span>
                   {{/each}}
                 </div>
-             </div>             
+             </div>
           </div>
         </div>
          <div class="col-sm-2">                        
@@ -68,72 +67,137 @@
     <div class="container question-content">            
       <hr>
       <h3>Replies: </h3>
-      <!--<span id="temp-accept">Check database if a question has been accepted, if it has, place it here.<br /></span>-->
-      <span id="accept-title" class="hidden"><h5><u>Accepted Reply:</u></h5></span>
-      {{#each question}}
-        {{#each replies}}
-        <!--
+      <h3> Accepted</h3>
+        {{#each question.replies}}
           {{#if accepted}}
             <div class="row question-row">
-              <div class="col-sm-1">{{replyId}}</div>
-              <div class="col-sm-1">{{textRep}}</div>
-              <div class="col-sm-1">{{nbOfVotesRep}}</div>
-              <div class="col-sm-1">{{accepted}}</div>
+              <div class="col-sm-1 text-center">
+                {{#if @root.user}}
+                  <form action = "/question/{{_id}}/upReply" method = "post">
+                    <input type="hidden" name="_method" value="PATCH"/>
+                    <button type="submit" class="not-button" ><i class="glyphicon glyphicon-triangle-top not-voted"></i></button>
+                  </form>
+                    {{/if}}
+                  <span class="nbOfVotes reply-vote pull-right">{{this.score}}✔️</span>
+                  <br>
+                {{#if @root.user}}
+                  <form action = "/question/{{_id}}/downReply" method = "post">
+                    <input type="hidden" name="_method" value="PATCH"/>
+                    <button type="submit" class="not-button" ><i class="glyphicon glyphicon-triangle-bottom not-voted"></i></button>
+                  </form>
+                {{/if}}
+              </div>
+              <div class="col-sm-9 well reply-content accepted">
+                {{this.text}}
+              </div>
+              <div class="col-sm-2">
+                <div class="well text-center user-info-container" style="padding: 10px">
+                  <a href="/userpage"><img class="img-circle user-picture" src="../images/default2.png"></a>
+                  <h5 class="user-info">{{this.username}}</h5>
+                  <h5 class="user-info">replied on <br /> {{moment question.date format="MMMM D, YYYY"}}</h5>
+                </div>
+              </div>
             </div>
-          {{else}} -->
-            <div id="replies-list"> <!-- Javascript function to list all replies will be onload="loadReplies"-->
-              <div class="reply-container">
-                <div class="row">                                  
-                  <div class="col-sm-1 text-center">
-                    <div class="row">
-                      <form action = "/question/{{_id}}/upReply" method = "post">
-                        <input type="hidden" name="_method" value="PATCH"/>
-                        <textarea class="hidden"type="text" name="questionId">{{../_id}}</textarea>
-                        <textarea class="hidden"type="text" name="replyId">{{replyId}}</textarea>
-                        <button type="submit" class="not-button" onclick="replyUpCookie(this)" id="reply{{@index}}up" name="{{replyId}}"><i class="glyphicon glyphicon-triangle-top not-voted" id="{{replyId}}up"></i></button>
-                      </form>
-                      <span class=" nbOfVotes reply-vote">{{this.score}}</span>
-                      <br>
-                      <form action = "/question/{{_id}}/downReply" method = "post">
-                        <input type="hidden" name="_method" value="PATCH"/>
-                        <textarea class="hidden" type="text" name="questionId">{{../_id}}</textarea>
-                        <textarea class="hidden" type="text" name="replyId">{{replyId}}</textarea>
-                        <button type="submit" class="not-button" onclick="replyDownCookie(this)" id="reply{{@index}}down" name="{{replyId}}"><i class="glyphicon glyphicon-triangle-bottom not-voted" id="{{replyId}}down"></i></button>
-                      </form>
-                    </div>
-                  </div>
-
-                  <div class="col-sm-9 well reply-content">
-                    {{this.text}}
-                  </div>
-                  <div class="col-sm-2">
-                     <div class="well text-center user-info-container" style="padding: 10px">
-                      <a href="/userpage/{{this.username}}"><img class="img-circle user-picture" src="../images/default2.png"></a>
-                      <h5 class="user-info">{{this.username}}</h5>
-                      <h5 class="user-info">replied on <br /> {{moment question.date format="MMMM D, YYYY"}}</h5>
-                    </div>
-                    <div class="row">
-                      <div class="col-sm-6">
-                        <form action="/question/{{replyId}}/accept" method="post">
-                          <input type="hidden" name="_method" value="PATCH">
-                          <button class="btn btn-dark accept-reject" type="submit">Accept</button>
-                        </form>
-                      </div>
-                      <div class="col-sm-6">
-                        <form action="/question/{{replyId}}/reject" method="post">
-                          <input type="hidden" name="_method" value="PATCH">
-                          <button class="btn btn-dark accept-reject" type="button">Reject</button>
-                        </form>
-                      </div>
-                    </div>
-                  </div>
-                </div>                               
-              </div>                                                                
-            </div>
-           <!-- {{/if}} -->
+          {{/if}}
         {{/each}}
-      {{/each}}
+        <h3> Neutral </h3>
+        <div id="replies-list"> <!-- Javascript function to list all replies will be onload="loadReplies"-->
+          {{#each question.replies}}
+            {{#unless accepted}}
+              {{#unless rejected}}
+                  <div class="reply-container">
+                    <div class="row">
+                      <div class="col-sm-1 text-center">
+                        {{#if @root.user}}
+                          <form action = "/question/{{_id}}/upReply" method = "post">
+                            <input type="hidden" name="_method" value="PATCH"/>
+                            <button type="submit" class="not-button" ><i class="glyphicon glyphicon-triangle-top not-voted"></i></button>
+                          </form>
+                        {{/if}}
+                          <span class=" nbOfVotes reply-vote">{{this.score}}</span>
+                          <br>
+                        {{#if @root.user}}
+                          <form action = "/question/{{_id}}/downReply" method = "post">
+                            <input type="hidden" name="_method" value="PATCH"/>
+                            <button type="submit" class="not-button" ><i class="glyphicon glyphicon-triangle-bottom not-voted"></i></button>
+                          </form>
+                        {{/if}}
+                      </div>
+                      <div class="col-sm-9 well reply-content">
+                        {{this.text}}
+                      </div>
+                      <div class="col-sm-2">
+                        <div class="well text-center user-info-container" style="padding: 10px">
+                          <a href="/userpage"><img class="img-circle user-picture" src="../images/default2.png"></a>
+                          <h5 class="user-info">{{this.username}}</h5>
+                          <h5 class="user-info">replied on <br /> {{moment question.date format="MMMM D, YYYY"}}</h5>
+                        </div>
+                        {{#unless @root.question.hasAccepted}}
+                          {{#eq @root.user.username @root.question.username}}
+                              {{#unlessEq username @root.question.username}}
+                            <div class="row">
+                              <div class="col-sm-6">
+                                <form action="/question/{{_id}}/accept" method="post">
+                                  <input type="hidden" name="_method" value="PATCH">
+                                  <button class="btn btn-dark accept-reject" type="submit">Accept</button>
+                                </form>
+                              </div>
+                              <div class="col-sm-6">
+                                <form action="/question/{{_id}}/reject" method="post">
+                                  <input type="hidden" name="_method" value="PATCH">
+                                  <button class="btn btn-dark accept-reject" type="submit">Reject</button>
+                                </form>
+                              </div>
+                            </div>
+                              {{/unlessEq}}
+                          {{/eq}}
+                        {{/unless}}
+                      </div>
+                    </div>
+              {{/unless}}
+            {{/unless}}
+            <br>
+          {{/each}}
+        <h3>Rejected</h3>
+        {{#each question.replies}}
+          {{#if rejected}}
+            <div class="row question-row">
+              <div class="col-sm-1 text-center">
+                {{#if @root.user}}
+                  <form action = "/question/{{_id}}/upReply" method = "post">
+                    <input type="hidden" name="_method" value="PATCH"/>
+                    <button type="submit" class="not-button" ><i class="glyphicon glyphicon-triangle-top not-voted"></i></button>
+                  </form>
+                {{/if}}
+                <span class="nbOfVotes reply-vote pull-right">{{this.score}}❌</span>
+                <br>
+                {{#if @root.user}}
+                  <form action = "/question/{{_id}}/downReply" method = "post">
+                    <input type="hidden" name="_method" value="PATCH"/>
+                    <button type="submit" class="not-button" ><i class="glyphicon glyphicon-triangle-bottom not-voted"></i></button>
+                  </form>
+                {{/if}}
+              </div>
+              <div class="col-sm-9 well reply-content rejected">
+                {{this.text}}
+              </div>
+              <div class="col-sm-2">
+                <div class="well text-center user-info-container" style="padding: 10px">
+                  <a href="/userpage"><img class="img-circle user-picture" src="../images/default2.png"></a>
+                  <h5 class="user-info">{{this.username}}</h5>
+                  <h5 class="user-info">replied on <br /> {{moment question.date format="MMMM D, YYYY"}}</h5>
+                </div>
+              </div>
+            </div>
+          {{/if}}
+        {{/each}}
+
+              </div>
+            </div>
+
+
     </div>
+
 
     <div class="container question-content">
       <h3>Submit an answer:</h3>
@@ -153,11 +217,12 @@
           <br>
           <br>
           <div class="row">
-            <input class="btn btn-success" type="submit" value="Submit" onClick="frontEndSubmit()">
+            <input class="btn btn-success" type="submit" value="Submit">
           </div>
         </form> 
       </div>
     </div>
+
     {{>footer}}
   </body>
 </html>

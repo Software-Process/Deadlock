@@ -2,8 +2,8 @@ var express = require('express');
 var router = express.Router();
 const mongoose = require("mongoose");
 const Reply = require("../models/reply");
-
 const Question = require("../models/question");
+const History = require("../models/history");
 
 /* GET request for base page; should never be shown under normal circumstances.*/
 router.get('/', function(req, res, next) {
@@ -15,7 +15,7 @@ router.get('/:questionId', function(req, res, next) {
     const id = req.params.questionId;
     Question.findById(id)
         .exec()
-        .then(function(doc){                 
+        .then(function(doc){
             if (doc){
                 res.render('question', { question: doc, user: req.user, tags: doc.tags });
             } else {
@@ -77,15 +77,49 @@ router.patch('/:questionId/reply', function(req, res, next) {
 /* Accepts a reply via a PATCH request */
 router.patch('/:replyId/accept', function(req, res, next) {
     const repId = req.params.replyId;
+    Question.updateOne({"replies._id" : repId}, {$set : {"replies.$.accepted" : true}})
+        .exec()
+        .then(function(result){
+            next();
+        })
+        .catch(function(err){
+            console.log(err);
+            res.status(500).json({error:err});
+        });
+
+});
+
+router.patch('/:replyId/accept', function(req, res, next) {
+    const repId = req.params.replyId;
+    Question.updateOne({"replies._id" : repId}, {$set : {"hasAccepted" : true}})
+        .exec()
+        .then(function(result){
+            res.redirect('back');
+        })
+        .catch(function(err){
+            console.log(err);
+            res.status(500).json({error:err});
+        });
+});
+
+/* Rejects a reply via a PATCH request */
+router.patch('/:replyId/reject', function(req, res, next) {
+    const repId = req.params.replyId;
+    Question.updateOne({"replies._id" : repId}, {$set : {"replies.$.rejected" : true}})
+        .exec()
+        .then(function(result){
+            res.redirect('back');
+        })
+        .catch(function(err){
+            console.log(err);
+            res.status(500).json({error:err});
+        });
 });
 
 /* Upvotes a reply via a PATCH request */
 router.patch('/:replyId/upReply', function(req, res, next) {
     const repId = req.params.replyId;
-    const id = req.body.questionId;
-    console.log("qeu "+id);
-    console.log("Reply id :" + repId);
-    Question.updateOne({"replies._id" : repId}, {$inc : {"replies.$.score" : 1}})
+    Question.update({"replies._id" : repId}, {$inc : {"replies.$.score" : 1}})
         .exec()
         .then(function(result){
             res.redirect('back');
