@@ -28,33 +28,60 @@
 
       <div class="row question-content">
         <div class="col-sm-1 text-center">
-          <form action="/question/{{question.id}}/up" method="post">
-            <input type="hidden" name="_method" value="PATCH">
-            <button type="submit" class="not-button" onclick="questionUpCookie()" id="button-up"><i class="glyphicon glyphicon-triangle-top not-voted" id="up"></i></button>
-          </form>
-          <span class="nbOfVotes">{{question.score}}</span><br />
-          <form action="/question/{{question.id}}/down" method="post">
-            <input type="hidden" name="_method" value="PATCH">
-            <button type="submit" class="not-button" onclick="questionDownCookie()" id="button-down"><i class="glyphicon glyphicon-triangle-bottom not-voted" id="down"></i></button>
-          </form>
+          {{#if user}}
+            {{#each @root.question.voteHistory}}
+              {{#eq user @root.user.username}}
+                {{#eq current 1}}
+                  <button class="not-button"  id="button-up"><i class="glyphicon glyphicon-triangle-top voted" id="up"></i></button>
+                  <span class="nbOfVotes">{{@root.question.score}}</span><br />
+                  <form action="/question/{{@root.question.id}}/downupped" method="post">
+                    <input type="hidden" name="_method" value="PATCH">
+                    <button type="submit" class="not-button" id="button-down"><i class="glyphicon glyphicon-triangle-bottom not-voted" id="down"></i></button>
+                  </form>
+                {{/eq}}
+                {{current}}
+                {{#eq current -1}}
+                  <form action="/question/{{@root.question.id}}/updowned" method="post">
+                    <input type="hidden" name="_method" value="PATCH">
+                    <button type="submit" class="not-button"  id="button-up"><i class="glyphicon glyphicon-triangle-top not-voted" id="up"></i></button>
+                  </form>
+                  <span class="nbOfVotes">{{@root.question.score}}</span><br />
+                    <button type="submit" class="not-button" id="button-down"><i class="glyphicon glyphicon-triangle-bottom voted" id="down"></i></button>
+                  </form>
+                {{/eq}}
+              {{/eq}}
+            {{/each}}
+              {{#contains @root.question.users @root.user.username}}
+                {{else}}
+                  <form action="/question/{{question.id}}/up" method="post">
+                    <input type="hidden" name="_method" value="PATCH">
+                    <button type="submit" class="not-button"  id="button-up"><i class="glyphicon glyphicon-triangle-top not-voted" id="up"></i></button>
+                  </form>
+                  <span class="nbOfVotes">{{question.score}}</span><br />
+                  <form action="/question/{{question.id}}/down" method="post">
+                    <input type="hidden" name="_method" value="PATCH">
+                    <button type="submit" class="not-button" id="button-down"><i class="glyphicon glyphicon-triangle-bottom not-voted" id="down"></i></button>
+                  </form>
+              {{/contains}}            
+          {{/if}}
         </div>
         <div class="col-sm-9 content well">
           <div class="row">
             <p>{{question.text}}</p>
-             <hr />
-             <div class="row">
-                <div class="col-sm-1">
-                  <span class="label label-pill label-default">Tags:</span>
-                </div>
-                <div class="col-sm-11">
-                  {{#each tags}}
-                    <span class="label label-pill label-success">{{this}}</span>
-                  {{/each}}
-                </div>
-             </div>
+            <hr />
+            <div class="row">
+              <div class="col-sm-1">
+                <span class="label label-pill label-default">Tags:</span>
+              </div>
+              <div class="col-sm-11">
+                {{#each tags}}
+                  <span class="label label-pill label-success">{{this}}</span>
+                {{/each}}
+              </div>
+            </div>
           </div>
         </div>
-         <div class="col-sm-2">                        
+        <div class="col-sm-2">                        
           <div class="well text-center user-info-container" style="padding: 10px">
             <a href="/userpage/{{question.username}}"><img class="img-circle user-picture" src="../images/default1.png"></a>
             <h5 class="user-info">{{question.username}}</h5>
