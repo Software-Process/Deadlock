@@ -8,7 +8,7 @@ const Question = require("../models/question");
 /*To render the question-prompt.hbs page. Redirects if user is not signed in.*/
 router.get('/', function(req, res, next) {
     if (req.user) {
-        res.render('question-prompt', {title: 'Ask a question page'});
+        res.render('question-prompt', {user: req.user});
     } else {
         res.render('signIn');
     }
@@ -25,6 +25,7 @@ router.post('/', function(req, res, next) {
         nbOfAnswers: 0,
         author: req.user._id,
         username: req.user.username,
+        hasAccepted : false,
         date: new Date().toUTCString(),
         replies: [],
         tags: req.body.tag
