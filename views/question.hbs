@@ -32,37 +32,40 @@
             {{#each @root.question.voteHistory}}
               {{#eq user @root.user.username}}
                 {{#eq current 1}}
-                  <button class="not-button"  id="button-up"><i class="glyphicon glyphicon-triangle-top voted" id="up"></i></button>
+                  <button class="not-button"  id="button-up"><i class="glyphicon glyphicon-triangle-top up-voted" id="up"></i></button><br />
                   <span class="nbOfVotes">{{@root.question.score}}</span><br />
                   <form action="/question/{{@root.question.id}}/downupped" method="post">
                     <input type="hidden" name="_method" value="PATCH">
                     <button type="submit" class="not-button" id="button-down"><i class="glyphicon glyphicon-triangle-bottom not-voted" id="down"></i></button>
                   </form>
                 {{/eq}}
-                {{current}}
                 {{#eq current -1}}
                   <form action="/question/{{@root.question.id}}/updowned" method="post">
                     <input type="hidden" name="_method" value="PATCH">
                     <button type="submit" class="not-button"  id="button-up"><i class="glyphicon glyphicon-triangle-top not-voted" id="up"></i></button>
                   </form>
                   <span class="nbOfVotes">{{@root.question.score}}</span><br />
-                    <button type="submit" class="not-button" id="button-down"><i class="glyphicon glyphicon-triangle-bottom voted" id="down"></i></button>
+                    <button type="submit" class="not-button" id="button-down"><i class="glyphicon glyphicon-triangle-bottom down-voted" id="down"></i></button>
                   </form>
                 {{/eq}}
               {{/eq}}
             {{/each}}
-              {{#contains @root.question.users @root.user.username}}
-                {{else}}
-                  <form action="/question/{{question.id}}/up" method="post">
-                    <input type="hidden" name="_method" value="PATCH">
-                    <button type="submit" class="not-button"  id="button-up"><i class="glyphicon glyphicon-triangle-top not-voted" id="up"></i></button>
-                  </form>
-                  <span class="nbOfVotes">{{question.score}}</span><br />
-                  <form action="/question/{{question.id}}/down" method="post">
-                    <input type="hidden" name="_method" value="PATCH">
-                    <button type="submit" class="not-button" id="button-down"><i class="glyphicon glyphicon-triangle-bottom not-voted" id="down"></i></button>
-                  </form>
-              {{/contains}}            
+            {{#contains @root.question.users @root.user.username}}
+              {{else}}
+                <form action="/question/{{question.id}}/up" method="post">
+                  <input type="hidden" name="_method" value="PATCH">
+                  <button type="submit" class="not-button"  id="button-up"><i class="glyphicon glyphicon-triangle-top not-voted" id="up"></i></button>
+                </form>
+                <span class="nbOfVotes">{{question.score}}</span><br />
+                <form action="/question/{{question.id}}/down" method="post">
+                  <input type="hidden" name="_method" value="PATCH">
+                  <button type="submit" class="not-button" id="button-down"><i class="glyphicon glyphicon-triangle-bottom not-voted" id="down"></i></button>
+                </form>
+            {{/contains}}
+            {{else}}
+              <button class="not-button" id="button-up" onclick="alert('You must be logged in to vote.')"><i class="glyphicon glyphicon-triangle-top not-voted" id="up"></i></button><br>
+              <span class="nbOfVotes">{{@root.question.score}}</span><br />     
+              <button class="not-button" id="button-down" onclick="alert('You must be logged in to vote.')"><i class="glyphicon glyphicon-triangle-bottom not-voted" id="down"></i></button>       
           {{/if}}
         </div>
         <div class="col-sm-9 content well">
@@ -136,18 +139,43 @@
                     <div class="row">
                       <div class="col-sm-1 text-center">
                         {{#if @root.user}}
-                          <form action = "/question/{{_id}}/upReply" method = "post">
-                            <input type="hidden" name="_method" value="PATCH"/>
-                            <button type="submit" class="not-button" ><i class="glyphicon glyphicon-triangle-top not-voted"></i></button>
-                          </form>
-                        {{/if}}
-                          <span class=" nbOfVotes reply-vote">{{this.score}}</span>
-                          <br>
-                        {{#if @root.user}}
-                          <form action = "/question/{{_id}}/downReply" method = "post">
-                            <input type="hidden" name="_method" value="PATCH"/>
-                            <button type="submit" class="not-button" ><i class="glyphicon glyphicon-triangle-bottom not-voted"></i></button>
-                          </form>
+                          {{#each this.voteHistory}}
+                            {{#eq user @root.user.username}}
+                              {{#eq current 1}}
+                                <input type="hidden" name="_method" value="PATCH"/>
+                                <button type="submit" class="not-button" ><i class="glyphicon glyphicon-triangle-top up-voted"></i></button><br>
+                                <span class=" nbOfVotes reply-vote">{{../score}}</span>
+                                <br>
+                                <form action = "/question/{{../_id}}/downuppedReply" method = "post">
+                                  <input type="hidden" name="_method" value="PATCH"/>
+                                  <button type="submit" class="not-button" ><i class="glyphicon glyphicon-triangle-bottom not-voted"></i></button>
+                                </form>
+                              {{/eq}}
+                              {{#eq current -1}}
+                                <form action = "/question/{{../_id}}/updownedReply" method = "post">
+                                  <input type="hidden" name="_method" value="PATCH"/>
+                                  <button type="submit" class="not-button" ><i class="glyphicon glyphicon-triangle-top not-voted"></i></button>
+                                </form>
+                                <span class=" nbOfVotes reply-vote">{{../score}}</span>
+                                <br>
+                                <input type="hidden" name="_method" value="PATCH"/>
+                                <button type="submit" class="not-button" ><i class="glyphicon glyphicon-triangle-bottom down-voted"></i></button>
+                              {{/eq}}
+                            {{/eq}}
+                          {{/each}}
+                          {{#contains this.users @root.user.username}}
+                            {{else}}
+                              <form action = "/question/{{_id}}/upReply" method = "post">
+                                <input type="hidden" name="_method" value="PATCH"/>
+                                <button type="submit" class="not-button" ><i class="glyphicon glyphicon-triangle-top not-voted"></i></button>
+                              </form>
+                              <span class=" nbOfVotes reply-vote">{{this.score}}</span>
+                              <br>
+                              <form action = "/question/{{_id}}/downReply" method = "post">
+                                <input type="hidden" name="_method" value="PATCH"/>
+                                <button type="submit" class="not-button" ><i class="glyphicon glyphicon-triangle-bottom not-voted"></i></button>
+                              </form>
+                          {{/contains}}
                         {{/if}}
                       </div>
                       <div class="col-sm-9 well reply-content">
