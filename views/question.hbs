@@ -19,7 +19,7 @@
   </head>
 
   <body onload="checkVote()">
-    <span id="question-info" class="hidden">{{question._id}}</span>
+    <span class="hidden" id="question-info">{{question._id}}</span>
     {{>header}}
 
     <div class="container question-container" style="margin-top: 50px">
@@ -30,46 +30,61 @@
       <div class="row question-content">
         <div class="col-sm-1 text-center">
           <form action="/question/{{question.id}}/up" method="post">
-            <input type="hidden" name="_method" value="PATCH">
-            <button type="submit" class="not-button" onclick="questionUpCookie()" id="button-up"><i class="glyphicon glyphicon-triangle-top not-voted" id="up"></i></button>
+            <input name="_method" type="hidden" value="PATCH">
+              <button class="not-button" id="button-up" type="submit" onclick="questionUpCookie()">
+                <i class="glyphicon glyphicon-triangle-top not-voted" id="up"></i>
+              </button>
+            </input>
           </form>
-          <span class="nbOfVotes">{{question.score}}</span><br />
+          <span class="nbOfVotes">{{question.score}}</span>
+          <br />
           <form action="/question/{{question.id}}/down" method="post">
-            <input type="hidden" name="_method" value="PATCH">
-            <button type="submit" class="not-button" onclick="questionDownCookie()" id="button-down"><i class="glyphicon glyphicon-triangle-bottom not-voted" id="down"></i></button>
+            <input name="_method" type="hidden" value="PATCH">
+              <button class="not-button" id="button-down" type="submit" onclick="questionDownCookie()">
+                <i class="glyphicon glyphicon-triangle-bottom not-voted" id="down"></i>
+              </button>
+            </input>
           </form>
         </div>
         <div class="col-sm-9 content well">
           <div class="row">
             <p>{{question.text}}</p>
-             <hr />
-             <div class="row">
-                <div class="col-sm-1">
-                  <span class="label label-pill label-default">Tags:</span>
-                </div>
-                <div class="col-sm-11">
-                  {{#each tags}}
-                    <span class="label label-pill label-success">{{this}}</span>
-                  {{/each}}
-                </div>
-             </div>             
+            <hr />
+            <div class="row">
+              <div class="col-sm-1">
+                <span class="label label-pill label-default">Tags:</span>
+              </div>
+              <div class="col-sm-11">
+                {{#each tags}}
+                  <span class="label label-pill label-success">{{this}}</span>
+                {{/each}}
+              </div>
+            </div>             
           </div>
         </div>
-         <div class="col-sm-2">                        
+        <div class="col-sm-2">                        
           <div class="well text-center user-info-container" style="padding: 10px">
-            <a href="/userpage/{{question.username}}"><img class="img-circle user-picture" src="../images/default1.png"></a>
+            <a href="/userpage/{{question.username}}">
+              <img class="img-circle user-picture" src="../images/default1.png">
+            </a>
             <h5 class="user-info">{{question.username}}</h5>
-            <h5 class="user-info">asked on <br /> {{moment question.date format="MMMM D, YYYY"}}</h5>
+            <h5 class="user-info">
+              asked on <br /> {{moment question.date format="MMMM D, YYYY"}}
+            </h5>
           </div>
         </div>
       </div>            
     </div>
 
     <div class="container question-content">            
-      <hr>
+      <hr />
       <h3>Replies: </h3>
       <!--<span id="temp-accept">Check database if a question has been accepted, if it has, place it here.<br /></span>-->
-      <span id="accept-title" class="hidden"><h5><u>Accepted Reply:</u></h5></span>
+      <span class="hidden" id="accept-title">
+        <h5>
+          <u>Accepted Reply:</u>
+        </h5>
+      </span>
       {{#each question}}
         {{#each replies}}
         <!--
@@ -87,18 +102,22 @@
                   <div class="col-sm-1 text-center">
                     <div class="row">
                       <form action = "/question/{{_id}}/upReply" method = "post">
-                        <input type="hidden" name="_method" value="PATCH"/>
-                        <textarea class="hidden"type="text" name="questionId">{{../_id}}</textarea>
-                        <textarea class="hidden"type="text" name="replyId">{{replyId}}</textarea>
-                        <button type="submit" class="not-button" onclick="replyUpCookie(this)" id="reply{{@index}}up" name="{{replyId}}"><i class="glyphicon glyphicon-triangle-top not-voted" id="{{replyId}}up"></i></button>
+                        <input name="_method" type="hidden" value="PATCH"/>
+                        <textarea class="hidden" name="questionId" type="text">{{../_id}}</textarea>
+                        <textarea class="hidden" name="replyId" type="text">{{replyId}}</textarea>
+                        <button class="not-button" id="reply{{@index}}up" name="{{replyId}}" type="submit" onclick="replyUpCookie(this)">
+                          <i class="glyphicon glyphicon-triangle-top not-voted" id="{{replyId}}up"></i>
+                        </button>
                       </form>
                       <span class=" nbOfVotes reply-vote">{{this.score}}</span>
-                      <br>
+                      <br />
                       <form action = "/question/{{_id}}/downReply" method = "post">
-                        <input type="hidden" name="_method" value="PATCH"/>
-                        <textarea class="hidden" type="text" name="questionId">{{../_id}}</textarea>
-                        <textarea class="hidden" type="text" name="replyId">{{replyId}}</textarea>
-                        <button type="submit" class="not-button" onclick="replyDownCookie(this)" id="reply{{@index}}down" name="{{replyId}}"><i class="glyphicon glyphicon-triangle-bottom not-voted" id="{{replyId}}down"></i></button>
+                        <input name="_method" type="hidden" value="PATCH"/>
+                        <textarea class="hidden" name="questionId" type="text">{{../_id}}</textarea>
+                        <textarea class="hidden" name="replyId" type="text">{{replyId}}</textarea>
+                        <button class="not-button" id="reply{{@index}}down" name="{{replyId}}" type="submit" onclick="replyDownCookie(this)">
+                          <i class="glyphicon glyphicon-triangle-bottom not-voted" id="{{replyId}}down"></i>
+                        </button>
                       </form>
                     </div>
                   </div>
@@ -107,21 +126,25 @@
                     {{this.text}}
                   </div>
                   <div class="col-sm-2">
-                     <div class="well text-center user-info-container" style="padding: 10px">
-                      <a href="/userpage/{{this.username}}"><img class="img-circle user-picture" src="../images/default2.png"></a>
+                    <div class="well text-center user-info-container" style="padding: 10px">
+                      <a href="/userpage/{{this.username}}">
+                        <img class="img-circle user-picture" src="../images/default2.png">
+                      </a>
                       <h5 class="user-info">{{this.username}}</h5>
-                      <h5 class="user-info">replied on <br /> {{moment question.date format="MMMM D, YYYY"}}</h5>
+                      <h5 class="user-info">
+                        replied on <br /> {{moment question.date format="MMMM D, YYYY"}}
+                      </h5>
                     </div>
                     <div class="row">
                       <div class="col-sm-6">
                         <form action="/question/{{replyId}}/accept" method="post">
-                          <input type="hidden" name="_method" value="PATCH">
+                          <input name="_method" type="hidden" value="PATCH">
                           <button class="btn btn-dark accept-reject" type="submit">Accept</button>
                         </form>
                       </div>
                       <div class="col-sm-6">
                         <form action="/question/{{replyId}}/reject" method="post">
-                          <input type="hidden" name="_method" value="PATCH">
+                          <input name="_method" type="hidden" value="PATCH">
                           <button class="btn btn-dark accept-reject" type="button">Reject</button>
                         </form>
                       </div>
@@ -130,28 +153,28 @@
                 </div>                               
               </div>                                                                
             </div>
-           <!-- {{/if}} -->
+          <!-- {{/if}} -->
         {{/each}}
       {{/each}}
     </div>
 
     <div class="container question-content">
       <h3>Submit an answer:</h3>
-      <hr>
+      <hr />
       <div class="write">
-        <form action="/question/{{question.id}}/reply" method="post" id="reply">
-          <input type="hidden" name="_method" value="PATCH">
+        <form id="reply" action="/question/{{question.id}}/reply" method="post">
+          <input name="_method" type="hidden" value="PATCH">
           <div class="row form-group">
-            <label for="inputsm" class="heading">Author:</label>
+            <label class="heading" for="inputsm">Author:</label>
             <input class="form-control" id="author" name="author" type="text">
           </div>
           <div class="row">
             <label class="heading" for="inputsm">Answer:</label>
             <textarea class="form-control content" name="repform" rows="10" form="reply"> </textarea>
           </div>                
-          <br>
-          <br>
-          <br>
+          <br />
+          <br />
+          <br />
           <div class="row">
             <input class="btn btn-success" type="submit" value="Submit" onClick="frontEndSubmit()">
           </div>

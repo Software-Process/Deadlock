@@ -23,10 +23,12 @@
 
     <div class="jumbotron text-center" style="background-color: #116CF6; margin-top: 50px">
       <img class="img-circle profile-picture" src="/images/default1.png">
-      <h2><strong>{{user.username}}</strong></h2> 
-       {{#if allowEdit}}  
-           <button class="btn btn-info" type="button" onclick="location.href='/edituserpage'">Edit profile</button>
-       {{/if}}
+      <h2>
+        <strong>{{user.username}}</strong>
+      </h2> 
+        {{#if allowEdit}}  
+          <button class="btn btn-info" type="button" onclick="location.href='/edituserpage'">Edit profile</button>
+        {{/if}}
     </div>
 
     <!-- User tag scores -->
@@ -137,7 +139,9 @@
           <!-- Contact Me Section -->
           <div class="card contact-me">
             <div class="card-body">
-              <h4 class="card-title text-center"><strong>Contact Me</strong></h4>
+              <h4 class="card-title text-center">
+                <strong>Contact Me</strong>
+              </h4>
               <hr />
 
               <!-- Placeholder user contact me information -->
@@ -157,17 +161,19 @@
           <!-- About Me Section -->
           <div class="card about-me">
             <div class="card-body">
-              <h4 class="card-title text-center"><strong>About me</strong></h4>
+              <h4 class="card-title text-center">
+                <strong>About me</strong>
+              </h4>
               <hr />
 
-          <!-- Placeholder user about me information -->
-          <ul style="list-style-type: none;">
-            <li>Birthday: {{user.birthday}}</li>
-            <li>Gender: {{user.gender}}</li>
-            <li>Age: {{user.age}}</li>
-            <li>Spoken languages: {{user.spokenLanguage}}</li>
-            <li>Programming languages: {{user.programmingLanguage}}</li>
-          </ul>
+              <!-- Placeholder user about me information -->
+              <ul style="list-style-type: none;">
+                <li>Birthday: {{user.birthday}}</li>
+                <li>Gender: {{user.gender}}</li>
+                <li>Age: {{user.age}}</li>
+                <li>Spoken languages: {{user.spokenLanguage}}</li>
+                <li>Programming languages: {{user.programmingLanguage}}</li>
+              </ul>
 
             </div>
           </div>
@@ -177,7 +183,9 @@
           <!-- Reputation Section -->
           <div class="card reputation">
             <div class="card-body">
-              <h4 class="card-title text-center"><strong>Reputation</strong></h4>
+              <h4 class="card-title text-center">
+                <strong>Reputation</strong>
+              </h4>
               <hr />
               <ul style="list-style-type: none;">
                 <li>Badge</li>
@@ -189,7 +197,7 @@
             </div>
           </div>
         </div>
-         <div class="col-sm-9">
+        <div class="col-sm-9">
           <!-- Questions asked by the user -->
           <h3>Asked questions</h3>
           <ul class="list-group">
@@ -201,26 +209,26 @@
                 <div class="col-sm-1"><strong>Status</strong></div>
               </div>
             </li>
-            {{#each questions}}
-            <li class="list-group-item">
-            <a href="/question/{{id}}">
-              <div class="row question-row">
-              <div class="col-sm-8">{{title}}</div>
-              <div class="col-sm-1">
-                <center>
-                <span class="badge">{{nbOfVotes}}</span>
-                </center>
-              </div>
-              <div class="col-sm-2">{{moment date format="MMMM D, YYYY"}}</div>
-              <div class="col-sm-1">
-                <center>
-                <span class="glyphicon glyphicon-lock"></span>
-                <span class="glyphicon glyphicon-refresh"></span>
-                </center>
-              </div>
-              </div>
-            </a>
-            </li>
+              {{#each questions}}
+                <li class="list-group-item">
+                  <a href="/question/{{id}}">
+                    <div class="row question-row">
+                      <div class="col-sm-8">{{title}}</div>
+                      <div class="col-sm-1">
+                        <center>
+                          <span class="badge">{{nbOfVotes}}</span>
+                        </center>
+                      </div>
+                      <div class="col-sm-2">{{moment date format="MMMM D, YYYY"}}</div>
+                      <div class="col-sm-1">
+                        <center>
+                          <span class="glyphicon glyphicon-lock"></span>
+                          <span class="glyphicon glyphicon-refresh"></span>
+                        </center>
+                      </div>
+                    </div>
+                  </a>
+                </li>
             {{/each}}
 
           </ul>
@@ -244,10 +252,12 @@
                     <div class="col-sm-2">{{username}}</div>
                     <div class="col-sm-6">{{title}}</div>
                     <div class="col-sm-2">{{moment date format="MMMM D, YYYY"}}</div>
-                    <div class="col-sm-1"><center>
-                      <span class="glyphicon glyphicon-lock"></span>
-                      <span class="glyphicon glyphicon-refresh"></span>
-                    </center></div>
+                    <div class="col-sm-1">
+                      <center>
+                        <span class="glyphicon glyphicon-lock"></span>
+                        <span class="glyphicon glyphicon-refresh"></span>
+                      </center>
+                    </div>
                   </div>
                 </a>
               </li>
