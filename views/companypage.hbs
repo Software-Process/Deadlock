@@ -30,16 +30,18 @@
 
         <hr>
         {{#each comps}}
+            <div class="row question-row">
             <a href="/userpage/{{id}}">
-                <div class="row question-row">
+
                     <div class="votes-col col-sm-1 text-center">{{username}}</div>
                     <div class="answers-col col-sm-1 text-center">{{email}}</div>
-                </div>
+
             </a>
             <form action = "/companyAccount/approve/{{id}}" method = "post">
                 <input type="hidden" name="_method" value="PATCH">
             <button type="submit" class="btn btn-danger" value="Submit">Approve</button>
             </form>
+            </div>
         {{/each}}
     </div>
 
