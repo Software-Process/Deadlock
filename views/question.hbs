@@ -6,7 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">  
 
     <!-- External JavaScript -->
-    <script src="https://www.w3schools.com/lib/w3.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="/javascripts/questionFrontEnd.js"></script>
@@ -35,25 +34,27 @@
                 {{#eq current 1}}
                   <button class="not-button"  id="button-up">
                     <i class="glyphicon glyphicon-triangle-top up-voted" id="up"></i>
-                  </button><br />
-                  <span class="nbOfVotes">{{@root.question.score}}</span><br />
+                  </button>
+                  <br>
+                  <span class="nbOfVotes">{{@root.question.score}}</span>
+                  <br>
                   <form action="/question/{{@root.question.id}}/downupped" method="post">
                     <input type="hidden" name="_method" value="PATCH">
-                    <button type="submit" class="not-button" id="button-down">
-                      <i class="glyphicon glyphicon-triangle-bottom not-voted" id="down"> </i>
+                    <button class="not-button" id="button-down" type="submit">
+                      <i class="glyphicon glyphicon-triangle-bottom not-voted" id="down"></i>
                     </button>
                   </form>
                 {{/eq}}
                 {{#eq current -1}}
                   <form action="/question/{{@root.question.id}}/updowned" method="post">
                     <input type="hidden" name="_method" value="PATCH">
-                    <button type="submit" class="not-button"  id="button-up">
-                      <i class="glyphicon glyphicon-triangle-top not-voted" id="up">
-                      </i>
+                    <button class="not-button"  id="button-up" type="submit">
+                      <i class="glyphicon glyphicon-triangle-top not-voted" id="up"></i>
                     </button>
                   </form>
-                  <span class="nbOfVotes">{{@root.question.score}}</span><br />
-                    <button type="submit" class="not-button" id="button-down">
+                  <span class="nbOfVotes">{{@root.question.score}}</span>
+                  <br>
+                    <button class="not-button" id="button-down" type="submit">
                       <i class="glyphicon glyphicon-triangle-bottom down-voted" id="down">
                       </i>
                     </button>
@@ -65,14 +66,15 @@
               {{else}}
                 <form action="/question/{{question.id}}/up" method="post">
                   <input type="hidden" name="_method" value="PATCH">
-                  <button type="submit" class="not-button"  id="button-up">
+                  <button class="not-button"  id="button-up" type="submit">
                     <i class="glyphicon glyphicon-triangle-top not-voted" id="up"></i>
                   </button>
                 </form>
-                <span class="nbOfVotes">{{question.score}}</span><br />
+                <span class="nbOfVotes">{{question.score}}</span>
+                <br>
                 <form action="/question/{{question.id}}/down" method="post">
                   <input type="hidden" name="_method" value="PATCH">
-                  <button type="submit" class="not-button" id="button-down">
+                  <button class="not-button" id="button-down" type="submit">
                     <i class="glyphicon glyphicon-triangle-bottom not-voted" id="down"></i>
                   </button>
                 </form>
@@ -82,7 +84,8 @@
                 <i class="glyphicon glyphicon-triangle-top not-voted" id="up"></i>
               </button>
               <br>
-              <span class="nbOfVotes">{{@root.question.score}}</span><br />     
+              <span class="nbOfVotes">{{@root.question.score}}</span>
+              <br>     
               <button class="not-button" id="button-down" onclick="alertVote()">
                 <i class="glyphicon glyphicon-triangle-bottom not-voted" id="down"></i>
               </button>       
@@ -106,9 +109,11 @@
         </div>
         <div class="col-sm-2">                        
           <div class="well text-center user-info-container" style="padding: 10px">
-            <a href="/userpage/{{question.username}}"><img class="img-circle user-picture" src="../images/default1.png"></a>
+            <a href="/userpage/{{question.username}}">
+              <img class="img-circle user-picture" src="../images/default1.png">
+            </a>
             <h5 class="user-info">{{question.username}}</h5>
-            <h5 class="user-info">asked on <br /> {{moment question.date format="MMMM D, YYYY"}}</h5>
+            <h5 class="user-info">asked on <br> {{moment question.date format="MMMM D, YYYY"}}</h5>
           </div>
         </div>
       </div>            
@@ -126,29 +131,29 @@
                     {{#eq user @root.user.username}}
                       {{#eq current 1}}
                         <input type="hidden" name="_method" value="PATCH"/>
-                        <button type="submit" class="not-button" >
+                        <button class="not-button" type="submit">
                           <i class="glyphicon glyphicon-triangle-top up-voted"></i>
                         </button><br>
-                        <span class=" nbOfVotes reply-vote pull-right">{{../score}}✔️</span>
+                        <span class="nbOfVotes reply-vote pull-right">{{../score}}✔️</span>
                         <br>
-                        <form action = "/question/{{../_id}}/downuppedReply" method = "post">
+                        <form action="/question/{{../_id}}/downuppedReply" method="post">
                           <input type="hidden" name="_method" value="PATCH"/>
-                          <button type="submit" class="not-button">
+                          <button class="not-button" type="submit">
                             <i class="glyphicon glyphicon-triangle-bottom not-voted"></i>
                           </button>
                         </form>
                       {{/eq}}
                       {{#eq current -1}}
-                        <form action = "/question/{{../_id}}/updownedReply" method = "post">
+                        <form action="/question/{{../_id}}/updownedReply" method="post">
                           <input type="hidden" name="_method" value="PATCH"/>
-                          <button type="submit" class="not-button" >
+                          <button class="not-button" type="submit">
                             <i class="glyphicon glyphicon-triangle-top not-voted"></i>
                           </button>
                         </form>
-                        <span class=" nbOfVotes reply-vote pull-right">{{../score}}✔️</span>
+                        <span class="nbOfVotes reply-vote pull-right">{{../score}}✔️</span>
                         <br>
                         <input type="hidden" name="_method" value="PATCH"/>
-                        <button type="submit" class="not-button" >
+                        <button class="not-button" type="submit">
                           <i class="glyphicon glyphicon-triangle-bottom down-voted"></i>
                         </button>
                       {{/eq}}
@@ -156,17 +161,17 @@
                   {{/each}}
                   {{#contains this.users @root.user.username}}
                     {{else}}
-                      <form action = "/question/{{_id}}/upReply" method = "post">
+                      <form action="/question/{{_id}}/upReply" method="post">
                         <input type="hidden" name="_method" value="PATCH"/>
-                        <button type="submit" class="not-button" >
+                        <button class="not-button" type="submit">
                           <i class="glyphicon glyphicon-triangle-top not-voted"></i>
                         </button>
                       </form>
-                      <span class=" nbOfVotes reply-vote pull-right">{{this.score}}✔️</span>
+                      <span class="nbOfVotes reply-vote pull-right">{{this.score}}✔️</span>
                       <br>
-                      <form action = "/question/{{_id}}/downReply" method = "post">
+                      <form action="/question/{{_id}}/downReply" method="post">
                         <input type="hidden" name="_method" value="PATCH"/>
-                        <button type="submit" class="not-button" >
+                        <button class="not-button" type="submit">
                           <i class="glyphicon glyphicon-triangle-bottom not-voted"></i>
                         </button>
                       </form>
@@ -174,8 +179,10 @@
                   {{else}}
                     <button class="not-button" id="button-up" onclick="alertVote()">
                       <i class="glyphicon glyphicon-triangle-top not-voted" id="up"></i>
-                    </button><br>
-                    <span class="nbOfVotes pull-right">{{this.score}}✔️</span><br />
+                    </button>
+                    <br>
+                    <span class="nbOfVotes pull-right">{{this.score}}✔️</span>
+                    <br>
                     <button class="not-button" id="button-down" onclick="alertVote()">
                       <i class="glyphicon glyphicon-triangle-bottom not-voted" id="down"></i>
                     </button>
@@ -186,15 +193,17 @@
               </div>
               <div class="col-sm-2">
                 <div class="well text-center user-info-container" style="padding: 10px">
-                  <a href="/userpage/{{this.username}}"><img class="img-circle user-picture" src="../images/default2.png"></a>
+                  <a href="/userpage/{{this.username}}">
+                    <img class="img-circle user-picture" src="../images/default2.png">
+                  </a>
                   <h5 class="user-info">{{this.username}}</h5>
-                  <h5 class="user-info">replied on <br /> {{moment question.date format="MMMM D, YYYY"}}</h5>
+                  <h5 class="user-info">replied on <br> {{moment question.date format="MMMM D, YYYY"}}</h5>
                 </div>
               </div>
             </div>
           {{/if}}
         {{/each}}
-        <div id="replies-list"> <!-- Javascript function to list all replies will be onload="loadReplies"-->
+        <div id="replies-list">
           {{#each question.replies}}
             {{#unless accepted}}
               {{#unless rejected}}
@@ -206,29 +215,30 @@
                             {{#eq user @root.user.username}}
                               {{#eq current 1}}
                                 <input type="hidden" name="_method" value="PATCH"/>
-                                <button type="submit" class="not-button" >
+                                <button class="not-button" type="submit">
                                   <i class="glyphicon glyphicon-triangle-top up-voted"></i>
-                                </button><br>
-                                <span class=" nbOfVotes reply-vote">{{../score}}</span>
+                                </button>
                                 <br>
-                                <form action = "/question/{{../_id}}/downuppedReply" method = "post">
+                                <span class="nbOfVotes reply-vote">{{../score}}</span>
+                                <br>
+                                <form action="/question/{{../_id}}/downuppedReply" method="post">
                                   <input type="hidden" name="_method" value="PATCH"/>
-                                  <button type="submit" class="not-button" >
+                                  <button class="not-button" type="submit">
                                     <i class="glyphicon glyphicon-triangle-bottom not-voted"></i>
                                   </button>
                                 </form>
                               {{/eq}}
                               {{#eq current -1}}
-                                <form action = "/question/{{../_id}}/updownedReply" method = "post">
+                                <form action="/question/{{../_id}}/updownedReply" method="post">
                                   <input type="hidden" name="_method" value="PATCH"/>
-                                  <button type="submit" class="not-button" >
+                                  <button class="not-button" type="submit">
                                     <i class="glyphicon glyphicon-triangle-top not-voted"></i>
                                   </button>
                                 </form>
                                 <span class=" nbOfVotes reply-vote">{{../score}}</span>
                                 <br>
                                 <input type="hidden" name="_method" value="PATCH"/>
-                                <button type="submit" class="not-button" >
+                                <button class="not-button" type="submit">
                                   <i class="glyphicon glyphicon-triangle-bottom down-voted"></i>
                                 </button>
                               {{/eq}}
@@ -236,17 +246,17 @@
                           {{/each}}
                           {{#contains this.users @root.user.username}}
                             {{else}}
-                              <form action = "/question/{{_id}}/upReply" method = "post">
+                              <form action="/question/{{_id}}/upReply" method="post">
                                 <input type="hidden" name="_method" value="PATCH"/>
-                                <button type="submit" class="not-button" >
+                                <button class="not-button" type="submit">
                                   <i class="glyphicon glyphicon-triangle-top not-voted"></i>
                                 </button>
                               </form>
                               <span class=" nbOfVotes reply-vote">{{this.score}}</span>
                               <br>
-                              <form action = "/question/{{_id}}/downReply" method = "post">
+                              <form action="/question/{{_id}}/downReply" method="post">
                                 <input type="hidden" name="_method" value="PATCH"/>
-                                <button type="submit" class="not-button" >
+                                <button class="not-button" type="submit">
                                   <i class="glyphicon glyphicon-triangle-bottom not-voted"></i>
                                 </button>
                               </form>
@@ -254,8 +264,10 @@
                           {{else}}
                             <button class="not-button" id="button-up" onclick="alertVote()">
                               <i class="glyphicon glyphicon-triangle-top not-voted" id="up"></i>
-                            </button><br>
-                            <span class="nbOfVotes">{{this.score}}</span><br />     
+                            </button>
+                            <br>
+                            <span class="nbOfVotes">{{this.score}}</span>
+                            <br>     
                             <button class="not-button" id="button-down" onclick="alertVote()">
                               <i class="glyphicon glyphicon-triangle-bottom not-voted" id="down"></i>
                             </button>
@@ -268,7 +280,7 @@
                         <div class="well text-center user-info-container" style="padding: 10px">
                           <a href="/userpage/{{this.username}}"><img class="img-circle user-picture" src="../images/default2.png"></a>
                           <h5 class="user-info">{{this.username}}</h5>
-                          <h5 class="user-info">replied on <br /> {{moment question.date format="MMMM D, YYYY"}}</h5>
+                          <h5 class="user-info">replied on <br> {{moment question.date format="MMMM D, YYYY"}}</h5>
                         </div>
                         {{#unless @root.question.hasAccepted}}
                           {{#eq @root.user.username @root.question.username}}
@@ -306,29 +318,30 @@
                     {{#eq user @root.user.username}}
                       {{#eq current 1}}
                         <input type="hidden" name="_method" value="PATCH"/>
-                        <button type="submit" class="not-button" >
+                        <button class="not-button" type="submit">
                           <i class="glyphicon glyphicon-triangle-top up-voted"></i>
-                        </button><br>
+                        </button>
+                        <br>
                         <span class=" nbOfVotes reply-vote pull-right">{{../score}}❌</span>
                         <br>
-                        <form action = "/question/{{../_id}}/downuppedReply" method = "post">
+                        <form action="/question/{{../_id}}/downuppedReply" method="post">
                           <input type="hidden" name="_method" value="PATCH"/>
-                          <button type="submit" class="not-button" >
+                          <button class="not-button" type="submit">
                             <i class="glyphicon glyphicon-triangle-bottom not-voted"></i>
                           </button>
                         </form>
                       {{/eq}}
                       {{#eq current -1}}
-                        <form action = "/question/{{../_id}}/updownedReply" method = "post">
+                        <form action="/question/{{../_id}}/updownedReply" method="post">
                           <input type="hidden" name="_method" value="PATCH"/>
-                          <button type="submit" class="not-button" >
+                          <button class="not-button" type="submit">
                             <i class="glyphicon glyphicon-triangle-top not-voted"></i>
                           </button>
                         </form>
                         <span class=" nbOfVotes reply-vote pull-right">{{../score}}❌</span>
                         <br>
                         <input type="hidden" name="_method" value="PATCH"/>
-                        <button type="submit" class="not-button" >
+                        <button class="not-button" type="submit">
                           <i class="glyphicon glyphicon-triangle-bottom down-voted"></i>
                         </button>
                       {{/eq}}
@@ -336,17 +349,17 @@
                   {{/each}}
                   {{#contains this.users @root.user.username}}
                     {{else}}
-                      <form action = "/question/{{_id}}/upReply" method = "post">
+                      <form action="/question/{{_id}}/upReply" method="post">
                         <input type="hidden" name="_method" value="PATCH"/>
-                        <button type="submit" class="not-button" >
+                        <button class="not-button" type="submit">
                           <i class="glyphicon glyphicon-triangle-top not-voted"></i>
                         </button>
                       </form>
                       <span class=" nbOfVotes reply-vote pull-right">{{this.score}}❌</span>
                       <br>
-                      <form action = "/question/{{_id}}/downReply" method = "post">
+                      <form action="/question/{{_id}}/downReply" method="post">
                         <input type="hidden" name="_method" value="PATCH"/>
-                        <button type="submit" class="not-button" >
+                        <button class="not-button" type="submit">
                           <i class="glyphicon glyphicon-triangle-bottom not-voted"></i>
                         </button>
                       </form>
@@ -354,8 +367,10 @@
                   {{else}}
                     <button class="not-button" id="button-up" onclick="alertVote()">
                       <i class="glyphicon glyphicon-triangle-top not-voted" id="up"></i>
-                    </button><br>
-                    <span class="nbOfVotes pull-right">{{this.score}}❌</span><br />
+                    </button>
+                    <br>
+                    <span class="nbOfVotes pull-right">{{this.score}}❌</span>
+                    <br>
                     <button class="not-button" id="button-down" onclick="alertVote()">
                       <i class="glyphicon glyphicon-triangle-bottom not-voted" id="down"></i>
                     </button>
@@ -366,9 +381,11 @@
               </div>
               <div class="col-sm-2">
                 <div class="well text-center user-info-container" style="padding: 10px">
-                  <a href="/userpage/{{this.username}}"><img class="img-circle user-picture" src="../images/default2.png"></a>
+                  <a href="/userpage/{{this.username}}">
+                    <img class="img-circle user-picture" src="../images/default2.png">
+                  </a>
                   <h5 class="user-info">{{this.username}}</h5>
-                  <h5 class="user-info">replied on <br /> {{moment question.date format="MMMM D, YYYY"}}</h5>
+                  <h5 class="user-info">replied on <br> {{moment question.date format="MMMM D, YYYY"}}</h5>
                 </div>
               </div>
             </div>
@@ -410,7 +427,6 @@
           </div>
       {{/if}}
     </div>
-
     {{>footer}}
   </body>
 </html>
