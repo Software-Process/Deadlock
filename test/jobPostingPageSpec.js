@@ -7,7 +7,8 @@ const testJobPostingSchema = mongoose.Schema({
     company: {type: String, required: true},
     date :  String,
     link : {type: String, required: true},
-    author : {type: String, required: true}
+    author : {type: String, required: true},
+    location : {type: String, required: true}
 });
 
 const testJobPosting = mongoose.model('testJobPosting', testJobPostingSchema);
@@ -31,7 +32,8 @@ describe('Connecting to database for job posting page', function() {
           company: 'jobCompany',
           date: '2018-07-07',
           link: 'www.google.com',
-          author: 'jobAuthor'
+          author: 'jobAuthor',
+          location: 'Canada'
         });
         testJobExample.save(done);
     });
@@ -43,7 +45,8 @@ describe('Connecting to database for job posting page', function() {
           company: 'jobCompany',
           date: '2018-07-07',
           link: 'www.google.com',
-          author: 'jobAuthor'}, 
+          author: 'jobAuthor',
+          location: 'Canada'}, 
           (err, name) => {
             if(err) {throw err;}
             if(name.length === 0) {throw new Error('No data!');}
