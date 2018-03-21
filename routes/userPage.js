@@ -10,13 +10,36 @@ router.get('/', function(req, res, next){
     if (req.user) { 
         let answerDocs;
         let questionDocs;
+        let accReplied = [];
+        let rejReplied = [];
         Question.find({username:req.user.username})
             .then(docs1 => {
                 questionDocs = docs1.reverse();
                 Question.find({ 'replies.username' : req.user.username})
                     .then(docs2 => {
                         answerDocs = docs2.reverse();
-                        res.render('userpage', {user : req.user , answers : answerDocs, questions: questionDocs, allowEdit: "True"});
+                        for(var i = 0; i < answerDocs.length; i++)
+                        {
+                            for(var j = 0; j < answerDocs[i].replies.length; j++)
+                            {
+                                if(answerDocs[i].replies[j].username == req.user.username && answerDocs[i].replies[j].accepted)
+                                {
+                                    accReplied.push(answerDocs[i]);
+                                }
+                                if(answerDocs[i].replies[j].username == req.user.username && answerDocs[i].replies[j].rejected)
+                                {
+                                    rejReplied.push(answerDocs[i]);
+                                }
+                            }
+                        }
+                        res.render('userpage', {
+                            user : req.user ,
+                            answers : answerDocs, 
+                            questions: questionDocs, 
+                            allowEdit: "True", 
+                            accReplies: accReplied, 
+                            rejReplies: rejReplied
+                        });
                     })
                     .catch(err => {
                         console.log(err);
@@ -48,6 +71,8 @@ const uname = req.params.name;
     } else {
         let answerDocs;
         let questionDocs;
+        let accReplied = [];
+        let rejReplied = [];
         User.find({username:uname})
             .then(accounts => {
                Question.find({username:uname})
@@ -56,19 +81,38 @@ const uname = req.params.name;
                     Question.find({ 'replies.username' : uname})
                         .then(docs2 => {                   
                             answerDocs = docs2.reverse();
+                            for(var i = 0; i < answerDocs.length; i++) 
+                            {
+                                for(var j = 0; j < answerDocs[i].replies.length; j++)
+                                {
+                                    if(answerDocs[i].replies[j].username == uname && answerDocs[i].replies[j].accepted)
+                                    {
+                                        accReplied.push(answerDocs[i]);
+                                    }
+                                    if(answerDocs[i].replies[j].username == uname && answerDocs[i].replies[j].rejected)
+                                    {
+                                        rejReplied.push(answerDocs[i]);
+                                    }
+                                }
+                            }
                             if (!req.user) {
                                 res.render('userpage', {
                                     user: accounts[0],
                                     answers: answerDocs,
                                     questions: questionDocs,
-                                    noLogin: true
+                                    noLogin: true,
+                                    accReplies: accReplied,
+                                    rejReplies: rejReplied
+
                                 });
                             } else {
                                 res.render('userpage', {
                                     user: accounts[0],
                                     answers: answerDocs,
                                     questions: questionDocs,
-                                    curUser: req.user
+                                    curUser: req.user,
+                                    accReplies: accReplied,
+                                    rejReplies: rejReplied
                                 })
                             }
                         })

@@ -208,14 +208,18 @@
               <div class="col-sm-8">{{title}}</div>
               <div class="col-sm-1">
                 <center>
-                <span class="badge">{{nbOfVotes}}</span>
+                <span class="badge">{{this.replies.length}}</span>
                 </center>
               </div>
               <div class="col-sm-2">{{moment date format="MMMM D, YYYY"}}</div>
               <div class="col-sm-1">
                 <center>
-                <span class="glyphicon glyphicon-lock"></span>
-                <span class="glyphicon glyphicon-refresh"></span>
+                  {{#if this.hasAccepted}}
+                    ✔️
+                    {{else}}
+                      <span class="glyphicon glyphicon-lock"></span>
+                      <span class="glyphicon glyphicon-refresh"></span>
+                  {{/if}}
                 </center>
               </div>
               </div>
@@ -245,8 +249,16 @@
                     <div class="col-sm-6">{{title}}</div>
                     <div class="col-sm-2">{{moment date format="MMMM D, YYYY"}}</div>
                     <div class="col-sm-1"><center>
-                      <span class="glyphicon glyphicon-lock"></span>
-                      <span class="glyphicon glyphicon-refresh"></span>
+                    {{#contains @root.accReplies this}}
+                      ✔️
+                      {{else}}
+                        {{#contains @root.rejReplies this}}
+                          ❌
+                          {{else}}
+                          <span class="glyphicon glyphicon-lock"></span>
+                          <span class="glyphicon glyphicon-refresh"></span>
+                        {{/contains}}
+                    {{/contains}}
                     </center></div>
                   </div>
                 </a>
