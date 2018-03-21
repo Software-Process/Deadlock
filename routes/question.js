@@ -87,21 +87,6 @@ router.patch('/:questionId/reply', function(req, res, next) {
         });
 });
 
-/* Accepts a reply via a PATCH request */
-router.patch('/:replyId/accept', function(req, res, next) {
-    const repId = req.params.replyId;
-    Question.updateOne({"replies._id" : repId}, {$set : {"replies.$.accepted" : true}})
-        .exec()
-        .then(function(result){
-            next();
-        })
-        .catch(function(err){
-            console.log(err);
-            res.status(500).json({error:err});
-        });
-
-});
-
 function getPropertyWithTag(tag) {
     var property = "tag";
 
@@ -177,16 +162,18 @@ router.patch('/:qustionId/:replyId/accept', function(req, res, next) {
             })
         }) 
     });
-
-    Question.updateOne({"replies._id" : repId}, {$set : {"hasAccepted" : true}})
+    Question.updateOne({"replies._id" : repId}, {$set : {"replies.$.accepted" : true}})
         .exec()
-        .then(function(result){
-            res.redirect('back');
-        })
-        .catch(function(err){
-            console.log(err);
-            res.status(500).json({error:err});
-        });
+        .then(
+        Question.updateOne({"replies._id" : repId}, {$set : {"hasAccepted" : true}})
+            .exec()
+            .then(function(result){
+                res.redirect('back');
+            })
+            .catch(function(err){
+                console.log(err);
+                res.status(500).json({error:err});
+        }));
 });
 
 /* Rejects a reply via a PATCH request */
