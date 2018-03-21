@@ -20,22 +20,20 @@
       <hr />
       <!--<div id="question-list">-->
         <div class="row question-list-headers question-row">
-          <div class="col-sm-2 text-center">Id</div>
-          <div class="col-sm-2 text-center">Company</div>
+          <div class="col-sm-3 text-center">Company</div>
           <div class="col-sm-2 text-center">Location</div>
-          <div class="col-sm-4">Title</div>
-          <div class="col-sm-2">Date</div>
+          <div class="col-sm-4 text-center">Title</div>
+          <div class="col-sm-3">Date</div>
         </div>
       <!--</div>-->
       <hr />     
       {{#each jobs}}
-        <a href={{link}}>
+        <a href="/jobPage/{{_id}}">
           <div class="row question-row">
-            <div class="col-sm-2 text-center">{{_id}}</div>
-            <div class="col-sm-2 text-center">{{company}}</div>
-            <div class="col-sm-2 text-center">{{author}}</div>
-            <div class="col-sm-4">{{title}}</div>
-            <div class="col-sm-2">{{moment date format="MMMM D, YYYY"}}</div>
+            <div class="col-sm-3 text-center">{{company}}</div>
+            <div class="col-sm-2 text-center">{{location}}</div>
+            <div class="col-sm-4 text-center">{{title}}</div>
+            <div class="col-sm-3">{{moment date format="MMMM D, YYYY"}}</div>
           </div>
         </a>
       {{/each}}  
