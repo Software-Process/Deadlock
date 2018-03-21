@@ -17,25 +17,23 @@
     {{>header}}
 
     <div class="container" style="margin-top: 50px">
-        <div class="page-header">
-            <h2>Companies awaiting approval</h2>
-        </div>
+      <div class="page-header">
+        <h2>Companies awaiting approval</h2>
+      </div>
 
         <div id="companies-list">
-            <div class="row question-list-headers question-row">
-                <div class="col-sm-1 text-center">Username</div>
-                <div class="col-sm-1 text-center">E-mail</div>
-            </div>
+          <div class="row question-list-headers question-row">
+            <div class="col-sm-1 text-center">Username</div>
+              <div class="col-sm-1 text-center">E-mail</div>
+          </div>
         </div>
 
         <hr>
         {{#each comps}}
             <div class="row question-row">
             <a href="/userpage/{{id}}">
-
-                    <div class="votes-col col-sm-1 text-center">{{username}}</div>
-                    <div class="answers-col col-sm-1 text-center">{{email}}</div>
-
+              <div class="votes-col col-sm-1 text-center">{{username}}</div>
+                <div class="answers-col col-sm-1 text-center">{{email}}</div>
             </a>
             <form action = "/companyAccount/approve/{{id}}" method = "post">
                 <input type="hidden" name="_method" value="PATCH">

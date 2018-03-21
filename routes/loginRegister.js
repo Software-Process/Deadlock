@@ -34,7 +34,6 @@ router.post('/register', [
         output = errs.param + " " + errs.msg;
         return res.render('signIn', { reg:output });
     }
-    console.log(req.body.apply);
     if (req.body.apply){
         user = new User({
             username: req.body.username,
@@ -61,6 +60,9 @@ router.post('/register', [
             console.log(err);
             return res.render('signIn', { user : user, reg: err });
         }
+        if (user.company === "requested"){
+            return res.redirect('/');
+        }
 
         passport.authenticate('local')(req, res, function () {
 
@@ -80,14 +82,20 @@ router.get('/login', function(req, res) {
 // });
 
 router.post('/login', function(req, res, next) {
-    passport.authenticate('local', function(err, user, info) {
-        if (err) { return next(err); }
-        if (!user) { return res.render('signIn', {sig: "Incorrect username or password."}) }
-        req.logIn(user, function(err) {
+    User.find({username:req.body.username}, function(err, doc){
+        if (doc[0].company === 'requested'){
+            return res.render('signIn', {sig: "Please wait for admin approval before signing in with a company account"})
+        }
+        passport.authenticate('local', function(err, user, info) {
             if (err) { return next(err); }
-            return res.redirect('/');
-        });
-    })(req, res, next);
+            if (!user) { return res.render('signIn', {sig: "Incorrect username or password."}) }
+            req.logIn(user, function(err) {
+                if (err) { return next(err); }
+                return res.redirect('/');
+            });
+        })(req, res, next);
+    });
+
 });
 
 /* Logs a user out and redirects them to home page. */
