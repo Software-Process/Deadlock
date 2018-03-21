@@ -21,29 +21,29 @@
         <h2>Companies awaiting approval</h2>
       </div>
 
-        <div id="companies-list">
-          <div class="row question-list-headers question-row">
-            <div class="col-sm-2 text-center">Username</div>
-              <div class="col-sm-6 text-center">E-mail</div>
-          </div>
+      <div id="companies-list">
+        <div class="row question-list-headers question-row">
+          <div class="col-sm-2 text-center">Username</div>
+            <div class="col-sm-6 text-center">E-mail</div>
         </div>
+      </div>
 
-        <hr>
-        {{#each comps}}
-            <div class="row question-row">
-              <a href="/userpage/{{id}}">
-                <div class="votes-col col-sm-2 text-center">{{username}}</div>
-                <div class="answers-col col-sm-6 text-center">{{email}}</div>
-                <form action="/companyAccount/approve/{{id}}" method="post">
-                  <input type="hidden" name="_method" value="PATCH">
-                  <button class="approve-col col-sm-1 text-center btn btn-danger" type="submit" value="Submit">
-                    Approve
-                  </button>
-                </form>
-              </a>
+      <hr>
+      {{#each comps}}
+          <div class="row question-row">
+            <a href="/userpage/{{id}}">
+              <div class="votes-col col-sm-2 text-center">{{username}}</div>
+              <div class="answers-col col-sm-6 text-center">{{email}}</div>
+              <form action="/companyAccount/approve/{{id}}" method="post">
+                <input type="hidden" name="_method" value="PATCH">
+                <button class="approve-col col-sm-1 text-center btn btn-danger" type="submit" value="Submit">
+                  Approve
+                </button>
+              </form>
+            </a>
 
-            </div>
-        {{/each}}
+          </div>
+      {{/each}}
     </div>
 
 
