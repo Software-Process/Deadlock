@@ -44,6 +44,10 @@ router.patch('/:questionId/up', function(req, res, next) {
         .then(function(result){
             res.redirect('back');
         })))
+        .catch(function(err){
+            console.log(err);
+            res.status(500).json({error:err});
+        });
 });
 
 /* Downvotes the question via a PATCH request */
@@ -60,6 +64,10 @@ router.patch('/:questionId/down', function(req, res, next) {
         .then(function(result){
             res.redirect('back');
         })))
+        .catch(function(err){
+            console.log(err);
+            res.status(500).json({error:err});
+        });
 });
 
 router.patch('/:questionId/downupped', function(req, res, next) {
@@ -74,6 +82,10 @@ router.patch('/:questionId/downupped', function(req, res, next) {
         .then(function(result){
             res.redirect('back');
         })))
+        .catch(function(err){
+            console.log(err);
+            res.status(500).json({error:err});
+        });
 });
 
 router.patch('/:questionId/updowned', function(req, res, next) {
@@ -88,6 +100,10 @@ router.patch('/:questionId/updowned', function(req, res, next) {
         .then(function(result){
             res.redirect('back');
         })))
+        .catch(function(err){
+            console.log(err);
+            res.status(500).json({error:err});
+        });
 });
 
 /* Adds a new reply to the question via a PATCH request */
@@ -161,6 +177,10 @@ router.patch('/:replyId/upReply', function(req, res, next) {
         .then(function(result){
             res.redirect('back');
         })))
+        .catch(function(err){
+            console.log(err);
+            res.status(500).json({error:err});
+        });
 });
 
 /* Downvotes a reply via a PATCH request */
@@ -177,6 +197,10 @@ router.patch('/:replyId/downReply', function(req, res, next) {
         .then(function(result){
             res.redirect('back');
         })))
+        .catch(function(err){
+            console.log(err);
+            res.status(500).json({error:err});
+        });
 });
 
 router.patch('/:replyId/downuppedReply', function(req, res, next) {
@@ -191,6 +215,10 @@ router.patch('/:replyId/downuppedReply', function(req, res, next) {
         .then(function(result){
             res.redirect('back');
         })))
+        .catch(function(err){
+            console.log(err);
+            res.status(500).json({error:err});
+        });
 });
 
 router.patch('/:replyId/updownedReply', function(req, res, next) {
@@ -205,6 +233,10 @@ router.patch('/:replyId/updownedReply', function(req, res, next) {
         .then(function(result){
             res.redirect('back');
         })))
+        .catch(function(err){
+            console.log(err);
+            res.status(500).json({error:err});
+        });
 });
 
 module.exports = router;
