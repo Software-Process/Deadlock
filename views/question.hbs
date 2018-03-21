@@ -97,7 +97,6 @@
     <div class="container question-content">            
       <hr>
       <h3>Replies: </h3>
-      <h3> Accepted</h3>
         {{#each question.replies}}
           {{#if accepted}}
             <div class="row question-row">
@@ -159,7 +158,6 @@
             </div>
           {{/if}}
         {{/each}}
-        <h3> Neutral </h3>
         <div id="replies-list"> <!-- Javascript function to list all replies will be onload="loadReplies"-->
           {{#each question.replies}}
             {{#unless accepted}}
@@ -247,7 +245,6 @@
             {{/unless}}
             
           {{/each}}
-        <h3>Rejected</h3>
         {{#each question.replies}}
           {{#if rejected}}
             <div class="row question-row">
