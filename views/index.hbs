@@ -54,9 +54,6 @@
       </h3>
     </div>
 	<form id="questionInfo" name="questionData" action="/question-prompt" method="post">
-
-		<form id="questionInfo" name="questionData" action="/question-prompt" method="post">
-		<form id="questionInfo" name="questionData" action="/question-prompt" method="post">
       <div class="container-fluid">
         <div class="form-group">
           <div class="btn-group-wrap text-center">
@@ -167,8 +164,8 @@
         </div>
       </div>
 	</form>
-      <hr>
-
+    <hr>
+	<div class="container">
       <div id="question-list">
         <div class="row question-list-headers question-row">
           <div class="col-sm-1 text-center">Votes</div>
@@ -187,7 +184,7 @@
             <div class="votes-col col-sm-1 text-center">{{score}}</div>
             <div class="answers-col col-sm-1 text-center">{{replies.length}}</div>
             <div class="col-sm-4">{{title}}</div>
-            <div class="col-sm-2">{{tags}}</div>
+            <div class="col-sm-2 container-fluid">{{tags}}</div>
             <div class="col-sm-2">{{username}}</div>
             <div class="col-sm-2">{{moment date format="MMMM D, YYYY"}}</div>
           </div>
