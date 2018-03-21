@@ -30,7 +30,8 @@ router.post('/', function(req, res, next) {
         title: req.body.title,
         company: req.body.company,
         link: req.body.link,
-        author: req.body.author,
+        location: req.body.location,
+        description: req.body.description,
         date: new Date().toUTCString()
     });
     jobs

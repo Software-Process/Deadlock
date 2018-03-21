@@ -22,5 +22,22 @@ router.get('/', function(req, res, next) {
         });
     }); 
 });
+router.get('/:jobId', function(req, res, next) {
+    const id = req.params.jobId;
+    jobs.findById(id)
+        .exec()
+        .then(docs => {
+            if (req.user){
+                res.render('jobdescription', { job: docs, user : req.user });
+            } else {
+                res.render('jobdescription', { job: docs});
+                }
 
+        })
+        .catch(err => {
+            res.status(200).json({
+                error: err
+        });
+    }); 
+});
 module.exports = router;
