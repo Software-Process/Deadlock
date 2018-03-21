@@ -40,7 +40,7 @@ router.post('/register', [
             email: req.body.email,
             admin: "",
             company: "requested",
-            picture: 1,
+            picture: "/images/default1.png",
             bannerColor: '#116CF6'
         });
     } else {
@@ -49,7 +49,7 @@ router.post('/register', [
             email: req.body.email,
             admin: "",
             company: "",
-            picture: 1,
+            picture: "/images/default1.png",
             bannerColor: '#116CF6'
         });
     }

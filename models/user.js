@@ -9,7 +9,7 @@ const userSchema = new Schema({
     admin: {type: String},
     company: {type: String},
     bio: {type: String},
-    picture: {type: Number, required: true},
+    picture: {type: String},
     bannerColor: {type: String},
     phoneNumber: {type: String},
     github: {type: String},
