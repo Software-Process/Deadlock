@@ -23,7 +23,7 @@ router.get('/:questionId', function(req, res, next) {
             if (doc){
                 res.render('question', { question: doc, user: req.user, tags: doc.tags });
             } else {
-                res.status(404).json({message: "No valid entry found for provided id"});
+                res.status(404).json({message: 'No valid entry found for provided id'});
             }
         })
         .catch(function(err){
@@ -37,11 +37,17 @@ router.get('/:questionId', function(req, res, next) {
 /* Upvotes the question via a PATCH request */
 router.patch('/:questionId/up', function(req, res, next) {
     const id = req.params.questionId;
-    Question.update({_id : id},{$inc : {'score' : 1}})
+    const userName = req.user.username;
+    const toSave = new History({user : req.user.username, current : 1});
+    Question.update({_id : id},{$push : {'users' : [userName]}})
+        .exec()
+        .then(
+            Question.update({_id : id}, {$push : {voteHistory: toSave}}).exec()
+        .then( Question.update({_id : id}, {$inc : {'score' : 1}})
         .exec()
         .then(function(result){
             res.redirect('back');
-        })
+        })))
         .catch(function(err){
             console.log(err);
             res.status(500).json({error:err});
@@ -51,11 +57,53 @@ router.patch('/:questionId/up', function(req, res, next) {
 /* Downvotes the question via a PATCH request */
 router.patch('/:questionId/down', function(req, res, next) {
     const id = req.params.questionId;
-    Question.update({_id : id},{$inc : {'score' : -1}})
+    const userName = req.user.username;
+    const toSave = new History({user : req.user.username, current : -1});
+    Question.update({_id : id},{$push : {'users' : [userName]}})
+        .exec()
+        .then(
+            Question.update({_id : id}, {$push : {voteHistory: toSave}}).exec()
+        .then( Question.update({_id : id}, {$inc : {'score' : -1}})
         .exec()
         .then(function(result){
             res.redirect('back');
-        })
+        })))
+        .catch(function(err){
+            console.log(err);
+            res.status(500).json({error:err});
+        });
+});
+
+router.patch('/:questionId/downupped', function(req, res, next) {
+    const id = req.params.questionId;
+    const userName = req.user.username;
+    Question.update({_id : id},{$pull : {'users' : [userName]}})
+        .exec()
+        .then(
+            Question.update({_id : id}, {$pull : {voteHistory: {user: req.user.username}}}).exec()
+        .then( Question.update({_id : id}, {$inc : {'score' : -1}})
+        .exec()
+        .then(function(result){
+            res.redirect('back');
+        })))
+        .catch(function(err){
+            console.log(err);
+            res.status(500).json({error:err});
+        });
+});
+
+router.patch('/:questionId/updowned', function(req, res, next) {
+    const id = req.params.questionId;
+    const userName = req.user.username;
+    Question.update({_id : id},{$pull : {'users' : [userName]}})
+        .exec()
+        .then(
+            Question.update({_id : id}, {$pull : {voteHistory: {user: req.user.username}}}).exec()
+        .then( Question.update({_id : id}, {$inc : {'score' : 1}})
+        .exec()
+        .then(function(result){
+            res.redirect('back');
+        })))
         .catch(function(err){
             console.log(err);
             res.status(500).json({error:err});
@@ -74,8 +122,7 @@ router.patch('/:questionId/reply', function(req, res, next) {
         question: id,        
         accepted: false,
         rejected: false
-    });
-    console.log(toSave);
+    });    
     Question.update({_id : id},{ $push: { replies:  toSave}})// Replace testUser with logged in user
         .exec()
         .then(function(result){
@@ -90,7 +137,7 @@ router.patch('/:questionId/reply', function(req, res, next) {
 /* Accepts a reply via a PATCH request */
 router.patch('/:replyId/accept', function(req, res, next) {
     const repId = req.params.replyId;
-    Question.updateOne({"replies._id" : repId}, {$set : {"replies.$.accepted" : true}})
+    Question.updateOne({'replies._id' : repId}, {$set : {'replies.$.accepted' : true}})
         .exec()
         .then(function(result){
             next();
@@ -125,6 +172,7 @@ function getPropertyWithTag(tag) {
 
 router.patch('/:qustionId/:replyId/accept', function(req, res, next) {
     const repId = req.params.replyId;
+
     const questionId = req.params.qustionId;
     var questionTags;
     var uname;
@@ -132,8 +180,8 @@ router.patch('/:qustionId/:replyId/accept', function(req, res, next) {
 
     Question.find({_id: questionId}, function(err, obj) {
 
-        var replies = obj[0].replies;
-        var questionTags = obj[0].tags;
+        var replies = obj[0].replies;   
+        var questionTags = obj[0].tags; 
 
         for(var i = 0; i < replies.length; ++i) {
             if (replies[i]._id == repId) {
@@ -143,7 +191,7 @@ router.patch('/:qustionId/:replyId/accept', function(req, res, next) {
             }
         }
 
-        Question.update({_id : questionId}, {$set : {'replyAuthor' : uname}})
+        Question.update({_id : questionId}, {$set : {'replyUsername' : uname}})
             .exec()
             .catch(function(err){
                 console.log(err)
@@ -192,7 +240,7 @@ router.patch('/:qustionId/:replyId/accept', function(req, res, next) {
 /* Rejects a reply via a PATCH request */
 router.patch('/:qustionId/:replyId/reject', function(req, res, next) {
     const repId = req.params.replyId;
-    Question.updateOne({"replies._id" : repId}, {$set : {"replies.$.rejected" : true}})
+    Question.updateOne({'replies._id' : repId}, {$set : {'replies.$.rejected' : true}})
         .exec()
         .then(function(result){
             res.redirect('back');
@@ -206,11 +254,17 @@ router.patch('/:qustionId/:replyId/reject', function(req, res, next) {
 /* Upvotes a reply via a PATCH request */
 router.patch('/:replyId/upReply', function(req, res, next) {
     const repId = req.params.replyId;
-    Question.update({"replies._id" : repId}, {$inc : {"replies.$.score" : 1}})
+    const userName = req.user.username;
+    const toSave = new History({user : req.user.username, current : 1});
+    Question.update({'replies._id' : repId},{$push : {'replies.$.users' : [userName]}})
+        .exec()
+        .then(
+            Question.update({'replies._id' : repId}, {$push : {'replies.$.voteHistory': toSave}}).exec()
+        .then( Question.update({'replies._id' : repId}, {$inc : {'replies.$.score' : 1}})
         .exec()
         .then(function(result){
             res.redirect('back');
-        })
+        })))
         .catch(function(err){
             console.log(err);
             res.status(500).json({error:err});
@@ -220,13 +274,53 @@ router.patch('/:replyId/upReply', function(req, res, next) {
 /* Downvotes a reply via a PATCH request */
 router.patch('/:replyId/downReply', function(req, res, next) {
     const repId = req.params.replyId;
-    const id = req.body.questionId;
-
-    Question.updateOne({"replies._id" : repId}, {$inc : {"replies.$.score" : -1}})
+    const userName = req.user.username;
+    const toSave = new History({user : req.user.username, current : -1});
+    Question.update({'replies._id' : repId},{$push : {'replies.$.users' : [userName]}})
+        .exec()
+        .then(
+            Question.update({'replies._id' : repId}, {$push : {'replies.$.voteHistory': toSave}}).exec()
+        .then( Question.update({'replies._id' : repId}, {$inc : {'replies.$.score' : -1}})
         .exec()
         .then(function(result){
             res.redirect('back');
-        })
+        })))
+        .catch(function(err){
+            console.log(err);
+            res.status(500).json({error:err});
+        });
+});
+
+router.patch('/:replyId/downuppedReply', function(req, res, next) {
+    const repId = req.params.replyId;
+    const userName = req.user.username;
+    Question.update({'replies._id' : repId},{$pull : {'replies.$.users' : [userName]}})
+        .exec()
+        .then(
+            Question.update({'replies._id' : repId}, {$pull : {'replies.$.voteHistory': {user: req.user.username}}}).exec()
+        .then( Question.update({'replies._id' : repId}, {$inc : {'replies.$.score' : -1}})
+        .exec()
+        .then(function(result){
+            res.redirect('back');
+        })))
+        .catch(function(err){
+            console.log(err);
+            res.status(500).json({error:err});
+        });
+});
+
+router.patch('/:replyId/updownedReply', function(req, res, next) {
+    const repId = req.params.replyId;
+    const userName = req.user.username;
+    Question.update({'replies._id' : repId},{$pull : {'replies.$.users' : [userName]}})
+        .exec()
+        .then(
+            Question.update({'replies._id' : repId}, {$pull : {'replies.$.voteHistory': {user: req.user.username}}}).exec()
+        .then( Question.update({'replies._id' : repId}, {$inc : {'replies.$.score' : 1}})
+        .exec()
+        .then(function(result){
+            res.redirect('back');
+        })))
         .catch(function(err){
             console.log(err);
             res.status(500).json({error:err});

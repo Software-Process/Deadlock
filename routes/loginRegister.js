@@ -34,6 +34,59 @@ router.post('/register', [
         output = errs.param + " " + errs.msg;
         return res.render('signIn', { reg:output });
     }
+    if (req.body.apply){
+        user = new User({
+            username: req.body.username,
+            email: req.body.email,
+            admin: "",
+            company: "requested",
+            picture: 1,
+            bannerColor: '#116CF6',
+            tagJava : 0,
+            tagPHP : 0,
+            tagPython : 0,
+            tagCPlusPlus : 0,
+            tagCSharp : 0,
+            tagRuby : 0,
+            tagLisp : 0,
+            tagProlog : 0,
+            tagHtml : 0,
+            tagCss : 0,
+            tagJavaScript : 0,
+            tagJade : 0,
+            tagC : 0,
+            tagFortran : 0,
+            tagVisualBasic : 0,
+            tagAssembly : 0,
+            tagPerl : 0
+        });
+    } else {
+        user = new User({
+            username: req.body.username,
+            email: req.body.email,
+            admin: "",
+            company: "",
+            picture: 1,
+            bannerColor: '#116CF6',
+            tagJava : 0,
+            tagPHP : 0,
+            tagPython : 0,
+            tagCPlusPlus : 0,
+            tagCSharp : 0,
+            tagRuby : 0,
+            tagLisp : 0,
+            tagProlog : 0,
+            tagHtml : 0,
+            tagCss : 0,
+            tagJavaScript : 0,
+            tagJade : 0,
+            tagC : 0,
+            tagFortran : 0,
+            tagVisualBasic : 0,
+            tagAssembly : 0,
+            tagPerl : 0
+        });
+    }
 
     const user = new User({
         username: req.body.username,
@@ -66,6 +119,9 @@ router.post('/register', [
             console.log(err);
             return res.render('signIn', { user : user, reg: err });
         }
+        if (user.company === "requested"){
+            return res.redirect('/');
+        }
 
         passport.authenticate('local')(req, res, function () {
 
@@ -85,14 +141,20 @@ router.get('/login', function(req, res) {
 // });
 
 router.post('/login', function(req, res, next) {
-    passport.authenticate('local', function(err, user, info) {
-        if (err) { return next(err); }
-        if (!user) { return res.render('signIn', {sig: "Incorrect username or password."}) }
-        req.logIn(user, function(err) {
+    User.find({username:req.body.username}, function(err, doc){
+        if (doc[0].company === 'requested'){
+            return res.render('signIn', {sig: "Please wait for admin approval before signing in with a company account"})
+        }
+        passport.authenticate('local', function(err, user, info) {
             if (err) { return next(err); }
-            return res.redirect('/');
-        });
-    })(req, res, next);
+            if (!user) { return res.render('signIn', {sig: "Incorrect username or password."}) }
+            req.logIn(user, function(err) {
+                if (err) { return next(err); }
+                return res.redirect('/');
+            });
+        })(req, res, next);
+    });
+
 });
 
 /* Logs a user out and redirects them to home page. */
