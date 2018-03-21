@@ -27,20 +27,33 @@
       <div class="container">
         <div class="row">
           <div class="col-sm-6">
-            <h2><strong>Welcome to Deadlock Q&amp;A!</strong></h2>
-            <p>Learn, Code, Interact.<br/>Join the community today.</p>
+            <h2>
+              <strong>Welcome to Deadlock Q&amp;A!</strong>
+            </h2>
+            <p>
+              Learn, Code, Interact.
+              <br />Join the community today.
+            </p>
           </div>
           <div class="col-sm-6">
-            <a href="/userpage"><img class="img-circle profile-picture pull-left" src="/images/default1.png"></a>
+            <a href="/userpage">
+              <img class="img-circle profile-picture pull-left" src="/images/default1.png">
+            </a>
             <div class="wrapper">
               {{#if user}}
                 <h3>Hello, {{user.username}} </h3>
               {{else}}
                 <h3>Log in to ask and answer questions!</h3>
               {{/if}}
-              <div><span class="badge badge-secondary questions-answered-badge">2</span> questions answered</div>
-              <div><span class="badge badge-secondary questions-pending-badge">5</span> questions pending</div>
-              <div><span class="badge badge-secondary answers-accepted-badge">4</span> answers accepted</div>
+              <div>
+                <span class="badge badge-secondary questions-answered-badge">2</span> questions answered
+              </div>
+              <div>
+                <span class="badge badge-secondary questions-pending-badge">5</span> questions pending
+              </div>
+              <div>
+                <span class="badge badge-secondary answers-accepted-badge">4</span> answers accepted
+              </div>
             </div>
           </div>
         </div>
@@ -50,7 +63,7 @@
     <div class="container">
       <h3>
         Popular Questions
-        <a href="/question-prompt" class="float-right btn btn-default btn-lg">Ask a Question</a>
+        <a class="float-right btn btn-default btn-lg" href="/question-prompt">Ask a Question</a>
       </h3>
     </div>
 	<form id="questionInfo" name="questionData" action="/question-prompt" method="post">
@@ -177,7 +190,7 @@
         </div>
       </div>
 
-      <hr>
+      <hr />
       {{#each questions}}
         <a href="/question/{{id}}">
           <div class="row question-row">

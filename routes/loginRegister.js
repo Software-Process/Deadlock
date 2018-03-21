@@ -34,20 +34,34 @@ router.post('/register', [
         output = errs.param + " " + errs.msg;
         return res.render('signIn', { reg:output });
     }
+    if (req.body.apply){
+        user = new User({
+            username: req.body.username,
+            email: req.body.email,
+            admin: "",
+            company: "requested",
+            picture: 1,
+            bannerColor: '#116CF6'
+        });
+    } else {
+        user = new User({
+            username: req.body.username,
+            email: req.body.email,
+            admin: "",
+            company: "",
+            picture: 1,
+            bannerColor: '#116CF6'
+        });
+    }
 
-    const user = new User({
-        username: req.body.username,
-        email: req.body.email,
-        admin: "",
-        company: "",
-        picture: 1,
-        bannerColor: '#116CF6'
-    });
 
     User.register(user, req.body.password, function(err, user ) {
         if (err) {
             console.log(err);
             return res.render('signIn', { user : user, reg: err });
+        }
+        if (user.company === "requested"){
+            return res.redirect('/');
         }
 
         passport.authenticate('local')(req, res, function () {
@@ -68,14 +82,20 @@ router.get('/login', function(req, res) {
 // });
 
 router.post('/login', function(req, res, next) {
-    passport.authenticate('local', function(err, user, info) {
-        if (err) { return next(err); }
-        if (!user) { return res.render('signIn', {sig: "Incorrect username or password."}) }
-        req.logIn(user, function(err) {
+    User.find({username:req.body.username}, function(err, doc){
+        if (doc[0].company === 'requested'){
+            return res.render('signIn', {sig: "Please wait for admin approval before signing in with a company account"})
+        }
+        passport.authenticate('local', function(err, user, info) {
             if (err) { return next(err); }
-            return res.redirect('/');
-        });
-    })(req, res, next);
+            if (!user) { return res.render('signIn', {sig: "Incorrect username or password."}) }
+            req.logIn(user, function(err) {
+                if (err) { return next(err); }
+                return res.redirect('/');
+            });
+        })(req, res, next);
+    });
+
 });
 
 /* Logs a user out and redirects them to home page. */
