@@ -32,9 +32,9 @@
       <div class="row vdivide">
         <div class="col-sm-6 login-section">
           <h2 class="form-heading">Login</h2>
-            {{#if sig}}
-                <div class="alert alert-danger"> {{sig}} </div>
-            {{/if}}
+          {{#if sig}}
+              <div class="alert alert-danger"> {{sig}} </div>
+          {{/if}}
 
           <form action="/loginRegister/login" method="post">
             <div class="form-group">
@@ -49,7 +49,7 @@
                   <span class="form-heading">Password:</span>
               </label>
               <input class="form-control" id="password" name="password" type="password">
-          </div>
+            </div>
             <input class="btn btn-default" type="submit" value="Log in">
           </form>
         </div>
@@ -94,8 +94,7 @@
                     <span class="form-heading">Apply for a company account</span>
                   </label>
               </div>
-
-
+              
               <input class="btn btn-default" type="submit" value="Register">
           </form>
         </div>
