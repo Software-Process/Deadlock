@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="/stylesheets/indexstyle.css">
 <header>
   <nav class="navbar navbar-inverse navbar-fixed-top navbar-custom navbar-custom" role="navigation">
     <div class="container">
@@ -54,23 +55,23 @@
             {{#if curUser}}
             {{#if @root.curUser.repRejNew}}
                 {{#isnt @root.curUserrepRejNew "0"}}
-                    <div><span class="badge badge-danger">{{@root.curUser.repRejNew}}</span></div>
+                    <div><span class="badge header-rejected-badge">{{@root.curUser.repRejNew}}</span></div>
                 {{/isnt}}
             {{/if}}
             {{#if @root.curUser.repAccNew}}
                 {{#isnt @root.curUser.repAccNew "0"}}
-                    <div><span class="badge badge-danger">{{@root.curUser.repAccNew}}</span></div>
+                    <div><span class="badge header-accepted-badge">{{@root.curUser.repAccNew}}</span></div>
                 {{/isnt}}
             {{/if}}
             {{else}}
                 {{#if @root.user.repRejNew}}
                     {{#isnt @root.userrepRejNew "0"}}
-                        <div><span class="badge badge-danger">{{@root.user.repRejNew}}</span></div>
+                        <div><span class="badge header-rejected-badge">{{@root.user.repRejNew}}</span></div>
                     {{/isnt}}
                 {{/if}}
                 {{#if @root.user.repAccNew}}
                     {{#isnt @root.user.repAccNew "0"}}
-                        <div><span class="badge badge-danger">{{@root.user.repAccNew}}</span></div>
+                        <div><span class="badge header-accepted-badge">{{@root.user.repAccNew}}</span></div>
                     {{/isnt}}
                 {{/if}}
             {{/if}}
