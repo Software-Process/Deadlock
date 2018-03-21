@@ -41,7 +41,24 @@ router.post('/register', [
         admin: "",
         company: "",
         picture: 1,
-        bannerColor: '#116CF6'
+        bannerColor: '#116CF6',
+        tagJava : 0,
+        tagPHP : 0,
+        tagPython : 0,
+        tagCPlusPlus : 0,
+        tagCSharp : 0,
+        tagRuby : 0,
+        tagLisp : 0,
+        tagProlog : 0,
+        tagHtml : 0,
+        tagCss : 0,
+        tagJavaScript : 0,
+        tagJade : 0,
+        tagC : 0,
+        tagFortran : 0,
+        tagVisualBasic : 0,
+        tagAssembly : 0,
+        tagPerl : 0
     });
 
     User.register(user, req.body.password, function(err, user ) {

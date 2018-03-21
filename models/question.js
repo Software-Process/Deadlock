@@ -11,6 +11,7 @@ const questionSchema = new Schema({
     username: String,
     date: {type: String, required: true},
     hasAccepted: {type: Boolean, required: true},
+    replyAuthor: String, //{type: mongoose.Schema.Types.ObjectId},
     voteHistory: [History.schema],
     replies: [Reply.schema],
     tags: [{type: String}]
