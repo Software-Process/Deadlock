@@ -25,10 +25,13 @@
                 <a style="color:white" href="/loginRegister">Log in / Register</a>
               </li>
             {{else}}
+                {{#if user}}
+                    <li class="nav-item"><a style="color:orange" href="/loginRegister/logout">Logout</a></li>
+                {{else}}
               <li class="nav-item">
               <a style="color:white" href="/loginRegister">Log in / Register</a></li>
              {{/if}}
-          {{/if}}
+            {{/if}}
             <li class="nav-item"><a style="color:white" href="/aboutus">About Us</a></li>
           <li class="nav-item"><a style="color:white" href="/userpage">User Page</a></li> 
           <li class="nav-item"><a style="color:white" href="/jobPage">View Job List</a></li>
@@ -46,6 +49,7 @@
           <li class="nav-item">
             <a style="color:white" href="/jobPage">View Job List</a>
           </li>
+          {{/if}}
             {{#if curUser}}
               {{#if @root.curUser.admin}}
                 <li class="nav-item">
