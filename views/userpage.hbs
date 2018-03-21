@@ -21,14 +21,14 @@
   <body>
     {{>header}}
 
-    <div class="jumbotron text-center" style="background-color: #116CF6; margin-top: 50px">
-      <img class="img-circle profile-picture" src="/images/default1.png">
+    <div class="jumbotron text-center" style="background-color: {{user.bannerColor}}; margin-top: 50px">
+      <img class="img-circle profile-picture" src="{{user.picture}}">
       <h2>
         <strong>{{user.username}}</strong>
       </h2> 
-        {{#if allowEdit}}  
-          <button class="btn btn-info" type="button" onclick="location.href='/edituserpage'">Edit profile</button>
-        {{/if}}
+      {{#if allowEdit}}  
+        <button class="btn btn-info" type="button" onclick="location.href='/edituserpage'">Edit profile</button>
+      {{/if}}
     </div>
 
     <!-- User tag scores -->
@@ -221,26 +221,30 @@
                 </div>
               </div>
             </li>
-              {{#each questions}}
-                <li class="list-group-item">
-                  <a href="/question/{{id}}">
-                    <div class="row question-row">
-                      <div class="col-sm-8">{{title}}</div>
-                      <div class="col-sm-1">
-                        <center>
-                          <span class="badge">{{nbOfVotes}}</span>
-                        </center>
-                      </div>
-                      <div class="col-sm-2">{{moment date format="MMMM D, YYYY"}}</div>
-                      <div class="col-sm-1">
-                        <center>
+            {{#each questions}}
+            <li class="list-group-item">
+              <a href="/question/{{id}}">
+                <div class="row question-row">
+                <div class="col-sm-8">{{title}}</div>
+                <div class="col-sm-1">
+                  <center>
+                    <span class="badge">{{this.replies.length}}</span>
+                  </center>
+                </div>
+                <div class="col-sm-2">{{moment date format="MMMM D, YYYY"}}</div>
+                  <div class="col-sm-1">
+                    <center>
+                      {{#if this.hasAccepted}}
+                        ✔️
+                        {{else}}
                           <span class="glyphicon glyphicon-lock"></span>
                           <span class="glyphicon glyphicon-refresh"></span>
-                        </center>
-                      </div>
-                    </div>
-                  </a>
-                </li>
+                      {{/if}}
+                    </center>
+                  </div>
+                </div>
+              </a>
+            </li>
             {{/each}}
           </ul>
 
@@ -279,8 +283,16 @@
                     <div class="col-sm-2">{{moment date format="MMMM D, YYYY"}}</div>
                     <div class="col-sm-1">
                       <center>
-                        <span class="glyphicon glyphicon-lock"></span>
-                        <span class="glyphicon glyphicon-refresh"></span>
+                        {{#contains @root.accReplies this}}
+                          ✔️
+                          {{else}}
+                            {{#contains @root.rejReplies this}}
+                              ❌
+                              {{else}}
+                                <span class="glyphicon glyphicon-lock"></span>
+                                <span class="glyphicon glyphicon-refresh"></span>
+                            {{/contains}}
+                        {{/contains}}
                       </center>
                     </div>
                   </div>
