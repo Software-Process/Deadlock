@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const Reply = require('../models/reply');
 const Question = require('../models/question');
 const History = require('../models/history');
+const User = require('../models/user');
 
 /* GET request for base page; should never be shown under normal circumstances.*/
 router.get('/', function(req, res, next) {
@@ -113,7 +114,9 @@ router.patch('/:questionId/reply', function(req, res, next) {
     Question.update({_id : id},{ $push: { replies:  toSave}})// Replace testUser with logged in user
         .exec()
         .then(function(result){
-            res.redirect('back');
+            User.update({"username" : req.user.username}, {$inc : {replied: 1}}, function(){
+                res.redirect('back');
+            });
         })
         .catch(function(err){
             console.log(err);
@@ -141,7 +144,9 @@ router.patch('/:replyId/accept', function(req, res, next) {
     Question.updateOne({'replies._id' : repId}, {$set : {'hasAccepted' : true}})
         .exec()
         .then(function(result){
-            res.redirect('back');
+            User.update({"replies._id" : repId}, {$inc : {accepted: 1}}, function(){
+                res.redirect('back');
+            });
         })
         .catch(function(err){
             console.log(err);
@@ -155,7 +160,9 @@ router.patch('/:replyId/reject', function(req, res, next) {
     Question.updateOne({'replies._id' : repId}, {$set : {'replies.$.rejected' : true}})
         .exec()
         .then(function(result){
-            res.redirect('back');
+            User.update({"replies._id" : repId}, {$inc : {rejected: 1}}, function(){
+                res.redirect('back');
+            });
         })
         .catch(function(err){
             console.log(err);

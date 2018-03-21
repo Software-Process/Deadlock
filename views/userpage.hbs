@@ -181,10 +181,26 @@
               <hr />
               <ul style="list-style-type: none;">
                 <li>Badge</li>
-                <li># of questions asked</li>
-                <li># of answers</li>
-                <li># of accepted answers</li>
-                <li># of rejected answers</li>
+                  {{#if @root.user.posted}}
+                      <li> {{user.posted}} question(s) asked</li>
+                  {{else}}
+                      <li> No questions asked yet!</li>
+                  {{/if}}
+                  {{#if @root.user.replied}}
+                      <li> {{user.replied}} answer(s) posted</li>
+                  {{else}}
+                      <li> No answers posted yet!</li>
+                  {{/if}}
+                  {{#if @root.user.repAccepted}}
+                      <li> {{user.repAccepted}} question(s) asked</li>
+                  {{else}}
+                      <li> No answers accepted yet!</li>
+                  {{/if}}
+                  {{#if @root.user.repRejected}}
+                      <li> {{user.repRejected}} question(s) asked</li>
+                  {{else}}
+                      <li> No answers rejected yet!</li>
+                  {{/if}}
               </ul>
             </div>
           </div>

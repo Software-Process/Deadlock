@@ -4,6 +4,7 @@ var router = express.Router();
 const mongoose = require("mongoose");
 
 const Question = require("../models/question");
+const User = require("../models/user");
 
 /*To render the question-prompt.hbs page. Redirects if user is not signed in.*/
 router.get('/', function(req, res, next) {
@@ -32,10 +33,13 @@ router.post('/', function(req, res, next) {
     });
     question
         .save()
-        .then(function(result){
-            var path = '/question/' + genId;
-            res.redirect(path);        
-    })
+        .then(function(){
+            User.update({"username": req.user.username}, {$inc : {posted: 1}}, function (){
+                const path = '/question/' + genId;
+                res.redirect(path);
+            });
+
+        })
         .catch(function(err){
             console.log(err);
             res.status(500).json({
