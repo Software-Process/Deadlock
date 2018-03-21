@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <title>DeadLock - Question</title>
+  <meta charset="utf-8">    
+  <meta name="viewport" content="width=device-width, initial-scale=1">  
+
+    <!-- External JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">        
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/standardstyle.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/question.css">
+  </head>
+
+  <body>
+    {{>header}}
+
+    <div class="container question-container" style="margin-top: 50px">
+      <div class="row question-heading">
+        <h1>Job Decription for: {{job.title}}</h1>
+        <hr>
+        <h3>{{job.description}}</h3>
+      </div>
+      <div class="row question-heading">
+        <h1>With: {{job.company}}</h1>
+        <h1>Location: {{job.location}}</h1>
+        <h3>External link: <a href="{{job.link}}" style="color:rgb(208, 255, 0)">{{job.link}}</a></h3>
+        <h3>Posted on: {{moment job.date format="MMMM D, YYYY"}}</h3>
+      </div>
+    </div>
+    
+    {{>footer}}
+  </body>
+</html>
