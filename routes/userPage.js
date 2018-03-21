@@ -18,16 +18,12 @@ router.get('/', function(req, res, next){
                 Question.find({ 'replies.username' : req.user.username})
                     .then(docs2 => {
                         answerDocs = docs2.reverse();
-                        for(var i = 0; i < answerDocs.length; i++)
-                        {
-                            for(var j = 0; j < answerDocs[i].replies.length; j++)
-                            {
-                                if(answerDocs[i].replies[j].username == req.user.username && answerDocs[i].replies[j].accepted)
-                                {
+                        for(var i = 0; i < answerDocs.length; i++) {
+                            for(var j = 0; j < answerDocs[i].replies.length; j++) {
+                                if(answerDocs[i].replies[j].username == req.user.username && answerDocs[i].replies[j].accepted) {
                                     accReplied.push(answerDocs[i]);
                                 }
-                                if(answerDocs[i].replies[j].username == req.user.username && answerDocs[i].replies[j].rejected)
-                                {
+                                if(answerDocs[i].replies[j].username == req.user.username && answerDocs[i].replies[j].rejected) {
                                     rejReplied.push(answerDocs[i]);
                                 }
                             }
@@ -79,18 +75,14 @@ const uname = req.params.name;
                 .then(docs1 => {
                     questionDocs = docs1.reverse();
                     Question.find({ 'replies.username' : uname})
-                        .then(docs2 => {                   
+                        .then(docs2 => {
                             answerDocs = docs2.reverse();
-                            for(var i = 0; i < answerDocs.length; i++) 
-                            {
-                                for(var j = 0; j < answerDocs[i].replies.length; j++)
-                                {
-                                    if(answerDocs[i].replies[j].username == uname && answerDocs[i].replies[j].accepted)
-                                    {
+                            for(var i = 0; i < answerDocs.length; i++) {
+                                for(var j = 0; j < answerDocs[i].replies.length; j++) {
+                                    if(answerDocs[i].replies[j].username == uname && answerDocs[i].replies[j].accepted) {
                                         accReplied.push(answerDocs[i]);
                                     }
-                                    if(answerDocs[i].replies[j].username == uname && answerDocs[i].replies[j].rejected)
-                                    {
+                                    if(answerDocs[i].replies[j].username == uname && answerDocs[i].replies[j].rejected) {
                                         rejReplied.push(answerDocs[i]);
                                     }
                                 }
