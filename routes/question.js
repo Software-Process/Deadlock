@@ -143,12 +143,15 @@ router.patch('/:replyId/accept', function(req, res, next) {
     const repId = req.params.replyId;
     Question.updateOne({'replies._id' : repId}, {$set : {'hasAccepted' : true}})
         .exec()
-        .then(function(result){
-            User.update({"replies._id" : repId}, {$inc : {accepted: 1}}, function(){
-                res.redirect('back');
-            });
-        })
-        .catch(function(err){
+        .then(Question.find({"replies._id" : repId}, function(err, docs){
+            User.update({username : docs[0].replies[0].username}, {$inc : {repAccepted: 1 }}).exec()
+            .then( User.update({username : docs[0].replies[0].username}, {$inc : {repAccNew : 1}})
+                .exec()
+                .then(function(result){
+                    res.redirect('back');
+                }))
+        }))
+            .catch(function(err){
             console.log(err);
             res.status(500).json({error:err});
         });
@@ -159,16 +162,21 @@ router.patch('/:replyId/reject', function(req, res, next) {
     const repId = req.params.replyId;
     Question.updateOne({'replies._id' : repId}, {$set : {'replies.$.rejected' : true}})
         .exec()
-        .then(function(result){
-            User.update({"replies._id" : repId}, {$inc : {rejected: 1}}, function(){
-                res.redirect('back');
-            });
-        })
+        .then(Question.find({"replies._id" : repId}, function(err, docs){
+            User.update({username : docs[0].replies[0].username}, {$inc : {repRejected: 1 }}).exec()
+                .then( User.update({username : docs[0].replies[0].username}, {$inc : {repRejNew : 1}})
+                    .exec()
+                    .then(function(result){
+                        res.redirect('back');
+                    }))
+        }))
         .catch(function(err){
             console.log(err);
             res.status(500).json({error:err});
         });
 });
+
+
 
 /* Upvotes a reply via a PATCH request */
 router.patch('/:replyId/upReply', function(req, res, next) {

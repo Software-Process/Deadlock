@@ -26,7 +26,12 @@
       <h2><strong>{{user.username}}</strong></h2> 
        {{#if allowEdit}}  
            <button class="btn btn-info" type="button" onclick="location.href='/edituserpage'">Edit profile</button>
+           <form action="/userPage/{{@root.user.username}}/clear" method="post">
+               <input type="hidden" name="_method" value="PATCH">
+               <button class="btn btn-info" type="submit">Clear notifications</button>
+           </form>
        {{/if}}
+
     </div>
 
     <!-- User tag scores -->
@@ -182,22 +187,22 @@
               <ul style="list-style-type: none;">
                 <li>Badge</li>
                   {{#if @root.user.posted}}
-                      <li> {{user.posted}} question(s) asked</li>
+                      <li> {{@root.user.posted}} question(s) asked</li>
                   {{else}}
                       <li> No questions asked yet!</li>
                   {{/if}}
                   {{#if @root.user.replied}}
-                      <li> {{user.replied}} answer(s) posted</li>
+                      <li> {{@root.user.replied}} answer(s) posted</li>
                   {{else}}
                       <li> No answers posted yet!</li>
                   {{/if}}
                   {{#if @root.user.repAccepted}}
-                      <li> {{user.repAccepted}} question(s) asked</li>
+                      <li> {{@root.user.repAccepted}} answer(s) accepted</li>
                   {{else}}
                       <li> No answers accepted yet!</li>
                   {{/if}}
                   {{#if @root.user.repRejected}}
-                      <li> {{user.repRejected}} question(s) asked</li>
+                      <li> {{@root.user.repRejected}} answer(s) rejected</li>
                   {{else}}
                       <li> No answers rejected yet!</li>
                   {{/if}}

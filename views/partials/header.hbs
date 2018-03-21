@@ -27,6 +27,7 @@
             <li class="nav-item"><a style="color:white" href="/aboutus">About Us</a></li>
           <li class="nav-item"><a style="color:white" href="/userpage">User Page</a></li> 
           <li class="nav-item"><a style="color:white" href="/jobPage">View Job List</a></li>
+        </ul>
           {{#if curUser}}
             {{#if @root.curUser.admin}}
               <li class="nav-item"><a style="color:white" href="/jobPostingPage">Post A Job</a></li>
@@ -50,7 +51,30 @@
                   <li class="nav-item"><a style="color:white" href="/companyAccount">Create Company Account</a></li>
               {{/if}}
           {{/if}}
-        </ul>              
+            {{#if curUser}}
+            {{#if @root.curUser.repRejNew}}
+                {{#isnt @root.curUserrepRejNew "0"}}
+                    <div><span class="badge badge-danger">{{@root.curUser.repRejNew}}</span></div>
+                {{/isnt}}
+            {{/if}}
+            {{#if @root.curUser.repAccNew}}
+                {{#isnt @root.curUser.repAccNew "0"}}
+                    <div><span class="badge badge-danger">{{@root.curUser.repAccNew}}</span></div>
+                {{/isnt}}
+            {{/if}}
+            {{else}}
+                {{#if @root.user.repRejNew}}
+                    {{#isnt @root.userrepRejNew "0"}}
+                        <div><span class="badge badge-danger">{{@root.user.repRejNew}}</span></div>
+                    {{/isnt}}
+                {{/if}}
+                {{#if @root.user.repAccNew}}
+                    {{#isnt @root.user.repAccNew "0"}}
+                        <div><span class="badge badge-danger">{{@root.user.repAccNew}}</span></div>
+                    {{/isnt}}
+                {{/if}}
+            {{/if}}
+
       </div>
     </div>
   </nav>
