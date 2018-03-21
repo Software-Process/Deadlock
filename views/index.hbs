@@ -11,6 +11,7 @@
     <script src="https://momentjs.com/downloads/moment.js"></script>
     <script src="handlebars/dist/handlebars.min.js"></script>
     <script src="handlebars-intl/dist/handlebars-intl.min.js"></script>
+    <script src="javascripts/tagFilter.js"></script>
 
     <!-- CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -18,6 +19,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
     <link rel="stylesheet" href="/stylesheets/standardstyle.css">
     <link rel="stylesheet" href="/stylesheets/indexstyle.css">
+     <link rel="stylesheet" href="stylesheets/question-prompt.css">
   </head>
   <body>
     {{>header}}
@@ -50,14 +52,129 @@
         Popular Questions
         <a href="/question-prompt" class="float-right btn btn-default btn-lg">Ask a Question</a>
       </h3>
+    </div>
+	<form id="questionInfo" name="questionData" action="/question-prompt" method="post">
 
+		<form id="questionInfo" name="questionData" action="/question-prompt" method="post">
+
+      <div class="container-fluid">
+        <div class="form-group">
+          <div class="btn-group-wrap text-center">
+            <div class="btn-group" data-toggle="buttons">
+
+              <label class="btn btn-success">
+                <input type="radio" name="tag" id="Java" value="Java">
+                <span class="glyphicon glyphicon-ok"></span>
+                Java
+              </label>
+
+              <label class="btn btn-primary">
+                <input type="radio" name="tag" id="PHP" value="PHP">
+                <span class="glyphicon glyphicon-ok"></span>
+                PHP
+              </label>
+            
+              <label class="btn btn-info">
+                <input type="radio" name="tag" id="Python" value="Python">
+                <span class="glyphicon glyphicon-ok"></span>
+                Python
+              </label>
+            
+              <label class="btn btn-default">
+                <input type="radio" name="tag" id="C++" value="C++">
+                <span class="glyphicon glyphicon-ok"></span>
+                C++
+              </label>
+
+              <label class="btn btn-warning">
+                <input type="radio" name="tag" id="C#" value="C#">
+                <span class="glyphicon glyphicon-ok"></span>
+                C#
+              </label>
+            
+              <label class="btn btn-danger">
+                <input type="radio" name="tag" id="Ruby" value="Ruby">
+                <span class="glyphicon glyphicon-ok"></span>
+                Ruby
+              </label>  
+
+              <label class="btn btn-success">
+                <input type="radio" name="tag" id="Lisp" value="Lisp">
+                <span class="glyphicon glyphicon-ok"></span>
+                Lisp
+              </label>
+
+              <label class="btn btn-primary">
+                <input type="radio" name="tag" id="Prolog" value="Prolog">
+                <span class="glyphicon glyphicon-ok"></span>
+                Prolog
+              </label>
+            
+              <label class="btn btn-info">
+                <input type="radio" name="tag" id="HTML" value="HTML">
+                <span class="glyphicon glyphicon-ok"></span>
+                HTML
+              </label>
+            
+              <label class="btn btn-default">
+                <input type="radio" name="tag" id="CSS" value="CSS">
+                <span class="glyphicon glyphicon-ok"></span>
+                CSS
+              </label>
+
+              <label class="btn btn-warning">
+                <input type="radio" name="tag" id="JavaScript" value="JavaScript">
+                <span class="glyphicon glyphicon-ok"></span>
+                JavaScript
+              </label>
+            
+              <label class="btn btn-danger">
+                <input type="radio" name="tag" id="Jade" value="Jade">
+                <span class="glyphicon glyphicon-ok"></span>
+                Jade
+              </label>
+              <label class="btn btn-success">
+                <input type="radio" name="tag" id="C" value="C">
+                <span class="glyphicon glyphicon-ok"></span>
+                C
+              </label>
+
+              <label class="btn btn-primary">
+                <input type="radio" name="tag" id="Fortran" value="Fortran">
+                <span class="glyphicon glyphicon-ok"></span>
+                Fortran
+              </label>
+            
+              <label class="btn btn-info">
+                <input type="radio" name="tag" id="Visual_Basic" value="Visual Basic">
+                <span class="glyphicon glyphicon-ok"></span>
+                Visual Basic
+              </label>
+            
+              <label class="btn btn-default">
+                <input type="radio" name="tag" id="Assembly" value="Assembly">
+                <span class="glyphicon glyphicon-ok"></span>
+                Assembly
+              </label>
+
+              <label class="btn btn-warning">
+                <input type="radio" name="tag" id="Perl" value="Perl">
+                <span class="glyphicon glyphicon-ok"></span>
+                Perl
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+	</form>
       <hr>
 
       <div id="question-list">
         <div class="row question-list-headers question-row">
           <div class="col-sm-1 text-center">Votes</div>
           <div class="col-sm-1 text-center">Answers</div>
-          <div class="col-sm-6">Questions</div>
+          <div class="col-sm-4">Questions</div>
+          <div class="col-sm-2">Tags</div>
           <div class="col-sm-2">Author</div>
           <div class="col-sm-2">Date</div>
         </div>
@@ -69,7 +186,8 @@
           <div class="row question-row">
             <div class="votes-col col-sm-1 text-center">{{score}}</div>
             <div class="answers-col col-sm-1 text-center">{{replies.length}}</div>
-            <div class="col-sm-6">{{title}}</div>
+            <div class="col-sm-4">{{title}}</div>
+            <div class="col-sm-2">{{tags}}</div>
             <div class="col-sm-2">{{username}}</div>
             <div class="col-sm-2">{{moment date format="MMMM D, YYYY"}}</div>
           </div>
