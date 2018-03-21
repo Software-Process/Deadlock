@@ -28,28 +28,30 @@
         </div>
       </div>
 
-      <hr>
+      <hr />
       {{#each comps}}
-          <div class="row question-row">
-            <a href="/userpage/{{id}}">
-              <div class="votes-col col-sm-2 text-center">{{username}}</div>
-              <div class="answers-col col-sm-6 text-center">{{email}}</div>
-              <form action="/companyAccount/approve/{{id}}" method="post">
-                <input type="hidden" name="_method" value="PATCH">
-                <button class="approve-col col-sm-1 text-center btn btn-danger" type="submit" value="Submit">
-                  Approve
-                </button>
-              </form>
-            </a>
-
-          </div>
+        <div class="row question-row">
+          <a href="/userpage/{{id}}">
+            <div class="votes-col col-sm-2 text-center">{{username}}</div>
+            <div class="answers-col col-sm-6 text-center">{{email}}</div>
+            <form action="/companyAccount/approve/{{id}}" method="post">
+              <input name="_method" type="hidden" value="PATCH">
+              <button class="approve-col col-sm-1 text-center btn btn-danger" type="submit" value="Submit">
+                Approve
+              </button>
+            </form>
+          </a>
+        </div>
       {{/each}}
     </div>
 
 
     <div class="container" style="margin-top: 50px">
       <div class="page-header">
-        <h2>Manually Creating Certified Company Account <small>Fill all fields</small></h2>
+        <h2>
+          Manually Creating Certified Company Account
+          <small>Fill all fields</small>
+        </h2>
       </div>
 
       <form action="/companyAccount" method="post">
@@ -70,8 +72,8 @@
 
         <!-- Fundemental buttons to either update the changes or not-->
         <div class="row">
-          <input class="btn btn-success" type="submit" value="Submit" />
-          <input class="btn btn-danger" type="reset" value="Clear" />
+          <input class="btn btn-success" type="submit" value="Submit">
+          <input class="btn btn-danger" type="reset" value="Clear">
         </div>
       </form>
     </div>

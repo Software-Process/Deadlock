@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-     title>DeadLock - Job List</title>
+  <head>
+    <title>DeadLock - Job List</title>
     <meta charset="utf-8">    
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -16,7 +17,7 @@
     {{>header}}
 
     <div class="container">
-      <hr>
+      <hr />
       <!--<div id="question-list">-->
         <div class="row question-list-headers question-row">
           <div class="col-sm-3 text-center">Company</div>
@@ -25,7 +26,7 @@
           <div class="col-sm-3">Date</div>
         </div>
       <!--</div>-->
-      <hr>     
+      <hr />     
       {{#each jobs}}
         <a href="/jobPage/{{_id}}">
           <div class="row question-row">
