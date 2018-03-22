@@ -22,15 +22,3 @@ img.profile-picture {
 	width:20px;
 	background-color: lightgreen;
 }
-
-.header-accepted-badge{
-	 margin: 3px;
-	 width:20px;
-	 background-color: lightgreen;
- }
-
-.header-rejected-badge{
-	margin: 3px;
-	width:20px;
-	background-color: red;
-}
