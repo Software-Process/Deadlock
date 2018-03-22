@@ -66,117 +66,63 @@
         <a class="float-right btn btn-default btn-lg" href="/question-prompt">Ask a Question</a>
       </h3>
     </div>
-	<form id="questionInfo" name="questionData" action="/question-prompt" method="post">
       <div class="container-fluid">
         <div class="form-group">
           <div class="btn-group-wrap text-center">
-            <div class="btn-group" data-toggle="buttons">
-
-              <label class="btn btn-success">
-                <input type="radio" name="tag" id="Java" value="Java">
-                <span class="glyphicon glyphicon-ok"></span>
-                Java
-              </label>
-
-              <label class="btn btn-primary">
-                <input type="radio" name="tag" id="PHP" value="PHP">
-                <span class="glyphicon glyphicon-ok"></span>
-                PHP
-              </label>
-            
-              <label class="btn btn-info">
-                <input type="radio" name="tag" id="Python" value="Python">
-                <span class="glyphicon glyphicon-ok"></span>
-                Python
-              </label>
-            
-              <label class="btn btn-default">
-                <input type="radio" name="tag" id="C++" value="C++">
-                <span class="glyphicon glyphicon-ok"></span>
-                C++
-              </label>
-
-              <label class="btn btn-warning">
-                <input type="radio" name="tag" id="C#" value="C#">
-                <span class="glyphicon glyphicon-ok"></span>
-                C#
-              </label>
-            
-              <label class="btn btn-danger">
-                <input type="radio" name="tag" id="Ruby" value="Ruby">
-                <span class="glyphicon glyphicon-ok"></span>
-                Ruby
-              </label>  
-
-              <label class="btn btn-success">
-                <input type="radio" name="tag" id="Lisp" value="Lisp">
-                <span class="glyphicon glyphicon-ok"></span>
-                Lisp
-              </label>
-              <label class="btn btn-primary">
-                <input type="radio" name="tag" id="Prolog" value="Prolog">
-                <span class="glyphicon glyphicon-ok"></span>
-                Prolog
-              </label>
-            
-              <label class="btn btn-info">
-                <input type="radio" name="tag" id="HTML" value="HTML">
-                <span class="glyphicon glyphicon-ok"></span>
-                HTML
-              </label>
-            
-              <label class="btn btn-default">
-                <input type="radio" name="tag" id="CSS" value="CSS">
-                <span class="glyphicon glyphicon-ok"></span>
-                CSS
-              </label>
-
-              <label class="btn btn-warning">
-                <input type="radio" name="tag" id="JavaScript" value="JavaScript">
-                <span class="glyphicon glyphicon-ok"></span>
-                JavaScript
-              </label>
-            
-              <label class="btn btn-danger">
-                <input type="radio" name="tag" id="Jade" value="Jade">
-                <span class="glyphicon glyphicon-ok"></span>
-                Jade
-              </label>
-
-              <label class="btn btn-success">
-                <input type="radio" name="tag" id="C" value="C">
-                <span class="glyphicon glyphicon-ok"></span>
-                C
-              </label>
-
-              <label class="btn btn-primary">
-                <input type="radio" name="tag" id="Fortran" value="Fortran">
-                <span class="glyphicon glyphicon-ok"></span>
-                Fortran
-              </label>
-            
-              <label class="btn btn-info">
-                <input type="radio" name="tag" id="Visual_Basic" value="Visual Basic">
-                <span class="glyphicon glyphicon-ok"></span>
-                Visual Basic
-              </label>
-            
-              <label class="btn btn-default">
-                <input type="radio" name="tag" id="Assembly" value="Assembly">
-                <span class="glyphicon glyphicon-ok"></span>
-                Assembly
-              </label>
-
-              <label class="btn btn-warning">
-                <input type="radio" name="tag" id="Perl" value="Perl">
-                <span class="glyphicon glyphicon-ok"></span>
-                Perl
-              </label>
-            </div>
+            <form class="tag-button" action="/Java" method="get">
+              <input type="submit" class="btn btn-success" value="Java">
+            </form>
+            <form class="tag-button" action="/PHP" method="get">
+              <input type="submit" class="btn btn-primary" value="PHP">
+            </form>
+            <form class="tag-button" action="/Python" method="get">
+              <input type="submit" class="btn btn-info" value="Python">
+            </form>
+            <form class="tag-button" action="/C++" method="get">
+              <input type="submit" class="btn btn-default" value="C++">
+            </form>
+            <form class="tag-button" action="/C#" method="get">
+              <input type="submit" class="btn btn-warning" value="C#">
+            </form>
+            <form class="tag-button" action="/Ruby" method="get">
+              <input type="submit" class="btn btn-danger" value="Ruby">
+            </form>
+            <form class="tag-button" action="/Lisp" method="get">
+              <input type="submit" class="btn btn-success" value="Lisp">
+            </form> 
+            <form class="tag-button" action="/Prolog" method="get">
+              <input type="submit" class="btn btn-primary" value="Prolog">
+            </form>
+            <form class="tag-button" action="/HTML" method="get">
+              <input type="submit" class="btn btn-info" value="HTML">
+            </form>
+            <form class="tag-button" action="/CSS" method="get">
+              <input type="submit" class="btn btn-default" value="CSS">
+            </form>
+            <form class="tag-button" action="/Javascript" method="get">
+              <input type="submit" class="btn btn-warning" value="Javascript">
+            </form>
+            <form class="tag-button" action="/Jade" method="get">
+              <input type="submit" class="btn btn-danger" value="Jade">
+            </form>
+            <form class="tag-button" action="/C" method="get">
+              <input type="submit" class="btn btn-success" value="C">
+            </form>
+            <form class="tag-button" action="/Fortran" method="get">
+              <input type="submit" class="btn btn-primary" value="Fortran">
+            </form>
+            <form class="tag-button" action="/Visual Basic" method="get">
+              <input type="submit" class="btn btn-info" value="Visual Basic">
+            </form>
+            <form class="tag-button" action="/Assembly" method="get">
+              <input type="submit" class="btn btn-default" value="Assembly">
+            </form>
+            <form class="tag-button" action="/Perl" method="get">
+              <input type="submit" class="btn btn-warning" value="Perl">
+            </form>
           </div>
         </div>
       </div>
-	</form>
     <hr>
 	<div class="container">
       <div id="question-list">
@@ -197,11 +143,69 @@
             <div class="votes-col col-sm-1 text-center">{{score}}</div>
             <div class="answers-col col-sm-1 text-center">{{replies.length}}</div>
             <div class="col-sm-4">{{title}}</div>
-            <div class="col-sm-2 container-fluid">{{tags}}</div>
+            <div class="col-sm-2 container-fluid">
+                {{#if this.tags}}
+                  {{#each tags}}
+                    {{#eq this "Java"}}                
+                      <span class="tag-list btn-success">{{this}}</span>
+                    {{/eq}}
+                    {{#eq this "PHP"}}                
+                      <span class="tag-list btn-primary">{{this}}</span>
+                    {{/eq}}
+                    {{#eq this "Python"}}                
+                      <span class="tag-list btn-info">{{this}}</span>
+                    {{/eq}}
+                    {{#eq this "C++"}}                
+                      <span class="tag-list btn-default black-border">{{this}}</span>
+                    {{/eq}}
+                    {{#eq this "C#"}}                
+                      <span class="tag-list btn-warning">{{this}}</span>
+                    {{/eq}}
+                    {{#eq this "Ruby"}}                
+                      <span class="tag-list btn-danger">{{this}}</span>
+                    {{/eq}}
+                    {{#eq this "Lisp"}}                
+                      <span class="tag-list btn-success">{{this}}</span>
+                    {{/eq}}
+                    {{#eq this "Prolog"}}                
+                      <span class="tag-list btn-primary">{{this}}</span>
+                    {{/eq}}
+                    {{#eq this "HTML"}}                
+                      <span class="tag-list btn-info">{{this}}</span>
+                    {{/eq}}
+                    {{#eq this "CSS"}}                
+                      <span class="tag-list btn-default black-border">{{this}}</span>
+                    {{/eq}}
+                    {{#eq this "Javascript"}}                
+                      <span class="tag-list btn-warning">{{this}}</span>
+                    {{/eq}}
+                    {{#eq this "Jade"}}                
+                      <span class="tag-list btn-danger">{{this}}</span>
+                    {{/eq}}
+                    {{#eq this "C"}}                
+                      <span class="tag-list btn-success">{{this}}</span>
+                    {{/eq}}
+                    {{#eq this "Fortran"}}                
+                      <span class="tag-list btn-primary">{{this}}</span>
+                    {{/eq}}
+                    {{#eq this "Visual Basic"}}                
+                      <span class="tag-list btn-info">{{this}}</span>
+                    {{/eq}}
+                    {{#eq this "Assembly"}}                
+                      <span class="tag-list btn-default black-border">{{this}}</span>
+                    {{/eq}}
+                    {{#eq this "Perl"}}                
+                      <span class="tag-list btn-warning">{{this}}</span>
+                    {{/eq}}
+                  {{/each}}
+                {{/if}}
+              
+            </div>
             <div class="col-sm-2">{{username}}</div>
             <div class="col-sm-2">{{moment date format="MMMM D, YYYY"}}</div>
           </div>
         </a>
+        <br>
       {{/each}}  
     </div>    
     {{>footer}}
