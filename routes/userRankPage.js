@@ -9,7 +9,7 @@ router.get('/', function(req, res, next) {
 	User.find()
         .exec()
         .then(docs => {
-			res.render('userRankPage', { users: docs, tag : "Please select a tag above" });
+			res.render('userRankPage', { users: docs, tagName : "Please select a tag above" });
         })
         .catch(err => {
             console.log(err);
@@ -20,8 +20,8 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/:tag', function(req, res) {
-    const tag = req.params.tag;
-    var fieldTag = getFieldWithTag(tag);
+    const tag = req.params.tag;			//Java
+    var fieldTag = getFieldWithTag(tag);	//tagJava
 
     console.log("==============================");
 	console.log(tag);
@@ -29,8 +29,18 @@ router.get('/:tag', function(req, res) {
 	console.log("==============================");
         	
     User.find()
-        .then(docs => {        	
-			res.render('userRankPage', { tagName: tag,  users: docs });
+    	.exec()
+        .then(docs => {
+        	var tagValues = [];
+        	var users = docs;
+        	for(var i = 0; i < users.length; ++i) {
+        		tagValues.push(users[i][fieldTag]);
+        	}
+        	console.log("@#@#@#@#@#@#@#@#@#@##@#@#@#");
+        	console.log(tagValues);
+			console.log("@#@#@#@#@#@#@#@#@#@#@##@#@#");
+
+			res.render('userRankPage', { tagName : tag, users: docs, tag: tagValues });
         })
         .catch(err => {
             console.log(err);
