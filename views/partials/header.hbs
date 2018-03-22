@@ -25,7 +25,7 @@
               </li>
             {{else}}
                 {{#if user}}
-                    <li class="nav-item"><a style="color:orange" href="/loginRegister/logout">Logout</a></li>
+                  <li class="nav-item"><a style="color:orange" href="/loginRegister/logout">Logout</a></li>
                 {{else}}
               <li class="nav-item">
               <a style="color:white" href="/loginRegister">Log in / Register</a></li>
@@ -34,85 +34,71 @@
             <li class="nav-item"><a style="color:white" href="/aboutus">About Us</a></li>
           <li class="nav-item"><a style="color:white" href="/userpage">User Page</a></li> 
           <li class="nav-item"><a style="color:white" href="/jobPage">View Job List</a></li>
-        </ul>
+
           {{#if curUser}}
             {{#if @root.curUser.admin}}
-              <li class="nav-item"><a style="color:white" href="/jobPostingPage">Post A Job</a></li>
+              <li class="nav-item">
+                <a style="color:white" href="/jobPostingPage">Post A Job</a>
+              </li>
             {{/if}}
-          <li class="nav-item">
-            <a style="color:white" href="/aboutus">About Us</a>
-          </li>
-          <li class="nav-item">
-            <a style="color:white" href="/userpage">User Page</a>
-          </li>
-          <li class="nav-item">
-            <a style="color:white" href="/jobPage">View Job List</a>
-          </li>
+            {{#if @root.curUser.company}}
+              <li class="nav-item">
+                <a style="color:white" href="/jobPostingPage">Post A Job</a>
+              </li>
+              <li class="nav-item">
+                <a style="color:white" href="/userRankPage">User Rankings</a>
+              </li>
+            {{/if}}
+            {{#if @root.curUser.admin}}
+              <li class="nav-item">
+                <a style="color:white" href="/companyAccount">Create Company Account</a>
+              </li>
+            {{/if}}
+          {{else}}
+            {{#if @root.user.admin}}
+              <li class="nav-item">
+                <a style="color:white" href="/jobPostingPage">Post A Job</a>
+              </li>
+            {{/if}}
+            {{#if @root.user.company}}
+              <li class="nav-item">
+                <a style="color:white" href="/jobPostingPage">Post A Job</a>
+              </li>
+              <li class="nav-item">
+                <a style="color:white" href="/userRankPage">User Rankings</a>
+              </li>
+            {{/if}}
+            {{#if @root.user.admin}}
+              <li class="nav-item">
+                <a style="color:white" href="/companyAccount">Create Company Account</a>
+              </li>
+            {{/if}}
           {{/if}}
-            {{#if curUser}}
-              {{#if @root.curUser.admin}}
-                <li class="nav-item">
-                  <a style="color:white" href="/jobPostingPage">Post A Job</a>
-                </li>
-              {{/if}}
-              {{#if @root.curUser.company}}
-                <li class="nav-item">
-                  <a style="color:white" href="/jobPostingPage">Post A Job</a>
-                </li>
-                <li class="nav-item">
-                  <a style="color:white" href="/userRankPage">User Rankings</a>
-                </li>
-              {{/if}}
-              {{#if @root.curUser.admin}}
-                <li class="nav-item">
-                  <a style="color:white" href="/companyAccount">Create Company Account</a>
-                </li>
-              {{/if}}
-            {{else}}
-              {{#if @root.user.admin}}
-                <li class="nav-item">
-                  <a style="color:white" href="/jobPostingPage">Post A Job</a>
-                </li>
-              {{/if}}
-              {{#if @root.user.company}}
-                <li class="nav-item">
-                  <a style="color:white" href="/jobPostingPage">Post A Job</a>
-                </li>
-                <li class="nav-item">
-                  <a style="color:white" href="/userRankPage">User Rankings</a>
-                </li>
-              {{/if}}
-              {{#if @root.user.admin}}
-                <li class="nav-item">
-                  <a style="color:white" href="/companyAccount">Create Company Account</a>
-                </li>
-              {{/if}}
+        </ul>
+          {{#if curUser}}
+           {{#if @root.curUser.repRejNew}}
+            {{#isnt @root.curUserrepRejNew "0"}}
+              <div><span class="badge header-rejected-badge">{{@root.curUser.repRejNew}}</span></div>
+            {{/isnt}}
           {{/if}}
-            {{#if curUser}}
-            {{#if @root.curUser.repRejNew}}
-                {{#isnt @root.curUserrepRejNew "0"}}
-                    <div><span class="badge header-rejected-badge">{{@root.curUser.repRejNew}}</span></div>
+          {{#if @root.curUser.repAccNew}}
+            {{#isnt @root.curUser.repAccNew "0"}}
+              <div><span class="badge header-accepted-badge">{{@root.curUser.repAccNew}}</span></div>
+            {{/isnt}}
+          {{/if}}
+          {{else}}
+            {{#if @root.user.repRejNew}}
+                {{#isnt @root.userrepRejNew "0"}}
+                  <div><span class="badge header-rejected-badge">{{@root.user.repRejNew}}</span></div>
                 {{/isnt}}
             {{/if}}
-            {{#if @root.curUser.repAccNew}}
-                {{#isnt @root.curUser.repAccNew "0"}}
-                    <div><span class="badge header-accepted-badge">{{@root.curUser.repAccNew}}</span></div>
-                {{/isnt}}
+            {{#if @root.user.repAccNew}}
+              {{#isnt @root.user.repAccNew "0"}}
+                <div><span class="badge header-accepted-badge">{{@root.user.repAccNew}}</span></div>
+              {{/isnt}}
             {{/if}}
-            {{else}}
-                {{#if @root.user.repRejNew}}
-                    {{#isnt @root.userrepRejNew "0"}}
-                        <div><span class="badge header-rejected-badge">{{@root.user.repRejNew}}</span></div>
-                    {{/isnt}}
-                {{/if}}
-                {{#if @root.user.repAccNew}}
-                    {{#isnt @root.user.repAccNew "0"}}
-                        <div><span class="badge header-accepted-badge">{{@root.user.repAccNew}}</span></div>
-                    {{/isnt}}
-                {{/if}}
-            {{/if}}
-        </ul>              
-
+          {{/if}}
+        </ul>
       </div>
     </div>
   </nav>
