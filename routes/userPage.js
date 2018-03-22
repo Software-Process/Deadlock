@@ -1,12 +1,27 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
 
 const Question = require("../models/question");
 const User =  require("../models/user");
 
-
+router.patch("/:userId/clear", function (req, res, next) {
+    const name = req.params.userId;
+    User.update({username: name},
+        {
+            $set: {
+                repAccNew: 0,
+                repRejNew: 0
+            }
+        })
+        .exec()
+        .then(res.redirect("/userPage"))
+        .catch(function (err) {
+            console.log(err);
+            res.status(500).json({error: err});
+        })
+});
 /* GET user page, will reflect the logged-in user. */
-router.get('/', function(req, res, next){
+router.get("/", function(req, res, next){
     if (req.user) { 
 
         console.log("~!~!~!~!~!~!~!~!~!~!~!~!");
@@ -20,11 +35,11 @@ router.get('/', function(req, res, next){
         Question.find({username:req.user.username})
             .then(docs1 => {
                 questionDocs = docs1.reverse();
-                Question.find({ 'replies.username' : req.user.username})
+                Question.find({ "replies.username" : req.user.username})
                     .then(docs2 => {
                         answerDocs = docs2.reverse();
-                        for(var i = 0; i < answerDocs.length; i++) {
-                            for(var j = 0; j < answerDocs[i].replies.length; j++) {
+                        for(let i = 0; i < answerDocs.length; i++) {
+                            for(let j = 0; j < answerDocs[i].replies.length; j++) {
                                 if(answerDocs[i].replies[j].username == req.user.username && answerDocs[i].replies[j].accepted) {
                                     accReplied.push(answerDocs[i]);
                                 }
@@ -33,7 +48,7 @@ router.get('/', function(req, res, next){
                                 }
                             }
                         }
-                        res.render('userpage', {
+                        res.render("userPage", {
                             user : req.user ,
                             answers : answerDocs, 
                             questions: questionDocs, 
@@ -57,17 +72,17 @@ router.get('/', function(req, res, next){
             });
 
     } else {
-        res.render('signIn');
+        res.render("signIn");
     }
 });
 
 /* GET user page of a different user than the logged-in one, or
  * allows a non-logged in user to view a user page */
-router.get('/:name', function(req, res, next){
+router.get("/:name", function(req, res, next){
 const uname = req.params.name;
 
     if (req.user && (uname === req.user.username)) {
-        res.redirect('/userPage');
+        res.redirect("/userPage");
 
     } else {
         let answerDocs;
@@ -79,11 +94,11 @@ const uname = req.params.name;
                Question.find({username:uname})
                 .then(docs1 => {
                     questionDocs = docs1.reverse();
-                    Question.find({ 'replies.username' : uname})
+                    Question.find({ "replies.username" : uname})
                         .then(docs2 => {
                             answerDocs = docs2.reverse();
-                            for(var i = 0; i < answerDocs.length; i++) {
-                                for(var j = 0; j < answerDocs[i].replies.length; j++) {
+                            for(let i = 0; i < answerDocs.length; i++) {
+                                for(let j = 0; j < answerDocs[i].replies.length; j++) {
                                     if(answerDocs[i].replies[j].username == uname && answerDocs[i].replies[j].accepted) {
                                         accReplied.push(answerDocs[i]);
                                     }
@@ -93,7 +108,7 @@ const uname = req.params.name;
                                 }
                             }
                             if (!req.user) {
-                                res.render('userpage', {
+                                res.render("userPage", {
                                     user: accounts[0],
                                     answers: answerDocs,
                                     questions: questionDocs,
@@ -103,7 +118,7 @@ const uname = req.params.name;
 
                                 });
                             } else {
-                                res.render('userpage', {
+                                res.render("userPage", {
                                     user: accounts[0],
                                     answers: answerDocs,
                                     questions: questionDocs,

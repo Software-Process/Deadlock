@@ -10,18 +10,6 @@
 	right: 0;
 }
 
-body {
-	background-color: #116CF6;
-}
+body {background-color: #116CF6;}
 
-.form-heading {
-	color: white;
-}
-
-.login-section {
-	
-}
-
-.register-section {
-
-}
+.form-heading {color: white;}

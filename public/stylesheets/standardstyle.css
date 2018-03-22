@@ -1,84 +1,76 @@
 /* Main website styles */
-html {
-	height: 100%;
-}
+html {height: 100%;}
 
 body {
-	min-height:100%; 
-    position:relative; 
-    padding-bottom: 150px; 
+  min-height:100%; 
+  position:relative; 
+  padding-bottom: 150px; 
 }
 
-/*
-body::-webkit-scrollbar {
-	display: none;
-}
-*/
-
-html, body, h1, h2, h3, h4, h5 {
-    font-family: "Open Sans", sans-serif
-}
+html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif;}
 
 .content {
-	padding: 20px;
-	min-height: 100%;
-	margin: 0 auto -50px;
+  padding: 20px;
+  min-height: 100%;
+  margin: 0 auto -50px;
 }
 
 .jumbotron {
-    background-color: #116CF6;
-    color: #FFFFFF;
+  background-color: #116CF6;
+  color: #FFFFFF;
 }
 
 .navbar-custom {
-    background-color: #0043af;
-	color: black;
-    margin: 0px;
-    border: 0px;
-    border-radius:0px;
+  background-color: #0043af;
+  color: black;
+  margin: 0px;
+  border: 0px;
+  border-radius:0px;
 }
 
 a.nav-link {
-	font-weight: bold;
-	color: white;
+  font-weight: bold;
+  color: white;
 }
 
-.nav-text {
-	color: white;
-}
-
+.nav-text {color: white;}
 
 ul li.nav-item {
-	font-weight: bold;
-	display: inline-block;
+  font-weight: bold;
+  display: inline-block;
 }
 
-ul li.nav-item:hover {
-	background: #116CF6;
-}
+ul li.nav-item:hover {background: #116CF6;}
 
 
-.footer,
-.push {
-  height: 50px;
-}
+.footer,.push {height: 50px;}
 
 
 .footer {
-	position: absolute; 
-	width: 100%;
-    background-color: #116CF6;
-	color: black;
-    border: 0px;
-    border-radius:0px;
-    left: 0 ;
-    right: 0;
-    bottom: 0; 
-    margin-top: 10px;
-    height: 120px;
-    text-align: center;
+  position: absolute; 
+  width: 100%;
+  background-color: #116CF6;
+  color: black;
+  border: 0px;
+  border-radius:0px;
+  left: 0 ;
+  right: 0;
+  bottom: 0; 
+  margin-top: 10px;
+  height: 120px;
+  text-align: center;
 }
 
-div.footer-body {
-	margin: 20px;
+div.footer-body {margin: 20px;}
+
+.header-accepted-badge{
+  margin: 3px;
+  width:20px;
+  background-color: lightgreen;
+}
+
+.header-rejected-badge{
+  margin: 3px;
+  width:20px;
+  background-color: red;
 }

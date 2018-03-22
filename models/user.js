@@ -40,7 +40,13 @@ const userSchema = new Schema({
     tagFortran : {type: Number},
     tagVisualBasic : {type: Number},
     tagAssembly : {type: Number},
-    tagPerl : {type: Number}
+    tagPerl : {type: Number},
+    posted: Number,
+    replied: Number,
+    repAccepted: Number,
+    repRejected: Number,
+    repAccNew: Number,
+    repRejNew: Number
 });
 
 userSchema.plugin(passportLocalMongoose);

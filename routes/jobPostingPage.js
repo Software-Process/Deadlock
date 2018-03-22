@@ -1,19 +1,19 @@
-var express = require('express');
-var router = express.Router();
+const express = require("express");
+const router = express.Router();
 const mongoose = require("mongoose");
 
 const question = require("../models/question");
 const Jobs = require("../models/jobs");
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get("/", function(req, res, next) {
     question.find()
         .exec()
         .then(docs => {
             if (req.user){
-                res.render('jobposting', { questions: docs, user : req.user });
+                res.render("jobposting", { questions: docs, user : req.user });
             } else {
-                res.render('jobposting', { questions: docs});
-                }
+                res.render("jobposting", { questions: docs});
+            }
 
         })
         .catch(err => {
@@ -22,8 +22,8 @@ router.get('/', function(req, res, next) {
         });
     }); 
 });
-router.post('/', function(req, res, next) {
-    var genId = new mongoose.Types.ObjectId();
+router.post("/", function(req, res, next) {
+    const genId = new mongoose.Types.ObjectId();
     console.log(req.user);
     const jobs = new Jobs({
         _id: genId,
@@ -37,7 +37,7 @@ router.post('/', function(req, res, next) {
     jobs
         .save()
         .then(function(result){
-            res.redirect('/');
+            res.redirect("/");
         })
         .catch(function(err){
             console.log(err);

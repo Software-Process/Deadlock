@@ -21,18 +21,28 @@ describe('Connecting to database for company account', function() {
     });
   });
 
-  describe('Test company account', function() {             
-    it('New company saved to test database', function(done) {
+  describe('Test company account', function() {           
+    it('New company saved to test database without being approved', function(done) {
       var testCompanyExample = testCompanyAccount({
         username: 'Company username',
         email: 'company123@gmail.com',
         admin: "",
-        company: "yes",
+        company: "no",
         picture: 1,
         bannerColor: '#116CF6'
       });
 
       testCompanyExample.save(done);
+    });
+
+    it('Able to approve the company', function(done) {
+      var old = {company: 'no'};
+      var approved = {company: 'yes'};
+      testCompanyAccount.update(old, approved, (err, name) => {
+        if(err) {throw err;}
+        if(name.length === 0) {throw new Error('No data!');}
+        done();
+      });
     });
 
     it('Should retrieve a company from test database', function(done) {

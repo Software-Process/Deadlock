@@ -1,15 +1,15 @@
-var express = require('express');
-var router = express.Router();
+const express = require("express");
+const router = express.Router();
 const mongoose = require("mongoose");
-var User = require('../models/user');
+const User = require("../models/user");
 const question = require("../models/question");
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get("/", function(req, res, next) {
     User.find({"company" : "requested"})
         .then(function(docs){
             {
-                res.render('companypage', { comps : docs, user : req.user });
+                res.render("companypage", { comps : docs, user : req.user });
             }
         })
         .catch(err => {
@@ -20,10 +20,10 @@ router.get('/', function(req, res, next) {
         });
 });
 
-router.patch('/approve/:compId', function(req, res) {
+router.patch("/approve/:compId", function(req, res) {
     User.update({_id : req.params.compId}, {$set : {"company" : "yes"}})
         .exec()
-        .then(res.redirect('/companyaccount'))
+        .then(res.redirect("/companyaccount"))
         .catch(err => {
             console.log(err);
             res.status(200).json({
@@ -33,21 +33,21 @@ router.patch('/approve/:compId', function(req, res) {
 });
 
 /* Registers a user with the information received from a POST request.*/
-router.post('/', function(req, res) {
+router.post("/", function(req, res) {
     const user = new User({
         username: req.body.username,
         email: req.body.email,
         admin: "",
         company: "yes",
         picture: 1,
-        bannerColor: '#116CF6'
+        bannerColor: "#116CF6"
     });
 
     User.register(user, req.body.password, function(err, user ) {
         if (err) {
-            return res.render('signIn', { user : user, reg: err });
+            return res.render("signIn", { user : user, reg: err });
         }
-        res.redirect('/');
+        res.redirect("/");
     });
 });
 

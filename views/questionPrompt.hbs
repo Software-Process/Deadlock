@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>DeadLock - Ask A Question</title>
+    <meta charset="utf-8">    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- External JavaScript -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="/javascripts/tagLimit.js"></script>
+
+    <!-- External CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/stylesheets/standardstyle.css">
+    <link rel="stylesheet" href="/stylesheets/questionPrompt.css">
+
+  </head>
+  <body>
+    {{>header}}
+
+    <div class="container" style="margin-top: 50px">
+      <div class="page-header">
+        <h2>
+          Ask a question
+          <small>Fill all fields</small>
+        </h2>
+      </div>
+      <label>Select up to 3 tags (Must select at least 1)</label>
+    </div>
+  
+    <form id="questionInfo" name="questionData" action="/questionPrompt" method="post">
+      <div class="container-fluid">
+        <div class="form-group">
+          <div class="btn-group-wrap text-center">
+            <div class="btn-group" data-toggle="buttons">
+
+              <label class="btn btn-success">
+                <input name="tag" type="checkbox" value="Java">
+                <span class="glyphicon glyphicon-ok"></span>
+                Java
+              </label>
+
+              <label class="btn btn-primary">
+                <input name="tag" type="checkbox" value="PHP">
+                <span class="glyphicon glyphicon-ok"></span>
+                PHP
+              </label>
+            
+              <label class="btn btn-info">
+                <input name="tag" type="checkbox" value="Python">
+                <span class="glyphicon glyphicon-ok"></span>
+                Python
+              </label>
+            
+              <label class="btn btn-default">
+                <input name="tag" type="checkbox" value="C++">
+                <span class="glyphicon glyphicon-ok"></span>
+                C++
+              </label>
+
+              <label class="btn btn-warning">
+                <input name="tag" type="checkbox" value="C#">
+                <span class="glyphicon glyphicon-ok"></span>
+                C#
+              </label>
+            
+              <label class="btn btn-danger">
+                <input name="tag" type="checkbox" value="Ruby">
+                <span class="glyphicon glyphicon-ok"></span>
+                Ruby
+              </label>  
+
+              <label class="btn btn-success">
+                <input name="tag" type="checkbox" value="Lisp">
+                <span class="glyphicon glyphicon-ok"></span>
+                Lisp
+              </label>
+
+              <label class="btn btn-primary">
+                <input name="tag" type="checkbox" value="Prolog">
+                <span class="glyphicon glyphicon-ok"></span>
+                Prolog
+              </label>
+            
+              <label class="btn btn-info">
+                <input name="tag" type="checkbox" value="HTML">
+                <span class="glyphicon glyphicon-ok"></span>
+                HTML
+              </label>
+            
+              <label class="btn btn-default">
+                <input name="tag" type="checkbox" value="CSS">
+                <span class="glyphicon glyphicon-ok"></span>
+                CSS
+              </label>
+
+              <label class="btn btn-warning">
+                <input name="tag" type="checkbox" value="JavaScript">
+                <span class="glyphicon glyphicon-ok"></span>
+                JavaScript
+              </label>
+            
+              <label class="btn btn-danger">
+                <input name="tag" type="checkbox" value="Jade">
+                <span class="glyphicon glyphicon-ok"></span>
+                Jade
+              </label>
+
+              <label class="btn btn-success">
+                <input name="tag" type="checkbox" value="C">
+                <span class="glyphicon glyphicon-ok"></span>
+                C
+              </label>
+
+              <label class="btn btn-primary">
+                <input name="tag" type="checkbox" value="Fortran">
+                <span class="glyphicon glyphicon-ok"></span>
+                Fortran
+              </label>
+            
+              <label class="btn btn-info">
+                <input name="tag" type="checkbox" value="Visual Basic">
+                <span class="glyphicon glyphicon-ok"></span>
+                Visual Basic
+              </label>
+            
+              <label class="btn btn-default">
+                <input name="tag" type="checkbox" value="Assembly">
+                <span class="glyphicon glyphicon-ok"></span>
+                Assembly
+              </label>
+
+              <label class="btn btn-warning">
+                <input name="tag" type="checkbox" value="Perl">
+                <span class="glyphicon glyphicon-ok"></span>
+                Perl
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container">
+        <form action="/" method="post">
+          <div class="form-group">
+            <label for="inputsm">Title:</label>
+            <input class="form-control" id="title" name="title" type="text">
+          </div>     
+          
+          <div class="form-group">
+            <label for="comment">Question:</label>
+            <textarea class="form-control" id="text" name="question" type="text" rows="20"></textarea>
+          </div>
+
+          <div class="row">
+            <input class="btn btn-success" type="submit" value="Submit">
+              <a href="/">
+                <input class="btn btn-danger" type="button" value="Cancel" onClick="clear()">
+              </a>
+          </div>  
+        </form>
+      </div>
+    </form>
+    {{>footer}}
+  </body>
+</html>

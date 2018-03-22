@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const testJobPostingSchema = mongoose.Schema({
+const testJobPageSchema = mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
     title : {type: String, required: true},
     company: {type: String, required: true},
@@ -11,9 +11,9 @@ const testJobPostingSchema = mongoose.Schema({
     location : {type: String, required: true}
 });
 
-const testJobPosting = mongoose.model('testJobPosting', testJobPostingSchema);
+const testJobPage = mongoose.model('testJobPage', testJobPageSchema);
 
-describe('Connecting to database for job posting page', function() {
+describe('Connecting to database for job page', function() {
   before(function (done) {
     mongoose.connect('mongodb://soen341:soen341@soen341-shard-00-00-ruxjj.mongodb.net:27017,soen341-shard-00-01-ruxjj.mongodb.net:27017,soen341-shard-00-02-ruxjj.mongodb.net:27017/test?ssl=true&replicaSet=SOEN341-shard-0&authSource=admin');
     const db = mongoose.connection;
@@ -26,27 +26,27 @@ describe('Connecting to database for job posting page', function() {
   describe('Test job posting page', function() {   
     var question = new mongoose.Types.ObjectId();          
     it('New job saved to test database', function(done) {
-        var testJobExample = testJobPosting({
+        var testJobExample = testJobPage({
           _id: question,
-          title: 'jobTitle',
-          company: 'jobCompany',
-          date: '2018-07-07',
+          title: 'Developer',
+          company: 'IBM',
+          date: '2018-06-06',
           link: 'www.google.com',
-          author: 'jobAuthor',
-          location: 'Canada'
+          author: 'HR',
+          location: 'Australia'
         });
         testJobExample.save(done);
     });
 
-    it('Should retrieve the new job posting from database', function(done) {
-        testJobPosting.find({
-          _id: question,
-          title: 'jobTitle',
-          company: 'jobCompany',
-          date: '2018-07-07',
-          link: 'www.google.com',
-          author: 'jobAuthor',
-          location: 'Canada'}, 
+    it('Should be able to retrieve the new job posting from database', function(done) {
+        testJobPage.find({
+            _id: question,
+            title: 'Developer',
+            company: 'IBM',
+            date: '2018-06-06',
+            link: 'www.google.com',
+            author: 'HR',
+          location: 'Australia' },
           (err, name) => {
             if(err) {throw err;}
             if(name.length === 0) {throw new Error('No data!');}
