@@ -22,7 +22,7 @@ router.get("/", function(req, res, next) {
     }); 
 });
 
-router.post("/:tag", function(req, res) {
+router.post("/:tag/sort", function(req, res) {
     const id = req.params.tag;
     question.find({tags : id})
         .then(docs => {
