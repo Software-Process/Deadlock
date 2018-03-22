@@ -1,135 +1,106 @@
 /* Question page Stylesheet */
-body {
-   background-color: #116CF6; 
-}
+body {background-color: #116CF6;}
+
 .question-container {
-    margin-bottom: 50px;
-    background-color: #116CF6;
+  margin-bottom: 50px;
+  background-color: #116CF6;
 }
 .question-heading {
-    color: white;
-    padding: 10px;
+  color: white;
+  padding: 10px;
 }
 .question-content {
-    background-color: #116CF6;
-    color: #FFFFFF;
-    margin-bottom: 10px;
+  background-color: #116CF6;
+  color: #FFFFFF;
+  margin-bottom: 10px;
 }
 
 .glyphicon {
-    opacity: 1;
-    transition: opacity .25s ease-in-out;
-    -moz-transition: opacity .25s ease-in-out;
-    -webkit-transition: opacity .25s ease-in-out;
+  opacity: 1;
+  transition: opacity .25s ease-in-out;
+  -moz-transition: opacity .25s ease-in-out;
+  -webkit-transition: opacity .25s ease-in-out;
 }
   
 .glyphicon:hover {
-    opacity: 0.75;
-    cursor: pointer;
+  opacity: 0.75;
+  cursor: pointer;
 }
 
 .not-voted {
-    color: #03183a;
-    font-size: 20pt;
+  color: #03183a;
+  font-size: 20pt;
 }
 
 .up-voted {
-    color: #00ff37;
-    font-size: 20pt;
+  color: #00ff37;
+  font-size: 20pt;
 }
 
 .down-voted {
-    color: red;
-    font-size: 20pt;
+  color: red;
+  font-size: 20pt;
 }
 
 .nbOfVotes {
-    color: white;
-    font-size: 15pt;
-    font-weight: bold;
+  color: white;
+  font-size: 15pt;
+  font-weight: bold;
 }
 
 .user-picture {
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    -webkit-shape-outside:circle();
-    width: 35%;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  -webkit-shape-outside:circle();
+  width: 35%;
 }
 
-.user-info-container {
-    color: black;
-}
+.user-info-container {color: black;}
 
-.reply-container {    
-    margin: 0px 0px 50px;
-}
+.reply-container {margin: 0px 0px 50px;}
 
 .reply {
-    background-color: white;
-    color: black;
-    padding: 15px;
+  background-color: white;
+  color: black;
+  padding: 15px;
 }
 
-.reply-content {
-    color: black;
-}
+.reply-content {color: black;}
 
-.accept-reject {
-    background-color: #03183a;
-}
+.accept-reject {background-color: #03183a;}
 
-.heading {
-    color: white;
-}
-/*     BREAK       */
-
-
+.heading {color: white;}
 
 .content {
-    background-color: white;
-    color: black;
-    padding-left: 50px;
-    padding-right:50px;
+  background-color: white;
+  color: black;
+  padding-left: 50px;
+  padding-right:50px;
 }
 
-/*.reply-vote {
-    background-color:black;
-    border-radius: 10px;
-    color: white;
-}*/
-
-.write {
-    color:black;
-}
-
+.write {color:black;}
 
 .down {
-    transform: rotate(45deg);
-    -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
 }
 
-.hidden {
-    display: none;
-}
+.hidden {display: none;}
 
 .not-button {
-    background: none;
-    border: none;
+  background: none;
+  border: none;
 }
 
-#question-vote {
-    padding-left: 4px;
-}
+#question-vote {padding-left: 4px;}
 
 .accepted {
-    background-color: green;
-    border-color: #054700;
+  background-color: green;
+  border-color: #054700;
 }
 
 .rejected {
-    background-color: red;
-    border-color: darkred;
+  background-color: red;
+  border-color: darkred;
 }
 
-.voted1 {
-    color: white;
-}
+.voted1 {color: white;}

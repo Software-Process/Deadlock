@@ -1,28 +1,28 @@
 /* Index page stylesheet */
 img.profile-picture {
-	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-	-webkit-shape-outside:circle();
-	margin: 15px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  -webkit-shape-outside:circle();
+  margin: 15px;
 }
 
 .questions-answered-badge {
-	margin: 2px;
-	width:20px;
-	background-color: red;
+  margin: 2px;
+  width:20px;
+  background-color: red;
 }
 
 .questions-pending-badge {
-	margin: 2px;
-	width:20px;
-	background-color: orange;
+  margin: 2px;
+  width:20px;
+  background-color: orange;
 }
 
 .answers-accepted-badge {
-	margin: 2px;
-	width:20px;
-	background-color: lightgreen;
+  margin: 2px;
+  width:20px;
+  background-color: lightgreen;
 }
 
 .tag-button {
-	display: inline-block;
+  display: inline-block;
 }

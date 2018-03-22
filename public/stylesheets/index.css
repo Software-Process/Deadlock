@@ -1,151 +1,105 @@
 html{
-    min-height:100%;
-    position:relative;
+  min-height:100%;
+  position:relative;
 }
 
-body {
-	height:100%;
-}
+body {height:100%;}
 
-/*
-h1.CUserInterface {
-    font-family: Verdana, Arial, Helvetica, sans-serif;
-}
-*/
 html, body, h1, h2, h3, h4, h5 {
-    font-family: "Open Sans", sans-serif
+  font-family: "Open Sans", sans-serif
 }
 
 div.inner-content {
-	background-color: blue;
-	box-sizing: content-box;
-    margin: 0 15%;
-    padding: 15px;
-    position:absolute;
+  background-color: blue;
+  box-sizing: content-box;
+  margin: 0 15%;
+  padding: 15px;
+  position:absolute;
 }
 
-.btn {
-    margin: 15px 0;
-}
+.btn {margin: 15px 0;}
 
-h3{
-    margin: 15px 0;
-}
+h3 {margin: 15px 0;}
 
-.votes-col {
-    background-color: #CCEAF9;
-}
+.votes-col {background-color: #CCEAF9;}
 
-.votes-col, .answers-col {
-    text-align: center;
-
-}
+.votes-col, .answers-col {text-align: center;}
 
 .question-summary {
-    padding: 12px 0 10px 0;
-    border-bottom: 1px solid #e4e6e8;
+  padding: 12px 0 10px 0;
+  border-bottom: 1px solid #e4e6e8;
 }
 
 .question-score {
-    width: 40px;
-    padding-right: 12px;
-    text-align: right;
-    display:inline-block;
+  width: 40px;
+  padding-right: 12px;
+  text-align: right;
+  display:inline-block;
 }
 
-.question-list-headers {
-    color: #07C;
-}
+.question-list-headers {color: #07C;}
 
 .question-date {
-    display:inline-block;
-    color: #9199A1;
-    margin-top: 5px;
-    font-size: 0.85em;
-    float:right;
-
+  display:inline-block;
+  color: #9199A1;
+  margin-top: 5px;
+  font-size: 0.85em;
+  float:right;
 }
 
-.question-list-headers * {
-    font-weight: bold;
-}
+.question-list-headers * {font-weight: bold;}
 
 .jumbotron {
-    background-color: #116CF6;
-    color: #FFFFFF;
+  background-color: #116CF6;
+  color: #FFFFFF;
 }
 
-.jumbotron-title {
-    display: inline-block;
-}
+.jumbotron-title {display: inline-block;}
 
 #mainbar {
-	background-color: red;
-	float: left;
-    width: 70%;  
-    padding: 0 10px 0 10px;
+  background-color: red;
+  float: left;
+  width: 70%;  
+  padding: 0 10px 0 10px;
 }
 
 #main-content {
-	background-color: green;
-	width: 100%;
+  background-color: green;
+  width: 100%;
 }
 
 #sidebar {
-    background-color: white;
-    float: right;
-    width: 25%;
-    padding: 10px 10px 0 10px;
+  background-color: white;
+  float: right;
+  width: 25%;
+  padding: 10px 10px 0 10px;
 }
 
 .navbar-custom {
-    background-color: #0043af;
-	color: black;
-    margin: 0px;
-    border-radius:0;
+  background-color: #0043af;
+  color: black;
+  margin: 0px;
+  border-radius:0;
 }
 
 .nav-button {
-    font-weight: bold;
-    color: white;
+  font-weight: bold;
+  color: white;
 }
 
-.overrideJumboHeader {
-    margin-bottom: 0px;
-}
+.overrideJumboHeader {margin-bottom: 0px;}
 
 .footer {
-    bottom: 0;
-    width: 100%;
-    background-color: #90f49c;
-    border-top: 2px solid black;
-	color: black;
+  bottom: 0;
+  width: 100%;
+  background-color: #90f49c;
+  border-top: 2px solid black;
+  color: black;
 }
+
 .card {
-    padding: 5px;
-    margin: 10px 0px;
-}
-li {
-    padding: 0px 0 5px;
+  padding: 5px;
+  margin: 10px 0px;
 }
 
-/* --- Icons for social media --- */
-.fa {
-    padding: 20px;
-    font-size: 30px;
-    width: 50px;
-    text-align: center;
-    text-decoration: none;
-    margin: 5px 2px;
-    border-radius: 80%;
-}
-
-.fa:hover {
-    opacity: 0.7;
-}
-
-.fa-facebook {
-    background: #3B5998;
-    color: white;
-}
-/* --- End of icons --- */
+li {padding: 0px 0 5px;}

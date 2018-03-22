@@ -1,16 +1,16 @@
-var express = require('express');
-var router = express.Router();
+const express = require("express");
+const router = express.Router();
 const question = require("../models/question");
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get("/", function(req, res, next) {
     question.find()
         .exec()
         .then(docs => {
             if (req.user){
-                res.render('index', { questions: docs.reverse(), user : req.user });
+                res.render("index", { questions: docs.reverse(), user : req.user });
             } else {
-                res.render('index', { questions: docs.reverse()});
+                res.render("index", { questions: docs.reverse()});
             }
 
         })
@@ -22,14 +22,14 @@ router.get('/', function(req, res, next) {
     }); 
 });
 
-router.post('/:tag', function(req, res) {
+router.post("/:tag", function(req, res) {
     const id = req.params.tag;
     question.find({tags : id})
         .then(docs => {
             if (req.user){
-                res.render('index', { questions: docs.reverse(), user : req.user });
+                res.render("index", { questions: docs.reverse(), user : req.user });
             } else {
-                res.render('index', { questions: docs.reverse()});
+                res.render("index", { questions: docs.reverse()});
             }
         })
         .catch(err => {
