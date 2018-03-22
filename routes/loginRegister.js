@@ -78,8 +78,10 @@ router.get("/login", function(req, res) {
 /* Logs a user in and redirects them to home page.*/
 router.post("/login", function(req, res, next) {
     User.find({username:req.body.username}, function(err, doc){
-        if (doc[0].company === "requested"){
-            return res.render("signIn", {sig: "Please wait for admin approval before signing in with a company account"})
+        if (doc[0]){
+            if (doc[0].company === "requested"){
+                return res.render("signIn", {sig: "Please wait for admin approval before signing in with a company account"})
+            }
         }
         passport.authenticate("local", function(err, user, info) {
             if (err) { return next(err); }
