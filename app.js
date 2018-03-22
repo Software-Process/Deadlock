@@ -1,4 +1,3 @@
-
 const express = require('express');
 const path = require('path');
 const favicon = require('serve-favicon');
@@ -9,29 +8,20 @@ const mongoose = require("mongoose");
 const hbs = require( 'express-handlebars' );
 const validator = require('express-validator');
 
-//passport
+// Passport.js
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 
 // Moment
-var Handlebars = require("handlebars");
-var MomentHandler = require("handlebars.moment");
+const Handlebars = require("handlebars");
+const MomentHandler = require("handlebars.moment");
 MomentHandler.registerHelpers(Handlebars);
-var helpers = require('handlebars-helpers')();
+const helpers = require('handlebars-helpers')();
 
-/*
-var Handlebars     = require('handlebars');
-var HandlebarsIntl = require('handlebars-intl');
-HandlebarsIntl.registerWith(Handlebars);
-
-var context = {
-    date: new Date()
-};
-*/
-
+// Views
 const index = require('./routes/index');
 const users = require('./routes/users');
-const questionPrompt = require('./routes/question-prompt');
+const questionPrompt = require('./routes/questionPrompt');
 const questionPage = require('./routes/question');
 const aboutUs = require('./routes/aboutUs');
 const loginRegister = require('./routes/loginRegister');
@@ -47,21 +37,17 @@ const app = express();
 
 const questionRoutes = require('./routes/questions');
 
-// view engine setup
+// View engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.engine( 'hbs', hbs( {	
-    extname: 'hbs',	
-    /*defaultLayout: 'index',	*/
-    layoutsDir: __dirname + '/views',	
+app.engine('hbs', hbs({	
+    extname: 'hbs',
+    layoutsDir: __dirname + '/views',
     partialsDir: __dirname + '/views/partials'
-} ) );
+}));
 
 app.set('view engine', 'hbs');
 
-// uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-
-//express session
+// Express session
 app.use(require('express-session')({
     secret: 'ineedhealing',
     resave: false,
@@ -70,6 +56,7 @@ app.use(require('express-session')({
 app.use(passport.initialize());
 app.use(passport.session());
 
+// Express setup
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -78,6 +65,7 @@ app.use(cookieParser());
 app.use(require('express-method-override')('_method'));
 app.use(validator());
 
+// Passport.js setup
 const User = require('./models/user');
 passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
@@ -99,12 +87,13 @@ app.use(function(req, res, next) {
 
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Routes setup
 app.use('/', index);
 app.use('/users', users);
-app.use('/question-prompt', questionPrompt);
+app.use('/questionPrompt', questionPrompt);
 app.use('/questions', questionRoutes);
 app.use('/question', questionPage);
-app.use('/aboutus', aboutUs);
+app.use('/aboutUs', aboutUs);
 app.use('/login', loginRegister);
 app.use('/userpage', userPage);
 app.use('/edituserpage', editUserPage);
@@ -114,23 +103,23 @@ app.use('/jobPostingPage', jobPostingPage);
 app.use('/loginRegister', loginRegister);
 app.use('/userRankPage', userRankPage);
 
-
+// Connecting to MongoDB database
 mongoose.connect("mongodb://soen341:soen341@soen341-shard-00-00-ruxjj.mongodb.net:27017,soen341-shard-00-01-ruxjj.mongodb.net:27017,soen341-shard-00-02-ruxjj.mongodb.net:27017/test?ssl=true&replicaSet=SOEN341-shard-0&authSource=admin");
 
-// catch 404 and forward to error handler
+// Catch 404 and forward to error handler
 app.use(function(req, res, next) {
   const err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
 
-// error handler
+// Error handler
 app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
+  // Set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
+  // Render the error page
   res.status(err.status || 500);
   res.json({
       error:{
