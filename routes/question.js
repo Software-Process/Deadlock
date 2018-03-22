@@ -136,7 +136,6 @@ router.patch('/:questionId/reply', function(req, res, next) {
 
 function getPropertyWithTag(tag) {
     var property = "tag";
-
     switch(tag) {
         case "C++":
             property += "CPlusPlus";
@@ -151,7 +150,6 @@ function getPropertyWithTag(tag) {
             property += tag;
             break;
     }
-
     return property;
 }
 

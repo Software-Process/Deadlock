@@ -21,35 +21,70 @@
       <div class="jumbotron container-fluid text-center" style="margin-top: 25px">
         <h2>Select a tag</h2>
         <p>View all users based on tag score</p>
-        <div class="btn-group-wrap">
-          <div class="btn-group">
-            <button class="btn btn-success" type="button">Java</button>
-            <button class="btn btn-success" type="button">PHP</button>
-            <button class="btn btn-success" type="button">Python</button>
-            <button class="btn btn-success" type="button">C++</button>
-            <button class="btn btn-success" type="button">C#</button>
-            <button class="btn btn-success" type="button">Ruby</button>
-            <button class="btn btn-success" type="button">Lisp</button>
-            <button class="btn btn-success" type="button">Prolog</button>
-            <button class="btn btn-success" type="button">HTML</button>
-            <button class="btn btn-success" type="button">CSS</button>
-            <button class="btn btn-success" type="button">JavaScript</button>
-            <button class="btn btn-success" type="button">Jade</button>
-            <button class="btn btn-success" type="button">C</button>
-            <button class="btn btn-success" type="button">Fortran</button>
-            <button class="btn btn-success" type="button">Visual Basic</button>
-            <button class="btn btn-success" type="button">Assembly</button>
-            <button class="btn btn-success" type="button">Perl</button>
+        <div class="form-group">
+          <div class="btn-group-wrap text-center">
+            <form class="tag-button" action="/userRankPage/Java" method="get">
+              <input type="submit" class="btn btn-success" value="Java">
+            </form>
+            <form class="tag-button" action="/userRankPage/PHP" method="get">
+              <input type="submit" class="btn btn-primary" value="PHP">
+            </form>
+            <form class="tag-button" action="/userRankPage/Python" method="get">
+              <input type="submit" class="btn btn-info" value="Python">
+            </form>
+            <form class="tag-button" action="/userRankPage/C++" method="get">
+              <input type="submit" class="btn btn-default" value="C++">
+            </form>
+            <form class="tag-button" action="/userRankPage/C#" method="get">
+              <input type="submit" class="btn btn-warning" value="C#">
+            </form>
+            <form class="tag-button" action="/userRankPage/Ruby" method="get">
+              <input type="submit" class="btn btn-danger" value="Ruby">
+            </form>
+            <form class="tag-button" action="/userRankPage/Lisp" method="get">
+              <input type="submit" class="btn btn-success" value="Lisp">
+            </form>
+            <form class="tag-button" action="/userRankPage/Prolog" method="get">
+              <input type="submit" class="btn btn-primary" value="Prolog">
+            </form>
+            <form class="tag-button" action="/userRankPage/HTML" method="get">
+              <input type="submit" class="btn btn-info" value="HTML">
+            </form>
+            <form class="tag-button" action="/userRankPage/CSS" method="get">
+              <input type="submit" class="btn btn-default" value="CSS">
+            </form>
+            <form class="tag-button" action="/userRankPage/JavaScript" method="get">
+              <input type="submit" class="btn btn-warning" value="JavaScript">
+            </form>
+            <form class="tag-button" action="/userRankPage/Jade" method="get">
+              <input type="submit" class="btn btn-danger" value="Jade">
+            </form>
+            <form class="tag-button" action="/userRankPage/C" method="get">
+              <input type="submit" class="btn btn-success" value="C">
+            </form>
+            <form class="tag-button" action="/userRankPage/Fortran" method="get">
+              <input type="submit" class="btn btn-primary" value="Fortran">
+            </form>
+            <form class="tag-button" action="/userRankPage/Visual Basic" method="get">
+              <input type="submit" class="btn btn-primary" value="Visual Basic">
+            </form>
+            <form class="tag-button" action="/userRankPage/Assembly" method="get">
+              <input type="submit" class="btn btn-default" value="Assembly">
+            </form>
+            <form class="tag-button" action="/userRankPage/Perl" method="get">
+              <input type="submit" class="btn btn-warning" value="Perl">
+            </form>
           </div>
         </div>
       </div>
 
       <div class="container">
+        <hr>
         <!-- Tag selection is shown here -->
         <div class="row">
           <div class="col-sm-12">
             <div class="card text-center">
-              <h1 class="tag-selected">Java</h1>
+              <h1 class="tag-selected">{{tagName}}</h1>
             </div>
           </div>
         </div>
@@ -64,21 +99,13 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>John Doe</td>
-              <td>JohnDoe@aol.com</td>
-              <td>54</td>
-            </tr>
-            <tr>
-              <td>Mary Moe</td>
-              <td>JohnDoe@aol.com</td>
-              <td>34</td>
-            </tr>
-            <tr>
-              <td>July Dooley</td>
-              <td>Dooley@aol.com</td>
-              <td>12</td>
-            </tr>
+            {{#each users}}
+              <tr>
+                <td>{{username}}</td>
+                <td>{{email}}</td>
+                <td>{{tag}}</td>
+              </tr>
+            {{/each}}
           </tbody>
         </table>
       </div>
