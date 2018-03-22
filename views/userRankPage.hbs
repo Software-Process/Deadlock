@@ -99,13 +99,73 @@
             </tr>
           </thead>
           <tbody>
-            {{#each users}}
-              <tr>
-                <td>{{username}}</td>
-                <td>{{email}}</td>
-                <td>{{this.tag}}</td>
-              </tr>
-            {{/each}}
+            {{#eq "Please select a tag above" tagName}}
+              {{#each users}}
+                <tr>
+                  <td>{{username}}</td>
+                  <td>{{email}}</td>
+                  <td>{{bio}}</td>
+                </tr>  
+              {{/each}}
+            {{else}}
+              {{#each @root.users}}                            
+                <tr>
+                  <td>{{username}}</td>
+                  <td>{{email}}</td>
+                  {{#eq "Java" @root.tagName}}
+                    <td>{{tagJava}}</td>
+                  {{/eq}}
+                  {{#eq "PHP" @root.tagName}}
+                    <td>{{tagPHP}}</td>
+                  {{/eq}}
+                  {{#eq "Python" @root.tagName}}
+                    <td>{{tagPython}}</td>
+                  {{/eq}}
+                  {{#eq "C++" @root.tagName}}
+                    <td>{{tagCPlusPlus}}</td>
+                  {{/eq}}
+                  {{#eq "C#" @root.tagName}}
+                    <td>{{tagCSharp}}</td>
+                  {{/eq}}
+                  {{#eq "Ruby" @root.tagName}}
+                    <td>{{tagRuby}}</td>
+                  {{/eq}}
+                  {{#eq "Lisp" @root.tagName}}
+                    <td>{{tagLisp}}</td>
+                  {{/eq}}
+                  {{#eq "Prolog" @root.tagName}}
+                    <td>{{tagProlog}}</td>
+                  {{/eq}}
+                  {{#eq "HTML" @root.tagName}}
+                    <td>{{tagHtml}}</td>
+                  {{/eq}}
+                  {{#eq "CSS" @root.tagName}}
+                    <td>{{tagCss}}</td>
+                  {{/eq}}
+                  {{#eq "JavaScript" @root.tagName}}
+                    <td>{{tagJavaScript}}</td>
+                  {{/eq}}
+                  {{#eq "Jade" @root.tagName}}
+                    <td>{{tagJade}}</td>
+                  {{/eq}}
+                  {{#eq "C" @root.tagName}}
+                    <td>{{tagC}}</td>
+                  {{/eq}}
+                  {{#eq "Fortran" @root.tagName}}
+                    <td>{{tagFortran}}</td>
+                  {{/eq}}
+                  {{#eq "Visual Basic" @root.tagName}}
+                    <td>{{tagVisualBasic}}</td>
+                  {{/eq}}
+                  {{#eq "Assembly" @root.tagName}}
+                    <td>{{tagAssembly}}</td>
+                  {{/eq}}
+                  {{#eq "Perl" @root.tagName}}
+                    <td>{{tagPerl}}</td>
+                  {{/eq}}            
+                </tr>                
+              {{/each}}
+            {{/eq}}            
           </tbody>
         </table>
       </div>

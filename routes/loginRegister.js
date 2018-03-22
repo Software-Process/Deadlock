@@ -34,6 +34,33 @@ router.post('/register', [
         output = errs.param + " " + errs.msg;
         return res.render('signIn', { reg:output });
     }
+
+    let user = new User({
+        username: req.body.username,
+        email: req.body.email,
+        admin: "",
+        company: "",
+        picture: "/images/default1.png",
+        bannerColor: '#116CF6',
+        tagJava : 0,
+        tagPHP : 0,
+        tagPython : 0,
+        tagCPlusPlus : 0,
+        tagCSharp : 0,
+        tagRuby : 0,
+        tagLisp : 0,
+        tagProlog : 0,
+        tagHtml : 0,
+        tagCss : 0,
+        tagJavaScript : 0,
+        tagJade : 0,
+        tagC : 0,
+        tagFortran : 0,
+        tagVisualBasic : 0,
+        tagAssembly : 0,
+        tagPerl : 0
+    });
+
     if (req.body.apply){
         user = new User({
             username: req.body.username,
@@ -87,32 +114,6 @@ router.post('/register', [
             tagPerl : 0
         });
     }
-
-    const user = new User({
-        username: req.body.username,
-        email: req.body.email,
-        admin: "",
-        company: "",
-        picture: "/images/default1.png",
-        bannerColor: '#116CF6',
-        tagJava : 0,
-        tagPHP : 0,
-        tagPython : 0,
-        tagCPlusPlus : 0,
-        tagCSharp : 0,
-        tagRuby : 0,
-        tagLisp : 0,
-        tagProlog : 0,
-        tagHtml : 0,
-        tagCss : 0,
-        tagJavaScript : 0,
-        tagJade : 0,
-        tagC : 0,
-        tagFortran : 0,
-        tagVisualBasic : 0,
-        tagAssembly : 0,
-        tagPerl : 0
-    });
 
     User.register(user, req.body.password, function(err, user ) {
         if (err) {

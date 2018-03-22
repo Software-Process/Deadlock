@@ -8,8 +8,8 @@ const User =  require("../models/user");
 router.get('/', function(req, res, next) {
 	User.find()
         .exec()
-        .then(docs => {
-			res.render('userRankPage', { users: docs, tagName : "Please select a tag above" });
+        .then(docs => {        	
+			res.render('userRankPage', { users: docs, tagName : "Please select a tag above", tagScores: "-" });
         })
         .catch(err => {
             console.log(err);
@@ -32,15 +32,15 @@ router.get('/:tag', function(req, res) {
     	.exec()
         .then(docs => {
         	var tagValues = [];
-        	var users = docs;
-        	for(var i = 0; i < users.length; ++i) {
-        		tagValues.push(users[i][fieldTag]);
-        	}
-        	console.log("@#@#@#@#@#@#@#@#@#@##@#@#@#");
-        	console.log(tagValues);
-			console.log("@#@#@#@#@#@#@#@#@#@#@##@#@#");
 
-			res.render('userRankPage', { tagName : tag, users: docs, tag: tagValues });
+        	var query = {};
+
+        	console.log(docs); 	
+        	for(var i = 0; i < docs.length; ++i) {    		
+        		tagValues.push(docs[i][fieldTag]);
+        	}    		
+
+			res.render('userRankPage', { tagName : tag, users: docs, tagField: fieldTag });
         })
         .catch(err => {
             console.log(err);
