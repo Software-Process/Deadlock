@@ -26,20 +26,3 @@ img.profile-picture {
 .tag-button {
 	display: inline-block;
 }
-
-.tag-list {
-	color:black;
-	border-radius: 4px;
-	padding:2px;
-}
-
-.black-border {
-	border-color: gray;
-	border-style: solid;
-	border-width: 0.5px;
-	border-radius: 5px;
-}
-
-.test {
-	
-}

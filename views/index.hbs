@@ -4,6 +4,7 @@
     <title>DeadLock</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
 
     <!-- JavaScripts -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -69,137 +70,134 @@
       <div class="container-fluid">
         <div class="form-group">
           <div class="btn-group-wrap text-center">
-            <form class="tag-button" action="/Java" method="get">
+            <form class="tag-button" action="/Java" method="post">
               <input type="submit" class="btn btn-success" value="Java">
             </form>
-            <form class="tag-button" action="/PHP" method="get">
+            <form class="tag-button" action="/PHP" method="post">
               <input type="submit" class="btn btn-primary" value="PHP">
             </form>
-            <form class="tag-button" action="/Python" method="get">
+            <form class="tag-button" action="/Python" method="post">
               <input type="submit" class="btn btn-info" value="Python">
             </form>
-            <form class="tag-button" action="/C++" method="get">
+            <form class="tag-button" action="/C++" method="post">
               <input type="submit" class="btn btn-default" value="C++">
             </form>
-            <form class="tag-button" action="/C#" method="get">
+            <form class="tag-button" action="/C#" method="post">
               <input type="submit" class="btn btn-warning" value="C#">
             </form>
-            <form class="tag-button" action="/Ruby" method="get">
+            <form class="tag-button" action="/Ruby" method="post">
               <input type="submit" class="btn btn-danger" value="Ruby">
             </form>
-            <form class="tag-button" action="/Lisp" method="get">
+            <form class="tag-button" action="/Lisp" method="post">
               <input type="submit" class="btn btn-success" value="Lisp">
             </form> 
-            <form class="tag-button" action="/Prolog" method="get">
+            <form class="tag-button" action="/Prolog" method="post">
               <input type="submit" class="btn btn-primary" value="Prolog">
             </form>
-            <form class="tag-button" action="/HTML" method="get">
+            <form class="tag-button" action="/HTML" method="post">
               <input type="submit" class="btn btn-info" value="HTML">
             </form>
-            <form class="tag-button" action="/CSS" method="get">
+            <form class="tag-button" action="/CSS" method="post">
               <input type="submit" class="btn btn-default" value="CSS">
             </form>
-            <form class="tag-button" action="/Javascript" method="get">
+            <form class="tag-button" action="/Javascript" method="post">
               <input type="submit" class="btn btn-warning" value="Javascript">
             </form>
-            <form class="tag-button" action="/Jade" method="get">
+            <form class="tag-button" action="/Jade" method="post">
               <input type="submit" class="btn btn-danger" value="Jade">
             </form>
-            <form class="tag-button" action="/C" method="get">
+            <form class="tag-button" action="/C" method="post">
               <input type="submit" class="btn btn-success" value="C">
             </form>
-            <form class="tag-button" action="/Fortran" method="get">
+            <form class="tag-button" action="/Fortran" method="post">
               <input type="submit" class="btn btn-primary" value="Fortran">
             </form>
-            <form class="tag-button" action="/Visual Basic" method="get">
+            <form class="tag-button" action="/Visual Basic" method="post">
               <input type="submit" class="btn btn-info" value="Visual Basic">
             </form>
-            <form class="tag-button" action="/Assembly" method="get">
+            <form class="tag-button" action="/Assembly" method="post">
               <input type="submit" class="btn btn-default" value="Assembly">
             </form>
-            <form class="tag-button" action="/Perl" method="get">
+            <form class="tag-button" action="/Perl" method="post">
               <input type="submit" class="btn btn-warning" value="Perl">
             </form>
           </div>
         </div>
       </div>
     <hr>
-	<div class="container">
+    <div class="container">
       <div id="question-list">
         <div class="row question-list-headers question-row">
           <div class="col-sm-1 text-center">Votes</div>
           <div class="col-sm-1 text-center">Answers</div>
-          <div class="col-sm-4">Questions</div>
-          <div class="col-sm-2">Tags</div>
+          <div class="col-sm-6">Question</div>
           <div class="col-sm-2">Author</div>
           <div class="col-sm-2">Date</div>
         </div>
       </div>
-
       <hr />
       {{#each questions}}
         <a href="/question/{{id}}">
           <div class="row question-row">
             <div class="votes-col col-sm-1 text-center">{{score}}</div>
             <div class="answers-col col-sm-1 text-center">{{replies.length}}</div>
-            <div class="col-sm-4">{{title}}</div>
-            <div class="col-sm-2 container-fluid">
-                {{#if this.tags}}
-                  {{#each tags}}
-                    {{#eq this "Java"}}                
-                      <span class="tag-list btn-success">{{this}}</span>
-                    {{/eq}}
-                    {{#eq this "PHP"}}                
-                      <span class="tag-list btn-primary">{{this}}</span>
-                    {{/eq}}
-                    {{#eq this "Python"}}                
-                      <span class="tag-list btn-info">{{this}}</span>
-                    {{/eq}}
-                    {{#eq this "C++"}}                
-                      <span class="tag-list btn-default black-border">{{this}}</span>
-                    {{/eq}}
-                    {{#eq this "C#"}}                
-                      <span class="tag-list btn-warning">{{this}}</span>
-                    {{/eq}}
-                    {{#eq this "Ruby"}}                
-                      <span class="tag-list btn-danger">{{this}}</span>
-                    {{/eq}}
-                    {{#eq this "Lisp"}}                
-                      <span class="tag-list btn-success">{{this}}</span>
-                    {{/eq}}
-                    {{#eq this "Prolog"}}                
-                      <span class="tag-list btn-primary">{{this}}</span>
-                    {{/eq}}
-                    {{#eq this "HTML"}}                
-                      <span class="tag-list btn-info">{{this}}</span>
-                    {{/eq}}
-                    {{#eq this "CSS"}}                
-                      <span class="tag-list btn-default black-border">{{this}}</span>
-                    {{/eq}}
-                    {{#eq this "Javascript"}}                
-                      <span class="tag-list btn-warning">{{this}}</span>
-                    {{/eq}}
-                    {{#eq this "Jade"}}                
-                      <span class="tag-list btn-danger">{{this}}</span>
-                    {{/eq}}
-                    {{#eq this "C"}}                
-                      <span class="tag-list btn-success">{{this}}</span>
-                    {{/eq}}
-                    {{#eq this "Fortran"}}                
-                      <span class="tag-list btn-primary">{{this}}</span>
-                    {{/eq}}
-                    {{#eq this "Visual Basic"}}                
-                      <span class="tag-list btn-info">{{this}}</span>
-                    {{/eq}}
-                    {{#eq this "Assembly"}}                
-                      <span class="tag-list btn-default black-border">{{this}}</span>
-                    {{/eq}}
-                    {{#eq this "Perl"}}                
-                      <span class="tag-list btn-warning">{{this}}</span>
-                    {{/eq}}
-                  {{/each}}
-                {{/if}}
-              
+            <div class="col-sm-6 container-fluid">
+              {{title}}<br>
+              {{#if this.tags}}
+                {{#each tags}}
+                  {{#eq this "Java"}}                
+                    <span class="label label-pill label-success">{{this}}</span>
+                  {{/eq}}
+                  {{#eq this "PHP"}}                
+                    <span class="label label-pill label-primary">{{this}}</span>
+                  {{/eq}}
+                  {{#eq this "Python"}}                
+                    <span class="label label-pill label-info">{{this}}</span>
+                  {{/eq}}
+                  {{#eq this "C++"}}                
+                    <span class="label label-pill label-default">{{this}}</span>
+                  {{/eq}}
+                  {{#eq this "C#"}}                
+                    <span class="label label-pill label-warning">{{this}}</span>
+                  {{/eq}}
+                  {{#eq this "Ruby"}}                
+                    <span class="label label-pill label-danger">{{this}}</span>
+                  {{/eq}}
+                  {{#eq this "Lisp"}}                
+                    <span class="label label-pill label-success">{{this}}</span>
+                  {{/eq}}
+                  {{#eq this "Prolog"}}                
+                    <span class="label label-pill label-primary">{{this}}</span>
+                  {{/eq}}
+                  {{#eq this "HTML"}}                
+                    <span class="label label-pill label-info">{{this}}</span>
+                  {{/eq}}
+                  {{#eq this "CSS"}}                
+                    <span class="label label-pill label-default">{{this}}</span>
+                  {{/eq}}
+                  {{#eq this "Javascript"}}                
+                    <span class="label label-pill label-warning">{{this}}</span>
+                  {{/eq}}
+                  {{#eq this "Jade"}}                
+                    <span class="label label-pill label-danger">{{this}}</span>
+                  {{/eq}}
+                  {{#eq this "C"}}                
+                    <span class="label label-pill label-success">{{this}}</span>
+                  {{/eq}}
+                  {{#eq this "Fortran"}}                
+                    <span class="label label-pill label-primary">{{this}}</span>
+                  {{/eq}}
+                  {{#eq this "Visual Basic"}}                
+                    <span class="label label-pill label-info">{{this}}</span>
+                  {{/eq}}
+                  {{#eq this "Assembly"}}                
+                    <span class="label label-pill label-default">{{this}}</span>
+                  {{/eq}}
+                  {{#eq this "Perl"}}                
+                    <span class="label label-pill label-warning">{{this}}</span>
+                  {{/eq}}
+                {{/each}}
+              {{/if}}
             </div>
             <div class="col-sm-2">{{username}}</div>
             <div class="col-sm-2">{{moment date format="MMMM D, YYYY"}}</div>

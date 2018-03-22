@@ -22,8 +22,9 @@ router.get('/', function(req, res, next) {
     }); 
 });
 
-router.get('/:tag', function(req, res) {
+router.post('/:tag', function(req, res) {
     const id = req.params.tag;
+    console.log(id);
     question.find({tags : id})
         .then(docs => {
             if (req.user){
