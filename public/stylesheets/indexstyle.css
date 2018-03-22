@@ -22,3 +22,7 @@ img.profile-picture {
 	width:20px;
 	background-color: lightgreen;
 }
+
+.tag-button {
+	display: inline-block;
+}
