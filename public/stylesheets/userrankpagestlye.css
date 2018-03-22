@@ -1,29 +1,24 @@
 /* User Rank Page Stylesheet */
-body {
-	background-color: #116CF6;
-}
+body {background-color: #116CF6;}
 
-.jumbotron {
-	padding-bottom: 0px;
-}
+.jumbotron {padding-bottom: 0px;}
+
 .tag-selected {
-	font-weight: bold;
-	color: white;
+  font-weight: bold;
+  color: white;
 }
 
-th {
-	text-align: center;
-}
+th {text-align: center;}
 
 .table {
-	margin: 0 auto;
-	width: 75%;
-	background-color: #4c91ff;
-	border-radius: 20px;
-	color:white;
+  margin: 0 auto;
+  width: 75%;
+  background-color: #4c91ff;
+  border-radius: 20px;
+  color:white;
 }
 
 .table-striped>tbody>tr:nth-child(odd)>td, 
 .table-striped>tbody>tr:nth-child(odd)>th {
-	background-color: #7aadff;
+  background-color: #7aadff;
 }
