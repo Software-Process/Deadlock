@@ -11,7 +11,8 @@ const testQuestionSchema = mongoose.Schema({
     author: {type: mongoose.Schema.Types.ObjectId, required: true},
     username: String,
     date: {type: Date, required: true},
-    replies: [Reply.schema]
+    replies: [Reply.schema],
+    tag: [{type: String, required: true}]
 });
 
 const testQuestions = mongoose.model('testQuestions', testQuestionSchema);
@@ -64,7 +65,8 @@ describe('Connecting to database for index page', function() {
             author: authorID,
             username: 'username',
             date: currentDate,
-            replies: repliesSet
+            replies: repliesSet,
+            tag: ["Java", "Prolog"]
         });
     
         testNewQuestion.save(done);

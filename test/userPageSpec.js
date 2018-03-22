@@ -22,7 +22,24 @@ const testEditUserSchema = mongoose.Schema({
   spokenLanguage: {type: String},
   programmingLanguage: {type: String},
   questions: {type: [mongoose.Schema.Types.ObjectId]},
-  answers: {type: [mongoose.Schema.Types.ObjectId]}
+  answers: {type: [mongoose.Schema.Types.ObjectId]},
+  tagJava : {type: Number},
+  tagPHP : {type: Number},
+  tagPython : {type: Number},
+  tagCPlusPlus : {type: Number},
+  tagCSharp : {type: Number},
+  tagRuby : {type: Number},
+  tagLisp : {type: Number},
+  tagProlog : {type: Number},
+  tagHtml : {type: Number},
+  tagCss : {type: Number},
+  tagJavaScript : {type: Number},
+  tagJade : {type: Number},
+  tagC : {type: Number},
+  tagFortran : {type: Number},
+  tagVisualBasic : {type: Number},
+  tagAssembly : {type: Number},
+  tagPerl : {type: Number}
 });
 
 const testEditUser = mongoose.model('testReply3', testEditUserSchema);
@@ -62,7 +79,24 @@ describe('Connecting to database for user page', function() {
         spokenLanguage: 'french',
         programmingLanguage: 'java',
         questions: question,
-        answers: answer
+        answers: answer,
+        tagJava : 0,
+        tagPHP : 0,
+        tagPython : 0,
+        tagCPlusPlus : 0,
+        tagCSharp : 0,
+        tagRuby : 0,
+        tagLisp : 0,
+        tagProlog : 0,
+        tagHtml : 0,
+        tagCss : 0,
+        tagJavaScript : 0,
+        tagJade : 0,
+        tagC : 0,
+        tagFortran : 0,
+        tagVisualBasic : 0,
+        tagAssembly : 0,
+        tagPerl : 0
       });
       testFakeUser.save(done);
     });
@@ -89,7 +123,24 @@ describe('Connecting to database for user page', function() {
         spokenLanguage: 'french',
         programmingLanguage: 'java',
         questions: question,
-        answers: answer}, 
+        answers: answer,
+        tagJava : 0,
+        tagPHP : 0,
+        tagPython : 0,
+        tagCPlusPlus : 0,
+        tagCSharp : 0,
+        tagRuby : 0,
+        tagLisp : 0,
+        tagProlog : 0,
+        tagHtml : 0,
+        tagCss : 0,
+        tagJavaScript : 0,
+        tagJade : 0,
+        tagC : 0,
+        tagFortran : 0,
+        tagVisualBasic : 0,
+        tagAssembly : 0,
+        tagPerl : 0}, 
         (err, name) => {
           if(err) {throw err;}
           if(name.length === 0) {throw new Error('No data!');}
