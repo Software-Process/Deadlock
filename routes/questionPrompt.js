@@ -17,6 +17,7 @@ router.get("/", function(req, res, next) {
 
 /* Submits a question via a POST request.*/
 router.post("/", function(req, res, next) {
+    console.log("GGg");
     const genId = new mongoose.Types.ObjectId();
     const question = new Question({
         _id: genId,
