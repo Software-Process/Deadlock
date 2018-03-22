@@ -44,15 +44,17 @@
               {{else}}
                 <h3>Log in to ask and answer questions!</h3>
               {{/if}}
-              <div>
-                <span class="badge badge-secondary questions-answered-badge">2</span> questions answered
-              </div>
-              <div>
-                <span class="badge badge-secondary questions-pending-badge">5</span> questions pending
-              </div>
-              <div>
-                <span class="badge badge-secondary answers-accepted-badge">4</span> answers accepted
-              </div>
+
+                {{#if user.repRejNew}}
+                   {{#isnt repRejNew "0"}}
+                     <div><span class="badge badge-secondary questions-answered-badge">{{@root.user.repRejNew}}</span> new answers rejected</div>
+                   {{/isnt}}
+                {{/if}}
+                {{#if user.repAccNew}}
+                  {{#isnt repAccNew "0"}}
+                    <div><span class="badge badge-secondary answers-accepted-badge">{{@root.user.repAccNew}}</span> new answers accepted</div>
+                  {{/isnt}}
+                {{/if}}
             </div>
           </div>
         </div>

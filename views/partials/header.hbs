@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="/stylesheets/standardstyle.css">
 <header>
   <nav class="navbar navbar-inverse navbar-fixed-top navbar-custom navbar-custom" role="navigation">
     <div class="container">
@@ -24,15 +25,20 @@
                 <a style="color:white" href="/loginRegister">Log in / Register</a>
               </li>
             {{else}}
-              {{#if user}}
-                <li class="nav-item">
-                  <a style="color:orange" href="/loginRegister/logout">Logout</a>
-                </li>
-              {{else}}
-                <li class="nav-item">
-                  <a style="color:white" href="/loginRegister">Log in / Register</a>
-                </li>
-              {{/if}}
+                {{#if user}}
+                    <li class="nav-item"><a style="color:orange" href="/loginRegister/logout">Logout</a></li>
+                {{else}}
+              <li class="nav-item">
+              <a style="color:white" href="/loginRegister">Log in / Register</a></li>
+             {{/if}}
+            {{/if}}
+            <li class="nav-item"><a style="color:white" href="/aboutus">About Us</a></li>
+          <li class="nav-item"><a style="color:white" href="/userpage">User Page</a></li> 
+          <li class="nav-item"><a style="color:white" href="/jobPage">View Job List</a></li>
+        </ul>
+          {{#if curUser}}
+            {{#if @root.curUser.admin}}
+              <li class="nav-item"><a style="color:white" href="/jobPostingPage">Post A Job</a></li>
             {{/if}}
           <li class="nav-item">
             <a style="color:white" href="/aboutus">About Us</a>
@@ -43,6 +49,7 @@
           <li class="nav-item">
             <a style="color:white" href="/jobPage">View Job List</a>
           </li>
+          {{/if}}
             {{#if curUser}}
               {{#if @root.curUser.admin}}
                 <li class="nav-item">
@@ -81,8 +88,32 @@
                   <a style="color:white" href="/companyAccount">Create Company Account</a>
                 </li>
               {{/if}}
+          {{/if}}
+            {{#if curUser}}
+            {{#if @root.curUser.repRejNew}}
+                {{#isnt @root.curUserrepRejNew "0"}}
+                    <div><span class="badge header-rejected-badge">{{@root.curUser.repRejNew}}</span></div>
+                {{/isnt}}
+            {{/if}}
+            {{#if @root.curUser.repAccNew}}
+                {{#isnt @root.curUser.repAccNew "0"}}
+                    <div><span class="badge header-accepted-badge">{{@root.curUser.repAccNew}}</span></div>
+                {{/isnt}}
+            {{/if}}
+            {{else}}
+                {{#if @root.user.repRejNew}}
+                    {{#isnt @root.userrepRejNew "0"}}
+                        <div><span class="badge header-rejected-badge">{{@root.user.repRejNew}}</span></div>
+                    {{/isnt}}
+                {{/if}}
+                {{#if @root.user.repAccNew}}
+                    {{#isnt @root.user.repAccNew "0"}}
+                        <div><span class="badge header-accepted-badge">{{@root.user.repAccNew}}</span></div>
+                    {{/isnt}}
+                {{/if}}
             {{/if}}
         </ul>              
+
       </div>
     </div>
   </nav>

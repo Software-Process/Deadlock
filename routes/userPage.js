@@ -4,7 +4,22 @@ const router = express.Router();
 const Question = require("../models/question");
 const User =  require("../models/user");
 
-
+router.patch('/:userId/clear', function (req, res, next) {
+    const name = req.params.userId;
+    User.update({username: name},
+        {
+            $set: {
+                repAccNew: 0,
+                repRejNew: 0
+            }
+        })
+        .exec()
+        .then(res.redirect('/userPage'))
+        .catch(function (err) {
+            console.log(err);
+            res.status(500).json({error: err});
+        })
+});
 /* GET user page, will reflect the logged-in user. */
 router.get('/', function(req, res, next){
     if (req.user) { 

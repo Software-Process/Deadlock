@@ -9,12 +9,6 @@ body {
     padding-bottom: 150px; 
 }
 
-/*
-body::-webkit-scrollbar {
-	display: none;
-}
-*/
-
 html, body, h1, h2, h3, h4, h5 {
     font-family: "Open Sans", sans-serif
 }
@@ -81,4 +75,16 @@ ul li.nav-item:hover {
 
 div.footer-body {
 	margin: 20px;
+}
+
+.header-accepted-badge{
+	 margin: 3px;
+	 width:20px;
+	 background-color: lightgreen;
+ }
+
+.header-rejected-badge{
+	margin: 3px;
+	width:20px;
+	background-color: red;
 }
