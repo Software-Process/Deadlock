@@ -1,18 +1,18 @@
-var express = require('express');
-var router = express.Router();
+const express = require("express");
+const router = express.Router();
 
 const question = require("../models/question");
 const jobs = require("../models/jobs");
-//const Job = require("../models/jobs");
+
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get("/", function(req, res, next) {
     jobs.find()
         .exec()
         .then(docs => {
             if (req.user){
-                res.render('jobpage', { jobs: docs.reverse(), user : req.user });
+                res.render("jobpage", { jobs: docs.reverse(), user : req.user });
             } else {
-                res.render('jobpage', { jobs: docs.reverse(), user : req.user });
+                res.render("jobpage", { jobs: docs.reverse(), user : req.user });
             }
         })
         .catch(err => {
@@ -22,15 +22,15 @@ router.get('/', function(req, res, next) {
         });
     }); 
 });
-router.get('/:jobId', function(req, res, next) {
+router.get("/:jobId", function(req, res, next) {
     const id = req.params.jobId;
     jobs.findById(id)
         .exec()
         .then(docs => {
             if (req.user){
-                res.render('jobdescription', { job: docs, user : req.user });
+                res.render("jobdescription", { job: docs, user : req.user });
             } else {
-                res.render('jobdescription', { job: docs});
+                res.render("jobdescription", { job: docs});
                 }
 
         })

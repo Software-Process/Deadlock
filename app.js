@@ -20,7 +20,6 @@ const helpers = require('handlebars-helpers')();
 
 // Views
 const index = require('./routes/index');
-const users = require('./routes/users');
 const questionPrompt = require('./routes/questionPrompt');
 const questionPage = require('./routes/question');
 const aboutUs = require('./routes/aboutUs');
@@ -34,8 +33,6 @@ const userRankPage = require('./routes/userRankPage');
 
 
 const app = express();
-
-const questionRoutes = require('./routes/questions');
 
 // View engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -89,9 +86,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Routes setup
 app.use('/', index);
-app.use('/users', users);
 app.use('/questionPrompt', questionPrompt);
-app.use('/questions', questionRoutes);
 app.use('/question', questionPage);
 app.use('/aboutUs', aboutUs);
 app.use('/login', loginRegister);

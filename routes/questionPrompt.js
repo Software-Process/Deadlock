@@ -1,22 +1,23 @@
-var express = require('express');
-var router = express.Router();
+const express = require("express");
+const router = express.Router();
 
 const mongoose = require("mongoose");
 
 const Question = require("../models/question");
+const User = require("../models/user");
 
-/*To render the question-prompt.hbs page. Redirects if user is not signed in.*/
-router.get('/', function(req, res, next) {
+/*To render the questionPrompt.hbs page. Redirects if user is not signed in.*/
+router.get("/", function(req, res, next) {
     if (req.user) {
-        res.render('question-prompt', {user: req.user});
+        res.render("questionPrompt", {user: req.user});
     } else {
-        res.render('signIn');
+        res.render("signIn");
     }
 });
 
 /* Submits a question via a POST request.*/
-router.post('/', function(req, res, next) {
-    var genId = new mongoose.Types.ObjectId();
+router.post("/", function(req, res, next) {
+    const genId = new mongoose.Types.ObjectId();
     const question = new Question({
         _id: genId,
         title: req.body.title,
@@ -32,10 +33,13 @@ router.post('/', function(req, res, next) {
     });
     question
         .save()
-        .then(function(result){
-            var path = '/question/' + genId;
-            res.redirect(path);        
-    })
+        .then(function(){
+            User.update({"username": req.user.username}, {$inc : {posted: 1}}, function (){
+                const path = "/question/" + genId;
+                res.redirect(path);
+            });
+
+        })
         .catch(function(err){
             console.log(err);
             res.status(500).json({
