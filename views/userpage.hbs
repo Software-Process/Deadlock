@@ -23,14 +23,16 @@
 
     <div class="jumbotron text-center" style="background-color: {{user.bannerColor}}; margin-top: 50px">
       <img class="img-circle profile-picture" src="{{user.picture}}">
-      <h2><strong>{{user.username}}</strong></h2> 
-       {{#if allowEdit}}  
-           <button class="btn btn-info" type="button" onclick="location.href='/edituserpage'">Edit profile</button>
-           <form action="/userPage/{{@root.user.username}}/clear" method="post">
-               <input type="hidden" name="_method" value="PATCH">
-               <button class="btn btn-info" type="submit">Clear notifications</button>
-           </form>
-       {{/if}}
+      <h2>
+        <strong>{{user.username}}</strong>
+      </h2> 
+     {{#if allowEdit}}  
+       <button class="btn btn-info" type="button" onclick="location.href='/edituserpage'">Edit profile</button>
+       <form action="/userPage/{{@root.user.username}}/clear" method="post">
+           <input type="hidden" name="_method" value="PATCH">
+           <button class="btn btn-info" type="submit">Clear notifications</button>
+       </form>
+     {{/if}}
     </div>
 
     <!-- User tag scores -->
