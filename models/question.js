@@ -11,6 +11,7 @@ const questionSchema = new Schema({
     username: String,
     date: {type: String, required: true},
     hasAccepted: {type: Boolean, required: true},
+    replyUsername: String,
     users: [{type: String}],
     voteHistory: [History.schema],
     replies: [Reply.schema],

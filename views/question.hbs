@@ -281,26 +281,26 @@
                     <h5 class="user-info">{{this.username}}</h5>
                     <h5 class="user-info">replied on <br> {{moment question.date format="MMMM D, YYYY"}}</h5>
                   </div>
-                  {{#unless @root.question.hasAccepted}}
-                    {{#eq @root.user.username @root.question.username}}
+                    {{#unless @root.question.hasAccepted}}
+                      {{#eq @root.user.username @root.question.username}}
                         {{#unlessEq username @root.question.username}}
-                      <div class="row">
-                        <div class="col-sm-6">
-                          <form action="/question/{{_id}}/accept" method="post">
-                            <input name="_method" type="hidden" value="PATCH">
-                            <button class="btn btn-dark accept-reject" type="submit">Accept</button>
-                          </form>
-                        </div>
-                        <div class="col-sm-6">
-                          <form action="/question/{{_id}}/reject" method="post">
-                            <input name="_method" type="hidden" value="PATCH">
-                            <button class="btn btn-dark accept-reject" type="submit">Reject</button>
-                          </form>
-                        </div>
-                      </div>
+                          <div class="row">
+                            <div class="col-sm-6">
+                              <form action="/question/{{@root.question._id}}/{{_id}}/accept" method="post">
+                                <input type="hidden" name="_method" value="PATCH">
+                                <button class="btn btn-dark accept-reject" type="submit">Accept</button>
+                              </form>
+                            </div>
+                            <div class="col-sm-6">
+                              <form action="/question/{{_id}}/reject" method="post">
+                                <input type="hidden" name="_method" value="PATCH">
+                                <button class="btn btn-dark accept-reject" type="submit">Reject</button>
+                              </form>
+                            </div>
+                          </div>
                         {{/unlessEq}}
-                    {{/eq}}
-                  {{/unless}}
+                      {{/eq}}
+                    {{/unless}}
                 </div>
               </div>
             </div>

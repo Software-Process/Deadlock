@@ -12,7 +12,6 @@ router.get("/", function(req, res, next) {
             } else {
                 res.render("index", { questions: docs.reverse()});
             }
-
         })
         .catch(err => {
             console.log(err);
