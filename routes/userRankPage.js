@@ -22,11 +22,6 @@ router.get('/', function(req, res, next) {
 router.get('/:tag', function(req, res) {
     const tag = req.params.tag;			//Java
     var fieldTag = getFieldWithTag(tag);	//tagJava
-
-    console.log("==============================");
-	console.log(tag);
-	console.log(fieldTag);
-	console.log("==============================");
         	
     User.find()
     	.exec()
