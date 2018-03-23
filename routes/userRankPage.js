@@ -9,7 +9,7 @@ router.get('/', function(req, res, next) {
 	User.find()
         .exec()
         .then(docs => {        	
-			res.render('userRankPage', { users: docs, tagName : "Please select a tag above", tagScores: "-" });
+			res.render('userRankPage', { user: req.user, users: docs, tagName : "Please select a tag above", tagScores: "-" });
         })
         .catch(err => {
             console.log(err);
@@ -40,7 +40,7 @@ router.get('/:tag', function(req, res) {
         		tagValues.push(docs[i][fieldTag]);
         	}    		
 
-			res.render('userRankPage', { tagName : tag, users: docs, tagField: fieldTag });
+			res.render('userRankPage', { user: req.user, tagName : tag, users: docs, tagField: fieldTag });
         })
         .catch(err => {
             console.log(err);
