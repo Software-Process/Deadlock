@@ -23,11 +23,6 @@ router.patch("/:userId/clear", function (req, res, next) {
 /* GET user page, will reflect the logged-in user. */
 router.get("/", function(req, res, next){
     if (req.user) { 
-
-        console.log("~!~!~!~!~!~!~!~!~!~!~!~!");
-        console.log(req.user);
-        console.log("~!~!~!~!~!~!~!~!~!~!~!~!");
-
         let answerDocs;
         let questionDocs;
         let accReplied = [];

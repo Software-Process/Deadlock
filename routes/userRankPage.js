@@ -27,10 +27,7 @@ router.get('/:tag', function(req, res) {
     	.exec()
         .then(docs => {
         	var tagValues = [];
-
         	var query = {};
-
-        	console.log(docs); 	
         	for(var i = 0; i < docs.length; ++i) {    		
         		tagValues.push(docs[i][fieldTag]);
         	}    		

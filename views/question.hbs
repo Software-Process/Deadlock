@@ -283,22 +283,22 @@
                   </div>
                     {{#unless @root.question.hasAccepted}}
                       {{#eq @root.user.username @root.question.username}}
-                          {{#unlessEq username @root.question.username}}
-                            <div class="row">
-                              <div class="col-sm-6">
-                                <form action="/question/{{@root.question._id}}/{{_id}}/accept" method="post">
-                                  <input type="hidden" name="_method" value="PATCH">
-                                  <button class="btn btn-dark accept-reject" type="submit">Accept</button>
-                                </form>
-                              </div>
-                              <div class="col-sm-6">
-                                <form action="/question/{{_id}}/reject" method="post">
-                                  <input type="hidden" name="_method" value="PATCH">
-                                  <button class="btn btn-dark accept-reject" type="submit">Reject</button>
-                                </form>
-                              </div>
+                        {{#unlessEq username @root.question.username}}
+                          <div class="row">
+                            <div class="col-sm-6">
+                              <form action="/question/{{@root.question._id}}/{{_id}}/accept" method="post">
+                                <input type="hidden" name="_method" value="PATCH">
+                                <button class="btn btn-dark accept-reject" type="submit">Accept</button>
+                              </form>
                             </div>
-                          {{/unlessEq}}
+                            <div class="col-sm-6">
+                              <form action="/question/{{_id}}/reject" method="post">
+                                <input type="hidden" name="_method" value="PATCH">
+                                <button class="btn btn-dark accept-reject" type="submit">Reject</button>
+                              </form>
+                            </div>
+                          </div>
+                        {{/unlessEq}}
                       {{/eq}}
                     {{/unless}}
                 </div>
