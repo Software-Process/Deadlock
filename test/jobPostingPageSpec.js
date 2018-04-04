@@ -15,7 +15,7 @@ const testJobPosting = mongoose.model('testJobPosting', testJobPostingSchema);
 
 describe('Connecting to database for job posting page', function() {
   before(function (done) {
-    mongoose.connect('mongodb://soen341:soen341@soen341-shard-00-00-ruxjj.mongodb.net:27017,soen341-shard-00-01-ruxjj.mongodb.net:27017,soen341-shard-00-02-ruxjj.mongodb.net:27017/test?ssl=true&replicaSet=SOEN341-shard-0&authSource=admin');
+    mongoose.connect("mongodb://soen341:soen341@soen341-shard-00-00-ruxjj.mongodb.net:27017,soen341-shard-00-01-ruxjj.mongodb.net:27017,soen341-shard-00-02-ruxjj.mongodb.net:27017/test?ssl=true&replicaSet=SOEN341-shard-0&authSource=admin");
     const db = mongoose.connection;
     db.on('error', console.error.bind(console, 'connection error'));
     db.once('open', function() {
@@ -56,6 +56,8 @@ describe('Connecting to database for job posting page', function() {
   });
   
   after(function(done){
-    mongoose.connection.close(done);
+    mongoose.connection.db.dropCollection('testjobpostings',function(){
+      mongoose.connection.close(done);
+    });
   });
 });

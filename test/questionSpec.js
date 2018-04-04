@@ -18,7 +18,7 @@ const testQuestionSchema = mongoose.Schema({
 const questionTest = mongoose.model('questionTests', testQuestionSchema);
 describe('Database Tests for question page', function() {
   before(function (done) {
-    mongoose.connect('mongodb://soen341:soen341@soen341-shard-00-00-ruxjj.mongodb.net:27017,soen341-shard-00-01-ruxjj.mongodb.net:27017,soen341-shard-00-02-ruxjj.mongodb.net:27017/test?ssl=true&replicaSet=SOEN341-shard-0&authSource=admin');
+    mongoose.connect("mongodb://soen341:soen341@soen341-shard-00-00-ruxjj.mongodb.net:27017,soen341-shard-00-01-ruxjj.mongodb.net:27017,soen341-shard-00-02-ruxjj.mongodb.net:27017/test?ssl=true&replicaSet=SOEN341-shard-0&authSource=admin");
     const db = mongoose.connection;
     db.on('error', console.error.bind(console, 'connection error'));
     db.once('open', function() {
@@ -131,9 +131,66 @@ describe('Database Tests for question page', function() {
                     done();
             });
         });
+
+        it('Should retrieve the reply from test database', function (done) {
+            questionTest.find({
+                replies: newReplyTest},
+                (err, name) => {
+                    if(err) {throw err;}
+                    if(name.length === 0) { throw new Error('No data!');}
+                    done();
+                });
+        });
+
+        it('Able to test up votes for the reply', function(done) {
+            var oldScore = {replies: newReplyTest};
+            var newScore = {$set: {"replies.$.score": 2}};
+
+            questionTest.update(oldScore, newScore, (err, name) => {
+                if(err) {throw err;}
+                if(name.length === 0) {throw new Error('No data!');}
+                done();
+            });
+        });
+
+        it('Able to test down votes for the reply', function(done) {
+            var oldScore = {replies: {$elemMatch: {text: 'text'}}};
+            var newScore = {$set: {"replies.$.score": 1}};
+
+            questionTest.update(oldScore, newScore, (err, name) => {
+                if(err) {throw err;}
+                if(name.length === 0) {throw new Error('No data!');}
+                done();
+            });
+        });
+
+        it('Able to test accepting the reply', function(done) {
+            var oldReply = {replies: newReplyTest};
+            var newReply = {$set: {"replies.$.accepted": true}};
+
+            questionTest.update(oldReply, newReply, (err, name) => {
+                if(err) {throw err;}
+                if(name.length === 0) {throw new Error('No data!');}
+                done();
+            });
+        });
+
+        it('Able to test rejecting the reply', function(done) {
+            var oldReply = {replies: {$elemMatch: {text: 'text'}}};
+            var newReply = {$set: {"replies.$.rejected": true}};
+
+            questionTest.update(oldReply, newReply, (err, name) => {
+                if(err) {throw err;}
+                if(name.length === 0) {throw new Error('No data!');}
+                done();
+            });
+        });
+
     });
   
-  after(function(done){
-    mongoose.connection.close(done);
-  });
+    after(function (done) {
+        mongoose.connection.db.dropCollection('questiontests', function () {
+            mongoose.connection.close(done);
+        });
+    });
 });
