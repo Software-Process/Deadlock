@@ -1,10 +1,11 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+var expect = require('chai').expect;
 const Reply = require("../models/reply");
-
 const reply = mongoose.model('reply2', Reply.schema);
 
 const testQuestionSchema = mongoose.Schema({
+    _id: mongoose.Schema.Types.ObjectId,
     title: {type: String, required: true},
     text: {type: String, required: true},
     score: {type: Number, required: true},
@@ -27,6 +28,7 @@ describe('Connecting to database for question prompt page', function() {
   });
 
   describe('Test question prompt page', function() {  
+    var questionAuthorID = new mongoose.Types.ObjectId();
     var authorID = new mongoose.Types.ObjectId();
     var currentDate = new Date();
     var questionID = new mongoose.Types.ObjectId();
@@ -58,6 +60,7 @@ describe('Connecting to database for question prompt page', function() {
         var repliesSet = [newReply, anotherReply];
         
         var testNewQuestion = testQuestions({
+            _id: questionAuthorID,
             title: 'title',
             text: 'this is a text',
             score: 1,
@@ -68,27 +71,34 @@ describe('Connecting to database for question prompt page', function() {
         });
     
         testNewQuestion.save(done);
+
+        //Assert it has been saved
+
     });
 
+    //Fail to save 
+
     it('Should retrieve the question from database', function(done) {
-        testQuestions.find({
-            title: 'title',
-            text: 'this is a text',
-            score: 1,
-            author: authorID,
-            username: 'username',
-            date: currentDate}, 
-            (err, name) => {
-                if(err) {throw err;}
-                if(name.length === 0) {throw new Error('No data!');}
-                done();
+        testQuestions.findById(questionAuthorID)
+        .exec()
+        .then(function(doc){
+          //Assert here
+          done();
+        })
+        .catch(function(err){
+          console.log(err);
+          res.status(500).json({
+            error:err
+          });
         });
     });
+
+    //Fail to retrieve
   });
   
   after(function(done){
     mongoose.connection.db.dropCollection('testquestions1',function(){
-        mongoose.connection.close(done);
-      });
+      mongoose.connection.close(done);
+    });
   });
 });

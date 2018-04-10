@@ -1,7 +1,9 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+var expect = require('chai').expect;
 
 const testEditUserSchema = mongoose.Schema({
+  _id: mongoose.Schema.Types.ObjectId,
   username: {type: String, required: true},
   password: {type: String},
   email: {type: String, required: true},
@@ -54,11 +56,13 @@ describe('Connecting to database for edit user page', function() {
     });
   });
 
-  describe('Test edit user page', function() {      
-    var question = new mongoose.Types.ObjectId();
-    var answer = new mongoose.Types.ObjectId();       
+  describe('Test edit user page', function() {
+    var userID = new mongoose.Types.ObjectId();      
+    var questionID = new mongoose.Types.ObjectId();
+    var answerID = new mongoose.Types.ObjectId();       
     it('New user saved to test database', function(done) {
       var testFakeUser = testEditUser({
+        _id: userID,
         username: 'username',
         password: 'password',
         email: 'email@gmail.com',
@@ -78,8 +82,8 @@ describe('Connecting to database for edit user page', function() {
         birthday: '2002-02-02',
         spokenLanguage: 'french',
         programmingLanguage: 'java',
-        questions: question,
-        answers: answer,
+        questions: questionID,
+        answers: answerID,
         tagJava : 0,
         tagPHP : 0,
         tagPython : 0,
@@ -99,29 +103,47 @@ describe('Connecting to database for edit user page', function() {
         tagPerl : 0
       });
       testFakeUser.save(done);
+      //Assert here that it has successfully saved into the database
     });
 
+    //Fail to save here
+
     it('Able to update bio for the user', function(done) {
-      var oldBio = {bio: 'bio'};
-      var newBio= {bio: 'new bio'};
-      testEditUser.update(oldBio, newBio, (err, name) => {
-        if(err) {throw err;}
-        if(name.length === 0) {throw new Error('No data!');}
+      testEditUser.update({_id : userID}, {$set : {'bio' : 'new bio'}})
+      .exec()
+      .then(function(doc){
+        //Assert here that the user has successfully updated
         done();
+      })
+      .catch(function(err){
+          console.log(err)
+          res.status(500).json({error:err})
+      })
+    });
+
+    //Fail to update here
+
+    it('Should retrieve the edited user from database', function(done) { 
+      testEditUser.findById(userID)
+      .exec()
+      .then(function(doc){
+        //Assert here that we found the correct user
+        done();
+      })
+      .catch(function(err){
+        console.log(err);
+        res.status(500).json({
+            error:err
+        });
       });
     });
 
-    it('Should retrieve the edited user from database', function(done) {
-      testEditUser.find({bio: 'new bio'}, (err, name) => {
-          if(err) {throw err;}
-          if(name.length === 0) {throw new Error('No data!');}
-          done();
-        });
-    });
+    //Fail to retrieve here
   });
   
   after(function(done){
     mongoose.connection.db.dropCollection('testreplies',function(){
       mongoose.connection.close(done);
-    });  });
+    });
+  });
 });

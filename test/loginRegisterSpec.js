@@ -1,7 +1,9 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+var expect = require('chai').expect;
 
 const testLoginRegisterSchema = mongoose.Schema({
+  _id: mongoose.Schema.Types.ObjectId,
   username: {type: String, required: true},
   password: {type: String},
   email: {type: String, required: true},
@@ -55,10 +57,12 @@ describe('Connecting to database for login register page', function() {
   });
 
   describe('Test login register page', function() {
+    var userID = new mongoose.Types.ObjectId();
     var question = new mongoose.Types.ObjectId();
     var answer = new mongoose.Types.ObjectId();          
     it('Registers a user to test database', function(done) {
       var testLoginExample = testLoginRegister({
+        _id: userID,
         username: 'toto',
         password: 'apple123',
         email: 'pie@gmail.com',
@@ -99,15 +103,28 @@ describe('Connecting to database for login register page', function() {
         tagPerl : 0
       });
       testLoginExample.save(done);
+
+      //Assert it has been saved
     });
 
+    //Fail to save
+    
     it('Should retrieve the new user registered from database', function(done) {
-        testLoginRegister.find({password: 'apple123'}, (err, name) => {
-          if(err) {throw err;}
-          if(name.length === 0) {throw new Error('No data!');}
-          done();
+      testLoginRegister.findById(userID)
+      .exec()
+      .then(function(doc){
+        //Assert here
+        done();
+      })
+      .catch(function(err){
+        console.log(err);
+        res.status(500).json({
+          error:err
         });
+      });
     });
+
+    //Fail to retrieve here
   });
   
   after(function(done){

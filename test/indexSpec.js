@@ -1,10 +1,12 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+var expect = require('chai').expect;
 const Reply = require("../models/reply");
 
 const reply = mongoose.model('reply', Reply.schema);
 
 const testQuestionSchema = mongoose.Schema({
+    _id: mongoose.Schema.Types.ObjectId,
     title: {type: String, required: true},
     text: {type: String, required: true},
     score: {type: Number, required: true},
@@ -28,6 +30,7 @@ describe('Connecting to database for index page', function() {
   });
 
   describe('Test index page', function() {  
+    var authorQuestionID = new mongoose.Types.ObjectId();
     var authorID = new mongoose.Types.ObjectId();
     var currentDate = new Date();
     var questionID = new mongoose.Types.ObjectId();
@@ -59,6 +62,7 @@ describe('Connecting to database for index page', function() {
         var repliesSet = [newReply, anotherReply];
         
         var testNewQuestion = testQuestions({
+            _id: authorQuestionID,
             title: 'title',
             text: 'this is a text',
             score: 1,
@@ -70,26 +74,32 @@ describe('Connecting to database for index page', function() {
         });
     
         testNewQuestion.save(done);
+        //Assert the question has been saved 
     });
 
+    //Fail to save 
+
     it('Should retrieve the question from database', function(done) {
-        testQuestions.find({
-            title: 'title',
-            text: 'this is a text',
-            score: 1,
-            author: authorID,
-            username: 'username',
-            date: currentDate}, 
-            (err, name) => {
-                if(err) {throw err;}
-                if(name.length === 0) {throw new Error('No data!');}
-                done();
+        testQuestions.findById(authorQuestionID)
+        .exec()
+        .then(function(doc){
+            //Assert here that we found the correct user
+            done();
+        })
+        .catch(function(err){
+            console.log(err);
+            res.status(500).json({
+                error:err
+            });
         });
     });
+    
+    //Fail to retrieve
   });
   
   after(function(done){
     mongoose.connection.db.dropCollection('testquestions',function(){
         mongoose.connection.close(done);
-      });  });
+    });
+  });
 });

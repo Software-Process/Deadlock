@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const testEditUserSchema = mongoose.Schema({
+  _id: mongoose.Schema.Types.ObjectId,
   username: {type: String, required: true},
   password: {type: String},
   email: {type: String, required: true},
@@ -54,11 +55,13 @@ describe('Connecting to database for user page', function() {
     });
   });
 
-  describe('Test user page', function() {      
+  describe('Test user page', function() {    
+    var userID = new mongoose.Types.ObjectId();  
     var question = new mongoose.Types.ObjectId();
     var answer = new mongoose.Types.ObjectId();       
     it('New user saved to test database', function(done) {
       var testFakeUser = testEditUser({
+        _id: userID,
         username: 'apple',
         password: 'pie',
         email: 'email@gmail.com',
@@ -99,53 +102,28 @@ describe('Connecting to database for user page', function() {
         tagPerl : 0
       });
       testFakeUser.save(done);
+
+      //Assert it has been saved
     });
 
+    //Fail to save
+
     it('Should retrieve the new user from database', function(done) {
-      testEditUser.find({
-        username: 'apple',
-        password: 'pie',
-        email: 'email@gmail.com',
-        admin: '',
-        company: 'no',
-        bio: 'this is the biography',
-        picture: 1,
-        bannerColor: 'pink',
-        phoneNumber: '514-123-4567',
-        github: 'github',
-        linkedin: 'linkedin',
-        city: 'montreal',
-        country: 'canada',
-        fullName: 'full name',
-        gender: 'male',
-        age: 12,
-        birthday: '1996-02-03',
-        spokenLanguage: 'french',
-        programmingLanguage: 'java',
-        questions: question,
-        answers: answer,
-        tagJava : 0,
-        tagPHP : 0,
-        tagPython : 0,
-        tagCPlusPlus : 0,
-        tagCSharp : 0,
-        tagRuby : 0,
-        tagLisp : 0,
-        tagProlog : 0,
-        tagHtml : 0,
-        tagCss : 0,
-        tagJavaScript : 0,
-        tagJade : 0,
-        tagC : 0,
-        tagFortran : 0,
-        tagVisualBasic : 0,
-        tagAssembly : 0,
-        tagPerl : 0}, 
-        (err, name) => {
-          if(err) {throw err;}
-          if(name.length === 0) {throw new Error('No data!');}
-          done();
+      testEditUser.findById(userID)
+      .exec()
+      .then(function(doc){
+        //Assert here
+        done();
+      })
+      .catch(function(err){
+        console.log(err);
+        res.status(500).json({
+          error:err
+        });
       });
+
+      //Fail to retrieve
+
     });
   });
   

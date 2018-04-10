@@ -1,14 +1,15 @@
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+const Schema = mongoose.Schema;	
+var expect = require('chai').expect;
 
 const testJobPageSchema = mongoose.Schema({
-    _id: mongoose.Schema.Types.ObjectId,
-    title : {type: String, required: true},
-    company: {type: String, required: true},
-    date :  String,
-    link : {type: String, required: true},
-    author : {type: String, required: true},
-    location : {type: String, required: true}
+  _id: mongoose.Schema.Types.ObjectId,
+  title : {type: String, required: true},
+  company: {type: String, required: true},
+  date :  String,
+  link : {type: String, required: true},
+  author : {type: String, required: true},
+  location : {type: String, required: true}
 });
 
 const testJobPage = mongoose.model('testJobPage', testJobPageSchema);
@@ -24,39 +25,45 @@ describe('Connecting to database for job page', function() {
   });
 
   describe('Test job posting page', function() {   
-    var question = new mongoose.Types.ObjectId();          
+    var jobID = new mongoose.Types.ObjectId();          
     it('New job saved to test database', function(done) {
-        var testJobExample = testJobPage({
-          _id: question,
-          title: 'Developer',
-          company: 'IBM',
-          date: '2018-06-06',
-          link: 'www.google.com',
-          author: 'HR',
-          location: 'Australia'
-        });
-        testJobExample.save(done);
+      var testJobExample = testJobPage({
+        _id: jobID,
+        title: 'Developer',
+        company: 'IBM',
+        date: '2018-06-06',
+        link: 'www.google.com',
+        author: 'HR',
+        location: 'Australia'
+      });
+      testJobExample.save(done);
+
+      //Assert that it has been saved
     });
+    
+    //Fail to save
 
     it('Should be able to retrieve the new job posting from database', function(done) {
-        testJobPage.find({
-            _id: question,
-            title: 'Developer',
-            company: 'IBM',
-            date: '2018-06-06',
-            link: 'www.google.com',
-            author: 'HR',
-          location: 'Australia' },
-          (err, name) => {
-            if(err) {throw err;}
-            if(name.length === 0) {throw new Error('No data!');}
-            done();
+      testJobPage.findById(jobID)
+      .exec()
+      .then(function(doc){
+        expect(doc.company).to.equal("IBM");
+        done();
+      })
+      .catch(function(err){
+        console.log(err);
+        res.status(500).json({
+            error:err
         });
+      });
     });
+
+    //Fail to retrieve
   });
   
   after(function(done){
     mongoose.connection.db.dropCollection('testjobpages',function(){
       mongoose.connection.close(done);
-    });  });
+    });
+  });
 });

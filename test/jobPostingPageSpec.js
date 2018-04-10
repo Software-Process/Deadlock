@@ -1,14 +1,15 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+var expect = require('chai').expect;
 
 const testJobPostingSchema = mongoose.Schema({
-    _id: mongoose.Schema.Types.ObjectId,
-    title : {type: String, required: true},
-    company: {type: String, required: true},
-    date :  String,
-    link : {type: String, required: true},
-    author : {type: String, required: true},
-    location : {type: String, required: true}
+  _id: mongoose.Schema.Types.ObjectId,
+  title : {type: String, required: true},
+  company: {type: String, required: true},
+  date :  String,
+  link : {type: String, required: true},
+  author : {type: String, required: true},
+  location : {type: String, required: true}
 });
 
 const testJobPosting = mongoose.model('testJobPosting', testJobPostingSchema);
@@ -26,33 +27,37 @@ describe('Connecting to database for job posting page', function() {
   describe('Test job posting page', function() {   
     var question = new mongoose.Types.ObjectId();          
     it('New job saved to test database', function(done) {
-        var testJobExample = testJobPosting({
-          _id: question,
-          title: 'jobTitle',
-          company: 'jobCompany',
-          date: '2018-07-07',
-          link: 'www.google.com',
-          author: 'jobAuthor',
-          location: 'Canada'
-        });
-        testJobExample.save(done);
+      var testJobExample = testJobPosting({
+        _id: question,
+        title: 'jobTitle',
+        company: 'jobCompany',
+        date: '2018-07-07',
+        link: 'www.google.com',
+        author: 'jobAuthor',
+        location: 'Canada'
+      });
+      testJobExample.save(done);
+      //Assert it has been saved
     });
 
+    //Fail to save
+
     it('Should retrieve the new job posting from database', function(done) {
-        testJobPosting.find({
-          _id: question,
-          title: 'jobTitle',
-          company: 'jobCompany',
-          date: '2018-07-07',
-          link: 'www.google.com',
-          author: 'jobAuthor',
-          location: 'Canada'}, 
-          (err, name) => {
-            if(err) {throw err;}
-            if(name.length === 0) {throw new Error('No data!');}
-            done();
+      testJobPosting.findById(question)
+      .exec()
+      .then(function(doc){
+        //Assert here
+        done();
+      })
+      .catch(function(err){
+        console.log(err);
+        res.status(500).json({
+            error:err
         });
+      });
     });
+
+    //Fail to retrieve
   });
   
   after(function(done){
