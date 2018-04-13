@@ -36,22 +36,51 @@ describe('Connecting to database for company account', function() {
         bannerColor: '#116CF6'
       });
 
-    testCompanyExample.save(done);
-
-      //Assert here that company has been successfully saved to the database
+      testCompanyExample.save(done);
     });
 
     //Here write a case to fail the save the company, can do so by forgetting to set a required variable
     //The required ones are the ones with "true"
 
+    it('Fail to save a company due to missing required field', function(done) {
+      var companyID = new mongoose.Types.ObjectId();  
+      var invalidCompanyAccount = testCompanyAccount({
+        _id: companyID,
+        // username field is omitted for the fail test
+        email: 'company123@gmail.com',
+        admin: "",
+        company: "yes",
+        picture: 1,
+        bannerColor: '#116CF6'
+      });
+
+      invalidCompanyAccount.save(err => {
+          if(err) { return done(); }
+          throw new Error('Should generate error!');
+      });
+    });
+
     it('Able to approve the company', function(done) {
       testCompanyAccount.update({_id : companyID}, {$set : {'company' : 'yes'}})
       .exec()
-      .then(function(doc){
-        //Assert here that the company has successfully updated
-        done();
+      .then(function(doc) {
+
+        //Assert that the company has successfully updated
+        testCompanyAccount.findById(companyID)
+          .exec()
+          .then(function(doc1) {
+            expect(doc1.company).to.equal("yes");
+            done();
+          })
+          .catch(function(err) {
+            console.log(err);
+            res.status(500).json({
+                error:err
+            });
+          });
+
       })
-      .catch(function(err){
+      .catch(function(err) {
           console.log(err)
           res.status(500).json({error:err})
       })

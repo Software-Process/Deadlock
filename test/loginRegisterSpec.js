@@ -103,8 +103,6 @@ describe('Connecting to database for login register page', function() {
         tagPerl : 0
       });
       testLoginExample.save(done);
-
-      //Assert it has been saved
     });
 
     //Fail to save
@@ -113,8 +111,21 @@ describe('Connecting to database for login register page', function() {
       testLoginRegister.findById(userID)
       .exec()
       .then(function(doc){
-        //Assert here
-        done();
+        //Assert that we found the correct user
+        testLoginRegister.findById(userID)
+        .exec()
+        .then(function(doc1) {         
+          var foundId = doc1._id.toString();
+          var searchId = userID.toString();
+          expect(foundId).to.equal(searchId);
+          done();
+        })
+        .catch(function(err) {
+          console.log(err);
+          res.status(500).json({
+              error:err
+          });
+        });
       })
       .catch(function(err){
         console.log(err);

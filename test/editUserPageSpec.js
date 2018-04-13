@@ -103,7 +103,6 @@ describe('Connecting to database for edit user page', function() {
         tagPerl : 0
       });
       testFakeUser.save(done);
-      //Assert here that it has successfully saved into the database
     });
 
     //Fail to save here
@@ -112,8 +111,19 @@ describe('Connecting to database for edit user page', function() {
       testEditUser.update({_id : userID}, {$set : {'bio' : 'new bio'}})
       .exec()
       .then(function(doc){
-        //Assert here that the user has successfully updated
-        done();
+        //Assert that the user has successfully updated
+        testEditUser.findById(userID)
+        .exec()
+        .then(function(doc1) {
+          expect(doc1.bio).to.equal("new bio");
+          done();
+        })
+        .catch(function(err) {
+          console.log(err);
+          res.status(500).json({
+              error:err
+          });
+        });
       })
       .catch(function(err){
           console.log(err)
@@ -127,8 +137,21 @@ describe('Connecting to database for edit user page', function() {
       testEditUser.findById(userID)
       .exec()
       .then(function(doc){
-        //Assert here that we found the correct user
-        done();
+        //Assert that we found the correct user
+        testEditUser.findById(userID)
+        .exec()
+        .then(function(doc1) {         
+          var foundId = doc1._id.toString();
+          var searchId = userID.toString();
+          expect(foundId).to.equal(searchId);
+          done();
+        })
+        .catch(function(err) {
+          console.log(err);
+          res.status(500).json({
+              error:err
+          });
+        });
       })
       .catch(function(err){
         console.log(err);

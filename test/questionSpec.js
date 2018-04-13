@@ -94,8 +94,6 @@ describe('Database Tests for question page', function() {
                 tag: ["Python", "Java"]
             });
             testNewQuestion.save(done);
-
-            //Assert it has been saved
         });
 
         it('Dont save incorrect title format to database', function(done) {
@@ -112,8 +110,29 @@ describe('Database Tests for question page', function() {
             questionTest.update({_id : authordQuestionID}, {$set : {'replies' : [newReplyTest]}})
             .exec()
             .then(function(doc){
-              //Assert here that the question has successfully updated with replies
-              done();
+                //Assert that the question has successfully updated with replies
+                questionTest.findById(authordQuestionID)
+                .exec()
+                .then(function(doc1) {
+                    var repliesOfQuesiton = doc1.replies;
+                    var foundMatch = false;
+                    var foundId;
+                    var searchId = replyID.toString();
+                    for(var i = 0; i < repliesOfQuesiton.length; ++i) {
+                        foundId = repliesOfQuesiton[i]._id.toString();
+                        if (foundId == replyID) {
+                            foundMatch = true;
+                        }
+                    }
+                    expect(foundMatch).to.equal(true);
+                    done();
+                })
+                .catch(function(err) {
+                  console.log(err);
+                  res.status(500).json({
+                      error:err
+                  });
+                });
             })
             .catch(function(err){
                 console.log(err)
@@ -127,7 +146,8 @@ describe('Database Tests for question page', function() {
             questionTest.update({_id : authordQuestionID}, {$set : {'score' : 2}})
             .exec()
             .then(function(doc){
-              //Assert here that the question has successfully updated
+              // Assert here that the question has successfully updated
+              // This is put on hold until the refactoring of the up vote  
               done();
             })
             .catch(function(err){
@@ -142,7 +162,8 @@ describe('Database Tests for question page', function() {
             questionTest.update({_id : authordQuestionID}, {$set : {'score' : 1}})
             .exec()
             .then(function(doc){
-              //Assert here that the question has successfully updated
+              // Assert here that the question has successfully updated
+              // This is put on hold until the refactoring of the down vote  
               done();
             })
             .catch(function(err){
@@ -213,8 +234,21 @@ describe('Database Tests for question page', function() {
             questionTest.findById(authordQuestionID)
             .exec()
             .then(function(doc){
-                //Assert here
-                done();
+                //Assert that we found the correct question
+                questionTest.findById(authordQuestionID)
+                .exec()
+                .then(function(doc1) {         
+                  var foundId = doc1._id.toString();
+                  var searchId = authordQuestionID.toString();
+                  expect(foundId).to.equal(searchId);
+                  done();
+                })
+                .catch(function(err) {
+                  console.log(err);
+                  res.status(500).json({
+                      error:err
+                  });
+                });
             })
             .catch(function(err){
                 console.log(err);

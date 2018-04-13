@@ -71,9 +71,6 @@ describe('Connecting to database for question prompt page', function() {
         });
     
         testNewQuestion.save(done);
-
-        //Assert it has been saved
-
     });
 
     //Fail to save 
@@ -82,8 +79,21 @@ describe('Connecting to database for question prompt page', function() {
         testQuestions.findById(questionAuthorID)
         .exec()
         .then(function(doc){
-          //Assert here
-          done();
+            //Assert that we found the correct user
+            testQuestions.findById(questionAuthorID)
+            .exec()
+            .then(function(doc1) {         
+              var foundId = doc1._id.toString();
+              var searchId = questionAuthorID.toString();
+              expect(foundId).to.equal(searchId);
+              done();
+            })
+            .catch(function(err) {
+              console.log(err);
+              res.status(500).json({
+                  error:err
+              });
+            });
         })
         .catch(function(err){
           console.log(err);

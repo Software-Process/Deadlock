@@ -37,8 +37,6 @@ describe('Connecting to database for job page', function() {
         location: 'Australia'
       });
       testJobExample.save(done);
-
-      //Assert that it has been saved
     });
     
     //Fail to save
@@ -47,8 +45,21 @@ describe('Connecting to database for job page', function() {
       testJobPage.findById(jobID)
       .exec()
       .then(function(doc){
-        expect(doc.company).to.equal("IBM");
-        done();
+        //Assert that we found the correct job
+        testJobPage.findById(jobID)
+        .exec()
+        .then(function(doc1) {         
+          var foundId = doc1._id.toString();
+          var searchId = jobID.toString();
+          expect(foundId).to.equal(searchId);
+          done();
+        })
+        .catch(function(err) {
+          console.log(err);
+          res.status(500).json({
+              error:err
+          });
+        });
       })
       .catch(function(err){
         console.log(err);

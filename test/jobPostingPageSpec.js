@@ -25,10 +25,10 @@ describe('Connecting to database for job posting page', function() {
   });
 
   describe('Test job posting page', function() {   
-    var question = new mongoose.Types.ObjectId();          
+    var postingId = new mongoose.Types.ObjectId();          
     it('New job saved to test database', function(done) {
       var testJobExample = testJobPosting({
-        _id: question,
+        _id: postingId,
         title: 'jobTitle',
         company: 'jobCompany',
         date: '2018-07-07',
@@ -37,17 +37,29 @@ describe('Connecting to database for job posting page', function() {
         location: 'Canada'
       });
       testJobExample.save(done);
-      //Assert it has been saved
     });
 
     //Fail to save
 
     it('Should retrieve the new job posting from database', function(done) {
-      testJobPosting.findById(question)
+      testJobPosting.findById(postingId)
       .exec()
       .then(function(doc){
-        //Assert here
-        done();
+        //Assert that we found the correct job posting
+        testJobPosting.findById(postingId)
+        .exec()
+        .then(function(doc1) {         
+          var foundId = doc1._id.toString();
+          var searchId = postingId.toString();
+          expect(foundId).to.equal(searchId);
+          done();
+        })
+        .catch(function(err) {
+          console.log(err);
+          res.status(500).json({
+              error:err
+          });
+        });
       })
       .catch(function(err){
         console.log(err);

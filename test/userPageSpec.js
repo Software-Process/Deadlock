@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+var expect = require('chai').expect;
 
 const testEditUserSchema = mongoose.Schema({
   _id: mongoose.Schema.Types.ObjectId,
@@ -102,8 +103,6 @@ describe('Connecting to database for user page', function() {
         tagPerl : 0
       });
       testFakeUser.save(done);
-
-      //Assert it has been saved
     });
 
     //Fail to save
@@ -111,9 +110,22 @@ describe('Connecting to database for user page', function() {
     it('Should retrieve the new user from database', function(done) {
       testEditUser.findById(userID)
       .exec()
-      .then(function(doc){
-        //Assert here
-        done();
+      .then(function(doc) {
+        //Assert that we found the correct user
+        testEditUser.findById(userID)
+        .exec()
+        .then(function(doc1) {         
+          var foundId = doc1._id.toString();
+          var searchId = userID.toString();
+          expect(foundId).to.equal(searchId);
+          done();
+        })
+        .catch(function(err) {
+          console.log(err);
+          res.status(500).json({
+              error:err
+          });
+        });
       })
       .catch(function(err){
         console.log(err);
