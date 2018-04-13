@@ -107,7 +107,8 @@ describe('Database Tests for question page', function() {
         });
 
         it('Able to add answers to the question', function(done) {
-            questionTest.update({_id : authordQuestionID}, {$set : {'replies' : [newReplyTest]}})
+            repliesSet.push(newReplyTest);
+            questionTest.update({_id : authordQuestionID}, {$set : {'replies' : repliesSet}})
             .exec()
             .then(function(doc){
                 //Assert that the question has successfully updated with replies
@@ -143,32 +144,81 @@ describe('Database Tests for question page', function() {
         //Fail to add replies
 
         it('Able to test up votes for the question', function(done) {
-            questionTest.update({_id : authordQuestionID}, {$set : {'score' : 2}})
+            questionTest.findById(authordQuestionID)
             .exec()
             .then(function(doc){
-              // Assert here that the question has successfully updated
-              // This is put on hold until the refactoring of the up vote  
-              done();
+                questionTest.update({_id : authordQuestionID}, {$inc : {'score' : 1}})
+                .exec()
+                .then(function(doc){
+                    questionTest.findById(authordQuestionID)
+                    .exec()
+                    .then(function(doc1) {         
+                        var foundId = doc1._id.toString();
+                        var searchId = authordQuestionID.toString();
+                        expect(foundId).to.equal(searchId);
+                        done();
+                    })
+                    .catch(function(err) {
+                        console.log(err);
+                        res.status(500).json({
+                            error:err
+                        });
+                    });
+                })
+                .catch(function(err) {
+                    console.log(err);
+                    res.status(500).json({
+                        error:err
+                    });
+                });
+                //Assert that we found the correct question
             })
             .catch(function(err){
-                console.log(err)
-                res.status(500).json({error:err})
-            })
+                console.log(err);
+                res.status(500).json({
+                    error:err
+                });
+            });
         });
 
         //Fail to update the replies
 
         it('Able to test down votes for the question', function(done) {
-            questionTest.update({_id : authordQuestionID}, {$set : {'score' : 1}})
+            questionTest.findById(authordQuestionID)
             .exec()
             .then(function(doc){
-              // Assert here that the question has successfully updated
-              // This is put on hold until the refactoring of the down vote  
-              done();
+                var questionScore = doc.score-1;
+                questionTest.update({_id : authordQuestionID}, {$set : {'score' : questionScore}})
+                .exec()
+                .then(function(doc){
+                    questionTest.findById(authordQuestionID)
+                    .exec()
+                    .then(function(doc1) {         
+                        var foundId = doc1._id.toString();
+                        var searchId = authordQuestionID.toString();
+                        expect(foundId).to.equal(searchId);
+                        done();
+                    })
+                    .catch(function(err) {
+                        console.log(err);
+                        res.status(500).json({
+                            error:err
+                        });
+                    });
+                })
+                .catch(function(err) {
+                    console.log(err);
+                    res.status(500).json({
+                        error:err
+                    });
+                });
+                //Assert that we found the correct question
             })
             .catch(function(err){
-                console.log(err)
-                res.status(500).json({error:err})
+                console.log(err);
+                res.status(500).json({
+                    error:err
+                });
             })
         });
 
