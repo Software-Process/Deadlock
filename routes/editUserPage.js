@@ -33,13 +33,13 @@ router.patch("/", function (req, res, next) {
         .exec()
         .then(function (result) {
             res.render("userPage", {user: req.user}, function (err, resp) {
-                res.redirect("userPage")
-            })
+                res.redirect("userPage");
+            });
         })
         .catch(function (err) {
             console.log(err);
             res.status(500).json({error: err});
-        })
+        });
 });
 
 module.exports = router;

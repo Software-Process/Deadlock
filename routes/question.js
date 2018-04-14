@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
-var express = require('express');
-var async = require('async');
+var express = require("express");
+var async = require("async");
 
 var router = express.Router();
 
@@ -43,11 +43,11 @@ router.patch("/:questionId/up", function(req, res, next) {
         .exec()
         .then(
             Question.update({_id : id}, {$push : {voteHistory: toSave}}).exec()
-        .then( Question.update({_id : id}, {$inc : {"score" : 1}})
-        .exec()
-        .then(function(result){
-            res.redirect("back");
-        })))
+                .then( Question.update({_id : id}, {$inc : {"score" : 1}})
+                    .exec()
+                    .then(function(result){
+                        res.redirect("back");
+                    })))
         .catch(function(err){
             console.log(err);
             res.status(500).json({error:err});
@@ -63,11 +63,11 @@ router.patch("/:questionId/down", function(req, res, next) {
         .exec()
         .then(
             Question.update({_id : id}, {$push : {voteHistory: toSave}}).exec()
-        .then( Question.update({_id : id}, {$inc : {"score" : -1}})
-        .exec()
-        .then(function(result){
-            res.redirect("back");
-        })))
+                .then( Question.update({_id : id}, {$inc : {"score" : -1}})
+                    .exec()
+                    .then(function(result){
+                        res.redirect("back");
+                    })))
         .catch(function(err){
             console.log(err);
             res.status(500).json({error:err});
@@ -81,11 +81,11 @@ router.patch("/:questionId/downupped", function(req, res, next) {
         .exec()
         .then(
             Question.update({_id : id}, {$pull : {voteHistory: {user: req.user.username}}}).exec()
-        .then( Question.update({_id : id}, {$inc : {"score" : -1}})
-        .exec()
-        .then(function(result){
-            res.redirect("back");
-        })))
+                .then( Question.update({_id : id}, {$inc : {"score" : -1}})
+                    .exec()
+                    .then(function(result){
+                        res.redirect("back");
+                    })))
         .catch(function(err){
             console.log(err);
             res.status(500).json({error:err});
@@ -99,11 +99,11 @@ router.patch("/:questionId/updowned", function(req, res, next) {
         .exec()
         .then(
             Question.update({_id : id}, {$pull : {voteHistory: {user: req.user.username}}}).exec()
-        .then( Question.update({_id : id}, {$inc : {"score" : 1}})
-        .exec()
-        .then(function(result){
-            res.redirect("back");
-        })))
+                .then( Question.update({_id : id}, {$inc : {"score" : 1}})
+                    .exec()
+                    .then(function(result){
+                        res.redirect("back");
+                    })))
         .catch(function(err){
             console.log(err);
             res.status(500).json({error:err});
@@ -139,23 +139,23 @@ router.patch("/:questionId/reply", function(req, res, next) {
 function getPropertyWithTag(tag) {
     var property = "tag";
     switch(tag) {
-        case "C++":
-            property += "CPlusPlus";
-            break;
-        case "C#":
-            property += "CSharp";
-            break;
-        case "Visual Basic":
-            property += "VisualBasic";
-            break;
-        default:
-            property += tag;
-            break;
+    case "C++":
+        property += "CPlusPlus";
+        break;
+    case "C#":
+        property += "CSharp";
+        break;
+    case "Visual Basic":
+        property += "VisualBasic";
+        break;
+    default:
+        property += tag;
+        break;
     }
     return property;
 }
 
-router.patch('/:qustionId/:replyId/accept', function(req, res, next) {
+router.patch("/:qustionId/:replyId/accept", function(req, res, next) {
     const repId = req.params.replyId;
     const questionId = req.params.qustionId;
     var questionTags;
@@ -175,52 +175,52 @@ router.patch('/:qustionId/:replyId/accept', function(req, res, next) {
             }
         }
 
-        Question.update({_id : questionId}, {$set : {'replyUsername' : uname}})
+        Question.update({_id : questionId}, {$set : {"replyUsername" : uname}})
             .exec()
             .catch(function(err){
-                console.log(err)
-                res.status(500).json({error:err})
+                console.log(err);
+                res.status(500).json({error:err});
             })
 
-        .then(docs => {                    
-            async.eachSeries(questionTags, function updateObject (rec, callback) {
+            .then(docs => {                    
+                async.eachSeries(questionTags, function updateObject (rec, callback) {
 
-                var tag = rec
-                var property = getPropertyWithTag(tag)
+                    var tag = rec;
+                    var property = getPropertyWithTag(tag);
 
-                User.find({ username : uname }, function(err, obj) {
-                    var userId = obj[0]._id
-                    var query = {}                    
-                    var propertyValue = obj[0][property]
+                    User.find({ username : uname }, function(err, obj) {
+                        var userId = obj[0]._id;
+                        var query = {};                    
+                        var propertyValue = obj[0][property];
 
-                    query[property] = propertyValue + 1
+                        query[property] = propertyValue + 1;
                 
-                    User.update({_id : userId}, {$set : query})
-                        .exec()
-                        .catch(function(err){
-                            console.log(err)
-                            res.status(500).json({error:err})
-                        })
-                    callback()
-                })
+                        User.update({_id : userId}, {$set : query})
+                            .exec()
+                            .catch(function(err){
+                                console.log(err);
+                                res.status(500).json({error:err});
+                            });
+                        callback();
+                    });
 
-            }, function allDone (err) {
+                }, function allDone (err) {
                 // This will run once the array has been iterated over completely
-            })
-        }) 
+                });
+            }); 
     });
     Question.updateOne({"replies._id" : repId}, {$set : {"replies.$.accepted" : true}})
         .exec()
         .then(
-        Question.updateOne({"replies._id" : repId}, {$set : {"hasAccepted" : true}})
-            .exec()
-            .then(function(result){
-                res.redirect('back');
-            })
-            .catch(function(err){
-                console.log(err);
-                res.status(500).json({error:err});
-        }));
+            Question.updateOne({"replies._id" : repId}, {$set : {"hasAccepted" : true}})
+                .exec()
+                .then(function(result){
+                    res.redirect("back");
+                })
+                .catch(function(err){
+                    console.log(err);
+                    res.status(500).json({error:err});
+                }));
 });
 
 
@@ -235,7 +235,7 @@ router.patch("/:replyId/reject", function(req, res, next) {
                     .exec()
                     .then(function(result){
                         res.redirect("back");
-                    }))
+                    }));
         }))
         .catch(function(err){
             console.log(err);
@@ -252,11 +252,11 @@ router.patch("/:replyId/upReply", function(req, res, next) {
         .exec()
         .then(
             Question.update({"replies._id" : repId}, {$push : {"replies.$.voteHistory": toSave}}).exec()
-        .then( Question.update({"replies._id" : repId}, {$inc : {"replies.$.score" : 1}})
-        .exec()
-        .then(function(result){
-            res.redirect("back");
-        })))
+                .then( Question.update({"replies._id" : repId}, {$inc : {"replies.$.score" : 1}})
+                    .exec()
+                    .then(function(result){
+                        res.redirect("back");
+                    })))
         .catch(function(err){
             console.log(err);
             res.status(500).json({error:err});
@@ -272,11 +272,11 @@ router.patch("/:replyId/downReply", function(req, res, next) {
         .exec()
         .then(
             Question.update({"replies._id" : repId}, {$push : {"replies.$.voteHistory": toSave}}).exec()
-        .then( Question.update({"replies._id" : repId}, {$inc : {"replies.$.score" : -1}})
-        .exec()
-        .then(function(result){
-            res.redirect("back");
-        })))
+                .then( Question.update({"replies._id" : repId}, {$inc : {"replies.$.score" : -1}})
+                    .exec()
+                    .then(function(result){
+                        res.redirect("back");
+                    })))
         .catch(function(err){
             console.log(err);
             res.status(500).json({error:err});
@@ -290,11 +290,11 @@ router.patch("/:replyId/downuppedReply", function(req, res, next) {
         .exec()
         .then(
             Question.update({"replies._id" : repId}, {$pull : {"replies.$.voteHistory": {user: req.user.username}}}).exec()
-        .then( Question.update({"replies._id" : repId}, {$inc : {"replies.$.score" : -1}})
-        .exec()
-        .then(function(result){
-            res.redirect("back");
-        })))
+                .then( Question.update({"replies._id" : repId}, {$inc : {"replies.$.score" : -1}})
+                    .exec()
+                    .then(function(result){
+                        res.redirect("back");
+                    })))
         .catch(function(err){
             console.log(err);
             res.status(500).json({error:err});
@@ -308,11 +308,11 @@ router.patch("/:replyId/updownedReply", function(req, res, next) {
         .exec()
         .then(
             Question.update({"replies._id" : repId}, {$pull : {"replies.$.voteHistory": {user: req.user.username}}}).exec()
-        .then( Question.update({"replies._id" : repId}, {$inc : {"replies.$.score" : 1}})
-        .exec()
-        .then(function(result){
-            res.redirect("back");
-        })))
+                .then( Question.update({"replies._id" : repId}, {$inc : {"replies.$.score" : 1}})
+                    .exec()
+                    .then(function(result){
+                        res.redirect("back");
+                    })))
         .catch(function(err){
             console.log(err);
             res.status(500).json({error:err});

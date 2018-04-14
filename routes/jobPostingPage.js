@@ -19,8 +19,8 @@ router.get("/", function(req, res, next) {
         .catch(err => {
             res.status(200).json({
                 error: err
-        });
-    }); 
+            });
+        }); 
 });
 router.post("/", function(req, res, next) {
     const genId = new mongoose.Types.ObjectId();

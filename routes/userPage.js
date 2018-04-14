@@ -18,7 +18,7 @@ router.patch("/:userId/clear", function (req, res, next) {
         .catch(function (err) {
             console.log(err);
             res.status(500).json({error: err});
-        })
+        });
 });
 /* GET user page, will reflect the logged-in user. */
 router.get("/", function(req, res, next){
@@ -55,9 +55,9 @@ router.get("/", function(req, res, next){
                     .catch(err => {
                         console.log(err);
                         res.status(200).json({
-                        error: err
+                            error: err
+                        });
                     });
-                });
             })
             .catch(err => {
                 console.log(err);
@@ -74,7 +74,7 @@ router.get("/", function(req, res, next){
 /* GET user page of a different user than the logged-in one, or
  * allows a non-logged in user to view a user page */
 router.get("/:name", function(req, res, next){
-const uname = req.params.name;
+    const uname = req.params.name;
 
     if (req.user && (uname === req.user.username)) {
         res.redirect("/userPage");
@@ -86,56 +86,56 @@ const uname = req.params.name;
         let rejReplied = [];
         User.find({username:uname})
             .then(accounts => {
-               Question.find({username:uname})
-                .then(docs1 => {
-                    questionDocs = docs1.reverse();
-                    Question.find({ "replies.username" : uname})
-                        .then(docs2 => {
-                            answerDocs = docs2.reverse();
-                            for(let i = 0; i < answerDocs.length; i++) {
-                                for(let j = 0; j < answerDocs[i].replies.length; j++) {
-                                    if(answerDocs[i].replies[j].username == uname && answerDocs[i].replies[j].accepted) {
-                                        accReplied.push(answerDocs[i]);
-                                    }
-                                    if(answerDocs[i].replies[j].username == uname && answerDocs[i].replies[j].rejected) {
-                                        rejReplied.push(answerDocs[i]);
+                Question.find({username:uname})
+                    .then(docs1 => {
+                        questionDocs = docs1.reverse();
+                        Question.find({ "replies.username" : uname})
+                            .then(docs2 => {
+                                answerDocs = docs2.reverse();
+                                for(let i = 0; i < answerDocs.length; i++) {
+                                    for(let j = 0; j < answerDocs[i].replies.length; j++) {
+                                        if(answerDocs[i].replies[j].username == uname && answerDocs[i].replies[j].accepted) {
+                                            accReplied.push(answerDocs[i]);
+                                        }
+                                        if(answerDocs[i].replies[j].username == uname && answerDocs[i].replies[j].rejected) {
+                                            rejReplied.push(answerDocs[i]);
+                                        }
                                     }
                                 }
-                            }
-                            if (!req.user) {
-                                res.render("userPage", {
-                                    user: accounts[0],
-                                    answers: answerDocs,
-                                    questions: questionDocs,
-                                    noLogin: true,
-                                    accReplies: accReplied,
-                                    rejReplies: rejReplied
+                                if (!req.user) {
+                                    res.render("userPage", {
+                                        user: accounts[0],
+                                        answers: answerDocs,
+                                        questions: questionDocs,
+                                        noLogin: true,
+                                        accReplies: accReplied,
+                                        rejReplies: rejReplied
 
+                                    });
+                                } else {
+                                    res.render("userPage", {
+                                        user: accounts[0],
+                                        answers: answerDocs,
+                                        questions: questionDocs,
+                                        curUser: req.user,
+                                        accReplies: accReplied,
+                                        rejReplies: rejReplied
+                                    });
+                                }
+                            })
+                            .catch(err => {
+                                console.log(err);
+                                res.status(200).json({
+                                    error: err
                                 });
-                            } else {
-                                res.render("userPage", {
-                                    user: accounts[0],
-                                    answers: answerDocs,
-                                    questions: questionDocs,
-                                    curUser: req.user,
-                                    accReplies: accReplied,
-                                    rejReplies: rejReplied
-                                })
-                            }
-                        })
-                        .catch(err => {
-                            console.log(err);
-                            res.status(200).json({
+                            });
+                    })
+                    .catch(err => {
+                        console.log(err);
+                        res.status(200).json({
                             error: err
-                             });
                         });
-                })
-                .catch(err => {
-                    console.log(err);
-                    res.status(200).json({
-                        error: err
                     });
-                });
                 
             })
             .catch(err => {

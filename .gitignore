@@ -2,3 +2,4 @@
 node-modules/
 *.iml
 /node_modules
+.eslintrc.json

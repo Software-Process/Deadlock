@@ -17,8 +17,8 @@ router.get("/", function(req, res, next) {
             console.log(err);
             res.status(200).json({
                 error: err
-        });
-    }); 
+            });
+        }); 
 });
 
 router.post("/:tag/sort", function(req, res) {
@@ -35,8 +35,8 @@ router.post("/:tag/sort", function(req, res) {
             console.log(err);
             res.status(200).json({
                 error: err
-        });
-    }); 
+            });
+        }); 
 });
 
 module.exports = router;
