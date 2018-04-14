@@ -147,15 +147,16 @@ describe('Database Tests for question page', function() {
             questionTest.findById(authordQuestionID)
             .exec()
             .then(function(doc){
+                var oldQuestionScore = doc.score;
                 questionTest.update({_id : authordQuestionID}, {$inc : {'score' : 1}})
                 .exec()
                 .then(function(doc){
+                    //Assert that the question's score has sucessfully incremented
                     questionTest.findById(authordQuestionID)
                     .exec()
-                    .then(function(doc1) {         
-                        var foundId = doc1._id.toString();
-                        var searchId = authordQuestionID.toString();
-                        expect(foundId).to.equal(searchId);
+                    .then(function(doc1) {
+                        var newQuestionScore = doc1.score;
+                        expect(newQuestionScore).to.equal(oldQuestionScore + 1);
                         done();
                     })
                     .catch(function(err) {
@@ -171,7 +172,7 @@ describe('Database Tests for question page', function() {
                         error:err
                     });
                 });
-                //Assert that we found the correct question
+                
             })
             .catch(function(err){
                 console.log(err);
@@ -187,16 +188,17 @@ describe('Database Tests for question page', function() {
             questionTest.findById(authordQuestionID)
             .exec()
             .then(function(doc){
-                var questionScore = doc.score-1;
-                questionTest.update({_id : authordQuestionID}, {$set : {'score' : questionScore}})
+                var oldQuestionScore = doc.score;
+                var updateQuestionScore = doc.score - 1;
+                questionTest.update({_id : authordQuestionID}, {$set : {'score' : updateQuestionScore}})
                 .exec()
                 .then(function(doc){
+                    //Assert that the question's score has sucesfully decremented
                     questionTest.findById(authordQuestionID)
                     .exec()
                     .then(function(doc1) {         
-                        var foundId = doc1._id.toString();
-                        var searchId = authordQuestionID.toString();
-                        expect(foundId).to.equal(searchId);
+                        var newQuestionScore = doc1.score;
+                        expect(newQuestionScore).to.equal(oldQuestionScore - 1);
                         done();
                     })
                     .catch(function(err) {
@@ -211,8 +213,7 @@ describe('Database Tests for question page', function() {
                     res.status(500).json({
                         error:err
                     });
-                });
-                //Assert that we found the correct question
+                });                
             })
             .catch(function(err){
                 console.log(err);
