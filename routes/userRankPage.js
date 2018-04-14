@@ -28,17 +28,17 @@ router.get('/:tag', function(req, res) {
     var querySort = {};
     querySort[fieldTag] = -1;
 
-        User.find(query).sort(querySort)
-            .exec()
-            .then(docs => {
-                res.render('userRankPage', { user: req.user, tagName : tag, users: docs, tagField: fieldTag, showTable:"True" });
-            })
-            .catch(err => {
-                console.log(err);
-                res.status(200).json({
-                    error: err
-            });
-        }); 
+    User.find(query).sort(querySort)
+        .exec()
+        .then(docs => {
+            res.render('userRankPage', { user: req.user, tagName : tag, users: docs, tagField: fieldTag, showTable:"True" });
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(200).json({
+                error: err
+        });
+    }); 
 
 });
 
