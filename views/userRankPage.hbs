@@ -19,7 +19,7 @@
     {{>header}}
       <!-- Jumbotron containing all tags -->
       <div class="jumbotron container-fluid text-center" style="margin-top: 25px">
-        <h2>Select a tag</h2>
+        <h2>Select a tag to</h2>
         <p>View all users based on tag score</p>
         <div class="form-group">
           <div class="btn-group-wrap text-center">
@@ -47,11 +47,11 @@
             <form class="tag-button" action="/userRankPage/Prolog" method="get">
               <input type="submit" class="btn btn-primary" value="Prolog">
             </form>
-            <form class="tag-button" action="/userRankPage/HTML" method="get">
-              <input type="submit" class="btn btn-info" value="HTML">
+            <form class="tag-button" action="/userRankPage/Html" method="get">
+              <input type="submit" class="btn btn-info" value="Html">
             </form>
-            <form class="tag-button" action="/userRankPage/CSS" method="get">
-              <input type="submit" class="btn btn-default" value="CSS">
+            <form class="tag-button" action="/userRankPage/Css" method="get">
+              <input type="submit" class="btn btn-default" value="Css">
             </form>
             <form class="tag-button" action="/userRankPage/JavaScript" method="get">
               <input type="submit" class="btn btn-warning" value="JavaScript">
@@ -88,7 +88,7 @@
             </div>
           </div>
         </div>
-
+        {{#if showTable}}
         <!-- list of all users with the selected tag -->
         <table class="table table-striped text-center">
           <thead>
@@ -99,16 +99,8 @@
             </tr>
           </thead>
           <tbody>
-            {{#eq "Please select a tag above" tagName}}
               {{#each users}}
-                <tr>
-                  <td>{{username}}</td>
-                  <td>{{email}}</td>
-                  <td>{{bio}}</td>
-                </tr>  
-              {{/each}}
-            {{else}}
-              {{#each @root.users}}                            
+                                          
                 <tr>
                   <td>{{username}}</td>
                   <td>{{email}}</td>
@@ -136,10 +128,10 @@
                   {{#eq "Prolog" @root.tagName}}
                     <td>{{tagProlog}}</td>
                   {{/eq}}
-                  {{#eq "HTML" @root.tagName}}
+                  {{#eq "Html" @root.tagName}}
                     <td>{{tagHtml}}</td>
                   {{/eq}}
-                  {{#eq "CSS" @root.tagName}}
+                  {{#eq "Css" @root.tagName}}
                     <td>{{tagCss}}</td>
                   {{/eq}}
                   {{#eq "JavaScript" @root.tagName}}
@@ -165,9 +157,10 @@
                   {{/eq}}            
                 </tr>                
               {{/each}}
-            {{/eq}}            
+       
           </tbody>
         </table>
+        {{/if}}
       </div>
 
     {{>footer}}
