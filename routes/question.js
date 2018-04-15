@@ -27,7 +27,6 @@ router.get("/:questionId", function(req, res, next) {
             }
         })
         .catch(function(err){
-            console.log(err);
             res.status(500).json({
                 error:err
             });
@@ -49,7 +48,6 @@ router.patch("/:questionId/up", function(req, res, next) {
                         res.redirect("back");
                     })))
         .catch(function(err){
-            console.log(err);
             res.status(500).json({error:err});
         });
 });
@@ -69,7 +67,6 @@ router.patch("/:questionId/down", function(req, res, next) {
                         res.redirect("back");
                     })))
         .catch(function(err){
-            console.log(err);
             res.status(500).json({error:err});
         });
 });
@@ -87,7 +84,6 @@ router.patch("/:questionId/downupped", function(req, res, next) {
                         res.redirect("back");
                     })))
         .catch(function(err){
-            console.log(err);
             res.status(500).json({error:err});
         });
 });
@@ -105,7 +101,6 @@ router.patch("/:questionId/updowned", function(req, res, next) {
                         res.redirect("back");
                     })))
         .catch(function(err){
-            console.log(err);
             res.status(500).json({error:err});
         });
 });
@@ -131,7 +126,6 @@ router.patch("/:questionId/reply", function(req, res, next) {
             });
         })
         .catch(function(err){
-            console.log(err);
             res.status(500).json({error:err});
         });
 });
@@ -178,7 +172,6 @@ router.patch("/:qustionId/:replyId/accept", function(req, res, next) {
         Question.update({_id : questionId}, {$set : {"replyUsername" : uname}})
             .exec()
             .catch(function(err){
-                console.log(err);
                 res.status(500).json({error:err});
             })
 
@@ -198,7 +191,6 @@ router.patch("/:qustionId/:replyId/accept", function(req, res, next) {
                         User.update({_id : userId}, {$set : query})
                             .exec()
                             .catch(function(err){
-                                console.log(err);
                                 res.status(500).json({error:err});
                             });
                         callback();
@@ -218,7 +210,6 @@ router.patch("/:qustionId/:replyId/accept", function(req, res, next) {
                     res.redirect("back");
                 })
                 .catch(function(err){
-                    console.log(err);
                     res.status(500).json({error:err});
                 }));
 });
@@ -238,7 +229,6 @@ router.patch("/:replyId/reject", function(req, res, next) {
                     }));
         }))
         .catch(function(err){
-            console.log(err);
             res.status(500).json({error:err});
         });
 });
@@ -258,7 +248,6 @@ router.patch("/:replyId/upReply", function(req, res, next) {
                         res.redirect("back");
                     })))
         .catch(function(err){
-            console.log(err);
             res.status(500).json({error:err});
         });
 });
@@ -278,7 +267,6 @@ router.patch("/:replyId/downReply", function(req, res, next) {
                         res.redirect("back");
                     })))
         .catch(function(err){
-            console.log(err);
             res.status(500).json({error:err});
         });
 });
@@ -296,7 +284,6 @@ router.patch("/:replyId/downuppedReply", function(req, res, next) {
                         res.redirect("back");
                     })))
         .catch(function(err){
-            console.log(err);
             res.status(500).json({error:err});
         });
 });
@@ -314,7 +301,6 @@ router.patch("/:replyId/updownedReply", function(req, res, next) {
                         res.redirect("back");
                     })))
         .catch(function(err){
-            console.log(err);
             res.status(500).json({error:err});
         });
 });

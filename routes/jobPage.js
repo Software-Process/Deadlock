@@ -1,7 +1,5 @@
 const express = require("express");
 const router = express.Router();
-
-const question = require("../models/question");
 const jobs = require("../models/jobs");
 
 /* GET home page. */
@@ -16,7 +14,6 @@ router.get("/", function(req, res, next) {
             }
         })
         .catch(err => {
-            console.log(err);
             res.status(200).json({
                 error: err
             });

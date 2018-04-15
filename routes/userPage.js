@@ -16,7 +16,6 @@ router.patch("/:userId/clear", function (req, res, next) {
         .exec()
         .then(res.redirect("/userPage"))
         .catch(function (err) {
-            console.log(err);
             res.status(500).json({error: err});
         });
 });
@@ -53,14 +52,12 @@ router.get("/", function(req, res, next){
                         });
                     })
                     .catch(err => {
-                        console.log(err);
                         res.status(200).json({
                             error: err
                         });
                     });
             })
             .catch(err => {
-                console.log(err);
                 res.status(200).json({
                     error: err
                 });
@@ -124,14 +121,12 @@ router.get("/:name", function(req, res, next){
                                 }
                             })
                             .catch(err => {
-                                console.log(err);
                                 res.status(200).json({
                                     error: err
                                 });
                             });
                     })
                     .catch(err => {
-                        console.log(err);
                         res.status(200).json({
                             error: err
                         });
@@ -139,7 +134,6 @@ router.get("/:name", function(req, res, next){
                 
             })
             .catch(err => {
-                console.log(err);
                 res.status(200).json({
                     error: err
                 });

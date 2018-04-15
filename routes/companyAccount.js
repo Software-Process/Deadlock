@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
 const User = require("../models/user");
-const question = require("../models/question");
 
 /* GET home page. */
 router.get("/", function(req, res, next) {
@@ -13,7 +12,6 @@ router.get("/", function(req, res, next) {
             }
         })
         .catch(err => {
-            console.log(err);
             res.status(200).json({
                 error: err
             });
@@ -25,7 +23,6 @@ router.patch("/approve/:compId", function(req, res) {
         .exec()
         .then(res.redirect("/companyaccount"))
         .catch(err => {
-            console.log(err);
             res.status(200).json({
                 error: err
             });
@@ -43,7 +40,7 @@ router.post("/", function(req, res) {
         bannerColor: "#116CF6"
     });
 
-    User.register(user, req.body.password, function(err, user ) {
+    User.register(user, req.body.password, function(err, user) {
         if (err) {
             return res.render("signIn", { user : user, reg: err });
         }

@@ -14,7 +14,6 @@ router.get("/", function(req, res, next) {
             } else {
                 res.render("jobposting", { questions: docs});
             }
-
         })
         .catch(err => {
             res.status(200).json({
@@ -24,7 +23,6 @@ router.get("/", function(req, res, next) {
 });
 router.post("/", function(req, res, next) {
     const genId = new mongoose.Types.ObjectId();
-    console.log(req.user);
     const jobs = new Jobs({
         _id: genId,
         title: req.body.title,
@@ -40,7 +38,6 @@ router.post("/", function(req, res, next) {
             res.redirect("/");
         })
         .catch(function(err){
-            console.log(err);
             res.status(500).json({
                 error:err
             });

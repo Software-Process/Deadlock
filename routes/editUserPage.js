@@ -37,7 +37,6 @@ router.patch("/", function (req, res, next) {
             });
         })
         .catch(function (err) {
-            console.log(err);
             res.status(500).json({error: err});
         });
 });
