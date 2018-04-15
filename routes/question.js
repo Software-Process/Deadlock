@@ -74,7 +74,7 @@ router.patch("/:questionId/down", function(req, res, next) {
 router.patch("/:questionId/downupped", function(req, res, next) {
     const id = req.params.questionId;
     const userName = req.user.username;
-    Question.update({_id : id},{$pull : {"users" : [userName]}})
+    Question.update({_id : id},{$pull : {"users" : userName}})
         .exec()
         .then(
             Question.update({_id : id}, {$pull : {voteHistory: {user: req.user.username}}}).exec()
@@ -91,7 +91,7 @@ router.patch("/:questionId/downupped", function(req, res, next) {
 router.patch("/:questionId/updowned", function(req, res, next) {
     const id = req.params.questionId;
     const userName = req.user.username;
-    Question.update({_id : id},{$pull : {"users" : [userName]}})
+    Question.update({_id : id},{$pull : {"users" : userName}})
         .exec()
         .then(
             Question.update({_id : id}, {$pull : {voteHistory: {user: req.user.username}}}).exec()
@@ -274,7 +274,7 @@ router.patch("/:replyId/downReply", function(req, res, next) {
 router.patch("/:replyId/downuppedReply", function(req, res, next) {
     const repId = req.params.replyId;
     const userName = req.user.username;
-    Question.update({"replies._id" : repId},{$pull : {"replies.$.users" : [userName]}})
+    Question.update({"replies._id" : repId},{$pull : {"replies.$.users" : userName}})
         .exec()
         .then(
             Question.update({"replies._id" : repId}, {$pull : {"replies.$.voteHistory": {user: req.user.username}}}).exec()
@@ -291,7 +291,7 @@ router.patch("/:replyId/downuppedReply", function(req, res, next) {
 router.patch("/:replyId/updownedReply", function(req, res, next) {
     const repId = req.params.replyId;
     const userName = req.user.username;
-    Question.update({"replies._id" : repId},{$pull : {"replies.$.users" : [userName]}})
+    Question.update({"replies._id" : repId},{$pull : {"replies.$.users" : userName}})
         .exec()
         .then(
             Question.update({"replies._id" : repId}, {$pull : {"replies.$.voteHistory": {user: req.user.username}}}).exec()
