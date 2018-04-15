@@ -141,7 +141,41 @@ describe('Database Tests for question page', function() {
             })
         });
 
-        //Fail to add replies
+        it('Fail to add a reply due to a missing field', function (done) {
+            var invalidReply = reply({
+                _id: new mongoose.Types.ObjectId(),
+                // text field is omitted for the fail test
+                score: 1,
+                author: new mongoose.Types.ObjectId(),
+                username: 'username',
+                date: new Date(),
+                question: new mongoose.Types.ObjectId(),
+                accepted: false,
+                rejected: false
+            });
+
+            invalidReply.save(err => {
+                if (err) { return done(); }
+                throw new Error('Should generate error!');
+            });
+        });
+
+        it('Fail to update a reply that does not exist', function (done) {
+            var error = false;
+            questionTest.update(
+                { replies: { $elemMatch: { _id: 0 } } }, { $inc: { 'score': 1 } }
+            )
+                .exec()
+                .catch(function (err) {
+                    error = true;
+                    return done();
+                })
+                .then(function () {
+                    if (!error) {
+                        throw new Error('Should generate error!');
+                    }
+                });
+        });
 
         it('Able to test up votes for the question', function(done) {
             questionTest.findById(authordQuestionID)
@@ -181,8 +215,6 @@ describe('Database Tests for question page', function() {
                 });
             });
         });
-
-        //Fail to update the replies
 
         it('Able to test down votes for the question', function(done) {
             questionTest.findById(authordQuestionID)
@@ -433,12 +465,11 @@ describe('Database Tests for question page', function() {
             });
         });
 
-        //Fail to retrieve
-    });
-  
-  after(function(done){
-    mongoose.connection.db.dropCollection('questiontests', function () {
-        mongoose.connection.close(done);
-    });
-  });
-});
+        after(function (done) {
+            mongoose.connection.db.dropCollection('questiontests', function () {
+                mongoose.connection.close(done);
+            });
+        });
+
+    })
+})
