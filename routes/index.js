@@ -14,11 +14,10 @@ router.get("/", function(req, res, next) {
             }
         })
         .catch(err => {
-            console.log(err);
             res.status(200).json({
                 error: err
-        });
-    }); 
+            });
+        }); 
 });
 
 router.post("/:tag/sort", function(req, res) {
@@ -32,11 +31,10 @@ router.post("/:tag/sort", function(req, res) {
             }
         })
         .catch(err => {
-            console.log(err);
             res.status(200).json({
                 error: err
-        });
-    }); 
+            });
+        }); 
 });
 
 module.exports = router;
