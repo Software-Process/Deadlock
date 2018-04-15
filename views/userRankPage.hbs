@@ -100,7 +100,8 @@
           </thead>
           <tbody>
               {{#each users}}
-                                          
+              {{#unlessEq company "yes"}}
+                  {{#unlessEq admin "yes"}}
                 <tr>
                   <td>{{username}}</td>
                   <td>{{email}}</td>
@@ -155,8 +156,11 @@
                   {{#eq "Perl" @root.tagName}}
                     <td>{{tagPerl}}</td>
                   {{/eq}}            
-                </tr>                
+                </tr>
+              {{/unlessEq}}
+              {{/unlessEq}}
               {{/each}}
+
        
           </tbody>
         </table>
