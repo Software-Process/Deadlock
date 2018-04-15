@@ -83,7 +83,7 @@ app.use(express.static(path.join(__dirname, "public")));
 // Routes setup
 app.use("/", index);
 app.use("/questionPrompt", questionPrompt);
-app.use("/question", questionPage);
+app.use("/question", questionPage.router);
 app.use("/aboutUs", aboutUs);
 app.use("/login", loginRegister);
 app.use("/userpage", userPage);
