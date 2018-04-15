@@ -100,9 +100,61 @@
                 <span class="label label-pill label-default">Tags:</span>
               </div>
               <div class="col-sm-11">
+                {{#if this.tags}}
                 {{#each tags}}
-                  <span class="label label-pill label-success">{{this}}</span>
+                  {{#eq this "Java"}}                
+                    <span class="label label-pill label-success">{{this}}</span>
+                  {{/eq}}
+                  {{#eq this "PHP"}}                
+                    <span class="label label-pill label-primary">{{this}}</span>
+                  {{/eq}}
+                  {{#eq this "Python"}}                
+                    <span class="label label-pill label-info">{{this}}</span>
+                  {{/eq}}
+                  {{#eq this "C++"}}                
+                    <span class="label label-pill label-default">{{this}}</span>
+                  {{/eq}}
+                  {{#eq this "C#"}}                
+                    <span class="label label-pill label-warning">{{this}}</span>
+                  {{/eq}}
+                  {{#eq this "Ruby"}}                
+                    <span class="label label-pill label-danger">{{this}}</span>
+                  {{/eq}}
+                  {{#eq this "Lisp"}}                
+                    <span class="label label-pill label-success">{{this}}</span>
+                  {{/eq}}
+                  {{#eq this "Prolog"}}                
+                    <span class="label label-pill label-primary">{{this}}</span>
+                  {{/eq}}
+                  {{#eq this "HTML"}}                
+                    <span class="label label-pill label-info">{{this}}</span>
+                  {{/eq}}
+                  {{#eq this "CSS"}}                
+                    <span class="label label-pill label-default">{{this}}</span>
+                  {{/eq}}
+                  {{#eq this "Javascript"}}                
+                    <span class="label label-pill label-warning">{{this}}</span>
+                  {{/eq}}
+                  {{#eq this "Jade"}}                
+                    <span class="label label-pill label-danger">{{this}}</span>
+                  {{/eq}}
+                  {{#eq this "C"}}                
+                    <span class="label label-pill label-success">{{this}}</span>
+                  {{/eq}}
+                  {{#eq this "Fortran"}}                
+                    <span class="label label-pill label-primary">{{this}}</span>
+                  {{/eq}}
+                  {{#eq this "Visual Basic"}}                
+                    <span class="label label-pill label-info">{{this}}</span>
+                  {{/eq}}
+                  {{#eq this "Assembly"}}                
+                    <span class="label label-pill label-default">{{this}}</span>
+                  {{/eq}}
+                  {{#eq this "Perl"}}                
+                    <span class="label label-pill label-warning">{{this}}</span>
+                  {{/eq}}
                 {{/each}}
+              {{/if}}
               </div>
             </div>
           </div>
