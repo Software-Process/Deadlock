@@ -319,4 +319,4 @@ router.patch("/:replyId/updownedReply", function(req, res, next) {
         });
 });
 
-module.exports = {router,getPropertyWithTag};
+module.exports = router;
