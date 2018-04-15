@@ -305,4 +305,7 @@ router.patch("/:replyId/updownedReply", function(req, res, next) {
         });
 });
 
-module.exports = router;
+module.exports = {
+    "router": router,
+    "getPropertyWithTag": getPropertyWithTag
+};
