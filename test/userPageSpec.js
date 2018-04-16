@@ -105,8 +105,6 @@ describe('Connecting to database for user page', function() {
             testFakeUser.save(done);
         });
 
-        //Fail to save
-
         it('Should retrieve the new user from database', function(done) {
             testEditUser.findById(userID)
             .exec()
@@ -134,7 +132,6 @@ describe('Connecting to database for user page', function() {
                 });
             });
         });
-        //Fail to retrieve
     });
     
     after(function(done){

@@ -76,8 +76,6 @@ describe('Connecting to database for index page', function() {
             testNewQuestion.save(done);
         });
 
-        //Fail to save 
-
         it('Should retrieve the question from database', function(done) {
             testQuestions.findById(authorQuestionID)
             .exec()
@@ -105,8 +103,6 @@ describe('Connecting to database for index page', function() {
                 });
             });
         });
-        
-        //Fail to retrieve
     });
     
     after(function(done){

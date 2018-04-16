@@ -129,10 +129,10 @@ describe('Database Tests for question page', function() {
                     done();
                 })
                 .catch(function(err) {
-                  console.log(err);
-                  res.status(500).json({
-                      error:err
-                  });
+                    console.log(err);
+                    res.status(500).json({
+                        error:err
+                    });
                 });
             })
             .catch(function(err){
@@ -165,16 +165,16 @@ describe('Database Tests for question page', function() {
             questionTest.update(
                 { replies: { $elemMatch: { _id: 0 } } }, { $inc: { 'score': 1 } }
             )
-                .exec()
-                .catch(function (err) {
-                    error = true;
-                    return done();
-                })
-                .then(function () {
-                    if (!error) {
-                        throw new Error('Should generate error!');
-                    }
-                });
+            .exec()
+            .catch(function (err) {
+                error = true;
+                return done();
+            })
+            .then(function () {
+                if (!error) {
+                    throw new Error('Should generate error!');
+                }
+            });
         });
 
         it('Able to test up votes for the question', function(done) {
@@ -276,8 +276,8 @@ describe('Database Tests for question page', function() {
                     console.log(err);
                     res.status(500).json({
                         error: err
+                    });
                 });
-        });
         });
 
         it('Able to test up votes for the reply', function (done) {
@@ -295,125 +295,7 @@ describe('Database Tests for question page', function() {
                                 .then(function (doc1) {
                                     var newReplyScore = doc1.replies[0].score;
                                     expect(newReplyScore).to.equal(oldReplyScore + 1);
-                done();
-                                })
-                                .catch(function (err) {
-                                    console.log(err);
-                                    res.status(500).json({
-                                        error: err
-            });
-        });
-                        })
-                        .catch(function (err) {
-                            console.log(err);
-                            res.status(500).json({
-                                error: err
-            });
-                        })
-                })
-                .catch(function (err) {
-                    console.log(err);
-                    res.status(500).json({
-                        error: err
-            });
-            });
-        });
-
-        it('Able to test down votes for the reply', function (done) {
-            questionTest.findById(authordQuestionID)
-                .exec()
-                .then(function (doc) {
-                    var oldReplyScore = doc.replies[0].score;
-                    questionTest.update(
-                        { replies: { $elemMatch: { _id: replyID } } }, { $inc: { "replies.$.score": -1 } }
-                    )
-                        .then(function (doc) {
-                            //Assert that the reply's score has sucessfully decremented
-                            questionTest.findById(authordQuestionID)
-                                .exec()
-                                .then(function (doc1) {
-                                    var newReplyScore = doc1.replies[0].score;
-                                    expect(newReplyScore).to.equal(oldReplyScore - 1);
-                done();
-                                })
-                                .catch(function (err) {
-                                    console.log(err);
-                                    res.status(500).json({
-                                        error: err
-            });
-            });
-                        })
-                        .catch(function (err) {
-                            console.log(err);
-                            res.status(500).json({
-                                error: err
-        });
-                        })
-                })
-                .catch(function (err) {
-                    console.log(err);
-                    res.status(500).json({
-                        error: err
-        });
-        });
-        });
-
-
-        it('Able to test accepting the reply', function (done) {
-            questionTest.findById(authordQuestionID)
-                .exec()
-                .then(function (doc) {
-                    var oldReplyAcceptance = doc.replies[0].accepted;
-                    questionTest.update(
-                        { replies: { $elemMatch: { _id: replyID } } }, { $set: { "replies.$.accepted": true } }
-                    )
-                        .then(function (doc) {
-                            //Assert that the reply has succesfully been accepted
-                            questionTest.findById(authordQuestionID)
-                                .exec()
-                                .then(function (doc1) {
-                                    var newReplyAcceptance = doc1.replies[0].accepted;
-                                    expect(newReplyAcceptance).to.equal(!oldReplyAcceptance);
-                done();
-                                })
-                                .catch(function (err) {
-                                    console.log(err);
-                                    res.status(500).json({
-                                        error: err
-            });
-            });
-                        })
-                        .catch(function (err) {
-                            console.log(err);
-                            res.status(500).json({
-                                error: err
-        });
-                        })
-                })
-                .catch(function (err) {
-                    console.log(err);
-                    res.status(500).json({
-                        error: err
-            });
-        });
-        });
-
-        it('Able to test rejecting the reply', function (done) {
-            questionTest.findById(authordQuestionID)
-                .exec()
-                .then(function (doc) {
-                    var oldReplyRejection = doc.replies[0].rejected;
-                    questionTest.update(
-                        { replies: { $elemMatch: { _id: replyID } } }, { $set: { "replies.$.rejected": true } }
-                    )
-                        .then(function (doc) {
-                            //Assert that the reply has succesfully been rejected
-                            questionTest.findById(authordQuestionID)
-                                .exec()
-                                .then(function (doc1) {
-                                    var newReplyRejection = doc1.replies[0].rejected;
-                                    expect(newReplyRejection).to.equal(!oldReplyRejection);
-                done();
+                                    done();
                                 })
                                 .catch(function (err) {
                                     console.log(err);
@@ -434,7 +316,125 @@ describe('Database Tests for question page', function() {
                     res.status(500).json({
                         error: err
                     });
-            });
+                });
+        });
+
+        it('Able to test down votes for the reply', function (done) {
+            questionTest.findById(authordQuestionID)
+                .exec()
+                .then(function (doc) {
+                    var oldReplyScore = doc.replies[0].score;
+                    questionTest.update(
+                        { replies: { $elemMatch: { _id: replyID } } }, { $inc: { "replies.$.score": -1 } }
+                    )
+                        .then(function (doc) {
+                            //Assert that the reply's score has sucessfully decremented
+                            questionTest.findById(authordQuestionID)
+                                .exec()
+                                .then(function (doc1) {
+                                    var newReplyScore = doc1.replies[0].score;
+                                    expect(newReplyScore).to.equal(oldReplyScore - 1);
+                                    done();
+                                })
+                                .catch(function (err) {
+                                    console.log(err);
+                                    res.status(500).json({
+                                        error: err
+                                    });
+                                });
+                        })
+                        .catch(function (err) {
+                            console.log(err);
+                            res.status(500).json({
+                                error: err
+                            });
+                        })
+                })
+                .catch(function (err) {
+                    console.log(err);
+                    res.status(500).json({
+                        error: err
+                    });
+                });
+        });
+
+
+        it('Able to test accepting the reply', function (done) {
+            questionTest.findById(authordQuestionID)
+                .exec()
+                .then(function (doc) {
+                    var oldReplyAcceptance = doc.replies[0].accepted;
+                    questionTest.update(
+                        { replies: { $elemMatch: { _id: replyID } } }, { $set: { "replies.$.accepted": true } }
+                    )
+                        .then(function (doc) {
+                            //Assert that the reply has succesfully been accepted
+                            questionTest.findById(authordQuestionID)
+                                .exec()
+                                .then(function (doc1) {
+                                    var newReplyAcceptance = doc1.replies[0].accepted;
+                                    expect(newReplyAcceptance).to.equal(!oldReplyAcceptance);
+                                    done();
+                                })
+                                .catch(function (err) {
+                                    console.log(err);
+                                    res.status(500).json({
+                                        error: err
+                                    });
+                                });
+                        })
+                        .catch(function (err) {
+                            console.log(err);
+                            res.status(500).json({
+                                error: err
+                            });
+                        })
+                })
+                .catch(function (err) {
+                    console.log(err);
+                    res.status(500).json({
+                        error: err
+                    });
+                });
+        });
+
+        it('Able to test rejecting the reply', function (done) {
+            questionTest.findById(authordQuestionID)
+                .exec()
+                .then(function (doc) {
+                    var oldReplyRejection = doc.replies[0].rejected;
+                    questionTest.update(
+                        { replies: { $elemMatch: { _id: replyID } } }, { $set: { "replies.$.rejected": true } }
+                    )
+                        .then(function (doc) {
+                            //Assert that the reply has succesfully been rejected
+                            questionTest.findById(authordQuestionID)
+                                .exec()
+                                .then(function (doc1) {
+                                    var newReplyRejection = doc1.replies[0].rejected;
+                                    expect(newReplyRejection).to.equal(!oldReplyRejection);
+                                    done();
+                                })
+                                .catch(function (err) {
+                                    console.log(err);
+                                    res.status(500).json({
+                                        error: err
+                                    });
+                                });
+                        })
+                        .catch(function (err) {
+                            console.log(err);
+                            res.status(500).json({
+                                error: err
+                            });
+                        })
+                })
+                .catch(function (err) {
+                    console.log(err);
+                    res.status(500).json({
+                        error: err
+                    });
+                });
         });
 
         it('Should retrieve the question from test database', function(done) {

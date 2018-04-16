@@ -71,9 +71,7 @@ describe('Connecting to database for question prompt page', function() {
             });
         
             testNewQuestion.save(done);
-        });
-
-        //Fail to save 
+        }); 
 
         it('Should retrieve the question from database', function(done) {
             testQuestions.findById(questionAuthorID)
@@ -103,7 +101,6 @@ describe('Connecting to database for question prompt page', function() {
             });
         });
 
-        //Fail to retrieve
     });
   
     after(function(done){
