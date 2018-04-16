@@ -105,9 +105,7 @@ describe("Connecting to database for login register page", function() {
             testLoginExample.save(done);
         });
 
-        //Fail to save
-        
-        it("Should retrieve the new user registered from database", function(done) {
+        it('Should retrieve the new user registered from database', function(done) {
             testLoginRegister.findById(userID)
                 .exec()
                 .then(function(doc){
@@ -132,8 +130,6 @@ describe("Connecting to database for login register page", function() {
                     });
                 });
         });
-
-        //Fail to retrieve here
     });
   
     after(function(done){

@@ -38,8 +38,6 @@ describe("Connecting to database for job page", function() {
             });
             testJobExample.save(done);
         });
-        
-        //Fail to save
 
         it("Should be able to retrieve the new job posting from database", function(done) {
             testJobPage.findById(jobID)
@@ -66,8 +64,6 @@ describe("Connecting to database for job page", function() {
                     });
                 });
         });
-
-        //Fail to retrieve
     });
     
     after(function(done){

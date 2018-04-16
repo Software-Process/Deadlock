@@ -39,9 +39,7 @@ describe("Connecting to database for job posting page", function() {
             testJobExample.save(done);
         });
 
-        //Fail to save
-
-        it("Should retrieve the new job posting from database", function(done) {
+        it('Should retrieve the new job posting from database', function(done) {
             testJobPosting.findById(postingId)
                 .exec()
                 .then(function(doc){
@@ -66,8 +64,6 @@ describe("Connecting to database for job posting page", function() {
                     });
                 });
         });
-
-        //Fail to retrieve
     });
   
     after(function(done){

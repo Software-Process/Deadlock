@@ -76,9 +76,7 @@ describe("Connecting to database for index page", function() {
             testNewQuestion.save(done);
         });
 
-        //Fail to save 
-
-        it("Should retrieve the question from database", function(done) {
+        it('Should retrieve the question from database', function(done) {
             testQuestions.findById(authorQuestionID)
                 .exec()
                 .then(function(doc){
@@ -103,8 +101,6 @@ describe("Connecting to database for index page", function() {
                     });
                 });
         });
-        
-        //Fail to retrieve
     });
     
     after(function(done){

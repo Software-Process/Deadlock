@@ -39,9 +39,6 @@ describe("Connecting to database for company account", function() {
             testCompanyExample.save(done);
         });
 
-        //Here write a case to fail the save the company, can do so by forgetting to set a required variable
-        //The required ones are the ones with "true"
-
         it("Fail to save a company due to missing required field", function(done) {
             var companyID = new mongoose.Types.ObjectId();  
             var invalidCompanyAccount = testCompanyAccount({
@@ -82,9 +79,7 @@ describe("Connecting to database for company account", function() {
                 });
         });
 
-        //Here fail to approve the company, could do so by looking at an ID that does not exist
-
-        it("Should retrieve a company from test database", function(done) {
+        it('Should retrieve a company from test database', function(done) {
             testCompanyAccount.findById(companyID)
                 .exec()
                 .then(function(doc){
@@ -98,7 +93,6 @@ describe("Connecting to database for company account", function() {
                     });
                 });
         });
-    //Fail to retrieve
     });
   
     after(function(done){

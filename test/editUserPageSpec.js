@@ -105,8 +105,6 @@ describe("Connecting to database for edit user page", function() {
             testFakeUser.save(done);
         });
 
-        //Fail to save here
-
         it("Able to update bio for the user", function(done) {
             testEditUser.update({_id : userID}, {$set : {"bio" : "new bio"}})
                 .exec()
@@ -129,9 +127,7 @@ describe("Connecting to database for edit user page", function() {
                 });
         });
 
-        //Fail to update here
-
-        it("Should retrieve the edited user from database", function(done) { 
+        it('Should retrieve the edited user from database', function(done) { 
             testEditUser.findById(userID)
                 .exec()
                 .then(function(doc){
@@ -156,8 +152,6 @@ describe("Connecting to database for edit user page", function() {
                     });
                 });
         });
-
-    //Fail to retrieve here
     });
   
     after(function(done){
