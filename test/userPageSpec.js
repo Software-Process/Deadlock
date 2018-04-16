@@ -105,7 +105,7 @@ describe("Connecting to database for user page", function() {
             testFakeUser.save(done);
         });
 
-        it('Should retrieve the new user from database', function(done) {
+        it("Should retrieve the new user from database", function(done) {
             testEditUser.findById(userID)
                 .exec()
                 .then(function(doc) {

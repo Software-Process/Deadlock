@@ -76,7 +76,7 @@ describe("Connecting to database for index page", function() {
             testNewQuestion.save(done);
         });
 
-        it('Should retrieve the question from database', function(done) {
+        it("Should retrieve the question from database", function(done) {
             testQuestions.findById(authorQuestionID)
                 .exec()
                 .then(function(doc){
