@@ -127,7 +127,7 @@ describe("Connecting to database for edit user page", function() {
                 });
         });
 
-        it('Should retrieve the edited user from database', function(done) { 
+        it("Should retrieve the edited user from database", function(done) { 
             testEditUser.findById(userID)
                 .exec()
                 .then(function(doc){

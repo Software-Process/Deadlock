@@ -79,7 +79,7 @@ describe("Connecting to database for company account", function() {
                 });
         });
 
-        it('Should retrieve a company from test database', function(done) {
+        it("Should retrieve a company from test database", function(done) {
             testCompanyAccount.findById(companyID)
                 .exec()
                 .then(function(doc){
