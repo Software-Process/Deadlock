@@ -456,6 +456,7 @@ describe("Database Tests for question page", function() {
                     });
                 });
         });
+    });
 
   
     after(function(done){
