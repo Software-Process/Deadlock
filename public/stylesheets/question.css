@@ -94,8 +94,9 @@ body {background-color: #116CF6;}
 #question-vote {padding-left: 4px;}
 
 .accepted {
-  background-color: green;
+  background-color: rgb(89, 211, 89);
   border-color: #054700;
+  color: white;
 }
 
 .rejected {
@@ -104,3 +105,11 @@ body {background-color: #116CF6;}
 }
 
 .voted1 {color: white;}
+
+.question-text {
+  padding-left: 18px;
+}
+
+.pill-row {
+  padding-left: 10px;
+}

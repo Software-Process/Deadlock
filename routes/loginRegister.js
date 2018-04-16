@@ -4,7 +4,6 @@ const User = require("../models/user");
 const router = express.Router();
 
 const { check, validationResult } = require("express-validator/check");
-const { matchedData, sanitize } = require("express-validator/filter");
 
 /* GET Login/Registration page. */
 router.get("/", function (req, res) {
@@ -31,7 +30,7 @@ router.post("/register", [
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         const errs = errors.array()[0];
-        output = errs.param + " " + errs.msg;
+        const output = errs.param + " " + errs.msg;
         return res.render("signIn", { reg:output });
     }
 
@@ -41,7 +40,7 @@ router.post("/register", [
         admin: "",
         company: "",
         picture: "/images/default1.png",
-        bannerColor: '#116CF6',
+        bannerColor: "#116CF6",
         tagJava : 0,
         tagPHP : 0,
         tagPython : 0,
@@ -68,7 +67,7 @@ router.post("/register", [
             admin: "",
             company: "requested",
             picture: "/images/default1.png",
-            bannerColor: '#116CF6',
+            bannerColor: "#116CF6",
             tagJava : 0,
             tagPHP : 0,
             tagPython : 0,
@@ -94,7 +93,7 @@ router.post("/register", [
             admin: "",
             company: "",
             picture: "/images/default1.png",
-            bannerColor: '#116CF6',
+            bannerColor: "#116CF6",
             tagJava : 0,
             tagPHP : 0,
             tagPython : 0,
@@ -117,15 +116,14 @@ router.post("/register", [
 
     User.register(user, req.body.password, function(err, user ) {
         if (err) {
-            console.log(err);
             return res.render("signIn", { user : user, reg: err });
         }
+
         if (user.company === "requested"){
             return res.redirect("/");
         }
 
         passport.authenticate("local")(req, res, function () {
-
             res.redirect("/");
         });
     });
@@ -142,10 +140,16 @@ router.post("/login", function(req, res, next) {
             return res.render("signIn", {sig: "Please wait for admin approval before signing in with a company account"});
         }
         passport.authenticate("local", function(err, user, info) {
-            if (err) { return next(err); }
-            if (!user) { return res.render("signIn", {sig: "Incorrect username or password."}); }
+            if (err) { 
+                return next(err);
+            }
+            if (!user) { 
+                return res.render("signIn", {sig: "Incorrect username or password."}); 
+            }
             req.logIn(user, function(err) {
-                if (err) { return next(err); }
+                if (err) {
+                    return next(err);
+                }
                 return res.redirect("/");
             });
         })(req, res, next);

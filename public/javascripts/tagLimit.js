@@ -6,7 +6,7 @@ $(document).ready(function () {
         if (nbBoxesChecked > maxAllowed) {
             $(this).prop("checked", "");
             $(this).parent().removeClass("active");
-            alert("Please select at most " + maxAllowed + " tags.")
+            alert("Please select at most " + maxAllowed + " tags.");
         }
     });
 });
